@@ -53,6 +53,21 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(resolve_run("arc_challenge", "huginn_32")["shots"], 0)
         self.assertEqual(resolve_run("piqa", "ouro_14")["task"]["split"], "validation")
 
+    def test_reduced_depth_variant_preserves_the_standard_registry_and_data(self):
+        original = resolve_run("arc_challenge", "huginn_16")
+        reduced = resolve_run("arc_challenge", "huginn_16", "huginn_half_depth")
+        self.assertEqual(reduced["model"]["reference_step"], 5)
+        self.assertEqual(reduced["model"]["loops"], 16)
+        self.assertEqual(reduced["model"]["fixed"], 0.5)
+        self.assertEqual(reduced["data_path"], original["data_path"])
+        self.assertNotEqual(reduced["output"], original["output"])
+        self.assertNotIn("reference_step", resolve_run("arc_challenge", "huginn_16")["model"])
+        self.assertEqual(len(load_registry()[0]["models"]), 7)
+        with self.assertRaisesRegex(ValueError, "requires model"):
+            resolve_run("arc_challenge", "huginn_32", "huginn_half_depth")
+        with self.assertRaisesRegex(ValueError, "Unknown experiment"):
+            resolve_run("arc_challenge", "huginn_16", "missing")
+
 
 if __name__ == "__main__":
     unittest.main()

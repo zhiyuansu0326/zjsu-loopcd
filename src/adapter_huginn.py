@@ -15,7 +15,7 @@ class HuginnAdapter:
     # The official tokenizer and checkpoint likelihood evaluator both prepend BOS.
     add_bos = True
 
-    def __init__(self, model_path, device="cuda:0", dtype=torch.float32, loops=32):
+    def __init__(self, model_path, device="cuda:0", dtype=torch.float32, loops=32, reference_step=1):
         model_path = Path(model_path)
         tokenizer = AutoTokenizer.from_pretrained(
             model_path, trust_remote_code=True, local_files_only=True
@@ -24,23 +24,30 @@ class HuginnAdapter:
             model_path, trust_remote_code=True, local_files_only=True,
             torch_dtype=dtype, device_map={"": str(device)},
         ).eval()
-        self._configure(model, tokenizer, loops)
+        self._configure(model, tokenizer, loops, reference_step)
 
     @classmethod
-    def from_model(cls, model, tokenizer, loops=32):
+    def from_model(cls, model, tokenizer, loops=32, reference_step=1):
         """Wrap an already loaded official model (also supports small CPU tests)."""
         instance = cls.__new__(cls)
-        instance._configure(model.eval(), tokenizer, loops)
+        instance._configure(model.eval(), tokenizer, loops, reference_step)
         return instance
 
-    def _configure(self, model, tokenizer, loops):
-        if not isinstance(loops, int) or loops < 1:
+    def _configure(self, model, tokenizer, loops, reference_step):
+        if isinstance(loops, bool) or not isinstance(loops, int) or loops < 1:
             raise ValueError("loops must be a positive integer")
+        if (
+            isinstance(reference_step, bool)
+            or not isinstance(reference_step, int)
+            or not 1 <= reference_step <= loops
+        ):
+            raise ValueError("reference_step must be an integer between 1 and loops")
         if model.config.state_init != "like-init":
             raise ValueError("This adapter implements Huginn's released like-init state.")
         if model.config.test_time_noise != 0:
             raise ValueError("Extra recurrent noise is outside the paper's configuration.")
         self.model, self.tokenizer, self.loops = model, tokenizer, loops
+        self.reference_step = reference_step
         self.device = next(model.parameters()).device
         self.dtype = next(model.parameters()).dtype
         self.bos_token_id = tokenizer.bos_token_id
@@ -54,7 +61,7 @@ class HuginnAdapter:
         return {
             "model_revision": REVISION,
             "loops": self.loops,
-            "reference_recurrent_update": 1,
+            "reference_recurrent_update": self.reference_step,
             "reference_is_initial_noise": False,
             "coda_layers": len(self.model.transformer.coda),
             "readout": "ln_f -> complete coda -> ln_f -> lm_head",
@@ -144,7 +151,7 @@ class HuginnAdapter:
             hidden = block(hidden, frequencies, block_index, None, None)
         return self.model.transformer.ln_f(hidden)
 
-    def _trajectory(self, input_ids, initial_states):
+    def _trajectory(self, input_ids, initial_states, capture_reference=True):
         frequencies = self.model.freqs_cis[:, : input_ids.shape[1]]
         embedded = self.model.transformer.wte(input_ids)
         if self.model.emb_scale != 1:
@@ -159,20 +166,48 @@ class HuginnAdapter:
             hidden, block_index = self.model.core_block_forward(
                 hidden, embedded, frequencies, None, None, block_index, step
             )
-            if step == 0:
-                # Complete first recurrent update, before the readout normalization.
+            if capture_reference and step + 1 == self.reference_step:
+                # Capture the complete selected update before readout normalization.
                 early = hidden.clone()
-        return self._readout_hidden(hidden, frequencies), self._readout_hidden(early, frequencies)
+        final_hidden = self._readout_hidden(hidden, frequencies)
+        reference_hidden = self._readout_hidden(early, frequencies) if capture_reference else None
+        return final_hidden, reference_hidden
+
+    def _resolve_initial_states(self, input_ids, sample_keys, initial_states):
+        if initial_states is None:
+            return self.initial_states(sample_keys, input_ids.shape[1])
+        expected_shape = (*input_ids.shape, self.model.config.n_embd)
+        if not isinstance(initial_states, torch.Tensor) or initial_states.shape != expected_shape:
+            raise ValueError(f"initial_states must have shape {expected_shape}")
+        if initial_states.device != self.device or initial_states.dtype != self.dtype:
+            raise ValueError("initial_states must match the model device and dtype")
+        return initial_states
 
     @torch.inference_mode()
-    def forward_logits(self, input_ids, attention_mask, rows, positions, sample_keys=None):
+    def forward_logits(
+        self, input_ids, attention_mask, rows, positions, sample_keys=None, *, initial_states=None
+    ):
         rows, positions = self._validate_inputs(input_ids, attention_mask, rows, positions, sample_keys)
-        initial = self.initial_states(sample_keys, input_ids.shape[1])
+        initial = self._resolve_initial_states(input_ids, sample_keys, initial_states)
         final_hidden, early_hidden = self._trajectory(input_ids, initial)
         return {
             "baseline": self.model.lm_head(final_hidden[rows, positions]).float(),
             "reference": self.model.lm_head(early_hidden[rows, positions]).float(),
         }
+
+    @torch.inference_mode()
+    def forward_baseline_logits(
+        self, input_ids, attention_mask, rows, positions, sample_keys=None, *, initial_states=None
+    ):
+        """Run only the final readout, for independently timed baseline inference.
+
+        Supplying precomputed initial states excludes CPU noise generation and
+        transfer from repeated inference timing. The supplied tensor is not modified.
+        """
+        rows, positions = self._validate_inputs(input_ids, attention_mask, rows, positions, sample_keys)
+        initial = self._resolve_initial_states(input_ids, sample_keys, initial_states)
+        final_hidden, _ = self._trajectory(input_ids, initial, capture_reference=False)
+        return self.model.lm_head(final_hidden[rows, positions]).float()
 
     @torch.inference_mode()
     def validate(self, input_ids, attention_mask, rows, positions, sample_keys=None):
@@ -200,8 +235,25 @@ class HuginnAdapter:
         native_full_logits = native.logits[rows, positions].float()
         if self.dtype == torch.float32:
             torch.testing.assert_close(baseline, native_full_logits, atol=2e-5, rtol=2e-5)
-        if self.loops > 1 and torch.equal(baseline, reference):
-            raise AssertionError("The complete first and final recurrent readouts unexpectedly coincide.")
+        native_reference = self.model(
+            input_ids=input_ids, input_states=initial, num_steps=self.reference_step,
+            use_cache=False, attention_mask=None,
+            output_details={
+                "return_logits": True, "return_latents": False,
+                "return_head": True, "return_stats": False,
+            },
+        )
+        native_reference_hidden = native_reference.hidden_states[rows, positions]
+        torch.testing.assert_close(
+            early_hidden[rows, positions], native_reference_hidden, atol=0, rtol=0
+        )
+        native_reference_same_shape_logits = self.model.lm_head(native_reference_hidden).float()
+        torch.testing.assert_close(reference, native_reference_same_shape_logits, atol=0, rtol=0)
+        native_reference_full_logits = native_reference.logits[rows, positions].float()
+        if self.dtype == torch.float32:
+            torch.testing.assert_close(reference, native_reference_full_logits, atol=2e-5, rtol=2e-5)
+        if self.loops > self.reference_step and torch.equal(baseline, reference):
+            raise AssertionError("The configured reference and final recurrent readouts unexpectedly coincide.")
         if not bool(torch.isfinite(baseline).all() and torch.isfinite(reference).all()):
             raise AssertionError("Nonfinite Huginn logits")
         return {
@@ -209,6 +261,15 @@ class HuginnAdapter:
             "native_final_hidden_max_abs_error": (final_hidden[rows, positions] - native_hidden).abs().max().item(),
             "native_same_shape_logits_max_abs_error": (baseline - native_same_shape_logits).abs().max().item(),
             "native_full_logits_max_abs_error": (baseline - native_full_logits).abs().max().item(),
+            "native_reference_hidden_max_abs_error": (
+                early_hidden[rows, positions] - native_reference_hidden
+            ).abs().max().item(),
+            "native_reference_same_shape_logits_max_abs_error": (
+                reference - native_reference_same_shape_logits
+            ).abs().max().item(),
+            "native_reference_full_logits_max_abs_error": (
+                reference - native_reference_full_logits
+            ).abs().max().item(),
             "zero_guidance_matches_native_same_shape_exactly": True,
             "early_final_mean_abs_logit_difference": (baseline - reference).abs().mean().item(),
             "same_initial_states_supplied_to_native": True,

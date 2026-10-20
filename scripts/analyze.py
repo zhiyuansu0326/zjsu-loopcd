@@ -239,6 +239,8 @@ def audit_sources(output, manifest, name, task, resolved):
         f"src/adapter_{resolved['model']['family']}.py", "src/run_integrity.py",
         "src/registry.py", "src/evaluation.py", "configs/models.json", "configs/tasks.json",
     }
+    if resolved.get("experiment"):
+        required_paths.add("configs/experiments.json")
     hashes = manifest["code_hashes"]
     require(set(hashes) == required_paths, "Incomplete or unexpected source snapshot inventory")
     require(len({Path(path).name for path in hashes}) == len(hashes),
@@ -251,8 +253,16 @@ def audit_sources(output, manifest, name, task, resolved):
         verified[path] = {"sha256": expected, "verified_file": relative(snapshot)}
     frozen_models = read_json(output / "source_snapshot/models.json")
     frozen_tasks = read_json(output / "source_snapshot/tasks.json")
+    frozen_config = frozen_models["models"][name]
+    if resolved.get("experiment"):
+        frozen_experiments = read_json(output / "source_snapshot/experiments.json")["experiments"]
+        experiment = resolved["experiment"]
+        setting = frozen_experiments[experiment["name"]]
+        require({"name": experiment["name"], **setting} == experiment
+                and setting["model"] == name, "Snapshot experiment differs from the run")
+        frozen_config = {**frozen_config, **setting["model_overrides"]}
     require(frozen_models["seed"] == resolved["seed"]
-            and frozen_models["models"][name] == resolved["model"],
+            and frozen_config == resolved["model"],
             "Snapshot model registry differs from the run")
     require(frozen_tasks["tasks"][task] == resolved["task"]
             and frozen_tasks["context_policy"] == manifest["context_policy"],
@@ -393,6 +403,10 @@ def audit_model(task, name, resolved, tasks_registry, paper, cache):
         "add_bos": config["family"] == "huginn",
         "float32_matmul_precision": expected_precision, "dtype": "float32",
     }
+    if resolved.get("experiment"):
+        expected_fields["experiment"] = resolved["experiment"]
+    else:
+        require("experiment" not in manifest, "Experiment cannot be audited as a standard run")
     for field, value in expected_fields.items():
         require(manifest[field] == value, f"{task}/{name}: manifest mismatch: {field}")
     require(digest(output / "data_protocol.json") == manifest["protocol_sha256"],
@@ -419,7 +433,7 @@ def audit_model(task, name, resolved, tasks_registry, paper, cache):
             "Context truncation flag mismatch")
     scores = audit_scores(documents, tokenized, output, summary)
     require(scores["max_input_tokens"] == manifest["max_input_tokens"], "Maximum input length mismatch")
-    reference = dict(zip(MODES[:3], paper[task][name]))
+    reference = {} if resolved.get("experiment") else dict(zip(MODES[:3], paper[task][name]))
     return {
         "display": config["display"], "configuration": config, "shots": resolved["shots"],
         "results_path": relative(output), "n": len(documents),

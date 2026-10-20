@@ -124,8 +124,15 @@ def validate_native_checks(validation, legacy, config):
         require(validation["zero_guidance_matches_native_same_shape_exactly"] is True
                 and validation["same_initial_states_supplied_to_native"] is True,
                 "Missing native Huginn identity/initial-state check")
-        require(validation["loops"] == config["loops"] and validation["reference_recurrent_update"] == 1
+        require(validation["loops"] == config["loops"]
+                and validation["reference_recurrent_update"] == config.get("reference_step", 1)
                 and validation["reference_is_initial_noise"] is False, "Wrong Huginn readout semantics")
+        if "reference_step" in config:
+            for field in ("native_reference_hidden_max_abs_error",
+                          "native_reference_same_shape_logits_max_abs_error"):
+                close(validation[field], 0, f"Huginn exact native reference check {field}", tolerance=0)
+                native_errors[field] = validation[field]
+            native_errors["reference_full_logits"] = validation["native_reference_full_logits_max_abs_error"]
     elif config["family"] == "parcae":
         native_errors = {field: validation[field] for field in
                          ("native_final_logits_max_abs_error", "native_first_loop_logits_max_abs_error")}

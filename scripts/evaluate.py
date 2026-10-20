@@ -20,7 +20,7 @@ import torch
 import transformers
 
 from src.loopcd import MODES
-from src.registry import load_registry, resolve_run
+from src.registry import load_experiments, load_registry, resolve_run
 from src.evaluation import build_candidates, validate_documents
 from src.run_integrity import (
     load_completed_scores, native_source_hashes, validate_resume_manifest,
@@ -75,6 +75,8 @@ def main():
     models, tasks = load_registry()
     parser.add_argument("--task", choices=list(tasks["tasks"]), default="arc_easy")
     parser.add_argument("--model", "--name", dest="name", choices=list(models["models"]), required=True)
+    parser.add_argument("--experiment", choices=list(load_experiments()),
+                        help="Named protocol variant; keeps the full-depth result matrix unchanged.")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--batch-size", type=int)
@@ -83,7 +85,7 @@ def main():
     parser.add_argument("--matmul-precision", choices=("high", "highest"),
                         help="Default: highest for Huginn/Looped-Qwen, high for Ouro/Parcae.")
     args = parser.parse_args()
-    resolved = resolve_run(args.task, args.name)
+    resolved = resolve_run(args.task, args.name, args.experiment)
     registry = models
     config, task_config = resolved["model"], resolved["task"]
     family = config["family"]
@@ -113,7 +115,9 @@ def main():
     }[family])
     start = time.perf_counter()
     print("LOADING", args.name, args.dtype, torch.cuda.get_device_name(), flush=True)
-    adapter = cls(ROOT / config["model_path"], device="cuda:0", dtype=getattr(torch, args.dtype), loops=config["loops"])
+    adapter_options = {"reference_step": config["reference_step"]} if "reference_step" in config else {}
+    adapter = cls(ROOT / config["model_path"], device="cuda:0", dtype=getattr(torch, args.dtype),
+                  loops=config["loops"], **adapter_options)
     data_path, protocol_path = resolved["data_path"], resolved["protocol_path"]
     documents = [json.loads(line) for line in data_path.read_text().splitlines()]
     validate_documents(documents, task_config["count"])
@@ -140,6 +144,8 @@ def main():
         ROOT / "src/run_integrity.py", ROOT / "src/registry.py", ROOT / "src/evaluation.py",
         ROOT / "configs/models.json", ROOT / "configs/tasks.json",
     ]
+    if args.experiment:
+        code_paths.append(ROOT / "configs/experiments.json")
     adapter_metadata = getattr(adapter, "metadata", {})
     if callable(adapter_metadata):
         adapter_metadata = adapter_metadata()
@@ -162,6 +168,8 @@ def main():
         "gpu": torch.cuda.get_device_name(), "host": socket.gethostname(),
         "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
     }
+    if args.experiment:
+        manifest["experiment"] = resolved["experiment"]
     # Reject incompatible or damaged saved records before changing provenance.
     validate_resume_manifest(manifest_path, score_path, manifest)
     completed = load_completed_scores(score_path, candidates)

@@ -4,21 +4,22 @@ A reproduction of **LoopCD-Logits** from Liu et al., [*Decoding Looped Transform
 
 All **28 task/model configurations are complete and independently audited**: 7 configurations across ARC-Easy, ARC-Challenge, SciQ, and PIQA. See the [four-task report](results/multitask/REPORT.md), [JSON](results/multitask/comparison.json), and [CSV](results/multitask/comparison.csv). Original scores and execution source snapshots are preserved.
 
-Every run evaluates baseline decoding, fixed-strength LoopCD, and adaptive LoopCD using the same model trajectory. The first-loop reference is also saved.
+Each full-depth run evaluates baseline decoding, fixed-strength LoopCD, and adaptive LoopCD using the same model trajectory. The first-loop reference is also saved.
 
-The evaluation covers **44,702 question evaluations and 153,048 candidate answers**. Each run includes scores, predictions, configuration, and validation records.
+The full-depth evaluation covers **44,702 question evaluations and 153,048 candidate answers**. Each run includes scores, predictions, configuration, and validation records.
 
-The experiments evaluate multiple-choice answer scoring at each model's full recurrent depth.
+The main matrix evaluates multiple-choice answer scoring at each model's full recurrent depth.
 
 ## Reproduction checklist
 
 - [x] LoopCD-Logits with fixed and adaptive guidance.
 - [x] Full-depth evaluation: 7 configurations × ARC-Easy, ARC-Challenge, SciQ, and PIQA (28 runs).
 - [x] Unified data preparation, evaluation, and auditing; saved scores and statistics.
+- [x] Huginn × ARC-Challenge at half depth: accuracy, FLOPs, and standalone H200 timing.
 - [ ] LoopCD-Hidden.
 - [ ] Remaining multiple-choice benchmarks, math/code generation, and Thinking models.
-- [ ] Reduced-depth accuracy and FLOPs comparisons.
-- [ ] Standalone inference overhead and speed benchmarks.
+- [ ] Reduced-depth accuracy and FLOPs comparisons across the remaining model/task settings.
+- [ ] Standalone inference overhead and speed benchmarks for the other model families.
 
 ## Results
 
@@ -57,6 +58,30 @@ SciQ uses `acc` as its primary metric. The supplementary `acc_norm` scores below
 | Parcae-370M R=8 | 78.60 / 79.40 / 79.90 |
 | Parcae-1.3B R=8 | 83.10 / 85.60 / 85.40 |
 | Looped-Qwen3-4B R=8 | 95.30 / 95.00 / 95.00 |
+
+## Half-depth result: Huginn × ARC-Challenge
+
+The Table A8 setting uses R=16, reference iteration 5, and fixed strength 0.5.
+The standard R=16 row above uses reference iteration 1.
+The complete 1,172-question test split gives:
+
+| Setting | Correct | Accuracy (`acc_norm`) | Relative forward FLOPs |
+|---|---:|---:|---:|
+| Baseline R=32 | 444 | 37.88% | 1.000× |
+| Baseline R=16 | 434 | 37.03% | 0.518× |
+| LoopCD R=16, reference=5 | 460 | 39.25% | 0.539× |
+
+Half-depth LoopCD scores **+1.37 percentage points** above the full-depth baseline
+with **46.14% fewer analytic matrix-product FLOPs**, including its extra readout.
+The paired 95% confidence interval for the accuracy difference is **[-0.51, +3.24] pp**.
+Standalone scoring on three fixed batches of eight candidates gives a **1.88×**
+median speedup on H200 over six repetitions; loading, tokenization, and initial-state
+generation are excluded.
+
+The FLOP ledger uses a 512-token prefill and includes the recurrent injection
+projection. A second ledger matches the paper's printed accounting. See the
+[half-depth report](results/reduced_depth/arc_challenge/REPORT.md) for both ledgers,
+paired statistics, raw timing evidence, and the exact baseline replay check.
 
 ## Models and evaluation protocol
 
@@ -168,6 +193,34 @@ For a small smoke run, add `--limit 10` and choose a separate output directory. 
 
 To resume a partial run, reuse its output directory and original arguments. The evaluator validates the manifest, source hashes, data, and saved candidates before continuing.
 
+### Huginn half-depth experiment
+
+The named `huginn_half_depth` experiment uses the same evaluator and task data.
+It selects R=16, reference iteration 5, and fixed guidance strength 0.5 from
+paper Table A8. The seven standard configurations remain in `configs/models.json`;
+experiment settings are in `configs/experiments.json`.
+
+Run the evaluation, independent timing, and report on `scavenger-h200` with a new
+output directory:
+
+```bash
+make submit-reduced TASK=arc_challenge \
+  REDUCED_OUTPUT=results/repeats/huginn_half_depth
+```
+
+This compares against the saved R=32 and R=16 baselines. To run only the new
+accuracy evaluation inside an allocated GPU job:
+
+```bash
+venv/bin/python -B scripts/evaluate.py \
+  --task arc_challenge --model huginn_16 --experiment huginn_half_depth \
+  --output results/repeats/huginn_half_depth/huginn_16_ref5
+```
+
+Rebuild the published comparison with `make report-reduced TASK=arc_challenge`.
+Use `REDUCED_OUTPUT` to audit a repeat directory containing both the evaluated run
+and `huginn_costs.json`.
+
 ## Audit and report
 
 After installing dependencies and restoring data and model assets:
@@ -204,6 +257,7 @@ The analyzer reads the registered published result locations. Each run under `re
 | `results/arc_easy/` | Original Ouro-1.4B ARC-Easy evaluation |
 | `results/arc_all_models/` | Other six original ARC-Easy evaluations |
 | `results/multitask/` | Three additional tasks, all-task comparisons, and completion evidence |
+| `results/reduced_depth/` | Huginn half-depth accuracy, standalone timing, FLOPs, and paired comparisons |
 
 Each completed run retains `candidate_scores.jsonl`, `predictions.jsonl`, `summary.json`, `run_manifest.json`, and validation evidence. The original Ouro-1.4B ARC-Easy run retains its historical provenance format; the other 27 runs also include a `source_snapshot/`. Historical entry points remain for compatibility; new work should use the unified scripts above.
 
@@ -215,6 +269,8 @@ Huginn and Parcae use question-keyed random initial states shared across candida
 
 Looped-Qwen3 uses a local implementation of the paper's loop construction: Qwen3-4B's layer window `15:19`, eight updates of `h ← (7/8)h + (1/8)g(h)`, and the full remaining output path. See the [implementation record](sources/looped_qwen/evidence.json).
 
-Recorded runtimes cover the joint evaluation of all four scoring policies on one recurrent trajectory.
+The original 28 runs record joint evaluation time for four scoring policies on one
+recurrent trajectory. The Huginn half-depth experiment also records independent
+policy timing with warmed, synchronized forwards on identical sampled batches.
 
 See the [combined report](results/multitask/REPORT.md) and [machine-readable results](results/multitask/comparison.json) for additional provenance. Documentation and generated reports are in English. Upstream models, datasets, and vendored sources retain their respective licenses.

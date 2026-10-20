@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
+from unittest.mock import patch
 
 import torch
 from transformers import AutoTokenizer
@@ -68,8 +69,87 @@ class HuginnAdapterTests(unittest.TestCase):
             evidence = adapter.validate(self.inputs, self.mask, self.rows, self.positions, self.keys)
             self.assertEqual(evidence["native_final_hidden_max_abs_error"], 0.0)
             self.assertEqual(evidence["native_same_shape_logits_max_abs_error"], 0.0)
+            self.assertEqual(evidence["native_reference_hidden_max_abs_error"], 0.0)
+            self.assertEqual(evidence["native_reference_same_shape_logits_max_abs_error"], 0.0)
             self.assertTrue(evidence["zero_guidance_matches_native_same_shape_exactly"])
             json.dumps(evidence)
+
+    @torch.inference_mode()
+    def test_reduced_depth_reference_matches_native_fifth_update(self):
+        adapter = HuginnAdapter.from_model(
+            self.model, self.tokenizer, loops=16, reference_step=5
+        )
+        evidence = adapter.validate(self.inputs, self.mask, self.rows, self.positions, self.keys)
+        self.assertEqual(evidence["reference_recurrent_update"], 5)
+        self.assertEqual(evidence["native_reference_hidden_max_abs_error"], 0.0)
+        self.assertEqual(evidence["native_reference_same_shape_logits_max_abs_error"], 0.0)
+        initial = adapter.initial_states(self.keys, self.inputs.shape[1])
+        native_reference = self.model(
+            self.inputs, input_states=initial, num_steps=5, use_cache=False,
+        ).logits[self.rows, self.positions].float()
+        result = adapter.forward_logits(
+            self.inputs, self.mask, self.rows, self.positions, self.keys,
+            initial_states=initial,
+        )
+        torch.testing.assert_close(result["reference"], native_reference, atol=2e-5, rtol=2e-5)
+        first_reference = self.adapter.forward_logits(
+            self.inputs, self.mask, self.rows, self.positions, self.keys,
+            initial_states=initial,
+        )
+        torch.testing.assert_close(result["baseline"], first_reference["baseline"], atol=0, rtol=0)
+        self.assertFalse(torch.equal(result["reference"], first_reference["reference"]))
+
+    def test_baseline_only_has_one_readout_and_projection(self):
+        adapter = HuginnAdapter.from_model(
+            self.model, self.tokenizer, loops=16, reference_step=5
+        )
+        initial = adapter.initial_states(self.keys, self.inputs.shape[1])
+        original = initial.clone()
+        guided = adapter.forward_logits(
+            self.inputs, self.mask, self.rows, self.positions, self.keys,
+            initial_states=initial,
+        )
+        projections = []
+        handle = self.model.lm_head.register_forward_hook(
+            lambda module, inputs, output: projections.append(output.shape)
+        )
+        try:
+            with patch.object(adapter, "_readout_hidden", wraps=adapter._readout_hidden) as readout:
+                with patch.object(adapter, "initial_states", side_effect=AssertionError("unexpected RNG")):
+                    baseline = adapter.forward_baseline_logits(
+                        self.inputs, self.mask, self.rows, self.positions, self.keys,
+                        initial_states=initial,
+                    )
+                self.assertEqual(readout.call_count, 1)
+            self.assertEqual(len(projections), 1)
+        finally:
+            handle.remove()
+        torch.testing.assert_close(baseline, guided["baseline"], atol=0, rtol=0)
+        torch.testing.assert_close(initial, original, atol=0, rtol=0)
+
+    def test_reference_step_bounds_and_final_step(self):
+        for step in (0, -1, 17, True, 5.0, "5", None):
+            with self.subTest(reference_step=step):
+                with self.assertRaisesRegex(ValueError, "reference_step"):
+                    HuginnAdapter.from_model(self.model, self.tokenizer, loops=16, reference_step=step)
+        adapter = HuginnAdapter.from_model(self.model, self.tokenizer, loops=5, reference_step=5)
+        evidence = adapter.validate(self.inputs, self.mask, self.rows, self.positions, self.keys)
+        self.assertEqual(evidence["early_final_mean_abs_logit_difference"], 0.0)
+        self.assertEqual(evidence["reference_recurrent_update"], 5)
+
+    def test_supplied_initial_states_must_match_shape_and_dtype(self):
+        initial = self.adapter.initial_states(self.keys, self.inputs.shape[1])
+        for method in (self.adapter.forward_logits, self.adapter.forward_baseline_logits):
+            with self.assertRaisesRegex(ValueError, "shape"):
+                method(
+                    self.inputs, self.mask, self.rows, self.positions, self.keys,
+                    initial_states=initial[:, :-1],
+                )
+            with self.assertRaisesRegex(ValueError, "device and dtype"):
+                method(
+                    self.inputs, self.mask, self.rows, self.positions, self.keys,
+                    initial_states=initial.double(),
+                )
 
     def test_noise_prefix_is_invariant_to_length_batch_order_and_global_rng(self):
         state = self.adapter.initial_states(["A", "B", "A"], 131)

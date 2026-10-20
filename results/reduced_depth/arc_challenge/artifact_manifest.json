@@ -1,0 +1,137 @@
+{
+  "scope": "Huginn ARC-Challenge half-depth evaluation, standalone timing, and paired comparisons",
+  "files": {
+    "results/reduced_depth/arc_challenge/REPORT.md": {
+      "bytes": 3378,
+      "sha256": "cfc784309c1ee3c533198d83edd570892acd8772887f03b5aa1db10b2ae75270"
+    },
+    "results/reduced_depth/arc_challenge/comparison.csv": {
+      "bytes": 482,
+      "sha256": "12759adca603b1b7df28b98524ece7e01f3881fe11bbe7ffa4ba07198d249a0d"
+    },
+    "results/reduced_depth/arc_challenge/comparison.json": {
+      "bytes": 132812,
+      "sha256": "05f764a9b3aff8e7bf3c12fd01921bae4564f973e62dca38c58b013772c4ebf6"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/candidate_scores.jsonl": {
+      "bytes": 4014451,
+      "sha256": "35556c39d5c60c0c8a86e90247006ca97facc990ac4d2cac46c29873af7154a7"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/data_protocol.json": {
+      "bytes": 8458,
+      "sha256": "fe469bc734ce01700fc7aa5d53acfb866644f19c3c84fadcc2f7bc4186ca4c98"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/predictions.jsonl": {
+      "bytes": 1620962,
+      "sha256": "4e10c84a9616b878c19e8ed69ba705c59086cce22cf2e7965d9d6110b4144a31"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/run_manifest.json": {
+      "bytes": 5006,
+      "sha256": "b023f5ac2260df336c6baa2314c2c372904999a2eea99f61cf31aa1ac59efb3b"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/adapter_huginn.py": {
+      "bytes": 15636,
+      "sha256": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/evaluate.py": {
+      "bytes": 11463,
+      "sha256": "36f249049e6ed33f7428e4619dc15f633fa8ef8104211161f57c87331799be96"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/experiments.json": {
+      "bytes": 455,
+      "sha256": "9a22f0602006e5788d8b8db9f558a61b1932b6601cc41cd97217e98f7ae6ecdc"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/loopcd.py": {
+      "bytes": 7443,
+      "sha256": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/registry.py": {
+      "bytes": 2064,
+      "sha256": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/suite_scoring.py": {
+      "bytes": 4968,
+      "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/summary.json": {
+      "bytes": 1109,
+      "sha256": "df8839eb25f0076759ae2f3ef892eac787b328c5faa5fbe7e9e0f326227a2618"
+    },
+    "results/reduced_depth/arc_challenge/huginn_16_ref5/validation.json": {
+      "bytes": 2327,
+      "sha256": "a9d4cb84e7c6a536d5ef13753ff01b1da9341773af9d0d089f389b333f3a46a0"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs.json": {
+      "bytes": 60669,
+      "sha256": "7a4d0b113d0b0bdc1466c16b42cc1b2be9f217d440cc66f3316f2b070c69881f"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 15636,
+      "sha256": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 7443,
+      "sha256": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/src/registry.py": {
+      "bytes": 2064,
+      "sha256": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/reduced_depth/arc_challenge/huginn_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 4968,
+      "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901"
+    },
+    "results/reduced_depth/arc_challenge/jobs.json": {
+      "bytes": 468,
+      "sha256": "a92d1a1eb8b614b55cc069c0ee5d20fba148dbf92c823a2f9905f33522c59010"
+    },
+    "results/reduced_depth/arc_challenge/slurm_accounting.txt": {
+      "bytes": 124,
+      "sha256": "6ac2dc5d685d8a693447e5239c1406b33cec982ebd88dcbd5880a6e59d3f2f15"
+    }
+  }
+}

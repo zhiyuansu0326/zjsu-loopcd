@@ -6,10 +6,11 @@ TASK ?= all
 OUTPUT ?= results/repeats/$(TASK)/$(MODEL)
 AUDIT_OUTPUT ?= results/maintenance/latest_audit.json
 MATMUL_PRECISION ?=
+REDUCED_OUTPUT ?= results/reduced_depth/$(TASK)
 
 export PYTHONDONTWRITEBYTECODE := 1
 
-.PHONY: help check-env test audit report finalize prepare-data download-models submit
+.PHONY: help check-env test audit report finalize prepare-data download-models submit submit-reduced report-reduced
 
 help:
 	@printf '%s\n' \
@@ -22,7 +23,10 @@ help:
 	  'make download-models  Fetch/verify the six pinned model checkpoints' \
 	  'make submit TASK=sciq MODEL=ouro_26 OUTPUT=results/repeats/sciq/ouro_26' \
 	  '                      Submit one full GPU evaluation with its validated precision' \
-	  '                      Override precision explicitly with MATMUL_PRECISION=highest'
+	  '                      Override precision explicitly with MATMUL_PRECISION=highest' \
+	  'make submit-reduced TASK=arc_challenge REDUCED_OUTPUT=results/repeats/huginn_half_depth' \
+	  '                      Evaluate/time Huginn with half-depth guidance' \
+	  'make report-reduced TASK=arc_challenge  Audit/rebuild the half-depth comparison'
 
 check-env:
 	"$(PYTHON)" -B -c 'import sys, torch, transformers; print("Python:", sys.version.split()[0]); print("Environment:", sys.prefix); print("Torch:", torch.__version__, "CUDA build:", torch.version.cuda); print("Transformers:", transformers.__version__); print("CUDA visible in this process:", torch.cuda.is_available())'
@@ -61,3 +65,11 @@ submit:
 	  fi; \
 	  [[ "$$precision" == high || "$$precision" == highest ]] || { echo "MATMUL_PRECISION must be high or highest" >&2; exit 2; }; \
 	  sbatch --partition=scavenger-h200 --account=scavenger-h200 --qos=normal scripts/run_suite.slurm --task "$(TASK)" --model "$(MODEL)" --output "$(OUTPUT)" --matmul-precision "$$precision"
+
+submit-reduced:
+	"$(PYTHON)" -B -c 'import sys; from src.registry import resolve_run; assert sys.argv[1]=="arc_challenge", "This experiment currently covers ARC-Challenge"; r=resolve_run(sys.argv[1],"huginn_16","huginn_half_depth"); assert r["data_path"].is_file(), "Run make prepare-data first"' "$(TASK)"
+	@mkdir -p results/reduced_depth/logs
+	sbatch --partition=scavenger-h200 --account=scavenger-h200 --qos=normal scripts/run_reduced_depth.slurm "$(TASK)" "$(REDUCED_OUTPUT)"
+
+report-reduced:
+	"$(PYTHON)" -B scripts/analyze_reduced_depth.py --task "$(TASK)" --output "$(REDUCED_OUTPUT)"

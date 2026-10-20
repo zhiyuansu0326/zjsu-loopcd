@@ -2,7 +2,7 @@
   "task": "arc_challenge",
   "display": "ARC-Challenge",
   "complete": true,
-  "generated_at_utc": "2026-10-20T18:29:02.594088+00:00",
+  "generated_at_utc": "2026-10-20T19:07:33.200450+00:00",
   "task_configuration": {
     "display": "ARC-Challenge",
     "split": "test",
@@ -2824,8 +2824,8 @@
   },
   "incomplete": {},
   "source_hashes": {
-    "scripts/analyze.py": "fd98d78c8e46bd161f6f5501769bb378d4ff7332b68a8fb20efa049b13420ac2",
-    "scripts/analyze_arc_suite.py": "2ae5ac3c0cb6159650e62e378fa9efa05ff4a276aa6853b06d9dacd3bef14565",
+    "scripts/analyze.py": "0ea1b0a174e628a5baa7cd13cbc243294cc24131c83e981c2aa76ffd46fd2c92",
+    "scripts/analyze_arc_suite.py": "1d8e53bb1161ec58f93bf98bcb1ec015fc6649b5891033e73b5b88189e5a7579",
     "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
     "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
     "configs/paper_mc_reference.json": "605790e796eb25a7b43d7394a8d6535472af1d4969f85794e39c5ce4260ac9e6"

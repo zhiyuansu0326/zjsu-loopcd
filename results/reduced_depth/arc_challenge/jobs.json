@@ -1,0 +1,16 @@
+[
+  {
+    "job_id": "59055282",
+    "purpose": "Complete ARC-Challenge R16 reference5 evaluation",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "submitted_utc": "2026-10-20T18:59:42.159612+00:00"
+  },
+  {
+    "job_id": "59055466",
+    "purpose": "Independent R32 baseline, R16 baseline, R16 reference5 timing",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "submitted_utc": "2026-10-20T19:02:48.254061+00:00"
+  }
+]
