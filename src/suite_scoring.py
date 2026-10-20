@@ -2,15 +2,26 @@
 
 import torch
 
-from src.loopcd import MODES, guided_logits
+from src.loopcd import HIDDEN_MODES, MODES, guided_logits
 
 
 class SuiteScorer:
-    def __init__(self, adapter, question_ids, fixed=0.5, cap=1.0):
+    def __init__(self, adapter, question_ids, fixed=0.5, cap=1.0, *, guidance_space="logits"):
         self.adapter = adapter
         self.question_ids = question_ids
         self.fixed = fixed
         self.cap = cap
+        if guidance_space not in ("logits", "hidden"):
+            raise ValueError("guidance_space must be logits or hidden")
+        self.guidance_space = guidance_space
+        self.modes = HIDDEN_MODES if guidance_space == "hidden" else MODES
+
+    def forward(self, inputs, mask, rows, positions, keys):
+        if self.guidance_space == "hidden":
+            return self.adapter.forward_hidden_comparison_logits(
+                inputs, mask, rows, positions, sample_keys=keys, strength=self.fixed,
+            )
+        return self.adapter.forward_logits(inputs, mask, rows, positions, sample_keys=keys)
 
     def tensors(self, candidates):
         length = max(len(c.input_ids) for c in candidates)
@@ -35,19 +46,17 @@ class SuiteScorer:
     @torch.inference_mode()
     def score(self, candidates):
         inputs, mask, rows, positions, labels, keys = self.tensors(candidates)
-        outputs = self.adapter.forward_logits(inputs, mask, rows, positions, sample_keys=keys)
-        final, reference = outputs["baseline"].float(), outputs["reference"].float()
-        assert final.shape == reference.shape and final.shape[0] == len(labels)
-        assert torch.isfinite(final).all() and torch.isfinite(reference).all()
+        outputs = self.forward(inputs, mask, rows, positions, keys)
+        final = outputs["baseline"].float()
+        assert all(value.shape == final.shape and value.shape[0] == len(labels)
+                   and bool(torch.isfinite(value).all()) for value in outputs.values())
         values = {}
-        for mode in MODES:
-            if mode == "baseline":
-                logits = final
-            elif mode == "reference":
-                logits = reference
+        for mode in self.modes:
+            if mode in outputs:
+                logits = outputs[mode].float()
             else:
                 logits = guided_logits(
-                    final, reference,
+                    final, outputs["reference"].float(),
                     self.cap if mode == "loopcd_adaptive" else self.fixed,
                     adaptive=(mode == "loopcd_adaptive"),
                 )
@@ -71,8 +80,16 @@ class SuiteScorer:
         tensors = self.tensors(pair)
         inputs, mask, rows, positions, _, keys = tensors
         validation = self.adapter.validate(inputs, mask, rows, positions, sample_keys=keys)
-        outputs = self.adapter.forward_logits(inputs, mask, rows, positions, sample_keys=keys)
-        zero = guided_logits(outputs["baseline"], outputs["reference"], 0.0)
+        outputs = self.forward(inputs, mask, rows, positions, keys)
+        if self.guidance_space == "hidden":
+            validation["hidden_checks"] = self.adapter.validate_hidden(
+                inputs, mask, rows, positions, sample_keys=keys, strength=self.fixed,
+            )
+            zero = self.adapter.forward_hidden_logits(
+                inputs, mask, rows, positions, sample_keys=keys, strength=0.0,
+            )
+        else:
+            zero = guided_logits(outputs["baseline"], outputs["reference"], 0.0)
         torch.testing.assert_close(zero, outputs["baseline"].float(), rtol=0, atol=0)
         batched = self.score(pair)
         singles = [self.score([candidate])[0] for candidate in pair]
@@ -82,13 +99,13 @@ class SuiteScorer:
                 for bscore, sscore in zip(batched, singles)
                 for a,b in zip(bscore["token_logprobs"][mode], sscore["token_logprobs"][mode])
             )
-            for mode in MODES
+            for mode in self.modes
         }
         # Fixed shape test separates padding leakage from different GEMM kernels.
         changed = inputs.clone()
         changed[mask == 0] = (self.adapter.pad_id + 1) % len(self.adapter.tokenizer)
-        modified = self.adapter.forward_logits(changed, mask, rows, positions, sample_keys=keys)
-        padding_error = max((outputs[m] - modified[m]).abs().max().item() for m in ("baseline", "reference"))
+        modified = self.forward(changed, mask, rows, positions, keys)
+        padding_error = max((outputs[m] - modified[m]).abs().max().item() for m in outputs)
         if padding_error > 1e-5:
             raise AssertionError(f"Masked padding changes valid logits: {padding_error}")
         if max(errors.values()) > 1e-3:
@@ -98,7 +115,10 @@ class SuiteScorer:
             "batch_single_token_logprob_errors": errors,
             "batch_single_tolerance": 1e-3,
             "masked_padding_token_change_max_abs_error": padding_error,
-            "early_final_mean_abs_difference": (outputs["baseline"]-outputs["reference"]).abs().mean().item(),
+            "early_final_mean_abs_difference": (
+                validation["early_final_mean_abs_logit_difference"] if self.guidance_space == "hidden"
+                else (outputs["baseline"]-outputs["reference"]).abs().mean().item()
+            ),
             "stochastic": self.adapter.stochastic,
         })
         return validation

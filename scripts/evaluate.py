@@ -32,12 +32,12 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def summarize(documents, completed, output, timing):
-    correct = {metric: {mode: 0 for mode in MODES} for metric in ("acc", "acc_norm")}
+def summarize(documents, completed, output, timing, *, modes=MODES):
+    correct = {metric: {mode: 0 for mode in modes} for metric in ("acc", "acc_norm")}
     predictions = []
     for index, doc in enumerate(documents):
         candidates = [completed[(index, choice)] for choice in range(len(doc["choices"]))]
-        scores = {mode: [row["scores"][mode] for row in candidates] for mode in MODES}
+        scores = {mode: [row["scores"][mode] for row in candidates] for mode in modes}
         normalized = {
             mode: [score / len(choice) for score, choice in zip(values, doc["choices"])]
             for mode, values in scores.items()
@@ -77,6 +77,8 @@ def main():
     parser.add_argument("--model", "--name", dest="name", choices=list(models["models"]), required=True)
     parser.add_argument("--experiment", choices=list(load_experiments()),
                         help="Named protocol variant; keeps the full-depth result matrix unchanged.")
+    parser.add_argument("--guidance-space", choices=("logits", "hidden"), default="logits",
+                        help="Hidden uses the fixed paper settings in configs/hidden.json.")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--batch-size", type=int)
@@ -85,7 +87,7 @@ def main():
     parser.add_argument("--matmul-precision", choices=("high", "highest"),
                         help="Default: highest for Huginn/Looped-Qwen, high for Ouro/Parcae.")
     args = parser.parse_args()
-    resolved = resolve_run(args.task, args.name, args.experiment)
+    resolved = resolve_run(args.task, args.name, args.experiment, guidance_space=args.guidance_space)
     registry = models
     config, task_config = resolved["model"], resolved["task"]
     family = config["family"]
@@ -136,7 +138,8 @@ def main():
         adapter.tokenizer, documents, adapter.max_length, bos_token_id=bos,
     )
     print("INPUTS", json.dumps({k:v for k,v in truncation_details.items() if k != "records"}), flush=True)
-    scorer = SuiteScorer(adapter, [row["id"] for row in documents], config["fixed"], config["cap"])
+    scorer = SuiteScorer(adapter, [row["id"] for row in documents], config["fixed"], config["cap"],
+                         guidance_space=args.guidance_space)
     validation = scorer.validate(candidates)
     print("VALIDATION", json.dumps(validation), flush=True)
     code_paths = [
@@ -146,6 +149,8 @@ def main():
     ]
     if args.experiment:
         code_paths.append(ROOT / "configs/experiments.json")
+    if args.guidance_space == "hidden":
+        code_paths.append(ROOT / "configs/hidden.json")
     adapter_metadata = getattr(adapter, "metadata", {})
     if callable(adapter_metadata):
         adapter_metadata = adapter_metadata()
@@ -170,9 +175,12 @@ def main():
     }
     if args.experiment:
         manifest["experiment"] = resolved["experiment"]
+    if args.guidance_space == "hidden":
+        manifest.update({"guidance_space": "hidden", "hidden_setting": resolved["hidden_setting"],
+                         "policies": list(scorer.modes)})
     # Reject incompatible or damaged saved records before changing provenance.
     validate_resume_manifest(manifest_path, score_path, manifest)
-    completed = load_completed_scores(score_path, candidates)
+    completed = load_completed_scores(score_path, candidates, modes=scorer.modes)
     snapshot = output / "source_snapshot"
     snapshot.mkdir(exist_ok=True)
     for path in code_paths:
@@ -211,7 +219,7 @@ def main():
         "this_invocation_scoring_seconds": time.perf_counter()-score_start,
         "this_invocation_total_seconds": time.perf_counter()-start,
         "peak_gpu_allocated_gib": torch.cuda.max_memory_allocated()/2**30,
-    })
+    }, modes=scorer.modes)
 
 
 if __name__ == "__main__":

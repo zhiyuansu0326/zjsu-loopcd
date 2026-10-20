@@ -1,0 +1,62 @@
+{
+  "metric_policy": "Primary metrics fixed before new scoring; paper does not explicitly distinguish acc from acc_norm. Both are retained.",
+  "context_policy": "Left-truncate context only when required by model window, preserving every answer token (pinned harness behavior).",
+  "tasks": {
+    "arc_easy": {
+      "display": "ARC-Easy",
+      "split": "test",
+      "count": 2376,
+      "primary_metric": "acc_norm",
+      "shots_by_family": {
+        "ouro": 8,
+        "huginn": 0,
+        "parcae": 0,
+        "looped_qwen": 0
+      },
+      "data_path": "data/arc_easy_{shots}shot.jsonl",
+      "protocol_path": "data/tasks/arc_easy/protocol_{shots}shot.json"
+    },
+    "arc_challenge": {
+      "display": "ARC-Challenge",
+      "split": "test",
+      "count": 1172,
+      "primary_metric": "acc_norm",
+      "shots_by_family": {
+        "ouro": 25,
+        "huginn": 0,
+        "parcae": 25,
+        "looped_qwen": 25
+      },
+      "data_path": "data/tasks/arc_challenge/{shots}shot.jsonl",
+      "protocol_path": "data/tasks/arc_challenge/protocol.json"
+    },
+    "sciq": {
+      "display": "SciQ",
+      "split": "test",
+      "count": 1000,
+      "primary_metric": "acc",
+      "shots_by_family": {
+        "ouro": 0,
+        "huginn": 0,
+        "parcae": 0,
+        "looped_qwen": 0
+      },
+      "data_path": "data/tasks/sciq/{shots}shot.jsonl",
+      "protocol_path": "data/tasks/sciq/protocol.json"
+    },
+    "piqa": {
+      "display": "PIQA",
+      "split": "validation",
+      "count": 1838,
+      "primary_metric": "acc_norm",
+      "shots_by_family": {
+        "ouro": 0,
+        "huginn": 0,
+        "parcae": 0,
+        "looped_qwen": 0
+      },
+      "data_path": "data/tasks/piqa/{shots}shot.jsonl",
+      "protocol_path": "data/tasks/piqa/protocol.json"
+    }
+  }
+}

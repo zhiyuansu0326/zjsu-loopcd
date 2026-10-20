@@ -127,6 +127,110 @@ class HuginnAdapterTests(unittest.TestCase):
         torch.testing.assert_close(baseline, guided["baseline"], atol=0, rtol=0)
         torch.testing.assert_close(initial, original, atol=0, rtol=0)
 
+    def test_hidden_guidance_matches_native_states_and_one_output_pass(self):
+        for loops, reference in ((16, 7), (32, 6)):
+            with self.subTest(loops=loops, reference=reference):
+                adapter = HuginnAdapter.from_model(
+                    self.model, self.tokenizer, loops=loops, reference_step=reference,
+                )
+                metadata = adapter.metadata()
+                evidence = adapter.validate_hidden(
+                    self.inputs, self.mask, self.rows, self.positions, self.keys, strength=0.5,
+                )
+                for field in ("hidden_native_final_raw_max_abs_error",
+                              "hidden_native_reference_raw_max_abs_error",
+                              "hidden_manual_readout_max_abs_error"):
+                    self.assertEqual(evidence[field], 0.0)
+                self.assertTrue(evidence["hidden_zero_strength_matches_native_exactly"])
+                self.assertTrue(evidence["hidden_paired_matches_standalone_exactly"])
+                self.assertTrue(evidence["hidden_initial_states_unchanged"])
+                self.assertEqual(evidence["hidden_standalone_recurrent_updates"], loops)
+                self.assertEqual(evidence["hidden_standalone_coda_layer_calls"], [1, 1])
+                self.assertEqual(evidence["hidden_standalone_head_passes"], 1)
+                self.assertEqual(adapter.metadata(), metadata)
+                json.dumps(evidence)
+
+    @torch.inference_mode()
+    def test_hidden_blend_precedes_normalization_and_coda_for_every_context_position(self):
+        adapter = HuginnAdapter.from_model(self.model, self.tokenizer, loops=16, reference_step=7)
+        initial = adapter.initial_states(self.keys, self.inputs.shape[1])
+        final, reference, frequencies = adapter._recurrent_states(self.inputs, initial)
+        actual = adapter.forward_hidden_logits(
+            self.inputs, self.mask, self.rows, self.positions, self.keys,
+            strength=0.5, initial_states=initial,
+        )
+        manual_raw = final + 0.5 * (final - reference)
+        manual = self.model.lm_head(
+            adapter._readout_hidden(manual_raw, frequencies)[self.rows, self.positions]
+        ).float()
+        torch.testing.assert_close(actual, manual, atol=0, rtol=0)
+        partial = final.clone()
+        partial[self.rows, self.positions] = manual_raw[self.rows, self.positions]
+        answer_only = self.model.lm_head(
+            adapter._readout_hidden(partial, frequencies)[self.rows, self.positions]
+        ).float()
+        self.assertGreater((actual - answer_only).abs().max().item(), 1e-6)
+        final_after_coda = adapter._readout_hidden(final, frequencies)
+        reference_after_coda = adapter._readout_hidden(reference, frequencies)
+        after_coda = self.model.lm_head((
+            final_after_coda + 0.5 * (final_after_coda - reference_after_coda)
+        )[self.rows, self.positions]).float()
+        self.assertGreater((actual - after_coda).abs().max().item(), 1e-6)
+        final_norm = self.model.transformer.ln_f(final)
+        reference_norm = self.model.transformer.ln_f(reference)
+        wrong_normalized_input = self.model.lm_head(
+            adapter._readout_hidden(
+                final_norm + 0.5 * (final_norm - reference_norm), frequencies,
+            )[self.rows, self.positions]
+        ).float()
+        self.assertGreater((actual - wrong_normalized_input).abs().max().item(), 1e-6)
+
+    @torch.inference_mode()
+    def test_hidden_comparison_preserves_states_and_uses_one_recurrent_trajectory(self):
+        adapter = HuginnAdapter.from_model(self.model, self.tokenizer, loops=16, reference_step=7)
+        initial = adapter.initial_states(self.keys, self.inputs.shape[1])
+        original_initial = initial.clone()
+        recurrent = adapter._recurrent_states
+        tracked = {}
+
+        def track_states(*args, **kwargs):
+            final, reference, frequencies = recurrent(*args, **kwargs)
+            tracked.update(final=final, reference=reference,
+                           original_final=final.clone(), original_reference=reference.clone())
+            return final, reference, frequencies
+
+        with patch.object(adapter, "_recurrent_states", side_effect=track_states) as trajectory:
+            with patch.object(adapter, "_readout_hidden", wraps=adapter._readout_hidden) as readout:
+                with patch.object(adapter, "initial_states", side_effect=AssertionError("unexpected RNG")):
+                    paired = adapter.forward_hidden_comparison_logits(
+                        self.inputs, self.mask, self.rows, self.positions, self.keys,
+                        initial_states=initial,
+                    )
+            self.assertEqual(trajectory.call_count, 1)
+            self.assertEqual(readout.call_count, 2)
+        for name in ("final", "reference"):
+            torch.testing.assert_close(tracked[name], tracked[f"original_{name}"], atol=0, rtol=0)
+        torch.testing.assert_close(initial, original_initial, atol=0, rtol=0)
+        baseline = adapter.forward_baseline_logits(
+            self.inputs, self.mask, self.rows, self.positions, self.keys, initial_states=initial,
+        )
+        torch.testing.assert_close(paired["baseline"], baseline, atol=0, rtol=0)
+
+    def test_hidden_padding_and_option_batching_preserve_scored_prefix(self):
+        adapter = HuginnAdapter.from_model(self.model, self.tokenizer, loops=16, reference_step=7)
+        batch = adapter.forward_hidden_logits(self.inputs, self.mask, self.rows, self.positions, self.keys)
+        single = adapter.forward_hidden_logits(
+            self.inputs[:1, :6], self.mask[:1, :6], torch.zeros(2, dtype=torch.long),
+            self.positions[:2], self.keys[:1],
+        )
+        torch.testing.assert_close(batch[:2], single, atol=2e-5, rtol=2e-5)
+        changed_padding = self.inputs.clone()
+        changed_padding[0, 6:] = torch.tensor([30, 31])
+        changed = adapter.forward_hidden_logits(
+            changed_padding, self.mask, self.rows, self.positions, self.keys,
+        )
+        torch.testing.assert_close(batch, changed, atol=0, rtol=0)
+
     def test_reference_step_bounds_and_final_step(self):
         for step in (0, -1, 17, True, 5.0, "5", None):
             with self.subTest(reference_step=step):
@@ -139,7 +243,8 @@ class HuginnAdapterTests(unittest.TestCase):
 
     def test_supplied_initial_states_must_match_shape_and_dtype(self):
         initial = self.adapter.initial_states(self.keys, self.inputs.shape[1])
-        for method in (self.adapter.forward_logits, self.adapter.forward_baseline_logits):
+        for method in (self.adapter.forward_logits, self.adapter.forward_baseline_logits,
+                       self.adapter.forward_hidden_logits, self.adapter.forward_hidden_comparison_logits):
             with self.assertRaisesRegex(ValueError, "shape"):
                 method(
                     self.inputs, self.mask, self.rows, self.positions, self.keys,

@@ -1,0 +1,36 @@
+{
+  "source": {
+    "title": "Decoding Looped Transformers Better for (Almost) Free",
+    "url": "https://arxiv.org/html/2610.02185v1#S4.T3",
+    "table": "Table 3(a)",
+    "pdf_page": 7,
+    "settings_url": "https://arxiv.org/html/2610.02185v1#A2.T4",
+    "settings_pdf_page": 18,
+    "shots_url": "https://arxiv.org/html/2610.02185v1#A2.T2",
+    "shots_pdf_page": 17,
+    "metric_caveat": "The paper does not unambiguously identify acc versus acc_norm for every task. The reproduction retains its pre-specified primary metrics and reports both metrics."
+  },
+  "settings": {
+    "huginn_16": {"loops": 16, "reference_step": 7, "fixed": 0.5, "shots": 0},
+    "huginn_32": {"loops": 32, "reference_step": 6, "fixed": 0.5, "shots": 0}
+  },
+  "scores_percent": {
+    "arc_easy": {
+      "huginn_16": {"baseline": 64.14, "loopcd_hidden": 64.35},
+      "huginn_32": {"baseline": 64.18, "loopcd_hidden": 64.52}
+    },
+    "arc_challenge": {
+      "huginn_16": {"baseline": 37.37, "loopcd_hidden": 37.97},
+      "huginn_32": {"baseline": 37.97, "loopcd_hidden": 38.74}
+    },
+    "sciq": {
+      "huginn_16": {"baseline": 90.00, "loopcd_hidden": 90.70},
+      "huginn_32": {"baseline": 90.30, "loopcd_hidden": 91.00}
+    },
+    "piqa": {
+      "huginn_16": {"baseline": 75.19, "loopcd_hidden": 75.08},
+      "huginn_32": {"baseline": 75.52, "loopcd_hidden": 75.57}
+    }
+  },
+  "scope": "Full-depth fixed LoopCD-Hidden, Huginn R16 and R32, four selected multiple-choice tasks. This is not the Table A8 R32-to-R16 setting, which uses reference h6 at R16. No adaptive Hidden policy is reported."
+}

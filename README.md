@@ -1,14 +1,19 @@
 # LoopCD: Seven Model Configurations × Four Tasks
 
-A reproduction of **LoopCD-Logits** from Liu et al., [*Decoding Looped Transformers Better for (Almost) Free*](https://arxiv.org/html/2610.02185v1).
+A reproduction of **LoopCD-Logits and LoopCD-Hidden** from Liu et al., [*Decoding Looped Transformers Better for (Almost) Free*](https://arxiv.org/html/2610.02185v1).
 
 All **28 task/model configurations are complete and independently audited**: 7 configurations across ARC-Easy, ARC-Challenge, SciQ, and PIQA. See the [four-task report](results/multitask/REPORT.md), [JSON](results/multitask/comparison.json), and [CSV](results/multitask/comparison.csv). Original scores and execution source snapshots are preserved.
 
-Each full-depth run evaluates baseline decoding, fixed-strength LoopCD, and adaptive LoopCD using the same model trajectory. The first-loop reference is also saved.
+Each of the 28 Logits runs evaluates baseline decoding, fixed-strength LoopCD, and adaptive LoopCD using the same model trajectory. The first-loop reference is also saved.
 
-The full-depth evaluation covers **44,702 question evaluations and 153,048 candidate answers**. Each run includes scores, predictions, configuration, and validation records.
+The original Logits matrix covers **44,702 question evaluations and 153,048 candidate answers**. Each run includes scores, predictions, configuration, and validation records.
 
 The main matrix evaluates multiple-choice answer scoring at each model's full recurrent depth.
+
+**LoopCD-Hidden is also complete for Huginn R16 and R32 across all four tasks**:
+eight additional runs, 12,772 question evaluations, and 43,728 candidate answers.
+The [Hidden report](results/hidden/REPORT.md) compares its accuracy and standalone
+inference cost with the same-depth baseline and fixed LoopCD-Logits.
 
 ## Reproduction checklist
 
@@ -16,7 +21,8 @@ The main matrix evaluates multiple-choice answer scoring at each model's full re
 - [x] Full-depth evaluation: 7 configurations × ARC-Easy, ARC-Challenge, SciQ, and PIQA (28 runs).
 - [x] Unified data preparation, evaluation, and auditing; saved scores and statistics.
 - [x] Huginn × all four tasks at half depth: fixed paper parameters, paired task/mean comparisons, FLOPs, and standalone H200 timing.
-- [ ] LoopCD-Hidden.
+- [x] LoopCD-Hidden: Huginn R16/R32 × four tasks, paired statistics, FLOPs, and standalone H200 timing.
+- [ ] LoopCD-Hidden across the remaining model configurations.
 - [ ] Remaining multiple-choice benchmarks, math/code generation, and Thinking models.
 - [ ] Reduced-depth accuracy and FLOPs comparisons across the remaining model/task settings.
 - [ ] Standalone inference overhead and speed benchmarks for the other model families.
@@ -97,6 +103,54 @@ geometric mean. Each task measures three fixed batches of eight candidates over
 six repetitions; loading, tokenization, and initial-state generation are excluded.
 The report includes both FLOP accounting conventions, sampled timings, the exact
 baseline replay checks, and the [frozen analysis plan](results/reduced_depth/analysis_plan.json).
+
+## Hidden results: Huginn R16/R32 × four tasks
+
+The fixed full-depth parameters from paper Tables 3(a)/A4 are **R16 with reference
+h7** and **R32 with reference h6**, both at strength **0.5**. Baseline and Hidden
+share the original 0-shot prompts and per-question initial states. The comparison
+uses the existing fixed Logits results at the same depth (reference h1, strength
+0.5). The primary metric is `acc_norm` for ARC-Easy, ARC-Challenge, and PIQA,
+and `acc` for SciQ; each task has equal weight in the mean.
+
+| Task | Depth | Baseline (%) | Fixed Logits (%) | Hidden (%) | Hidden − baseline (pp) |
+|---|---:|---:|---:|---:|---:|
+| ARC-Easy | 16 | 64.39 | 66.33 | 64.65 | +0.25 |
+| ARC-Easy | 32 | 64.27 | 65.28 | 64.18 | −0.08 |
+| ARC-Challenge | 16 | 37.03 | 40.02 | 38.40 | +1.37 |
+| ARC-Challenge | 32 | 37.88 | 39.85 | 38.57 | +0.68 |
+| SciQ | 16 | 93.20 | 93.10 | 93.20 | +0.00 |
+| SciQ | 32 | 93.10 | 92.70 | 93.00 | −0.10 |
+| PIQA | 16 | 75.84 | 76.17 | 75.14 | −0.71 |
+| PIQA | 32 | 75.84 | 76.44 | 75.46 | −0.38 |
+| **Equal-task mean** | **16** | **67.62** | **68.90** | **67.84** | **+0.23** |
+| **Equal-task mean** | **32** | **67.77** | **68.57** | **67.80** | **+0.03** |
+
+Hidden improves ARC-Challenge at both depths, with mixed results elsewhere.
+Its mean changes against baseline are **+0.23 pp** at R16 (paired 95% CI
+**[−0.29, +0.76]**, Holm-adjusted p = **0.7776**) and **+0.03 pp** at R32
+(**[−0.51, +0.57]**, p = **0.9159**). Neither is statistically significant.
+Against fixed Logits, Hidden is **−1.06 pp** at R16 (**[−1.84, −0.28]**,
+p = **0.0307**) and **−0.76 pp** at R32 (**[−1.51, −0.01]**, p = **0.1329**).
+Holm correction covers four mean contrasts. No task-level contrast passes the
+separate 16-test Holm correction. These conclusions use the registered primary
+metrics; both metrics and supplementary means are included in the report.
+
+For comparison with the paper's SciQ scores, `acc_norm` changes from
+**90.10% to 90.50%** at R16 and **90.30% to 90.80%** at R32; the paper reports
+**90.00% to 90.70%** and **90.30% to 91.00%**, respectively.
+
+Hidden executes one complete output stack and has the baseline's analytic
+matrix-product FLOPs, plus sequence-wide vector arithmetic. Standalone H200
+measurements give geometric mean Hidden/baseline latency ratios of **0.9994×**
+at R16 and **0.9996×** at R32. Hidden latency is **3.26%** and **1.69%** lower
+than fixed Logits. Each task uses three fixed batches of eight candidates with
+six timed repetitions per policy. These measurements cover model scoring.
+
+All eight runs passed independent score and timing audits. Every saved baseline
+answer-token log probability exactly matches its historical run. See the
+[complete report](results/hidden/REPORT.md), [JSON](results/hidden/comparison.json),
+[CSV](results/hidden/comparison.csv), and [frozen analysis plan](results/hidden/analysis_plan.json).
 
 ## Models and evaluation protocol
 
@@ -245,6 +299,49 @@ Rebuild the published suite with `make report-reduced TASK=all`; use a specific
 and gives each task equal weight. The [analysis plan](results/reduced_depth/analysis_plan.json)
 records the fixed parameters, resampling methods, and multiple-comparison families.
 
+### Huginn LoopCD-Hidden
+
+Use the same evaluator with `--guidance-space hidden`. The fixed multiple-choice
+settings from paper Table 3(a)/A4 are **R=16 with reference h7** and **R=32 with
+reference h6**, both at strength **0.5**. They are recorded separately in
+[configs/hidden.json](configs/hidden.json). The R=16 setting here differs from
+the paper's reduced-depth Hidden experiment in Table A8, which uses h6.
+
+Run all eight task/depth settings, with independent baseline, Logits, and Hidden
+timings on `scavenger-h200`:
+
+```bash
+for task in arc_easy arc_challenge sciq piqa; do
+  for model in huginn_16 huginn_32; do
+    make submit-hidden TASK="$task" MODEL="$model" \
+      HIDDEN_OUTPUT=results/repeats/hidden
+  done
+done
+
+# After every evaluation and timing job completes:
+make report-hidden HIDDEN_OUTPUT=results/repeats/hidden
+```
+
+For evaluation only inside an allocated GPU job:
+
+```bash
+venv/bin/python -B scripts/evaluate.py \
+  --task arc_challenge --model huginn_16 --guidance-space hidden \
+  --output results/repeats/hidden/arc_challenge/huginn_16
+```
+
+`make audit-hidden` checks completed runs without writing reports.
+`make report-hidden` rebuilds the published eight-run report, paired comparisons,
+and separate equal-task means for R=16 and R=32. The report compares against the
+saved same-depth baseline and fixed Logits scores (reference h1, strength 0.5).
+Both paper-selected methods use their respective reference states.
+
+Hidden guidance computes `hR + 0.5 * (hR - href)` at every sequence position
+before the native pre-coda normalization, then executes the complete coda,
+final normalization, and vocabulary head. Accuracy evaluation collects baseline
+and Hidden readouts on one shared recurrence; the independent Hidden timing path
+executes only one coda and head.
+
 ## Audit and report
 
 After installing dependencies and restoring data and model assets:
@@ -282,8 +379,9 @@ The analyzer reads the registered published result locations. Each run under `re
 | `results/arc_all_models/` | Other six original ARC-Easy evaluations |
 | `results/multitask/` | Three additional tasks, all-task comparisons, and completion evidence |
 | `results/reduced_depth/` | Huginn half-depth accuracy, standalone timing, FLOPs, and paired comparisons |
+| `results/hidden/` | Huginn R16/R32 Hidden guidance across four tasks, paired comparisons, and independent timing |
 
-Each completed run retains `candidate_scores.jsonl`, `predictions.jsonl`, `summary.json`, `run_manifest.json`, and validation evidence. The original Ouro-1.4B ARC-Easy run retains its historical provenance format; the other 27 runs also include a `source_snapshot/`. Historical entry points remain for compatibility; new work should use the unified scripts above.
+Each completed run retains `candidate_scores.jsonl`, `predictions.jsonl`, `summary.json`, `run_manifest.json`, and validation evidence. The original Ouro-1.4B ARC-Easy run retains its historical provenance format; its exact source files are archived from Git and verified against its recorded hashes. All 28 original runs now have source snapshots. Historical entry points remain for compatibility; new work should use the unified scripts above.
 
 ## Implementation details
 
@@ -294,7 +392,8 @@ Huginn and Parcae use question-keyed random initial states shared across candida
 Looped-Qwen3 uses a local implementation of the paper's loop construction: Qwen3-4B's layer window `15:19`, eight updates of `h ← (7/8)h + (1/8)g(h)`, and the full remaining output path. See the [implementation record](sources/looped_qwen/evidence.json).
 
 The original 28 runs record joint evaluation time for four scoring policies on one
-recurrent trajectory. The Huginn half-depth experiment also records independent
-policy timing with warmed, synchronized forwards on identical sampled batches.
+recurrent trajectory. The Huginn half-depth and Hidden experiments also record
+independent policy timing with warmed, synchronized forwards on identical sampled
+batches.
 
 See the [combined report](results/multitask/REPORT.md) and [machine-readable results](results/multitask/comparison.json) for additional provenance. Documentation and generated reports are in English. Upstream models, datasets, and vendored sources retain their respective licenses.

@@ -1,0 +1,76 @@
+{
+  "created_utc": "2026-10-20T19:49:23.350653+00:00",
+  "scope": "Full-depth fixed-strength LoopCD-Hidden on Huginn R16 and R32 across the four existing multiple-choice tasks.",
+  "previous_commit": "ae10c34ca018789791bb4e0175d1a996ad8bbebf",
+  "task_order": [
+    "arc_easy",
+    "arc_challenge",
+    "sciq",
+    "piqa"
+  ],
+  "model_order": [
+    "huginn_16",
+    "huginn_32"
+  ],
+  "primary_metrics": {
+    "arc_easy": "acc_norm",
+    "arc_challenge": "acc_norm",
+    "sciq": "acc",
+    "piqa": "acc_norm"
+  },
+  "fixed_parameters": {
+    "checkpoint": "tomg-group-umd/huginn-0125",
+    "loops_by_model": {
+      "huginn_16": 16,
+      "huginn_32": 32
+    },
+    "reference_steps": {
+      "huginn_16": 7,
+      "huginn_32": 6
+    },
+    "fixed_strength": 0.5,
+    "logits_reference_step": 1,
+    "seed": 1234,
+    "dtype": "float32",
+    "matmul_precision": "highest",
+    "shots": 0
+  },
+  "primary_contrasts": [
+    "Hidden minus same-depth baseline",
+    "Hidden minus same-depth fixed Logits"
+  ],
+  "primary_mean": "Equal weight for each of four fixed task accuracies, computed separately at each depth.",
+  "secondary_means": [
+    "All four tasks using acc",
+    "All four tasks using acc_norm"
+  ],
+  "bootstrap": {
+    "samples": 20000,
+    "seed": 1234,
+    "method": "Paired question resampling independently within fixed tasks; percentile 95% interval"
+  },
+  "permutation": {
+    "samples": 200000,
+    "seed": 1234,
+    "method": "Two-sided correctness sign flips within tasks; equal-task mean and plus-one Monte Carlo p"
+  },
+  "multiplicity": {
+    "primary_tasks": 16,
+    "primary_macro": 4,
+    "method": "Separate Holm families: 2 depths x 4 tasks x 2 contrasts, and 2 depths x 2 mean contrasts"
+  },
+  "timing": {
+    "batches_per_task": 3,
+    "candidates_per_batch": 8,
+    "warmups_per_policy_per_batch": 2,
+    "repetitions_per_policy_per_batch": 6,
+    "description": "Independent baseline, fixed Logits and Hidden policies on identical candidate batches and initial states; fixed length-quantile selection; geometric mean latency ratios across four tasks at each depth."
+  },
+  "parameter_selection": "Paper Table 3(a)/A4 multiple-choice settings fixed before Hidden scoring; no task-specific tuning. All original Logits and baseline outcomes were already known.",
+  "configuration_sha256": {
+    "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+    "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
+    "configs/experiments.json": "9a22f0602006e5788d8b8db9f558a61b1932b6601cc41cd97217e98f7ae6ecdc",
+    "configs/hidden.json": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+  }
+}

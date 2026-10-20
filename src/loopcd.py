@@ -1,11 +1,24 @@
 """LoopCD-Logits for the official Ouro checkpoint; no training or extra loops."""
 
 from dataclasses import dataclass
+import math
 
 import torch
 
 
 MODES = ("baseline", "loopcd_fixed", "loopcd_adaptive", "reference")
+HIDDEN_MODES = ("baseline", "loopcd_hidden")
+
+
+def guided_hidden(final, reference, strength=0.5):
+    """Paper Eq. (2), on recurrent states before the complete output stack."""
+    if isinstance(strength, bool) or not isinstance(strength, (int, float)):
+        raise ValueError("Hidden guidance strength must be a finite nonnegative scalar")
+    if not math.isfinite(strength) or strength < 0:
+        raise ValueError("Hidden guidance strength must be a finite nonnegative scalar")
+    if final.shape != reference.shape or final.dtype != reference.dtype or final.device != reference.device:
+        raise ValueError("Hidden states must share shape, dtype, and device")
+    return final + strength * (final - reference)
 
 
 def guided_logits(final, reference, strength=0.5, adaptive=False):

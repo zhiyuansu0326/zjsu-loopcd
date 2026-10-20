@@ -1,0 +1,33 @@
+{
+  "n": 8,
+  "correct": {
+    "acc": {
+      "baseline": 1,
+      "loopcd_hidden": 2
+    },
+    "acc_norm": {
+      "baseline": 1,
+      "loopcd_hidden": 1
+    }
+  },
+  "accuracy_percent": {
+    "acc": {
+      "baseline": 12.5,
+      "loopcd_hidden": 25.0
+    },
+    "acc_norm": {
+      "baseline": 12.5,
+      "loopcd_hidden": 12.5
+    }
+  },
+  "task": "arc_challenge",
+  "model": "huginn_16",
+  "primary_metric": "acc_norm",
+  "shots": 0,
+  "split": "test",
+  "load_and_validation_seconds": 6.301960438955575,
+  "this_invocation_scoring_seconds": 2.652224005199969,
+  "this_invocation_total_seconds": 8.954185327980667,
+  "peak_gpu_allocated_gib": 14.571114540100098,
+  "note": "Joint readouts share a recurrent trajectory; runtime is not a policy speedup measurement."
+}

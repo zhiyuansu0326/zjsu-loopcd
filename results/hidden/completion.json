@@ -1,0 +1,11 @@
+{
+  "complete": true,
+  "finished_utc": "2026-10-20T20:42:03.119014+00:00",
+  "new_evaluation_runs": 8,
+  "reused_logits_runs": 8,
+  "questions_per_depth": 6386,
+  "new_question_evaluations": 12772,
+  "new_scored_candidates": 43728,
+  "artifact_manifest_sha256": "54276801d91ff5e4f39f6a2b226477e04d3dc4adf4d18a79d74581d5c95d564d",
+  "report": "results/hidden/REPORT.md"
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "job_id": "59058792",
+    "task": "arc_challenge",
+    "model": "huginn_16",
+    "submitted_utc": "2026-10-20T19:52:26.398657+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_16-arc_challenge",
+      "scripts/run_hidden.slurm",
+      "arc_challenge",
+      "huginn_16",
+      "results/hidden"
+    ]
+  },
+  {
+    "job_id": "59058793",
+    "task": "sciq",
+    "model": "huginn_32",
+    "submitted_utc": "2026-10-20T19:52:26.439257+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_32-sciq",
+      "scripts/run_hidden.slurm",
+      "sciq",
+      "huginn_32",
+      "results/hidden"
+    ]
+  },
+  {
+    "job_id": "59058794",
+    "task": "arc_easy",
+    "model": "huginn_32",
+    "submitted_utc": "2026-10-20T19:52:26.483387+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_32-arc_easy",
+      "scripts/run_hidden.slurm",
+      "arc_easy",
+      "huginn_32",
+      "results/hidden"
+    ]
+  },
+  {
+    "job_id": "59058795",
+    "task": "sciq",
+    "model": "huginn_16",
+    "submitted_utc": "2026-10-20T19:52:26.528104+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_16-sciq",
+      "scripts/run_hidden.slurm",
+      "sciq",
+      "huginn_16",
+      "results/hidden"
+    ]
+  },
+  {
+    "job_id": "59058796",
+    "task": "arc_challenge",
+    "model": "huginn_32",
+    "submitted_utc": "2026-10-20T19:52:26.567927+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_32-arc_challenge",
+      "scripts/run_hidden.slurm",
+      "arc_challenge",
+      "huginn_32",
+      "results/hidden"
+    ]
+  },
+  {
+    "job_id": "59058797",
+    "task": "arc_easy",
+    "model": "huginn_16",
+    "submitted_utc": "2026-10-20T19:52:26.609304+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_16-arc_easy",
+      "scripts/run_hidden.slurm",
+      "arc_easy",
+      "huginn_16",
+      "results/hidden"
+    ]
+  },
+  {
+    "job_id": "59058798",
+    "task": "piqa",
+    "model": "huginn_32",
+    "submitted_utc": "2026-10-20T19:52:26.649730+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_32-piqa",
+      "scripts/run_hidden.slurm",
+      "piqa",
+      "huginn_32",
+      "results/hidden"
+    ]
+  },
+  {
+    "job_id": "59058799",
+    "task": "piqa",
+    "model": "huginn_16",
+    "submitted_utc": "2026-10-20T19:52:26.691270+00:00",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-huginn_16-piqa",
+      "scripts/run_hidden.slurm",
+      "piqa",
+      "huginn_16",
+      "results/hidden"
+    ]
+  }
+]

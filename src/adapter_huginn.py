@@ -6,6 +6,8 @@ from pathlib import Path
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+from src.loopcd import guided_hidden
+
 
 REVISION = "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
 
@@ -151,7 +153,8 @@ class HuginnAdapter:
             hidden = block(hidden, frequencies, block_index, None, None)
         return self.model.transformer.ln_f(hidden)
 
-    def _trajectory(self, input_ids, initial_states, capture_reference=True):
+    def _recurrent_states(self, input_ids, initial_states, capture_reference=True):
+        """Return raw completed recurrent states before either readout normalization."""
         frequencies = self.model.freqs_cis[:, : input_ids.shape[1]]
         embedded = self.model.transformer.wte(input_ids)
         if self.model.emb_scale != 1:
@@ -169,6 +172,12 @@ class HuginnAdapter:
             if capture_reference and step + 1 == self.reference_step:
                 # Capture the complete selected update before readout normalization.
                 early = hidden.clone()
+        return hidden, early, frequencies
+
+    def _trajectory(self, input_ids, initial_states, capture_reference=True):
+        hidden, early, frequencies = self._recurrent_states(
+            input_ids, initial_states, capture_reference=capture_reference,
+        )
         final_hidden = self._readout_hidden(hidden, frequencies)
         reference_hidden = self._readout_hidden(early, frequencies) if capture_reference else None
         return final_hidden, reference_hidden
@@ -208,6 +217,145 @@ class HuginnAdapter:
         initial = self._resolve_initial_states(input_ids, sample_keys, initial_states)
         final_hidden, _ = self._trajectory(input_ids, initial, capture_reference=False)
         return self.model.lm_head(final_hidden[rows, positions]).float()
+
+    @torch.inference_mode()
+    def forward_hidden_logits(
+        self, input_ids, attention_mask, rows, positions, sample_keys=None, *,
+        strength=0.5, initial_states=None,
+    ):
+        """Fixed hidden guidance over the full sequence, with one coda and head."""
+        rows, positions = self._validate_inputs(input_ids, attention_mask, rows, positions, sample_keys)
+        initial = self._resolve_initial_states(input_ids, sample_keys, initial_states)
+        final, reference, frequencies = self._recurrent_states(input_ids, initial)
+        guided = guided_hidden(final, reference, strength)
+        hidden = self._readout_hidden(guided, frequencies)
+        return self.model.lm_head(hidden[rows, positions]).float()
+
+    @torch.inference_mode()
+    def forward_hidden_comparison_logits(
+        self, input_ids, attention_mask, rows, positions, sample_keys=None, *,
+        strength=0.5, initial_states=None,
+    ):
+        """Paired evaluation readouts sharing one unmodified recurrent trajectory."""
+        rows, positions = self._validate_inputs(input_ids, attention_mask, rows, positions, sample_keys)
+        initial = self._resolve_initial_states(input_ids, sample_keys, initial_states)
+        final, reference, frequencies = self._recurrent_states(input_ids, initial)
+        guided = guided_hidden(final, reference, strength)
+        baseline_hidden = self._readout_hidden(final, frequencies)
+        guided_hidden_states = self._readout_hidden(guided, frequencies)
+        return {
+            "baseline": self.model.lm_head(baseline_hidden[rows, positions]).float(),
+            "loopcd_hidden": self.model.lm_head(guided_hidden_states[rows, positions]).float(),
+        }
+
+    @torch.inference_mode()
+    def validate_hidden(
+        self, input_ids, attention_mask, rows, positions, sample_keys=None, *, strength=0.5,
+    ):
+        """Check raw states against native hooks and independently rebuild guidance."""
+        rows, positions = self._validate_inputs(input_ids, attention_mask, rows, positions, sample_keys)
+        initial = self.initial_states(sample_keys, input_ids.shape[1])
+        original_initial = initial.clone()
+        captured, native_updates = {}, 0
+
+        def capture_native(module, args, output):
+            nonlocal native_updates
+            native_updates += 1
+            if native_updates in {self.reference_step, self.loops}:
+                captured[native_updates] = output.clone()
+
+        handle = self.model.transformer.core_block[-1].register_forward_hook(capture_native)
+        try:
+            native = self.model(
+                input_ids=input_ids, input_states=initial, num_steps=self.loops,
+                use_cache=False, attention_mask=None,
+                output_details={
+                    "return_logits": False, "return_latents": False,
+                    "return_head": True, "return_stats": False,
+                },
+            )
+        finally:
+            handle.remove()
+        if native_updates != self.loops:
+            raise AssertionError("Native Huginn recurrent update count changed")
+        final, reference, frequencies = self._recurrent_states(input_ids, initial)
+        torch.testing.assert_close(final, captured[self.loops], atol=0, rtol=0)
+        torch.testing.assert_close(reference, captured[self.reference_step], atol=0, rtol=0)
+
+        # Independent full-sequence readout: do not call the adapter readout or
+        # guidance helper here, so normalization/placement mistakes are exposed.
+        manual_raw = captured[self.loops] + strength * (
+            captured[self.loops] - captured[self.reference_step]
+        )
+        manual_hidden = self.model.transformer.ln_f(manual_raw)
+        block_index = torch.tensor(0, dtype=torch.long, device="cpu")
+        for block in self.model.transformer.coda:
+            block_index -= 1
+            manual_hidden = block(manual_hidden, frequencies, block_index, None, None)
+        manual_hidden = self.model.transformer.ln_f(manual_hidden)
+        manual_logits = self.model.lm_head(manual_hidden[rows, positions]).float()
+        native_same_shape = self.model.lm_head(native.hidden_states[rows, positions]).float()
+        zero = self.forward_hidden_logits(
+            input_ids, attention_mask, rows, positions, sample_keys,
+            strength=0.0, initial_states=initial,
+        )
+        torch.testing.assert_close(zero, native_same_shape, atol=0, rtol=0)
+
+        counts = {"recurrent_updates": 0, "head_passes": 0}
+        coda_calls = [0] * len(self.model.transformer.coda)
+
+        def count_updates(module, args, output):
+            counts["recurrent_updates"] += 1
+
+        def count_head(module, args, output):
+            counts["head_passes"] += 1
+
+        handles = [
+            self.model.transformer.core_block[-1].register_forward_hook(count_updates),
+            self.model.lm_head.register_forward_hook(count_head),
+        ]
+        for index, block in enumerate(self.model.transformer.coda):
+            def count_coda(module, args, output, index=index):
+                coda_calls[index] += 1
+            handles.append(block.register_forward_hook(count_coda))
+        try:
+            standalone = self.forward_hidden_logits(
+                input_ids, attention_mask, rows, positions, sample_keys,
+                strength=strength, initial_states=initial,
+            )
+        finally:
+            for hook in handles:
+                hook.remove()
+        if counts != {"recurrent_updates": self.loops, "head_passes": 1} or any(
+            count != 1 for count in coda_calls
+        ):
+            raise AssertionError("Standalone hidden guidance must use one trajectory and one output pass")
+        torch.testing.assert_close(standalone, manual_logits, atol=0, rtol=0)
+        paired = self.forward_hidden_comparison_logits(
+            input_ids, attention_mask, rows, positions, sample_keys,
+            strength=strength, initial_states=initial,
+        )
+        torch.testing.assert_close(paired["loopcd_hidden"], standalone, atol=0, rtol=0)
+        torch.testing.assert_close(paired["baseline"], native_same_shape, atol=0, rtol=0)
+        torch.testing.assert_close(initial, original_initial, atol=0, rtol=0)
+        if not bool(torch.isfinite(standalone).all()):
+            raise AssertionError("Nonfinite hidden-guided Huginn logits")
+        return {
+            "hidden_guidance_strength": strength,
+            "hidden_guidance_location": "raw recurrent state before native pre-coda ln_f",
+            "hidden_guidance_positions": "all input and context positions before complete coda",
+            "hidden_native_final_raw_max_abs_error": (final - captured[self.loops]).abs().max().item(),
+            "hidden_native_reference_raw_max_abs_error": (
+                reference - captured[self.reference_step]
+            ).abs().max().item(),
+            "hidden_manual_readout_max_abs_error": (standalone - manual_logits).abs().max().item(),
+            "hidden_zero_strength_matches_native_exactly": True,
+            "hidden_paired_matches_standalone_exactly": True,
+            "hidden_initial_states_unchanged": True,
+            "hidden_standalone_recurrent_updates": counts["recurrent_updates"],
+            "hidden_standalone_coda_layer_calls": coda_calls,
+            "hidden_standalone_head_passes": counts["head_passes"],
+        }
 
     @torch.inference_mode()
     def validate(self, input_ids, attention_mask, rows, positions, sample_keys=None):

@@ -1,0 +1,82 @@
+{
+  "seed": 1234,
+  "models": {
+    "ouro_14": {
+      "family": "ouro",
+      "display": "Ouro-1.4B R=4",
+      "model_path": "models/Ouro-1.4B",
+      "model_manifest": "models/model_manifest.json",
+      "loops": 4,
+      "fixed": 0.5,
+      "cap": 1.0,
+      "batch_size": 24,
+      "matmul_precision": "high"
+    },
+    "ouro_26": {
+      "family": "ouro",
+      "display": "Ouro-2.6B R=4",
+      "model_path": "models/Ouro-2.6B",
+      "model_manifest": "models/ouro26_manifest.json",
+      "loops": 4,
+      "fixed": 0.5,
+      "cap": 1.0,
+      "batch_size": 16,
+      "matmul_precision": "high"
+    },
+    "huginn_16": {
+      "family": "huginn",
+      "display": "Huginn-0125 R=16",
+      "model_path": "models/Huginn-0125",
+      "model_manifest": "models/huginn_manifest.json",
+      "loops": 16,
+      "fixed": 0.5,
+      "cap": 0.5,
+      "batch_size": 8,
+      "matmul_precision": "highest"
+    },
+    "huginn_32": {
+      "family": "huginn",
+      "display": "Huginn-0125 R=32",
+      "model_path": "models/Huginn-0125",
+      "model_manifest": "models/huginn_manifest.json",
+      "loops": 32,
+      "fixed": 0.5,
+      "cap": 0.5,
+      "batch_size": 8,
+      "matmul_precision": "highest"
+    },
+    "parcae_370": {
+      "family": "parcae",
+      "display": "Parcae-370M R=8",
+      "model_path": "models/Parcae-370M",
+      "model_manifest": "models/parcae_370m_manifest.json",
+      "loops": 8,
+      "fixed": 0.5,
+      "cap": 1.0,
+      "batch_size": 32,
+      "matmul_precision": "high"
+    },
+    "parcae_13": {
+      "family": "parcae",
+      "display": "Parcae-1.3B R=8",
+      "model_path": "models/Parcae-1.3B",
+      "model_manifest": "models/parcae_1_3b_manifest.json",
+      "loops": 8,
+      "fixed": 0.5,
+      "cap": 1.0,
+      "batch_size": 24,
+      "matmul_precision": "high"
+    },
+    "looped_qwen": {
+      "family": "looped_qwen",
+      "display": "Looped-Qwen3-4B R=8",
+      "model_path": "models/Qwen3-4B",
+      "model_manifest": "models/looped_qwen_manifest.json",
+      "loops": 8,
+      "fixed": 0.5,
+      "cap": 1.0,
+      "batch_size": 16,
+      "matmul_precision": "highest"
+    }
+  }
+}

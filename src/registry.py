@@ -17,13 +17,21 @@ def load_experiments():
     return json.loads((ROOT / "configs/experiments.json").read_text())["experiments"]
 
 
-def resolve_run(task, model, experiment=None):
+def load_hidden_settings():
+    return json.loads((ROOT / "configs/hidden.json").read_text())
+
+
+def resolve_run(task, model, experiment=None, *, guidance_space="logits"):
     models, tasks = load_registry()
     if task not in tasks["tasks"]:
         raise ValueError(f"Unknown task {task!r}; choose {list(tasks['tasks'])}")
     if model not in models["models"]:
         raise ValueError(f"Unknown model {model!r}; choose {list(models['models'])}")
     model_config, task_config = models["models"][model], tasks["tasks"][task]
+    if guidance_space not in ("logits", "hidden"):
+        raise ValueError("guidance_space must be logits or hidden")
+    if guidance_space == "hidden" and experiment is not None:
+        raise ValueError("Named Logits experiments cannot be combined with Hidden guidance")
     setting = None
     if experiment is not None:
         experiments = load_experiments()
@@ -44,4 +52,14 @@ def resolve_run(task, model, experiment=None):
     if setting is not None:
         resolved["experiment"] = {"name": experiment, **setting}
         resolved["output"] = ROOT / "results/reduced_depth" / task / setting["output_name"]
+    if guidance_space == "hidden":
+        hidden = load_hidden_settings()
+        if model not in hidden["models"]:
+            raise ValueError(f"Hidden guidance is configured for {list(hidden['models'])}")
+        resolved["model"] = {**model_config, **hidden["models"][model]}
+        resolved["hidden_setting"] = {
+            key: value for key, value in hidden.items() if key != "models"
+        }
+        resolved["hidden_setting"]["model_overrides"] = hidden["models"][model]
+        resolved["output"] = ROOT / "results/hidden" / task / model
     return resolved

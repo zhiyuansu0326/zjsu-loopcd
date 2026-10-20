@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "task": "piqa",
+  "split": "validation",
+  "count": 1838,
+  "candidates": 3676,
+  "shots": 0,
+  "seed": 1234,
+  "seed_effect": "None for zero-shot data preparation; retained for experiment provenance.",
+  "primary_metric": "acc_norm",
+  "reported_metrics": [
+    "acc",
+    "acc_norm"
+  ],
+  "primary_metric_status": "Predeclared reproduction convention; the paper does not unambiguously specify this normalization. Both metrics are retained.",
+  "harness_repository": "https://github.com/EleutherAI/lm-evaluation-harness",
+  "harness_commit": "d6de81643928d653435c431bae19945d41d32520",
+  "harness_dataset_path": "baber/piqa",
+  "data_source": "Official AI2 release archive, cross-checked against author-hosted data",
+  "source_revision": {
+    "kind": "sha256",
+    "archive_sha256": "54d32a04f59a7e354396f321723c8d7ec35cc6b08506563d8d1ffcc15ce98ddd"
+  },
+  "official_sciq_card_revision": null,
+  "prompt_template": "Question: {{goal}}\nAnswer:",
+  "choice_fields": [
+    "sol1",
+    "sol2"
+  ],
+  "target_rule": "Aligned dev-labels.lst integer 0/1",
+  "support_policy": null,
+  "split_note": "Public labeled validation (archive dev). No private/unreleased test labels used or inferred.",
+  "selection_policy": "Complete official split in source order; no filtering, answer shuffling, or label-based selection.",
+  "continuation": "one leading space followed by complete candidate answer text",
+  "apply_chat_template": false,
+  "system_instruction": null,
+  "truncation": false,
+  "token_boundary": "Move context trailing whitespace to continuation; encode context and context+continuation identically; score all continuation tokens only.",
+  "tokenizer_special_tokens": "Chosen and recorded by model adapter; not added during data preparation.",
+  "acc": "argmax of summed conditional natural-log token probabilities",
+  "acc_norm": "argmax of summed conditional natural-log token probabilities / Python len(original choice text); Unicode characters, not tokens, excluding added leading space",
+  "ties": "first maximum in original candidate order",
+  "license": {
+    "name": "Academic Free License v3.0",
+    "spdx": "AFL-3.0",
+    "source": "data/raw/piqa/official_data_page.html",
+    "url": "https://yonatanbisk.com/piqa/data/"
+  },
+  "raw_files": [
+    {
+      "path": "data/raw/piqa/physicaliqa-train-dev.zip",
+      "bytes": 1824009,
+      "sha256": "54d32a04f59a7e354396f321723c8d7ec35cc6b08506563d8d1ffcc15ce98ddd",
+      "url": "https://storage.googleapis.com/ai2-mosaic/public/physicaliqa/physicaliqa-train-dev.zip",
+      "pinning": "sha256"
+    },
+    {
+      "path": "data/raw/piqa/valid.jsonl",
+      "bytes": 495929,
+      "sha256": "93503cc97c679e459b065c3d13e848282e44b2a25213985bed3e5d458abef72d",
+      "url": "https://yonatanbisk.com/piqa/data/valid.jsonl",
+      "pinning": "sha256"
+    },
+    {
+      "path": "data/raw/piqa/valid-labels.lst",
+      "bytes": 3676,
+      "sha256": "b4192dc3a2a0363d9d60ccf79800cbbe2f32ebb17726efdde6970e0b8131bceb",
+      "url": "https://yonatanbisk.com/piqa/data/valid-labels.lst",
+      "pinning": "sha256"
+    },
+    {
+      "path": "data/raw/piqa/official_data_page.html",
+      "bytes": 4070,
+      "sha256": "618bda94355e50ed52a1d3d7abaa6e2c523ed4c4062ea3fce0eacaa9beb7a294",
+      "url": "https://yonatanbisk.com/piqa/data/",
+      "pinning": "sha256"
+    },
+    {
+      "path": "data/raw/piqa/dev.jsonl",
+      "bytes": 580477,
+      "sha256": "a73f46cb5d72b2cc399522a79f27728a429d9b89d9a236243fcfda8c02588d54",
+      "archive": "data/raw/piqa/physicaliqa-train-dev.zip",
+      "member": "physicaliqa-train-dev/dev.jsonl"
+    },
+    {
+      "path": "data/raw/piqa/dev-labels.lst",
+      "bytes": 3676,
+      "sha256": "b4192dc3a2a0363d9d60ccf79800cbbe2f32ebb17726efdde6970e0b8131bceb",
+      "archive": "data/raw/piqa/physicaliqa-train-dev.zip",
+      "member": "physicaliqa-train-dev/dev-labels.lst"
+    }
+  ],
+  "sources": [
+    {
+      "path": "sources/lm_eval/lm_eval/tasks/piqa/piqa.yaml",
+      "bytes": 485,
+      "sha256": "e874f7956ccac325b888d4a5dc600bad867b79fba2bd358fe8761ab8263270fb",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/piqa/piqa.yaml",
+      "pinning": "sha256",
+      "revision": "d6de81643928d653435c431bae19945d41d32520"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/tasks/piqa/README.md",
+      "bytes": 1584,
+      "sha256": "788cef081bb9fff2afe8a30984ce17fffa7c0401674d5abd4f558306e713825a",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/piqa/README.md",
+      "pinning": "sha256",
+      "revision": "d6de81643928d653435c431bae19945d41d32520"
+    },
+    {
+      "path": "sources/lm_eval/LICENSE.md",
+      "bytes": 1067,
+      "sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f",
+      "revision": "d6de81643928d653435c431bae19945d41d32520",
+      "license": "MIT",
+      "url": "https://github.com/EleutherAI/lm-evaluation-harness/blob/d6de81643928d653435c431bae19945d41d32520/LICENSE.md"
+    }
+  ],
+  "output": {
+    "path": "data/tasks/piqa/0shot.jsonl",
+    "sha256": "c0b5c66a4c01d9d41c5cd401d81794cb4882c063689c6b5d8b46936cf4d8f395",
+    "rows": 1838
+  },
+  "validation": {
+    "passed": true,
+    "documents": 1838,
+    "unique_ids": 1838,
+    "candidates": 3676,
+    "all_source_fields_order_choices_labels_and_contexts_match": true,
+    "support_empty_count": null,
+    "piqa_author_site_matches_archive": true
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "loops": 16,
+  "reference_recurrent_update": 7,
+  "reference_is_initial_noise": false,
+  "coda_layers": 2,
+  "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+  "noise_seed": 1234,
+  "noise_key": "SHA256(seed, question ID), independent of answer text",
+  "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+  "noise_std_before_embedding_scale": 0.008703882797784892,
+  "noise_truncation_standard_deviations": [
+    -3,
+    3
+  ],
+  "noise_embedding_scale": 72.6636084983398,
+  "noise_coupling": "same question shares identical positional initial states across options and depths",
+  "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+  "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+  "add_bos_token": true,
+  "bos_token_id": 65504,
+  "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+  "bos_evidence": [
+    "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+    "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+    "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+  ],
+  "native_final_hidden_max_abs_error": 0.0,
+  "native_same_shape_logits_max_abs_error": 0.0,
+  "native_full_logits_max_abs_error": 0.0,
+  "native_reference_hidden_max_abs_error": 0.0,
+  "native_reference_same_shape_logits_max_abs_error": 0.0,
+  "native_reference_full_logits_max_abs_error": 0.0,
+  "zero_guidance_matches_native_same_shape_exactly": true,
+  "early_final_mean_abs_logit_difference": 0.4586901068687439,
+  "same_initial_states_supplied_to_native": true,
+  "hidden_checks": {
+    "hidden_guidance_strength": 0.5,
+    "hidden_guidance_location": "raw recurrent state before native pre-coda ln_f",
+    "hidden_guidance_positions": "all input and context positions before complete coda",
+    "hidden_native_final_raw_max_abs_error": 0.0,
+    "hidden_native_reference_raw_max_abs_error": 0.0,
+    "hidden_manual_readout_max_abs_error": 0.0,
+    "hidden_zero_strength_matches_native_exactly": true,
+    "hidden_paired_matches_standalone_exactly": true,
+    "hidden_initial_states_unchanged": true,
+    "hidden_standalone_recurrent_updates": 16,
+    "hidden_standalone_coda_layer_calls": [
+      1,
+      1
+    ],
+    "hidden_standalone_head_passes": 1
+  },
+  "zero_guidance_matches_baseline_exactly": true,
+  "batch_single_token_logprob_errors": {
+    "baseline": 1.6689300537109375e-05,
+    "loopcd_hidden": 1.9073486328125e-05
+  },
+  "batch_single_tolerance": 0.001,
+  "masked_padding_token_change_max_abs_error": 0.0,
+  "early_final_mean_abs_difference": 0.4586901068687439,
+  "stochastic": true
+}

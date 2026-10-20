@@ -1,0 +1,10 @@
+{
+  "archived_utc": "2026-10-20T19:53:50.631595+00:00",
+  "source_commit": "ae10c34ca018789791bb4e0175d1a996ad8bbebf",
+  "reason": "Original Ouro-1.4B ARC-Easy run recorded source hashes and used repository files directly. Archive their exact matching committed contents before shared source evolves for Hidden guidance.",
+  "verified_against_original_run_manifest": true,
+  "source_sha256": {
+    "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+    "scripts/evaluate_arc.py": "0a5cac62c402638143df03f0391c6a87c6821f61473ae9e433c103f36fee1ea6"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "method": "LoopCD-Hidden",
+  "paper_setting": "Table 3(a), Appendix B.4: full-depth multiple-choice hidden-state guidance",
+  "guidance_space": "hidden",
+  "guidance_policy": "fixed",
+  "models": {
+    "huginn_16": {
+      "reference_step": 7,
+      "fixed": 0.5
+    },
+    "huginn_32": {
+      "reference_step": 6,
+      "fixed": 0.5
+    }
+  },
+  "intervention": "Combine raw completed recurrent states at every sequence position before native pre-coda ln_f; retain complete ln_f -> coda -> ln_f -> lm_head readout.",
+  "paper_sources": [
+    "sources/looped_qwen/loopcd.html#S3.E2",
+    "sources/looped_qwen/loopcd.html#A2.SS4.p4.1",
+    "sources/looped_qwen/loopcd.html#S4.T3"
+  ]
+}

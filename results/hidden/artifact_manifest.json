@@ -1,0 +1,1065 @@
+{
+  "scope": "Huginn full-depth Hidden: two depths \u00d7 four tasks",
+  "files": {
+    "results/hidden/REPORT.md": {
+      "bytes": 8748,
+      "sha256": "96ab798ab04e76e5bf5dd94cd44063fe27d954bc6355c534cc63be1b0fbf67e9"
+    },
+    "results/hidden/analysis_plan.json": {
+      "bytes": 2714,
+      "sha256": "8c551b60f74b1d2c90fe6cd8f953d57af1f6a94a7af78d6c03c1d8a0189834c2"
+    },
+    "results/hidden/arc_challenge/huginn_16/candidate_scores.jsonl": {
+      "bytes": 2339386,
+      "sha256": "8520ca27e452f40a4f5db4430c57960fd63dd311183a4eb021524e0246e77194"
+    },
+    "results/hidden/arc_challenge/huginn_16/data_protocol.json": {
+      "bytes": 8458,
+      "sha256": "fe469bc734ce01700fc7aa5d53acfb866644f19c3c84fadcc2f7bc4186ca4c98"
+    },
+    "results/hidden/arc_challenge/huginn_16/predictions.jsonl": {
+      "bytes": 1064088,
+      "sha256": "722370cd0f141d0641c77436f63d7454e465107450b460586577167933896c9c"
+    },
+    "results/hidden/arc_challenge/huginn_16/run_manifest.json": {
+      "bytes": 5294,
+      "sha256": "8e9e8c095b0847bdfc3edd0ac1df9642a82de0c0e69a7ecf218997c69ff4dc7c"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/arc_challenge/huginn_16/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_challenge/huginn_16/summary.json": {
+      "bytes": 840,
+      "sha256": "d2c7997ecaeb71c8e13b9750cda544b04ea00c48d0b3cd87b6490cda12330fa5"
+    },
+    "results/hidden/arc_challenge/huginn_16/validation.json": {
+      "bytes": 2936,
+      "sha256": "6fb2cd69e763877bd556fef64e26d88778a016ae503f288d78b88a01a977c6f6"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs.json": {
+      "bytes": 67292,
+      "sha256": "3cef66cf16999358023485f7290a162d9210711f36d21d01fd2b2f7552a32bb3"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_challenge/huginn_16_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/arc_challenge/huginn_32/candidate_scores.jsonl": {
+      "bytes": 2339372,
+      "sha256": "e4555ca8aae8a9f451ddcf9605e829e5bd39b09fe2b639b84626f54716fec318"
+    },
+    "results/hidden/arc_challenge/huginn_32/data_protocol.json": {
+      "bytes": 8458,
+      "sha256": "fe469bc734ce01700fc7aa5d53acfb866644f19c3c84fadcc2f7bc4186ca4c98"
+    },
+    "results/hidden/arc_challenge/huginn_32/predictions.jsonl": {
+      "bytes": 1063973,
+      "sha256": "d4040e6f95997098a6a25bd2e704b569b1fb58ac6cc634a2794c092e13d7697b"
+    },
+    "results/hidden/arc_challenge/huginn_32/run_manifest.json": {
+      "bytes": 5294,
+      "sha256": "c63f1c602ce3846fcff7eaa452f4fead62adc01a1886f86950b6675161037b8c"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/arc_challenge/huginn_32/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_challenge/huginn_32/summary.json": {
+      "bytes": 840,
+      "sha256": "a80310639e30a18d0827f52f07865ca53334c7e7bbae2412c1095529fb70c2e8"
+    },
+    "results/hidden/arc_challenge/huginn_32/validation.json": {
+      "bytes": 2940,
+      "sha256": "5587c0bfdd649a57c37e163a23ba0b682626920702fdc875fd3bfb0f1ca55605"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs.json": {
+      "bytes": 67232,
+      "sha256": "28d0c0fccea2ad135ddbc7b71c99b17629222528b88fc475bd8d67e4067edb18"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_challenge/huginn_32_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/arc_easy/huginn_16/candidate_scores.jsonl": {
+      "bytes": 4056392,
+      "sha256": "3c76107e324b87cd22fb594eb3bb96ddcd1f4820486c32939070a6f950a19903"
+    },
+    "results/hidden/arc_easy/huginn_16/data_protocol.json": {
+      "bytes": 449,
+      "sha256": "983de8bc3f381ae45b22fa55f583c152947f5f32b25e14b0a3fea72cd94cc1f2"
+    },
+    "results/hidden/arc_easy/huginn_16/predictions.jsonl": {
+      "bytes": 2052077,
+      "sha256": "3a201f20490f9d7a1ba1a60841e0e8c2b2740797a87bd60b70a4f07a1112c35a"
+    },
+    "results/hidden/arc_easy/huginn_16/run_manifest.json": {
+      "bytes": 5276,
+      "sha256": "554a1eb0e32640cddbd1c1f41a5a46218a5a263dd14494b51f3f91295c2417b9"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/arc_easy/huginn_16/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_easy/huginn_16/summary.json": {
+      "bytes": 838,
+      "sha256": "53abd76274c9ea0871e6fe81c0d4c8cf593c1c7f7a102184d1a835915728d810"
+    },
+    "results/hidden/arc_easy/huginn_16/validation.json": {
+      "bytes": 2943,
+      "sha256": "af9dce6dbfe426aae9e7e43543dc1f4bfb328f9b45589b497eba68747f10afcf"
+    },
+    "results/hidden/arc_easy/huginn_16_costs.json": {
+      "bytes": 66302,
+      "sha256": "8f8eb75dce2556a9fe2b32bbd94851bf7c3661f47a786fd56852b59856c51358"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_easy/huginn_16_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/arc_easy/huginn_32/candidate_scores.jsonl": {
+      "bytes": 4056860,
+      "sha256": "7c8cd390d490046a7cedabec7550047386be07b6cf38d3af250eab5aef043fb6"
+    },
+    "results/hidden/arc_easy/huginn_32/data_protocol.json": {
+      "bytes": 449,
+      "sha256": "983de8bc3f381ae45b22fa55f583c152947f5f32b25e14b0a3fea72cd94cc1f2"
+    },
+    "results/hidden/arc_easy/huginn_32/predictions.jsonl": {
+      "bytes": 2052026,
+      "sha256": "0f307c2960898310181ee364c9370020a60872c6f4d7fd61791786f07bea4699"
+    },
+    "results/hidden/arc_easy/huginn_32/run_manifest.json": {
+      "bytes": 5277,
+      "sha256": "dafd977ede8d1b55565842a458b7f1c8fb97d78ce3850754d3b4565ff16faee6"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/arc_easy/huginn_32/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_easy/huginn_32/summary.json": {
+      "bytes": 837,
+      "sha256": "6650ed55be96951f7ddd21a210104fbe68dfb2c4e6a6366b05c5fe061a128ee7"
+    },
+    "results/hidden/arc_easy/huginn_32/validation.json": {
+      "bytes": 2941,
+      "sha256": "e778200dd5f192ff41975ebbfe1660d129517baefb25b8ee777d8bde6ba1790f"
+    },
+    "results/hidden/arc_easy/huginn_32_costs.json": {
+      "bytes": 66226,
+      "sha256": "cfad14290878dc6c585ba83610f4b277395e7329ee3a17829766797782f79fd0"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/arc_easy/huginn_32_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/comparison.csv": {
+      "bytes": 2255,
+      "sha256": "dc12f59b0a01fa9f4b10a87ccdab67d8de99c91a3a7920d125c334970b59332f"
+    },
+    "results/hidden/comparison.json": {
+      "bytes": 1118477,
+      "sha256": "4acbf1347fa7d1edcac2835d3e7719b98ad65bd67ae057e7ccdeb485c97fd280"
+    },
+    "results/hidden/jobs.json": {
+      "bytes": 3993,
+      "sha256": "92a853fb2e7517685db801a78dd0a385c5351a575d077a3761cda9140aa9ced7"
+    },
+    "results/hidden/piqa/huginn_16/candidate_scores.jsonl": {
+      "bytes": 4793923,
+      "sha256": "a9b65f75b850435e5a147ce72f06c474d91cb1504b98cdc67e6c91804461f2ab"
+    },
+    "results/hidden/piqa/huginn_16/data_protocol.json": {
+      "bytes": 5564,
+      "sha256": "78f7f19b935feae039384d24d03b026eef0bcb84e7d6c616a19bcba9fdd5ec9a"
+    },
+    "results/hidden/piqa/huginn_16/predictions.jsonl": {
+      "bytes": 1368763,
+      "sha256": "20625b8bd4f045f106af3ec2cae9082c5996f5159f9c5b2d0366ddab25b1a819"
+    },
+    "results/hidden/piqa/huginn_16/run_manifest.json": {
+      "bytes": 5260,
+      "sha256": "e963f8b3ea3d2dfbf328a06f23f373e06398e9cf41826b54aeaa47e32a9df552"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/piqa/huginn_16/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/piqa/huginn_16/summary.json": {
+      "bytes": 838,
+      "sha256": "be08d4352a06f10a47fc75aeb4c814af7448dd83da952d589dd5ebd01f20bf4b"
+    },
+    "results/hidden/piqa/huginn_16/validation.json": {
+      "bytes": 2938,
+      "sha256": "81b598b59286d7befe0d8b27dac4aaa14af4eca038e4c359c8f711731b320538"
+    },
+    "results/hidden/piqa/huginn_16_costs.json": {
+      "bytes": 72229,
+      "sha256": "d59ec7845221763c8028c00402de7dbe83b7742b2b4276ad7875e5fb0a9c8a49"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/piqa/huginn_16_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/piqa/huginn_32/candidate_scores.jsonl": {
+      "bytes": 4793580,
+      "sha256": "e6244035ebcc6db432841abc07d22f31d6a6afaf7bcb8beb1a6aef85d06fbe07"
+    },
+    "results/hidden/piqa/huginn_32/data_protocol.json": {
+      "bytes": 5564,
+      "sha256": "78f7f19b935feae039384d24d03b026eef0bcb84e7d6c616a19bcba9fdd5ec9a"
+    },
+    "results/hidden/piqa/huginn_32/predictions.jsonl": {
+      "bytes": 1368775,
+      "sha256": "4bee4f08e8857191ec82c4c77313088e0469b26ab73c877a0bed6ccab087a4f8"
+    },
+    "results/hidden/piqa/huginn_32/run_manifest.json": {
+      "bytes": 5261,
+      "sha256": "b06fcb9075f7053952a49012ea079f9b05b27398df3c8423794733b84685924b"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/piqa/huginn_32/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/piqa/huginn_32/summary.json": {
+      "bytes": 840,
+      "sha256": "de7b02400044d048acef2f7c50918961aec63ab1fbc81a4d3755850b55838c78"
+    },
+    "results/hidden/piqa/huginn_32/validation.json": {
+      "bytes": 2936,
+      "sha256": "85facfc89a520f90960179ae2480a0f785bb11391729fcef25173ae30c8c8ad6"
+    },
+    "results/hidden/piqa/huginn_32_costs.json": {
+      "bytes": 72176,
+      "sha256": "b5e77c306a5d89a4b2d0a9d39058015071da508cddb19060327e012c84a99977"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/piqa/huginn_32_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/preflight/huginn_16/run_manifest.json": {
+      "bytes": 5286,
+      "sha256": "515c79fd0c69583a680b6911dd58b7982e31e3c9cb0c6b549c3734fbecddf77d"
+    },
+    "results/hidden/preflight/huginn_16/slurm_accounting.txt": {
+      "bytes": 62,
+      "sha256": "fc83af168b521b111dda4066a29c5e8c465cca0af6e0e19b439281d80e15f44c"
+    },
+    "results/hidden/preflight/huginn_16/summary.json": {
+      "bytes": 775,
+      "sha256": "f1b09f9d9fec420bf075d59c98b1b31aff77b9789c49b062f5e3a340324dcc20"
+    },
+    "results/hidden/preflight/huginn_16/validation.json": {
+      "bytes": 2936,
+      "sha256": "6fb2cd69e763877bd556fef64e26d88778a016ae503f288d78b88a01a977c6f6"
+    },
+    "results/hidden/preflight/huginn_32/run_manifest.json": {
+      "bytes": 5239,
+      "sha256": "b00f1f6b86effaa456c6c97b7a9937d3f656b18224e8cb33a550dcfba54709d6"
+    },
+    "results/hidden/preflight/huginn_32/slurm_accounting.txt": {
+      "bytes": 62,
+      "sha256": "0c0f4eeabfea89ab672e58290ac725405637417eb820d49903d45b660ccd161c"
+    },
+    "results/hidden/preflight/huginn_32/summary.json": {
+      "bytes": 768,
+      "sha256": "13bd67ea7f92ed11727a6e5c773ab153248eb7a8ec998c6902c9e3e0f70ff621"
+    },
+    "results/hidden/preflight/huginn_32/validation.json": {
+      "bytes": 2975,
+      "sha256": "43aa255414e860e6426b867bb85cc3d28679526458fd5ad7f864067a5b72c0af"
+    },
+    "results/hidden/preflight_jobs.json": {
+      "bytes": 1472,
+      "sha256": "ab480fa47cfd00da2790642c3a9f2ec3e8aedf21eed07cbd044c295cda8da50b"
+    },
+    "results/hidden/sciq/huginn_16/candidate_scores.jsonl": {
+      "bytes": 1228299,
+      "sha256": "7fed3d9b80956f0f256842a91acec5e3b1a06bf82f133e5b438294de882312db"
+    },
+    "results/hidden/sciq/huginn_16/data_protocol.json": {
+      "bytes": 5394,
+      "sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+    },
+    "results/hidden/sciq/huginn_16/predictions.jsonl": {
+      "bytes": 776414,
+      "sha256": "5bb2864bcb998ce4e6cd125d516621b7b1297398a37c934392fe013c6eea252b"
+    },
+    "results/hidden/sciq/huginn_16/run_manifest.json": {
+      "bytes": 5245,
+      "sha256": "46010fba679e3741c47ab77bd4c3ddd30fc4af35e928283a8b15137954d8db6f"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/sciq/huginn_16/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/sciq/huginn_16/summary.json": {
+      "bytes": 773,
+      "sha256": "f82fed561f75071793d704f60e5902ff4507271fad4f02b653107ffaccf58a11"
+    },
+    "results/hidden/sciq/huginn_16/validation.json": {
+      "bytes": 2972,
+      "sha256": "aaa7ffb3ba233a22a95ddf067549a873cddf83649a22dc33d0e14747e83c47b9"
+    },
+    "results/hidden/sciq/huginn_16_costs.json": {
+      "bytes": 65077,
+      "sha256": "38be4b5ed203534e1294cf40a3ba36734ab4487221d4293bc51b8c250d129e8a"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/sciq/huginn_16_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/sciq/huginn_32/candidate_scores.jsonl": {
+      "bytes": 1228347,
+      "sha256": "0d6ba8db0e9423205df8532d93194b97a5f018a8abc33d948b9bf760f03b83b9"
+    },
+    "results/hidden/sciq/huginn_32/data_protocol.json": {
+      "bytes": 5394,
+      "sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+    },
+    "results/hidden/sciq/huginn_32/predictions.jsonl": {
+      "bytes": 776539,
+      "sha256": "d0623c9e5da881ec0b3b1cd91a181b34c1793fe5bbe21465b22a424d9947e8a1"
+    },
+    "results/hidden/sciq/huginn_32/run_manifest.json": {
+      "bytes": 5245,
+      "sha256": "a4670034a2ebde5456d2575d456e057f7ccc7e2464b2ece677bb03901a79c160"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/evaluate.py": {
+      "bytes": 12094,
+      "sha256": "b844f234cd3f1e7d4d5f069a1b36f2373af8fdd7d3e63ed56f7f49545cde118c"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/sciq/huginn_32/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/sciq/huginn_32/summary.json": {
+      "bytes": 775,
+      "sha256": "ed2d12d5fed4937a81dc80c6449d29ac784754e1d2e6a8bb0547d0aad3b1229c"
+    },
+    "results/hidden/sciq/huginn_32/validation.json": {
+      "bytes": 2975,
+      "sha256": "43aa255414e860e6426b867bb85cc3d28679526458fd5ad7f864067a5b72c0af"
+    },
+    "results/hidden/sciq/huginn_32_costs.json": {
+      "bytes": 65044,
+      "sha256": "735884a8e0c0e07cbd9c19e403ee6a5398d31b837c079fe90dbdadd378567488"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/configs/hidden.json": {
+      "bytes": 690,
+      "sha256": "e1bf4f4acbfa95729737868a11f602427517fb9452164a8f338ae1442e268981"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/scripts/benchmark_hidden_huginn.py": {
+      "bytes": 17622,
+      "sha256": "8d4f510ea22afd9f464e65c7cee9fcbe0311fc0e560253b01890a910a1ba9c09"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 23395,
+      "sha256": "9179386ef6bc6864e35a12202ee3ed6a57480a59857b277c867cdc5335adfadf"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/hidden_costs.py": {
+      "bytes": 3395,
+      "sha256": "357309a484e3959d3aab8732402e48f160bea2fe966fe9cf131677fe4f173f58"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 8176,
+      "sha256": "61a436510e05e67c1e0054585f012634f0f6e07ee989d1a63fee249bce95f3b8"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/registry.py": {
+      "bytes": 3015,
+      "sha256": "144b2020cde46c53d115966e0d26fd87ae49b326703c3f32cc2f924865d8d02a"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/hidden/sciq/huginn_32_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 5980,
+      "sha256": "5e28b54d13dbb747d7713e21ae5cdcacbb4d9b6700c099831e8806bc99ab98f9"
+    },
+    "results/hidden/slurm_accounting.txt": {
+      "bytes": 546,
+      "sha256": "0b5830f2437fe2320d737f7fbfe53d9430dc8d5ce5794379ff7b2bd679a0b540"
+    },
+    "results/hidden/tests_final.txt": {
+      "bytes": 20354,
+      "sha256": "92af0998a416ebc7c4ae79971575e2e3154e5b893e1e99e06591e827477e79af"
+    },
+    "results/hidden/tests_preflight.txt": {
+      "bytes": 18226,
+      "sha256": "efee1cb68cfaab738bcc992789c7ce0ecdc5e61f5b330c30c45da31612053ec9"
+    }
+  }
+}

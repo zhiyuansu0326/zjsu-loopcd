@@ -309,6 +309,8 @@ def audit_sources(output, manifest, name, task, resolved):
     }
     if resolved.get("experiment"):
         required_paths.add("configs/experiments.json")
+    if resolved.get("hidden_setting"):
+        required_paths.add("configs/hidden.json")
     hashes = manifest["code_hashes"]
     require(set(hashes) == required_paths, "Incomplete or unexpected source snapshot inventory")
     require(len({Path(path).name for path in hashes}) == len(hashes),
@@ -329,6 +331,12 @@ def audit_sources(output, manifest, name, task, resolved):
         require({"name": experiment["name"], **setting} == experiment
                 and setting["model"] == name, "Snapshot experiment differs from the run")
         frozen_config = {**frozen_config, **setting["model_overrides"]}
+    if resolved.get("hidden_setting"):
+        frozen_hidden = read_json(output / "source_snapshot/hidden.json")
+        hidden_setting = {key: value for key, value in frozen_hidden.items() if key != "models"}
+        hidden_setting["model_overrides"] = frozen_hidden["models"][name]
+        require(hidden_setting == resolved["hidden_setting"], "Snapshot Hidden settings differ from the run")
+        frozen_config = {**frozen_config, **hidden_setting["model_overrides"]}
     require(frozen_models["seed"] == resolved["seed"]
             and frozen_config == resolved["model"],
             "Snapshot model registry differs from the run")
@@ -338,7 +346,7 @@ def audit_sources(output, manifest, name, task, resolved):
     return verified
 
 
-def audit_scores(documents, tokenized, output, summary):
+def audit_scores(documents, tokenized, output, summary, *, modes=MODES, guided=GUIDED):
     """Recompute every likelihood, prediction and summary from per-token scores."""
     candidates, token_count, maximum = {}, 0, 0
     with (output / "candidate_scores.jsonl").open() as handle:
@@ -354,10 +362,10 @@ def audit_scores(documents, tokenized, output, summary):
                     and row["target_ids"] == targets, f"Target token mismatch at {key}")
             require(type(row["input_length"]) is int and row["input_length"] == input_length,
                     f"Input/truncation length mismatch at {key}")
-            require(set(row["scores"]) == set(MODES)
-                    and set(row["token_logprobs"]) == set(MODES), f"Policy mismatch at {key}")
+            require(set(row["scores"]) == set(modes)
+                    and set(row["token_logprobs"]) == set(modes), f"Policy mismatch at {key}")
             recomputed = {}
-            for mode in MODES:
+            for mode in modes:
                 values = row["token_logprobs"][mode]
                 require(isinstance(values, list) and len(values) == len(targets),
                         f"Missing answer token scores at {key}/{mode}")
@@ -372,21 +380,21 @@ def audit_scores(documents, tokenized, output, summary):
     require(set(candidates) == set(tokenized), "Missing candidates")
     saved_predictions = read_jsonl(output / "predictions.jsonl")
     require(len(saved_predictions) == len(documents), "Missing/extra predictions")
-    correct = {metric: {mode: 0 for mode in MODES} for metric in METRICS}
+    correct = {metric: {mode: 0 for mode in modes} for metric in METRICS}
     reconstructed = []
     for index, (doc, saved) in enumerate(zip(documents, saved_predictions)):
         for field in ("id", "question", "choices", "labels", "gold"):
             require(saved[field] == doc[field], f"Prediction/data mismatch {index}/{field}")
         scores = {
             mode: [candidates[index, choice][mode] for choice in range(len(doc["choices"]))]
-            for mode in MODES
+            for mode in modes
         }
         normalized = {
             mode: [value / len(choice) for value, choice in zip(values, doc["choices"])]
             for mode, values in scores.items()
         }
         for field, expected in (("scores", scores), ("scores_per_character", normalized)):
-            require(set(saved[field]) == set(MODES), f"Prediction policy mismatch {index}/{field}")
+            require(set(saved[field]) == set(modes), f"Prediction policy mismatch {index}/{field}")
             for mode, values in expected.items():
                 require(len(saved[field][mode]) == len(values), "Prediction option count mismatch")
                 for choice_index, value in enumerate(values):
@@ -395,7 +403,7 @@ def audit_scores(documents, tokenized, output, summary):
         require(set(saved["predictions"]) == set(METRICS), "Prediction metric mismatch")
         verdicts = {}
         for metric, by_mode in (("acc", scores), ("acc_norm", normalized)):
-            require(set(saved["predictions"][metric]) == set(MODES), "Prediction modes mismatch")
+            require(set(saved["predictions"][metric]) == set(modes), "Prediction modes mismatch")
             verdicts[metric] = {}
             for mode, values in by_mode.items():
                 chosen = max(range(len(values)), key=values.__getitem__)
@@ -413,13 +421,13 @@ def audit_scores(documents, tokenized, output, summary):
     }
     require(set(summary["accuracy_percent"]) == set(METRICS), "Summary metrics mismatch")
     for metric in METRICS:
-        require(set(summary["accuracy_percent"][metric]) == set(MODES), "Summary modes mismatch")
-        for mode in MODES:
+        require(set(summary["accuracy_percent"][metric]) == set(modes), "Summary modes mismatch")
+        for mode in modes:
             close(summary["accuracy_percent"][metric][mode], accuracy[metric][mode],
                   f"Summary accuracy {metric}/{mode}")
     return {
         "correct": correct, "accuracy_percent": accuracy,
-        "paired": {metric: {mode: legacy.paired_stats(reconstructed, mode, metric) for mode in GUIDED}
+        "paired": {metric: {mode: legacy.paired_stats(reconstructed, mode, metric) for mode in guided}
                    for metric in METRICS},
         "candidate_count": len(candidates), "answer_token_count_per_policy": token_count,
         "max_input_tokens": maximum,
@@ -447,8 +455,32 @@ def precision_decision(task, name, config):
     return entry["selected"], {"decision": entry, "ledger_sha256": digest(path)}
 
 
+def audit_hidden_checks(validation, config):
+    evidence = validation.get("hidden_checks")
+    require(isinstance(evidence, dict), "Missing independent Hidden validation")
+    for field in ("hidden_native_final_raw_max_abs_error", "hidden_native_reference_raw_max_abs_error",
+                  "hidden_manual_readout_max_abs_error"):
+        require(type(evidence.get(field)) in (int, float) and evidence[field] == 0,
+                f"Hidden native/replayed state mismatch: {field}")
+    for field in ("hidden_zero_strength_matches_native_exactly", "hidden_paired_matches_standalone_exactly",
+                  "hidden_initial_states_unchanged"):
+        require(evidence.get(field) is True, f"Missing Hidden identity: {field}")
+    require(evidence.get("hidden_standalone_recurrent_updates") == config["loops"]
+            and evidence.get("hidden_standalone_coda_layer_calls") == [1, 1]
+            and evidence.get("hidden_standalone_head_passes") == 1,
+            "Hidden must execute the configured recurrence and one complete output pass")
+    require(evidence.get("hidden_guidance_strength") == config["fixed"]
+            and evidence.get("hidden_guidance_location") == "raw recurrent state before native pre-coda ln_f"
+            and evidence.get("hidden_guidance_positions") == "all input and context positions before complete coda",
+            "Hidden guidance must precede native normalization and cover complete input sequences")
+    return evidence
+
+
 def audit_model(task, name, resolved, tasks_registry, paper, cache):
     config, task_config, output = resolved["model"], resolved["task"], resolved["output"]
+    hidden_setting = resolved.get("hidden_setting")
+    modes = ("baseline", "loopcd_hidden") if hidden_setting else MODES
+    guided = ("loopcd_hidden",) if hidden_setting else GUIDED
     documents, data_evidence = audit_data(task, resolved, cache)
     manifest, validation, summary = (
         read_json(output / filename)
@@ -475,6 +507,12 @@ def audit_model(task, name, resolved, tasks_registry, paper, cache):
         expected_fields["experiment"] = resolved["experiment"]
     else:
         require("experiment" not in manifest, "Experiment cannot be audited as a standard run")
+    if hidden_setting:
+        expected_fields.update({"guidance_space": "hidden", "hidden_setting": hidden_setting,
+                                "policies": list(modes)})
+    else:
+        require("hidden_setting" not in manifest and manifest.get("guidance_space", "logits") == "logits",
+                "Hidden guidance cannot be audited as a Logits run")
     for field, value in expected_fields.items():
         require(manifest[field] == value, f"{task}/{name}: manifest mismatch: {field}")
     require(digest(output / "data_protocol.json") == manifest["protocol_sha256"],
@@ -485,7 +523,9 @@ def audit_model(task, name, resolved, tasks_registry, paper, cache):
     }.items():
         require(summary[field] == expected, f"Summary configuration mismatch: {field}")
     source_evidence = audit_sources(output, manifest, name, task, resolved)
-    native_evidence = legacy.validate_native_checks(validation, False, config)
+    native_evidence = legacy.validate_native_checks(validation, False, config, modes=modes)
+    if hidden_setting:
+        native_evidence["hidden"] = audit_hidden_checks(validation, config)
     tokenizer_path = ROOT / config["model_path"] / "tokenizer.json"
     token_key = ("tokens", str(resolved["data_path"]), digest(tokenizer_path),
                  manifest["add_bos"], model_max_length(config))
@@ -499,9 +539,9 @@ def audit_model(task, name, resolved, tasks_registry, paper, cache):
     require(type(manifest["truncation"]) is bool
             and manifest["truncation"] == bool(truncation["candidates_truncated"]),
             "Context truncation flag mismatch")
-    scores = audit_scores(documents, tokenized, output, summary)
+    scores = audit_scores(documents, tokenized, output, summary, modes=modes, guided=guided)
     require(scores["max_input_tokens"] == manifest["max_input_tokens"], "Maximum input length mismatch")
-    reference = {} if resolved.get("experiment") else dict(zip(MODES[:3], paper[task][name]))
+    reference = {} if resolved.get("experiment") or hidden_setting else dict(zip(MODES[:3], paper[task][name]))
     return {
         "display": config["display"], "configuration": config, "shots": resolved["shots"],
         "results_path": relative(output), "n": len(documents),

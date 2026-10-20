@@ -89,13 +89,13 @@ def holm_adjust(models):
             test["mcnemar_holm_adjusted_p"] = previous
 
 
-def validate_native_checks(validation, legacy, config):
+def validate_native_checks(validation, legacy, config, *, modes=MODES):
     identity = "zero_guidance_matches_native_exactly" if legacy else "zero_guidance_matches_baseline_exactly"
     require(validation.get(identity) is True, f"Missing/failed {identity}")
     errors_key = "batch_single_errors_by_policy" if legacy else "batch_single_token_logprob_errors"
     tolerance_key = "batch_single_absolute_tolerance" if legacy else "batch_single_tolerance"
     errors, tolerance = validation[errors_key], validation[tolerance_key]
-    require(set(errors) == set(MODES), "Validation must check all four policies")
+    require(set(errors) == set(modes), "Validation must check every scored policy")
     require(0 < tolerance <= 0.001, "Unexpectedly loose batch consistency threshold")
     require(all(math.isfinite(x) and 0 <= x <= tolerance for x in errors.values()),
             "Batch/single consistency failed")

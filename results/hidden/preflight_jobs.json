@@ -1,0 +1,60 @@
+[
+  {
+    "job_id": "59058543",
+    "task": "arc_challenge",
+    "model": "huginn_16",
+    "submitted_utc": "2026-10-20T19:50:32.574557+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-pilot-huginn_16",
+      "--output=results/hidden/logs/pilot-%j.out",
+      "--error=results/hidden/logs/pilot-%j.err",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "huginn_16",
+      "--guidance-space",
+      "hidden",
+      "--matmul-precision",
+      "highest",
+      "--limit",
+      "8",
+      "--output",
+      "results/repeats/hidden_preflight/arc_challenge/huginn_16"
+    ]
+  },
+  {
+    "job_id": "59058544",
+    "task": "sciq",
+    "model": "huginn_32",
+    "submitted_utc": "2026-10-20T19:50:32.611272+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=hidden-pilot-huginn_32",
+      "--output=results/hidden/logs/pilot-%j.out",
+      "--error=results/hidden/logs/pilot-%j.err",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "huginn_32",
+      "--guidance-space",
+      "hidden",
+      "--matmul-precision",
+      "highest",
+      "--limit",
+      "8",
+      "--output",
+      "results/repeats/hidden_preflight/sciq/huginn_32"
+    ]
+  }
+]

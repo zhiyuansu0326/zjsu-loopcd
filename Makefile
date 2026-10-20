@@ -7,10 +7,11 @@ OUTPUT ?= results/repeats/$(TASK)/$(MODEL)
 AUDIT_OUTPUT ?= results/maintenance/latest_audit.json
 MATMUL_PRECISION ?=
 REDUCED_OUTPUT ?= $(if $(filter all,$(TASK)),results/reduced_depth,results/reduced_depth/$(TASK))
+HIDDEN_OUTPUT ?= results/hidden
 
 export PYTHONDONTWRITEBYTECODE := 1
 
-.PHONY: help check-env test audit report finalize prepare-data download-models submit submit-reduced report-reduced
+.PHONY: help check-env test audit report finalize prepare-data download-models submit submit-reduced report-reduced submit-hidden report-hidden audit-hidden
 
 help:
 	@printf '%s\n' \
@@ -26,7 +27,10 @@ help:
 	  '                      Override precision explicitly with MATMUL_PRECISION=highest' \
 	  'make submit-reduced TASK=arc_challenge REDUCED_OUTPUT=results/repeats/huginn_half_depth' \
 	  '                      Evaluate/time Huginn with half-depth guidance' \
-	  'make report-reduced TASK=all  Audit/rebuild all four half-depth tasks and equal-weight means'
+	  'make report-reduced TASK=all  Audit/rebuild all four half-depth tasks and equal-weight means' \
+	  'make submit-hidden TASK=sciq MODEL=huginn_16 HIDDEN_OUTPUT=results/repeats/hidden' \
+	  '                      Evaluate/time fixed Hidden guidance with the shared evaluator' \
+	  'make report-hidden    Audit/report Huginn R16/R32 across the four tasks'
 
 check-env:
 	"$(PYTHON)" -B -c 'import sys, torch, transformers; print("Python:", sys.version.split()[0]); print("Environment:", sys.prefix); print("Torch:", torch.__version__, "CUDA build:", torch.version.cuda); print("Transformers:", transformers.__version__); print("CUDA visible in this process:", torch.cuda.is_available())'
@@ -73,3 +77,14 @@ submit-reduced:
 
 report-reduced:
 	"$(PYTHON)" -B scripts/analyze_reduced_depth.py --task "$(TASK)" --output "$(REDUCED_OUTPUT)"
+
+submit-hidden:
+	"$(PYTHON)" -B -c 'import sys; from src.registry import resolve_run; r=resolve_run(sys.argv[1],sys.argv[2],guidance_space="hidden"); assert r["data_path"].is_file(), "Run make prepare-data first"' "$(TASK)" "$(MODEL)"
+	@mkdir -p results/hidden/logs
+	sbatch --partition=scavenger-h200 --account=scavenger-h200 --qos=normal scripts/run_hidden.slurm "$(TASK)" "$(MODEL)" "$(HIDDEN_OUTPUT)"
+
+report-hidden:
+	"$(PYTHON)" -B scripts/analyze_hidden.py --output "$(HIDDEN_OUTPUT)"
+
+audit-hidden:
+	"$(PYTHON)" -B scripts/analyze_hidden.py --output "$(HIDDEN_OUTPUT)" --partial
