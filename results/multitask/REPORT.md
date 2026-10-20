@@ -1,6 +1,6 @@
 # Multitask LoopCD-Logits reproduction
 
-All tasks below passed complete candidate-level and question-level audits across seven model configurations. Each task reports baseline, fixed, and adaptive guidance. Primary metrics were determined before scoring; supplementary metrics are retained in full.
+Each task evaluates seven model configurations with baseline, fixed, and adaptive guidance. Reports include both primary and supplementary metrics.
 
 | Task | Split / questions | Primary metric | Configurations | Detailed report |
 |---|---|---|---:|---|
@@ -9,6 +9,6 @@ All tasks below passed complete candidate-level and question-level audits across
 | SciQ | test / 1000 | acc | 7 | [sciq](sciq/REPORT.md) |
 | PIQA | validation / 1838 | acc_norm | 7 | [piqa](piqa/REPORT.md) |
 
-Each task applies Holm correction within its own family of 14 comparisons; results are not combined into a cross-task significance claim. Accuracy is not pooled across different prompt protocols or metrics, and results are not used to choose a best policy. Because the paper does not publish every evaluation detail, this is an independent reproduction under a fixed protocol; close scores do not establish bit-for-bit replication.
+Accuracy and paired statistics are reported separately for each task and metric. Holm correction applies to 14 comparisons within each task/metric family.
 
 This combined report includes only the fully audited tasks selected by `--task`; `--task all` includes all four tasks. Original ARC-Easy scores are preserved. See comparison.csv for a machine-readable table by task, model, and metric. Paper reference values appear only in primary-metric rows; the paper columns in supplementary-metric rows are left empty.

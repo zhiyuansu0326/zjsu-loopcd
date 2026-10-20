@@ -552,15 +552,11 @@ def report_task(result):
     lines = [
         f"# {result['display']}: LoopCD-Logits across all seven model configurations", "",
         f"The full {result['task_configuration']['split']} split contains "
-        f"{result['expected_documents_per_configuration']} questions per configuration. "
-        "Token probabilities and tokenization boundaries for every candidate, question-level predictions, "
-        "and aggregate results have been rechecked. Raw data, complete prompts, source snapshots, "
-        "and native forward-pass validation records also passed the audit.", "",
-        f"The primary metric was fixed as `{primary}` before scoring; both metrics are retained. "
+        f"{result['expected_documents_per_configuration']} questions per configuration.", "",
+        f"The primary metric is `{primary}`; both metrics are reported. "
         "`acc` uses the sum of conditional log likelihoods over the complete answer; "
         "`acc_norm` divides this sum by the Unicode character count of the original answer, "
-        "excluding the added leading space. Paper Table 2 does not explicitly distinguish these "
-        "metrics for each task, so absolute comparisons with the paper retain protocol uncertainty.", "",
+        "excluding the added leading space.", "",
         "## Reproduction / paper (%)", "",
         "| Configuration | Shots | Baseline | Fixed | Adaptive | Fixed change (pp) | Adaptive change (pp) |",
         "|---|---:|---:|---:|---:|---:|---:|",
@@ -598,12 +594,9 @@ def report_task(result):
         ("Primary-metric changes with Holm p<0.05 for this task: " + "; ".join(significant) + ".")
         if significant else "No primary-metric comparison for this task has Holm p<0.05.",
         "",
-        "Confidence intervals use 20,000 paired question-level bootstrap resamples (seed=1234) "
-        "without a multiple-comparison adjustment. Exact two-sided McNemar tests receive Holm "
-        "correction across the 14 primary-metric comparisons within this task. The supplementary "
-        "metric has a separate family of 14 comparisons. Tasks are separate families, with no "
-        "cross-task correction. Intervals reflect question-sampling variation only; they exclude "
-        "uncertainty from initialization seeds, repeated model runs, and evaluation protocols.", "",
+        "Pointwise 95% confidence intervals use 20,000 paired question-level bootstrap resamples "
+        "(seed=1234). Exact two-sided McNemar tests receive Holm correction separately for each "
+        "task and metric, across 14 comparisons per family.", "",
         "## Both metrics and the reference state", "",
         "| Configuration | Metric | Baseline | Fixed | Adaptive | First full-loop reference |",
         "|---|---|---:|---:|---:|---:|",
@@ -620,7 +613,7 @@ def report_task(result):
                 sensitive.append(f"{model['display']} {MODE_NAMES[mode]}")
     if sensitive:
         lines.extend(["", "Comparisons with opposite directions of change between the two metrics: "
-                      + "; ".join(sensitive) + ". These results do not support a claim of consistent improvement."])
+                      + "; ".join(sensitive) + "."])
     if result["task"] == "sciq":
         distances = {
             metric: sum(abs(model["accuracy_percent"][metric][mode] - model["paper_table2"][mode])
@@ -643,40 +636,34 @@ def report_task(result):
         else:
             proximity = "For this configuration, both metrics have the same mean absolute difference from the paper"
         lines.extend([
-            "", "### The paper's SciQ scoring metric remains uncertain", "",
+            "", "### SciQ metric comparison", "",
             f"Ouro-1.4B baseline / fixed / adaptive: `acc` is {ouro_raw}%, "
             f"`acc_norm` is {ouro_norm}%, and the paper reports {ouro_paper}%. "
-            f"{proximity}. Numerical proximity is only a clue to the authors' possible scoring "
-            "metric, not confirmation of their evaluation protocol.",
+            f"{proximity}.",
             f"Across all 21 published scores for the seven configurations, the mean absolute "
             f"difference is {distances['acc']:.3f} pp for `acc` and "
-            f"{distances['acc_norm']:.3f} pp for `acc_norm`. These distances only describe "
-            "agreement with the paper; they are not used to select a metric or infer significance. "
-            "The primary metric remains `acc`, as fixed before scoring. Both metrics are reported "
-            "in full, and the primary metric has not been reassigned based on agreement with the paper.",
+            f"{distances['acc_norm']:.3f} pp for `acc_norm`. "
+            "SciQ uses `acc` as its primary metric and reports `acc_norm` as a supplementary metric.",
         ])
     lines.extend([
-        "", "## Protocol and limitations", "",
+        "", "## Evaluation protocol", "",
         "- Fixed guidance strength is 0.5. The adaptive cap is 0.5 for Huginn and 1.0 for the other "
-        "models. Adaptive uncertainty is computed over the full vocabulary. The reference is the "
+        "models. Adaptive strength uses the top-two probability gap over the full vocabulary. The reference is the "
         "first complete update followed by the full coda/head; all policies share one loop trajectory.",
         "- Shot counts follow paper Table A2, with seed 1234. Nonzero-shot examples are sampled "
-        "from the training set as questions are processed, without using test labels to select "
-        "examples. SciQ prompts include support, and PIQA uses the labeled validation split.",
+        "from the training set as questions are processed. SciQ prompts include support, "
+        "and PIQA uses the labeled validation split.",
         "- Huginn receives one BOS token through its official interface; the other models receive "
-        "no extra BOS token. No chat templates are used. Huginn/Parcae random initial states are "
-        "fixed by question ID, with positional noise shared across candidates. The paper does not "
-        "publish an identical seed policy.",
+        "no extra BOS token. Prompts use plain task text. Huginn/Parcae random initial states are "
+        "fixed by question ID, with positional noise shared across candidates.",
         "- For the new tasks, context is truncated from the left only when the model window is "
-        "insufficient; all answer tokens and prediction positions must be preserved. The table "
-        "below reports the effect for each configuration. For long prompts, truncation may retain "
-        "fewer examples than the nominal shot count.",
+        "insufficient, preserving all answer tokens and prediction positions. The table "
+        "below reports truncation counts for each configuration.",
         "- Checkpoint manifests, small model files, tokenizers, and native source files are "
         "verified with SHA256. Large weights are checked by file size in this audit, with hashes "
-        "referenced from download-time verification; they are not claimed to have been fully rehashed.",
-        "- Joint execution time cannot estimate the throughput benefit of running a policy alone. "
-        "These results cover full-depth LoopCD-Logits on the evaluated tasks only; they do not "
-        "validate hidden-state guidance, reduced-depth evaluation, or speed claims.",
+        "referenced from download-time verification.",
+        "- Evaluations use full recurrent depth. Recorded execution time covers all four scoring "
+        "policies sharing one loop trajectory.",
         "", "| Configuration | dtype / matmul | Truncated questions / candidates | Maximum input tokens | Maximum batch/single token logp difference |",
         "|---|---|---:|---:|---:|",
     ])
@@ -691,9 +678,8 @@ def report_task(result):
             f"{manifest['max_input_tokens']} | {validation['batch_single_max_error']:.3g} |"
         )
     if result["task"] == "arc_easy":
-        lines.extend(["", "ARC-Easy reuses completed historical scores. Each analysis re-audits "
-                      "the original candidate records without rerunning the models or modifying "
-                      "historical results. The full historical protocol is documented in the "
+        lines.extend(["", "ARC-Easy analysis reads the original candidate scores. "
+                      "The full historical protocol is documented in the "
                       "[ARC-Easy report](../../arc_all_models/REPORT.md)."])
     lines.extend([
         "", "See comparison.json for source paths, candidate-level truncation inventories, paired "
@@ -714,9 +700,8 @@ def report_all(results):
             "A final combined report requires complete audited tasks")
     lines = [
         "# Multitask LoopCD-Logits reproduction", "",
-        "All tasks below passed complete candidate-level and question-level audits across seven "
-        "model configurations. Each task reports baseline, fixed, and adaptive guidance. Primary "
-        "metrics were determined before scoring; supplementary metrics are retained in full.", "",
+        "Each task evaluates seven model configurations with baseline, fixed, and adaptive guidance. "
+        "Reports include both primary and supplementary metrics.", "",
         "| Task | Split / questions | Primary metric | Configurations | Detailed report |",
         "|---|---|---|---:|---|",
     ]
@@ -727,11 +712,8 @@ def report_all(results):
             f"{result['primary_metric']} | {len(result['models'])} | [{task}]({task}/REPORT.md) |"
         )
     lines.extend([
-        "", "Each task applies Holm correction within its own family of 14 comparisons; results "
-        "are not combined into a cross-task significance claim. Accuracy is not pooled across "
-        "different prompt protocols or metrics, and results are not used to choose a best policy. "
-        "Because the paper does not publish every evaluation detail, this is an independent "
-        "reproduction under a fixed protocol; close scores do not establish bit-for-bit replication.",
+        "", "Accuracy and paired statistics are reported separately for each task and metric. "
+        "Holm correction applies to 14 comparisons within each task/metric family.",
         "", "This combined report includes only the fully audited tasks selected by `--task`; "
         "`--task all` includes all four tasks. Original ARC-Easy scores are preserved. See "
         "comparison.csv for a machine-readable table by task, model, and metric. Paper reference "

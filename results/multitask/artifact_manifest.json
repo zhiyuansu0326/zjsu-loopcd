@@ -4,7 +4,7 @@
   "question_evaluations": 44702,
   "scored_candidates": 153048,
   "answer_token_logprobs_all_four_policies": 4556224,
-  "created_utc": "2026-10-20T18:11:25.132509+00:00",
+  "created_utc": "2026-10-20T18:29:12.794906+00:00",
   "scope": "Four-task LoopCD-Logits evaluation; 21 new configurations and seven reused ARC-Easy runs.",
   "weight_integrity": "Pinned model manifests included; large weights are not rehashed here.",
   "inventory_note": "Logs, caches, downloaded ZIP archives, environment and model weights are excluded.",
@@ -26,8 +26,8 @@
       "sha256": "7a4712b793c6d0dd2318295ba5f86ab40977ca902193c849d81cbf381595f23c"
     },
     "README.md": {
-      "bytes": 14303,
-      "sha256": "4d205d00a25b59fa1a82b09fe45fd4ee62bb9f477219a1daf88121c61f25ab66"
+      "bytes": 12521,
+      "sha256": "cc9f621c16bb142d8f5b9155b6d4ae212f232930bbd660787763a2254f68ad16"
     },
     "configs/arc_all_models.json": {
       "bytes": 2062,
@@ -214,8 +214,8 @@
       "sha256": "f8e32dcb90e0234bb44662cc03df62102aa5b508eb503afa4078d74a4041480a"
     },
     "results/arc_all_models/REPORT.md": {
-      "bytes": 13132,
-      "sha256": "ca5b822d6ba96202d77837fdd750312283556b296697ac69bd4017c3d0dce954"
+      "bytes": 10937,
+      "sha256": "4ad85f870e6753a8f746f559769f661805c18d52b0e5348809dfb30eb9281777"
     },
     "results/arc_all_models/artifact_manifest.json": {
       "bytes": 41192,
@@ -470,8 +470,8 @@
       "sha256": "161e63edd170894ea9d5ff35b07c43ec71af853f3655d77029c72caf75c0b64c"
     },
     "results/arc_easy/REPORT.md": {
-      "bytes": 7690,
-      "sha256": "083e178ce80616befced48041aac06f71ff93c7b435ae47d3e46edecf0deb0d4"
+      "bytes": 6479,
+      "sha256": "3c9d5cc9d43b0f085627b9ebaf5a974204513613dcb7138ff61e4077f28f0d68"
     },
     "results/arc_easy/candidate_scores.jsonl": {
       "bytes": 6745952,
@@ -506,16 +506,16 @@
       "sha256": "e8ab7d4c05304f86eaa83b009027da5375cbf5d745faa48831448147d84f4118"
     },
     "results/multitask/REPORT.md": {
-      "bytes": 1487,
-      "sha256": "c7b3672ed386eda8971fdd23a9ef7a89fab0911d9f3cf164dfd1a604addecfa7"
+      "bytes": 1099,
+      "sha256": "d7cd1c059d0d6e973b712ed84c51454336cedbb2a2dfd56a9e6106d44c90c49c"
     },
     "results/multitask/arc_challenge/REPORT.md": {
-      "bytes": 8151,
-      "sha256": "c1a48c748041dbc36e39e0b49dba9691da85427e74b16520b5c8cd07340f6344"
+      "bytes": 7096,
+      "sha256": "651a6e0f311cb725b00a00ba2f13ee2371fa06dc8a38dbb6d1bb1d19162c229c"
     },
     "results/multitask/arc_challenge/comparison.json": {
       "bytes": 149831,
-      "sha256": "34a41884ead6a8a0964c2bc6358e2eced465ebd44ffcff65798f60fddaa82e69"
+      "sha256": "a974c9ed0603769eadc37d6fab84bd8e8ab271e136a75c6bf09808f90ffffd5d"
     },
     "results/multitask/arc_challenge/huginn_16/candidate_scores.jsonl": {
       "bytes": 4008557,
@@ -938,12 +938,12 @@
       "sha256": "842005a97045713c87d1487ab9ad9204fcb5ad60e1996190d87aa68ece8028b4"
     },
     "results/multitask/arc_easy/REPORT.md": {
-      "bytes": 8499,
-      "sha256": "9d6faaa26916acc855e2989363f20b72d1df4cb0684f7da5ae3e2ccfa594b540"
+      "bytes": 7273,
+      "sha256": "06bbd3c92ca732b9ded79c4e0cc86091537b4ae21b4943af9f1502cfb8dadf7e"
     },
     "results/multitask/arc_easy/comparison.json": {
       "bytes": 96761,
-      "sha256": "a656be6c2799637fcc576d481b05e65a9d48e12ef8eb12fa491762221bb8a08b"
+      "sha256": "99d185a303dd3e45926222810067c623c78a6ec4e6132c72fb7e7ba3d35c06fb"
     },
     "results/multitask/comparison.csv": {
       "bytes": 12990,
@@ -951,7 +951,7 @@
     },
     "results/multitask/comparison.json": {
       "bytes": 589974,
-      "sha256": "b5185b657e0319239b7b96309ed1b348d80c08aa95820c37bd311a3f088dcb30"
+      "sha256": "afbac78d02a46ba000326bdecfaa9ba22faf9269c00aedeadc4213c59496ab00"
     },
     "results/multitask/finalization_history/20261020T175926583619Z/artifact_manifest.json": {
       "bytes": 104951,
@@ -969,6 +969,14 @@
       "bytes": 481,
       "sha256": "9cd3938ea3f6741956f7f6a0d917a49791af2e476e91e489d628960707c92c13"
     },
+    "results/multitask/finalization_history/20261020T182802261093Z/artifact_manifest.json": {
+      "bytes": 104321,
+      "sha256": "ff6fde62922a8c808cb37b95dc481413fab665fae483312a9c0a072677f6c5c0"
+    },
+    "results/multitask/finalization_history/20261020T182802261093Z/completion.json": {
+      "bytes": 481,
+      "sha256": "c228402de45e19c9f9b069e420a7dceb0331769caf8262f5c64a073e81b39731"
+    },
     "results/multitask/finalization_job.json": {
       "bytes": 1460,
       "sha256": "cb346451091c6abe558d61d9b13073dc1dd7799f3c66fe35282986f3a5d5e4bc"
@@ -978,12 +986,12 @@
       "sha256": "b3039713b25daee6235e1a0e37d48478273fca9100c19153bc2eac9fd2aad42b"
     },
     "results/multitask/piqa/REPORT.md": {
-      "bytes": 8223,
-      "sha256": "e98877bd72c8f133c5e2ffb49540e497cc062f09cdff6fb4b21bd033ee81658b"
+      "bytes": 7104,
+      "sha256": "b83b9edc8f49ffc95bef4dea1e35e317bbf45c5ba15b402eb26b5734d70421be"
     },
     "results/multitask/piqa/comparison.json": {
       "bytes": 152912,
-      "sha256": "d7c470f207343320b73309cd8757625eb3f2d8f4995625132a18e7fde230de5e"
+      "sha256": "624368e19f053b117b7ebe6642b77470fc269d454f2484b82ef77457d16e1653"
     },
     "results/multitask/piqa/huginn_16/candidate_scores.jsonl": {
       "bytes": 8684951,
@@ -1482,12 +1490,12 @@
       "sha256": "be85b4826c5533cfca447a8a303bacefadaeea6db1d904c9f9e9ecc4956f8e67"
     },
     "results/multitask/sciq/REPORT.md": {
-      "bytes": 8877,
-      "sha256": "46504a607e040d1acd941adfb2753c98aea7e477e027c73edf89e900d01d2588"
+      "bytes": 7404,
+      "sha256": "8380140e7107f0b1674efec4be51cae4b88d8ed4ce03b7299b599fd57bc7e0cf"
     },
     "results/multitask/sciq/comparison.json": {
       "bytes": 147486,
-      "sha256": "0fbc22721d6df6d7b9672510c459f843160e5034c67b5164e7cb08d0b9478940"
+      "sha256": "be32c02e57f83b011a49a9b2bd7e128eac4f851a266ff49a23fdb43f78e07d78"
     },
     "results/multitask/sciq/huginn_16/candidate_scores.jsonl": {
       "bytes": 1979396,
@@ -1918,16 +1926,16 @@
       "sha256": "f888fb7745318ca6bcb449649cd19e62b1ba49218e0da3ea169cb17c15cd00b5"
     },
     "scripts/analyze.py": {
-      "bytes": 46952,
-      "sha256": "04a3381fc680f01672e602bcec79849c2f3f849077828ecd3fabd4e4bd16ed0d"
+      "bytes": 44760,
+      "sha256": "fd98d78c8e46bd161f6f5501769bb378d4ff7332b68a8fb20efa049b13420ac2"
     },
     "scripts/analyze_arc_suite.py": {
-      "bytes": 38527,
-      "sha256": "fca84430df464cb30f0f4134742641c125bd7533ed6c75c95e45d6c758b251a8"
+      "bytes": 36255,
+      "sha256": "2ae5ac3c0cb6159650e62e378fa9efa05ff4a276aa6853b06d9dacd3bef14565"
     },
     "scripts/analyze_results.py": {
-      "bytes": 11097,
-      "sha256": "93ec92f12a4a4cb0b491665ee21f176630437c5a7fdf70798e68cc7e00838f4e"
+      "bytes": 9831,
+      "sha256": "0184e80ac758c8c7cc5e3c0cc948f8c1b5e14603faa663e67d1ce7d73bf92d89"
     },
     "scripts/download_huginn.py": {
       "bytes": 3889,
@@ -2362,8 +2370,8 @@
       "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901"
     },
     "tests/test_analysis.py": {
-      "bytes": 19262,
-      "sha256": "a9fc7de53efe556eef6625342ccf25619da230881712fcb6dc16c80bc1ba46f3"
+      "bytes": 19234,
+      "sha256": "e19d74916e821975e2e2212cffa326aecd55d33b1e1367d5f32bc61b3a80c2d4"
     },
     "tests/test_data_arc_challenge.py": {
       "bytes": 4571,

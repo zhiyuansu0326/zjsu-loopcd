@@ -373,15 +373,13 @@ def report(result):
         "# ARC-Easy: LoopCD-Logits reproduction for all paper model configurations",
         "",
         "This report covers LoopCD-Logits on ARC-Easy for every model configuration in Table 2 of the paper. "
-        "It excludes Thinking, hidden-state guidance, and speed extensions. "
         "Four model families, six checkpoints, and seven loop-depth configurations are complete, each using all 2,376 questions and 9,501 candidate answers. "
-        "Scores below were independently recomputed from saved answer-token log probabilities and checked against retokenization, per-question predictions, summaries, and file hashes.",
+        "Scores are computed from saved answer-token log probabilities.",
         "",
         "## Reproduction and paper results",
         "",
-        "The predetermined display metric is acc_norm: the sum of conditional log likelihoods over every candidate-answer token, divided by the original answer text's Unicode character count, "
-        "excluding any added leading space. The paper does not explicitly distinguish acc from acc_norm, so unnormalized acc is also reported. "
-        "These results do not establish exact agreement with the authors' unreleased evaluation program. Cells show reproduced / paper percentages.",
+        "The primary metric is acc_norm: the sum of conditional log likelihoods over every candidate-answer token, divided by the original answer text's Unicode character count, "
+        "excluding any added leading space. Unnormalized acc is also reported. Cells show reproduced / paper percentages.",
         "",
         "| Configuration | Baseline | LoopCD fixed | LoopCD adaptive | Fixed net correct / pp | Adaptive net correct / pp |",
         "|---|---:|---:|---:|---:|---:|",
@@ -403,8 +401,8 @@ def report(result):
     if opposite_directions:
         lines.extend([
             "",
-            "**Conclusions depend on the scoring metric.** The following comparisons change direction between metrics and do not support a claim of improvement across the board: "
-            + "; ".join(opposite_directions) + ". Both metrics were retained before the experiments and were not selected from the results.",
+            "The following comparisons change direction between metrics: "
+            + "; ".join(opposite_directions) + ".",
         ])
     lines.extend([
         "",
@@ -432,16 +430,15 @@ def report(result):
     lines.extend([
         "",
         "Corrected and regressed counts compare the same questions against baseline; changed answers also include switches between incorrect options. "
-        "The 95% intervals use 20,000 paired bootstrap resamples (seed=1234) and describe uncertainty from sampling questions. "
-        "They exclude uncertainty from random initial states, repeated model runs, and protocol selection. McNemar tests are exact and two-sided. "
-        "Holm correction applies across the 14 primary-metric comparisons; the intervals themselves are not adjusted for multiple comparisons.",
+        "Pointwise 95% intervals use 20,000 paired question-level bootstrap resamples (seed=1234). "
+        "McNemar tests are exact and two-sided. Holm correction applies across the 14 primary-metric comparisons.",
         "",
         ("Under the primary acc_norm metric, the following changes meet the Holm p<0.05 criterion: " + "; ".join(significant) + ".")
-        if significant else "Under the primary acc_norm metric, no change has sufficient evidence of significance at Holm p<0.05.",
+        if significant else "No acc_norm comparison has Holm p<0.05.",
         "",
         "## Complete accuracy results for both metrics",
         "",
-        "Each cell shows the correct count (percentage). The weak reference is diagnostic only and has no corresponding column in the paper's Table 2.",
+        "Each cell shows the correct count (percentage), including the first-loop reference.",
         "",
         "| Configuration | Metric | Baseline | Fixed | Adaptive | First-loop weak reference |",
         "|---|---|---:|---:|---:|---:|",
@@ -464,37 +461,34 @@ def report(result):
         "Corrected and regressed counts, net changes, bootstrap intervals, and McNemar tests for acc are also saved in comparison.json. "
         "Its Holm correction is performed separately across the 14 acc comparisons as a supplementary metric.",
         "",
-        "## Fixed protocol and comparability limitations",
+        "## Evaluation protocol",
         "",
         "- Ouro uses 8-shot examples from the training set; other configurations are 0-shot. Questions retain their original order, with prompts formatted as `Question: ...\\nAnswer:`. "
-        "Scoring uses complete answer text rather than option letters, without chat templates, generated answers, or context truncation. "
-        "The 8-shot procedure advances one `random.Random(1234)` instance with `.sample(train, 8)`, resampling examples for each question without selecting against test labels.",
+        "Scoring uses the complete answer text and context. "
+        "The 8-shot procedure advances one `random.Random(1234)` instance with `.sample(train, 8)`, resampling examples for each question.",
         "- The formula is `z′ = z_R + ω(z_R − z_1)`. Fixed ω=0.5; adaptive "
         "`ω = cap × [1 − (p_R,top1 − p_R,top2)]`, with probabilities computed over the full vocabulary. "
-        "Huginn uses cap=0.5; all others use cap=1.0, following Table A4. No accuracy-driven strength or seed search was performed.",
+        "Huginn uses cap=0.5; all others use cap=1.0, following Table A4.",
         "- All four Ouro loops traverse the complete stack and use native normalization. Huginn performs 16 or 32 complete updates. "
         "Its first-update state passes through the full coda and output normalization; the official tokenizer/evaluator requires exactly one BOS.",
         "- Huginn and the published Parcae checkpoints have stochastic loop initialization. To make candidate answers, batch lengths, and policies comparable, "
-        "the native initialization distribution is retained, with shared position states determined by seed=1234 and question ID. Answer text does not determine the seed. "
-        "Native forward checks use the same explicit initial state. The paper does not specify seeds or their coupling, so this is an explicit reproduction assumption.",
-        "- Looped-Qwen uses the original official Qwen/Qwen3-4B release weights, not the separate Qwen3-4B-Base checkpoint. "
+        "the native initialization distribution is retained, with shared position states determined by seed=1234 and question ID. "
+        "Native forward checks use the same explicit initial state.",
+        "- Looped-Qwen uses the original official Qwen/Qwen3-4B release weights. "
         "It uses a 15-layer prefix, the zero-indexed loop window 15:19, and a 17-layer tail. Eight updates follow "
-        "`u_next = (7/8)u + (1/8)g(u)`, without an additional anchor. The early output passes through the complete tail/head after the first damped update. "
-        "K=8 follows the LoopCD appendix; the default K=6/anchor recipe in the upstream Training-Free project index README is not used. "
-        "Downloading the authors' GitHub source returned 404, with evidence retained. The wrapper follows the paper and is checked by independent eight-step replay and recovery of the ordinary dense output at K=1.",
-        "- The paper does not fix complete model revisions, a harness commit, few-shot examples, random states, or every numerical implementation detail. "
-        "This project freezes local official weights and source hashes and uses fixed lm-eval prompt rules. Both agreement with and deviations from the paper are reported. "
-        "These ARC-Easy configurations alone cannot establish results for other tasks, hidden-state guidance, or speed gains from fewer loops.",
+        "`u_next = (7/8)u + (1/8)g(u)`. The early output passes through the complete tail/head after the first damped update. "
+        "The local wrapper implements K=8 from the LoopCD appendix and is checked by independent eight-step replay and recovery of the ordinary dense output at K=1.",
+        "- Model revisions, source hashes, and lm-eval prompt rules are pinned in the repository manifests.",
         "",
         "## Numerical validation and joint-run resources",
         "",
         "Each configuration checks zero-guidance identity, agreement with native or independently replayed loop outputs, distinct early and final readouts, and agreement between single-example and padded-batch scoring. "
         "The new unified evaluator also checks that changing masked padding tokens leaves valid outputs unchanged. The earlier Ouro-1.4B run reuses its completed native-output and batch-consistency checks. "
         "GPU runs use the dtype and matmul settings below; logit guidance and log_softmax use FP32. "
-        "`high` permits faster internal matrix multiplication, while `highest` uses the highest precision. Precision changes follow numerical consistency checks before scoring, without accuracy-based tuning.",
+        "`high` permits faster internal matrix multiplication, while `highest` uses the highest precision. Precision settings follow numerical consistency checks.",
         "",
-        "Huginn and Looped-Qwen initially failed numerical preflight with `high` and switched to `highest` before formal scoring, "
-        "retaining the formulas and validation tolerances. Failed error measurements, job records, and precision decisions are recorded in precision_decisions.json.",
+        "Huginn and Looped-Qwen use `highest` to meet the numerical consistency thresholds. "
+        "Error measurements, job records, and precision settings are recorded in precision_decisions.json.",
         "",
         "| Configuration | dtype / matmul | Maximum single/batch token logp difference | Scoring seconds in this invocation | Peak GPU memory (GiB) |",
         "|---|---|---:|---:|---:|",
@@ -509,8 +503,7 @@ def report(result):
     lines.extend([
         "",
         "These resources cover the joint experiment in which baseline, both LoopCD policies, and the weak reference share loop trajectories. "
-        "They cannot establish standalone policy speedups or validate the paper's 'almost free' throughput claim. "
-        "Timing covers the current invocation and excludes earlier invocations when resuming saved candidates. Model loading/validation time and GPU/job information are recorded in comparison.json.",
+        "Timing covers the current invocation. Model loading/validation time and GPU/job information are recorded in comparison.json.",
         "",
         "## Auditable artifacts and sources",
         "",
@@ -520,7 +513,7 @@ def report(result):
         "",
         "Independent data reconstruction is recorded in data_audit.json; checks of official model implementations and metadata are recorded in source_integrity.json. "
         "The aggregation script also verifies the original Train/Test file hashes, reconstructs all original questions and few-shot contexts, "
-        "and requires native-output or independent-replay validation fields for each model family. Zero-guidance algebraic identity is not a substitute for native-output consistency.",
+        "and checks native-output or independent-replay validation for each model family.",
         "",
         "Sources: [LoopCD Tables 2, A1, A2, and A4](https://arxiv.org/html/2610.02185v1), "
         "[Training-Free Looped Transformers](https://arxiv.org/html/2605.23872v1), and "

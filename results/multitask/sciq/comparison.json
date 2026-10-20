@@ -2,7 +2,7 @@
   "task": "sciq",
   "display": "SciQ",
   "complete": true,
-  "generated_at_utc": "2026-10-20T18:11:19.579040+00:00",
+  "generated_at_utc": "2026-10-20T18:29:07.252538+00:00",
   "task_configuration": {
     "display": "SciQ",
     "split": "test",
@@ -2836,8 +2836,8 @@
   },
   "incomplete": {},
   "source_hashes": {
-    "scripts/analyze.py": "04a3381fc680f01672e602bcec79849c2f3f849077828ecd3fabd4e4bd16ed0d",
-    "scripts/analyze_arc_suite.py": "fca84430df464cb30f0f4134742641c125bd7533ed6c75c95e45d6c758b251a8",
+    "scripts/analyze.py": "fd98d78c8e46bd161f6f5501769bb378d4ff7332b68a8fb20efa049b13420ac2",
+    "scripts/analyze_arc_suite.py": "2ae5ac3c0cb6159650e62e378fa9efa05ff4a276aa6853b06d9dacd3bef14565",
     "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
     "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
     "configs/paper_mc_reference.json": "605790e796eb25a7b43d7394a8d6535472af1d4969f85794e39c5ce4260ac9e6"

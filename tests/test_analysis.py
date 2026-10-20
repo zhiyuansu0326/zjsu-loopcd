@@ -357,13 +357,13 @@ class FinalArtifactsTests(unittest.TestCase):
                 self.assertEqual(row["paper_baseline_percent"], "")
             self.assertEqual(float(row["fixed_holm_p"]), 1.)
 
-    def test_sciq_report_keeps_preselected_metric_and_protocol_limit(self):
+    def test_sciq_report_keeps_metrics_and_statistical_scope(self):
         text = analyze.report_task(self.result())
-        self.assertIn("The primary metric was fixed as `acc`", text)
-        self.assertIn("the primary metric has not been reassigned based on agreement with the paper", text)
-        self.assertIn("not confirmation of their evaluation protocol", text)
+        self.assertIn("The primary metric is `acc`", text)
+        self.assertIn("`acc_norm` as a supplementary metric", text)
+        self.assertIn("Across all 21 published scores", text)
         self.assertIn("unnormalized scores are closer to the paper", text)
-        self.assertIn("no cross-task correction", text)
+        self.assertIn("separately for each task and metric, across 14 comparisons per family", text)
 
     def test_final_artifacts_reject_incomplete_task_even_when_called_directly(self):
         result = self.result()

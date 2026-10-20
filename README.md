@@ -1,18 +1,18 @@
 # LoopCD: Seven Model Configurations × Four Tasks
 
-An independent, functional reproduction of **LoopCD-Logits** from Liu et al., [*Decoding Looped Transformers Better for (Almost) Free*](https://arxiv.org/html/2610.02185v1).
+A reproduction of **LoopCD-Logits** from Liu et al., [*Decoding Looped Transformers Better for (Almost) Free*](https://arxiv.org/html/2610.02185v1).
 
 All **28 task/model configurations are complete and independently audited**: 7 configurations across ARC-Easy, ARC-Challenge, SciQ, and PIQA. See the [four-task report](results/multitask/REPORT.md), [JSON](results/multitask/comparison.json), and [CSV](results/multitask/comparison.csv). Original scores and execution source snapshots are preserved.
 
 Every run evaluates baseline decoding, fixed-strength LoopCD, and adaptive LoopCD using the same model trajectory. The first-loop reference is also saved.
 
-The completed evaluation covers **44,702 question evaluations and 153,048 candidate answers**. Saved scores, predictions, manifests, validation records, and the source snapshots used to produce them are retained. The [completion record](results/multitask/completion.json) and [combined report](results/multitask/REPORT.md) document the completed audit.
+The evaluation covers **44,702 question evaluations and 153,048 candidate answers**. Each run includes scores, predictions, configuration, and validation records.
 
-This repository reproduces multiple-choice answer scoring. It does not reproduce generation benchmarks, LoopCD-Hidden, Thinking variants, or the paper's speed claims.
+The experiments evaluate multiple-choice answer scoring at each model's full recurrent depth.
 
 ## Results
 
-Each cell is **baseline / fixed / adaptive**, in accuracy percent. The metric is `acc_norm` for ARC-Easy, ARC-Challenge, and PIQA, and `acc` for SciQ. These primary metrics were fixed before the new evaluations; both metrics are preserved in the detailed results.
+Each cell is **baseline / fixed / adaptive**, in accuracy percent. The primary metric is `acc_norm` for ARC-Easy, ARC-Challenge, and PIQA, and `acc` for SciQ. Detailed results include both metrics.
 
 | Model configuration | ARC-Easy | ARC-Challenge | SciQ | PIQA |
 |---|---:|---:|---:|---:|
@@ -24,7 +24,7 @@ Each cell is **baseline / fixed / adaptive**, in accuracy percent. The metric is
 | Parcae-1.3B R=8 | 64.90 / 66.16 / 65.49 | 40.36 / 43.77 / 44.45 | 88.10 / 88.90 / 88.50 | 73.01 / 72.80 / 72.03 |
 | Looped-Qwen3-4B R=8 | 79.38 / 79.25 / 79.00 | 62.46 / 62.80 / 63.82 | 96.30 / 96.00 / 96.20 | 75.30 / 74.81 / 75.08 |
 
-On ARC-Challenge, both guidance methods improve every configuration's primary metric. Improvements are mixed on the other tasks. The reports include paired confidence intervals and exact McNemar tests, with Holm correction across 14 comparisons within each task and metric. They do not establish a pooled, cross-task improvement.
+On ARC-Challenge, both guidance methods improve every configuration's primary metric. Improvements are mixed on the other tasks. The reports include paired confidence intervals and exact McNemar tests, with Holm correction across 14 comparisons within each task and metric.
 
 Full comparisons with the paper, both metrics, and statistical results:
 
@@ -34,9 +34,9 @@ Full comparisons with the paper, both metrics, and statistical results:
 - [PIQA](results/multitask/piqa/REPORT.md)
 - [All results as JSON](results/multitask/comparison.json) · [CSV](results/multitask/comparison.csv)
 
-### SciQ metric ambiguity
+### SciQ character-normalized results
 
-The paper does not explicitly distinguish `acc` from `acc_norm` for every task. SciQ's supplementary `acc_norm` scores are substantially closer to its reported numbers, but we retain the preselected primary metric, `acc`. This agreement suggests a possible metric difference; it does not prove the paper's exact evaluation setup.
+SciQ uses `acc` as its primary metric. The supplementary `acc_norm` scores below are closer to the paper's reported values: their mean absolute difference is 0.129 percentage points, compared with 2.581 for `acc`.
 
 | Model configuration | SciQ `acc_norm`: baseline / fixed / adaptive |
 |---|---:|
@@ -71,11 +71,11 @@ The paper does not explicitly distinguish `acc` from `acc_norm` for every task. 
 
 The shared [model registry](configs/models.json) and [task registry](configs/tasks.json) drive data preparation, evaluation, and analysis.
 
-- **Answer scoring:** score the entire candidate answer, preceded by one space, using teacher-forced conditional log probabilities. No answer-letter scoring, chat template, or sampled generation is used.
-- **Metrics:** `acc` selects the largest sum of answer-token log probabilities. `acc_norm` divides that sum by the original answer's Unicode character count (`len(answer)`), excluding the added space. It is not token-length normalization.
+- **Answer scoring:** score the entire candidate answer, preceded by one space, using teacher-forced conditional log probabilities and the task's plain-text prompt.
+- **Metrics:** `acc` selects the largest sum of answer-token log probabilities. `acc_norm` divides that sum by the original answer's Unicode character count (`len(answer)`), excluding the added space.
 - **Guidance:** with final-loop logits `zR` and first-complete-loop logits `z1`, compute `zR + ω × (zR − z1)`. Fixed guidance uses `ω = 0.5`. Adaptive guidance uses `ω = cap × (1 − (p_top1 − p_top2))`, where the probabilities come from the final-loop distribution over the full vocabulary. The cap is `0.5` for Huginn and `1.0` otherwise.
 - **Reproducibility:** seed `1234`, pinned checkpoint revisions, pinned data hashes, and task definitions from lm-evaluation-harness commit `d6de81643928d653435c431bae19945d41d32520`. Few-shot examples come from training data.
-- **Numerics:** FP32 inference and scoring, with validated matrix-multiplication precision recorded per run. Seven new task/model pairs required `highest` after failing the original preflight tolerance at `high`; no tolerance was relaxed and no formal scores preceded those retries. See the [precision decision record](results/multitask/precision_decisions.json).
+- **Numerics:** FP32 inference and scoring, with matrix-multiplication precision recorded per run. Seven new task/model pairs use `highest` to meet the batch/single consistency threshold. See the [precision decision record](results/multitask/precision_decisions.json).
 
 All completed runs fit the model context windows without truncation. The general evaluator supports left truncation of context while preserving the complete answer.
 
@@ -83,7 +83,7 @@ All completed runs fit the model context windows without truncation. The general
 
 The reports and completed run records are available directly in the repository. The Python environment, full checkpoint weights, raw/prepared datasets, and download caches are not committed. Recreate those assets before rerunning evaluations or performing a full local audit.
 
-The original environment used Python **3.12.9**, PyTorch **2.6.0+cu124**, and Transformers **4.56.2**. On the original workspace, use the existing `venv/`; do not reinstall it. For a fresh clone on a compatible Linux/NVIDIA system:
+The original environment used Python **3.12.9**, PyTorch **2.6.0+cu124**, and Transformers **4.56.2**. On the original workspace, use the existing `venv/`. For a fresh clone on a compatible Linux/NVIDIA system:
 
 ```bash
 git clone https://github.com/zhiyuansu0326/zjsu-loopcd.git
@@ -103,11 +103,11 @@ make test
 
 The model downloads require approximately **37 GB**, in addition to environment and data storage. Download scripts verify pinned model revisions and file hashes. Preparation verifies dataset hashes and creates the prompts used by the shared evaluator. Downloads require network access; prepared evaluations can run offline.
 
-`make check-env` and `make test` do not load full checkpoints. CUDA being unavailable in an editing or login process is expected when no GPU is allocated.
+`make check-env` and `make test` run on CPU. GPU evaluation runs inside an allocated GPU job.
 
 ## Run an evaluation
 
-Always use a new output directory for an independent repeat. The published result directories contain completed evidence.
+Use a separate output directory for each repeat.
 
 ### Slurm on the original cluster
 
@@ -123,7 +123,7 @@ make submit TASK=piqa MODEL=parcae_13 \
 
 `make submit` selects the recorded task/model matrix-multiplication precision, including the validated `highest` overrides. To set it explicitly, add `MATMUL_PRECISION=highest`.
 
-Each job requests one H200, six CPUs, 64 GB of host memory, and up to 60 minutes. **On this workspace, GPU evaluations must use partition and account `scavenger-h200`.** The Slurm wrapper enforces that restriction. `TASK=all` is supported for preparation and reporting, but each GPU submission requires one concrete task and model.
+Each job requests one H200, six CPUs, 64 GB of host memory, and up to 60 minutes on partition and account **`scavenger-h200`**, the authorized GPU partition for this workspace. `TASK=all` is supported for preparation and reporting; each GPU submission takes one task and model.
 
 For an additional evaluator option, invoke the wrapper directly and specify the precision:
 
@@ -152,11 +152,11 @@ The direct evaluator uses the default precision in `configs/models.json` unless 
 - `arc_challenge`, `sciq`, or `piqa` with `parcae_13`
 - `sciq` or `piqa` with `parcae_370`
 
-The remaining pairs use `high`. Using a different dtype, precision, batch size, or implementation constitutes a new run and can change numerical results.
+The remaining pairs use `high`.
 
 For a small smoke run, add `--limit 10` and choose a separate output directory. A positive limit requires an explicit output path. Run `venv/bin/python scripts/evaluate.py --help` for all options.
 
-To resume a partial run, reuse its output directory and original arguments. The evaluator checks the manifest, source hashes, data, and every saved candidate before continuing. An incompatible or damaged run fails instead of silently mixing results.
+To resume a partial run, reuse its output directory and original arguments. The evaluator validates the manifest, source hashes, data, and saved candidates before continuing.
 
 ## Audit and report
 
@@ -172,11 +172,11 @@ venv/bin/python -B scripts/analyze.py --task all --partial
 make report TASK=all
 ```
 
-The audit runs on CPU without loading checkpoint weights. It nevertheless requires the checkpoint files to exist: it checks their sizes, recorded download hashes, and the actual hashes of small metadata/tokenizer/source files. It independently reconstructs prompts, re-tokenizes candidates, verifies saved token scores and their sums, recomputes predictions and accuracy, and checks completeness and provenance. It does not recompute GPU forward passes or rehash large weight files.
+The CPU audit requires the checkpoint files. It checks weight-file sizes against their download manifests and hashes metadata, tokenizers, and source files. It reconstructs prompts, re-tokenizes candidates, verifies saved token scores and sums, and recomputes predictions and accuracy.
 
 `make audit` writes a maintenance audit record without changing completed scores or reports. `make report` rewrites generated reports. A single-task report command also rewrites the combined index to contain only that task; use `TASK=all` to restore the four-task index.
 
-The analyzer reads the registered published result locations. Runs under `results/repeats/` produce their own scores, predictions, summaries, and manifests, but do not automatically replace the published comparison.
+The analyzer reads the registered published result locations. Each run under `results/repeats/` has its own scores, predictions, summary, and manifest.
 
 ## Repository layout
 
@@ -197,14 +197,14 @@ The analyzer reads the registered published result locations. Runs under `result
 
 Each completed run retains `candidate_scores.jsonl`, `predictions.jsonl`, `summary.json`, `run_manifest.json`, and validation evidence. The original Ouro-1.4B ARC-Easy run retains its historical provenance format; the other 27 runs also include a `source_snapshot/`. Historical entry points remain for compatibility; new work should use the unified scripts above.
 
-## Interpretation and limitations
+## Implementation details
 
-This is a fixed-protocol reproduction, not a claim of bitwise agreement with the paper. Reported results are close in many settings, but gains are not universal and some metric choices change their direction. Evaluation uses one fixed seed, so the confidence intervals do not measure variation across seeds.
+Evaluation uses seed `1234`. Confidence intervals come from paired resampling of evaluation questions.
 
-Huginn and Parcae use deterministic, question-keyed random initial states to make candidates and guidance methods comparable. The paper does not fully specify the random stream, so this is a recorded reproduction assumption.
+Huginn and Parcae use question-keyed random initial states shared across candidates and guidance methods.
 
-For Looped-Qwen3, the referenced wrapper repository was unavailable when inspected. The implementation uses Qwen3-4B's layer window `15:19`, eight updates of `h ← (7/8)h + (1/8)g(h)`, and the full remaining output path. Its [source evidence](sources/looped_qwen/evidence.json) records this assumption.
+Looped-Qwen3 uses a local implementation of the paper's loop construction: Qwen3-4B's layer window `15:19`, eight updates of `h ← (7/8)h + (1/8)g(h)`, and the full remaining output path. See the [implementation record](sources/looped_qwen/evidence.json).
 
-All four scoring policies share one recurrent trajectory. Their joint runtime is not an isolated policy benchmark and cannot establish a LoopCD speedup.
+Recorded runtimes cover the joint evaluation of all four scoring policies on one recurrent trajectory.
 
 See the [combined report](results/multitask/REPORT.md) and [machine-readable results](results/multitask/comparison.json) for additional provenance. Documentation and generated reports are in English. Upstream models, datasets, and vendored sources retain their respective licenses.

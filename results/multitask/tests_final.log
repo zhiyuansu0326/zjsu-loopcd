@@ -4,7 +4,7 @@ test_answer_overflow_is_rejected_instead_of_losing_tokens (test_analysis.Encodin
 test_bos_whitespace_and_left_truncation_preserve_every_target (test_analysis.EncodingAuditTests.test_bos_whitespace_and_left_truncation_preserve_every_target) ... ok
 test_csv_has_both_metrics_and_only_primary_has_paper_values (test_analysis.FinalArtifactsTests.test_csv_has_both_metrics_and_only_primary_has_paper_values) ... ok
 test_final_artifacts_reject_incomplete_task_even_when_called_directly (test_analysis.FinalArtifactsTests.test_final_artifacts_reject_incomplete_task_even_when_called_directly) ... ok
-test_sciq_report_keeps_preselected_metric_and_protocol_limit (test_analysis.FinalArtifactsTests.test_sciq_report_keeps_preselected_metric_and_protocol_limit) ... ok
+test_sciq_report_keeps_metrics_and_statistical_scope (test_analysis.FinalArtifactsTests.test_sciq_report_keeps_metrics_and_statistical_scope) ... ok
 test_only_evidenced_pre_scoring_precision_upgrade_is_accepted (test_analysis.PrecisionDecisionTests.test_only_evidenced_pre_scoring_precision_upgrade_is_accepted) ... ok
 test_checkpoint_requires_complete_nonempty_weights_and_index (test_analysis.RuntimeAndCheckpointAuditTests.test_checkpoint_requires_complete_nonempty_weights_and_index) ... ok
 test_runtime_fields_are_required_and_types_are_checked (test_analysis.RuntimeAndCheckpointAuditTests.test_runtime_fields_are_required_and_types_are_checked) ... ok
@@ -73,7 +73,7 @@ test_qwen_hashes_installed_package_without_loading_a_model (test_run_integrity.S
 test_streaming_hash_does_not_use_read_bytes (test_run_integrity.SourceHashTests.test_streaming_hash_does_not_use_read_bytes) ... ok
 
 ----------------------------------------------------------------------
-Ran 70 tests in 2.026s
+Ran 70 tests in 1.934s
 
 OK
 make[1]: Leaving directory '/work/zs220/zjsu-loopcd'

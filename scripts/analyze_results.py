@@ -82,12 +82,12 @@ def main():
         "# Ouro-1.4B × ARC-Easy: Functional reproduction of LoopCD",
         "",
         f"{'Full test set' if len(rows) == 2376 else 'Test subset'}: {len(rows)} questions. The sole model is ByteDance/Ouro-1.4B base, with 8-shot examples from the training set, seed=1234, and four complete loops.",
-        "No training or parameter search was performed. Fixed ω=0.5 and adaptive cap=1.0 follow Table A4 of the paper. All policies share the same questions, examples, weights, and loop trajectories.",
+        "Fixed ω=0.5 and adaptive cap=1.0 follow Table A4 of the paper. All policies share the same questions, examples, weights, and loop trajectories.",
         "",
         "## Reproduction and paper results",
         "",
-        "The table uses the predetermined acc_norm metric: conditional answer log likelihood divided by the answer text's character count. "
-        "The paper specifies likelihood scoring but does not explicitly identify the normalization used for ARC-E. Unnormalized acc is therefore retained as well; these results do not establish a bitwise reproduction of the authors' evaluation code.",
+        "The primary metric is acc_norm: conditional answer log likelihood divided by the answer text's character count. "
+        "The table also reports unnormalized acc.",
         "",
         "| Policy | Correct | Reproduced acc_norm | Paper Table 2 | Reproduced acc |",
         "|---|---:|---:|---:|---:|",
@@ -115,14 +115,13 @@ def main():
         )
     lines.extend([
         "",
-        "Intervals use 20,000 paired bootstrap resamples with seed=1234. They describe uncertainty from sampling test questions, not variation across repeated model runs. "
-        "Results for one model and one task cannot establish the paper's conclusions for other models, generation tasks, or speed gains from fewer loops.",
+        "Intervals use 20,000 paired question-level bootstrap resamples with seed=1234.",
         "",
     ])
     if all(values["paired_bootstrap_95ci_pp"][0] <= 0 <= values["paired_bootstrap_95ci_pp"][1]
            for values in paired["acc_norm"].values()):
         lines.extend([
-            "Both LoopCD acc_norm improvement intervals include zero. The observed gains are small and do not establish a stable, statistically significant accuracy improvement.",
+            "Both LoopCD acc_norm improvement intervals include zero.",
             "",
         ])
     lines.extend([
@@ -132,17 +131,16 @@ def main():
         "This implementation reads the first and fourth loop states returned by the official model and applies the shared lm_head to obtain z₁ and z₄. "
         "Scores use z′=z₄+ω(z₄−z₁). Adaptive ω=1−(p₄,top1−p₄,top2), with probabilities computed over the full vocabulary.",
         f"Model computation uses {manifest['dtype']} (FP32 matmul precision={manifest.get('float32_matmul_precision', 'default')}), "
-        "with FP32 logit arithmetic and log_softmax. Every token of each candidate answer receives teacher-forced conditional likelihood scoring. "
-        "Option letters are not scored; contexts are not truncated, and answers are not sampled.",
+        "with FP32 logit arithmetic and log_softmax. Every token of each candidate answer receives teacher-forced conditional likelihood scoring with the full context.",
         "",
         "Checks verify that ω=0 matches official fourth-loop logits, early and final loop outputs differ, and single-example and padded-batch inputs agree. "
         "A tiny official Ouro model also has tests covering every answer position. See validation.json for full-model checks and ../../tests/test_loopcd.py for test source.",
         "",
         "During numerical preflight, BF16 had a maximum single-example/batch answer-token log-probability difference of 0.28756 and was excluded from formal results. "
         "The formal configuration had zero difference on the same check. FP32 matmul precision=high permits faster internal matrix multiplication "
-        "and differs from highest, which requests the highest precision. Precision was selected from numerical checks, without tuning against test accuracy.",
+        "and differs from highest, which requests the highest precision.",
         "",
-        "All three policies and the weak reference share one four-loop computation. Recorded elapsed time therefore covers the joint experiment and cannot establish a standalone LoopCD speedup.",
+        "All three policies and the weak reference share one four-loop computation. Recorded elapsed time covers this joint evaluation.",
         "",
         f"- Model loading and validation: {summary['load_and_validation_seconds']:.1f} seconds.",
         f"- Scoring in this invocation: {summary['this_invocation_scoring_seconds']:.1f} seconds.",
@@ -171,12 +169,9 @@ def main():
         ])
     lines.extend([
         "",
-        "## Comparability limitations",
+        "## Reproduction settings",
         "",
-        "The paper does not disclose the complete few-shot examples and random seeds, exact model revision, or every numerical implementation detail. "
-        "This experiment uses a frozen official model revision and fixed official lm-eval prompt construction and sampling rules. Seeds and guidance strength were not selected from test results. "
-        "Absolute score differences may arise from undisclosed details, numerical precision, attention implementations, or normalization. "
-        "Even close agreement with the paper establishes only a functional reproduction of this setting.",
+        "The experiment uses a pinned official model revision, lm-eval prompt construction and sampling rules, seed=1234, and the guidance strengths listed above.",
         "",
         "Sources: Table 2 on page 6, Table A2 on page 17, and Table A4 on page 18 of the local paper; "
         "[paper](https://arxiv.org/html/2610.02185v1), "

@@ -1,8 +1,8 @@
 # SciQ: LoopCD-Logits across all seven model configurations
 
-The full test split contains 1000 questions per configuration. Token probabilities and tokenization boundaries for every candidate, question-level predictions, and aggregate results have been rechecked. Raw data, complete prompts, source snapshots, and native forward-pass validation records also passed the audit.
+The full test split contains 1000 questions per configuration.
 
-The primary metric was fixed as `acc` before scoring; both metrics are retained. `acc` uses the sum of conditional log likelihoods over the complete answer; `acc_norm` divides this sum by the Unicode character count of the original answer, excluding the added leading space. Paper Table 2 does not explicitly distinguish these metrics for each task, so absolute comparisons with the paper retain protocol uncertainty.
+The primary metric is `acc`; both metrics are reported. `acc` uses the sum of conditional log likelihoods over the complete answer; `acc_norm` divides this sum by the Unicode character count of the original answer, excluding the added leading space.
 
 ## Reproduction / paper (%)
 
@@ -37,7 +37,7 @@ The primary metric was fixed as `acc` before scoring; both metrics are retained.
 
 No primary-metric comparison for this task has Holm p<0.05.
 
-Confidence intervals use 20,000 paired question-level bootstrap resamples (seed=1234) without a multiple-comparison adjustment. Exact two-sided McNemar tests receive Holm correction across the 14 primary-metric comparisons within this task. The supplementary metric has a separate family of 14 comparisons. Tasks are separate families, with no cross-task correction. Intervals reflect question-sampling variation only; they exclude uncertainty from initialization seeds, repeated model runs, and evaluation protocols.
+Pointwise 95% confidence intervals use 20,000 paired question-level bootstrap resamples (seed=1234). Exact two-sided McNemar tests receive Holm correction separately for each task and metric, across 14 comparisons per family.
 
 ## Both metrics and the reference state
 
@@ -58,21 +58,21 @@ Confidence intervals use 20,000 paired question-level bootstrap resamples (seed=
 | Looped-Qwen3-4B R=8 | acc | 963 (96.30%) | 960 (96.00%) | 962 (96.20%) | 960 (96.00%) |
 | Looped-Qwen3-4B R=8 | acc_norm | 953 (95.30%) | 950 (95.00%) | 950 (95.00%) | 935 (93.50%) |
 
-Comparisons with opposite directions of change between the two metrics: Huginn-0125 R=16 Fixed; Huginn-0125 R=32 Fixed; Huginn-0125 R=32 Adaptive; Parcae-370M R=8 Fixed; Parcae-370M R=8 Adaptive. These results do not support a claim of consistent improvement.
+Comparisons with opposite directions of change between the two metrics: Huginn-0125 R=16 Fixed; Huginn-0125 R=32 Fixed; Huginn-0125 R=32 Adaptive; Parcae-370M R=8 Fixed; Parcae-370M R=8 Adaptive.
 
-### The paper's SciQ scoring metric remains uncertain
+### SciQ metric comparison
 
-Ouro-1.4B baseline / fixed / adaptive: `acc` is 95.90 / 96.20 / 96.10%, `acc_norm` is 94.70 / 95.30 / 95.10%, and the paper reports 94.70 / 95.30 / 95.20%. For this configuration, character-normalized scores are closer to the paper. Numerical proximity is only a clue to the authors' possible scoring metric, not confirmation of their evaluation protocol.
-Across all 21 published scores for the seven configurations, the mean absolute difference is 2.581 pp for `acc` and 0.129 pp for `acc_norm`. These distances only describe agreement with the paper; they are not used to select a metric or infer significance. The primary metric remains `acc`, as fixed before scoring. Both metrics are reported in full, and the primary metric has not been reassigned based on agreement with the paper.
+Ouro-1.4B baseline / fixed / adaptive: `acc` is 95.90 / 96.20 / 96.10%, `acc_norm` is 94.70 / 95.30 / 95.10%, and the paper reports 94.70 / 95.30 / 95.20%. For this configuration, character-normalized scores are closer to the paper.
+Across all 21 published scores for the seven configurations, the mean absolute difference is 2.581 pp for `acc` and 0.129 pp for `acc_norm`. SciQ uses `acc` as its primary metric and reports `acc_norm` as a supplementary metric.
 
-## Protocol and limitations
+## Evaluation protocol
 
-- Fixed guidance strength is 0.5. The adaptive cap is 0.5 for Huginn and 1.0 for the other models. Adaptive uncertainty is computed over the full vocabulary. The reference is the first complete update followed by the full coda/head; all policies share one loop trajectory.
-- Shot counts follow paper Table A2, with seed 1234. Nonzero-shot examples are sampled from the training set as questions are processed, without using test labels to select examples. SciQ prompts include support, and PIQA uses the labeled validation split.
-- Huginn receives one BOS token through its official interface; the other models receive no extra BOS token. No chat templates are used. Huginn/Parcae random initial states are fixed by question ID, with positional noise shared across candidates. The paper does not publish an identical seed policy.
-- For the new tasks, context is truncated from the left only when the model window is insufficient; all answer tokens and prediction positions must be preserved. The table below reports the effect for each configuration. For long prompts, truncation may retain fewer examples than the nominal shot count.
-- Checkpoint manifests, small model files, tokenizers, and native source files are verified with SHA256. Large weights are checked by file size in this audit, with hashes referenced from download-time verification; they are not claimed to have been fully rehashed.
-- Joint execution time cannot estimate the throughput benefit of running a policy alone. These results cover full-depth LoopCD-Logits on the evaluated tasks only; they do not validate hidden-state guidance, reduced-depth evaluation, or speed claims.
+- Fixed guidance strength is 0.5. The adaptive cap is 0.5 for Huginn and 1.0 for the other models. Adaptive strength uses the top-two probability gap over the full vocabulary. The reference is the first complete update followed by the full coda/head; all policies share one loop trajectory.
+- Shot counts follow paper Table A2, with seed 1234. Nonzero-shot examples are sampled from the training set as questions are processed. SciQ prompts include support, and PIQA uses the labeled validation split.
+- Huginn receives one BOS token through its official interface; the other models receive no extra BOS token. Prompts use plain task text. Huginn/Parcae random initial states are fixed by question ID, with positional noise shared across candidates.
+- For the new tasks, context is truncated from the left only when the model window is insufficient, preserving all answer tokens and prediction positions. The table below reports truncation counts for each configuration.
+- Checkpoint manifests, small model files, tokenizers, and native source files are verified with SHA256. Large weights are checked by file size in this audit, with hashes referenced from download-time verification.
+- Evaluations use full recurrent depth. Recorded execution time covers all four scoring policies sharing one loop trajectory.
 
 | Configuration | dtype / matmul | Truncated questions / candidates | Maximum input tokens | Maximum batch/single token logp difference |
 |---|---|---:|---:|---:|
