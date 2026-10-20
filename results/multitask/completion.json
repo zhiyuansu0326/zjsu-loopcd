@@ -8,7 +8,7 @@
   "question_evaluations": 44702,
   "scored_candidates": 153048,
   "answer_token_logprobs_all_four_policies": 4556224,
-  "artifact_manifest_sha256": "6698232fd47c37b8ac91cee65e829b34b4778cc63721c7ae385a3ba17f2ded61",
+  "artifact_manifest_sha256": "468f08597a2d0fb363f5f1fab726fde7de2db2360ec5f3c1f4fb93fc43956da7",
   "report": "results/multitask/REPORT.md",
   "finished_utc": "2026-10-20T18:29:12.806894+00:00"
 }

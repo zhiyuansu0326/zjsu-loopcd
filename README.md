@@ -10,6 +10,16 @@ The evaluation covers **44,702 question evaluations and 153,048 candidate answer
 
 The experiments evaluate multiple-choice answer scoring at each model's full recurrent depth.
 
+## Reproduction checklist
+
+- [x] LoopCD-Logits with fixed and adaptive guidance.
+- [x] Full-depth evaluation: 7 configurations × ARC-Easy, ARC-Challenge, SciQ, and PIQA (28 runs).
+- [x] Unified data preparation, evaluation, and auditing; saved scores and statistics.
+- [ ] LoopCD-Hidden.
+- [ ] Remaining multiple-choice benchmarks, math/code generation, and Thinking models.
+- [ ] Reduced-depth accuracy and FLOPs comparisons.
+- [ ] Standalone inference overhead and speed benchmarks.
+
 ## Results
 
 Each cell is **baseline / fixed / adaptive**, in accuracy percent. The primary metric is `acc_norm` for ARC-Easy, ARC-Challenge, and PIQA, and `acc` for SciQ. Detailed results include both metrics.
