@@ -1,0 +1,10 @@
+{
+  "complete": true,
+  "finished_utc": "2026-10-20T19:31:53.899305+00:00",
+  "new_evaluation_runs": 1,
+  "reused_baseline_runs": 2,
+  "questions_per_run": 1838,
+  "new_candidate_scores": 3676,
+  "artifact_manifest_sha256": "82487bc6a5190f3f1222b992693cb2c8e43ccff7a94093a95236c757740fe058",
+  "report": "results/reduced_depth/piqa/REPORT.md"
+}

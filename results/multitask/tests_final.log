@@ -71,8 +71,16 @@ test_rejects_flops_candidate_and_source_tampering (test_reduced_cost_audit.Reduc
 test_rejects_incomplete_wrong_runtime_and_unauthorized_allocation (test_reduced_cost_audit.ReducedCostAuditTests.test_rejects_incomplete_wrong_runtime_and_unauthorized_allocation) ... ok
 test_rejects_snapshot_path_escape (test_reduced_cost_audit.ReducedCostAuditTests.test_rejects_snapshot_path_escape) ... ok
 test_rejects_timing_summary_and_sample_tampering (test_reduced_cost_audit.ReducedCostAuditTests.test_rejects_timing_summary_and_sample_tampering) ... ok
+test_arc_easy_data_audit_accepts_original_zero_shot_schema (test_reduced_depth.ReducedDepthTests.test_arc_easy_data_audit_accepts_original_zero_shot_schema) ... ok
 test_baseline_replay_checks_tokens_and_predictions (test_reduced_depth.ReducedDepthTests.test_baseline_replay_checks_tokens_and_predictions) ... ok
 test_cross_run_pairing_rejects_order_and_label_mismatch (test_reduced_depth.ReducedDepthTests.test_cross_run_pairing_rejects_order_and_label_mismatch) ... ok
+test_historical_arc_alignment_preserves_original_manifest (test_reduced_depth.ReducedDepthTests.test_historical_arc_alignment_preserves_original_manifest) ... ok
+test_report_uses_task_split_count_and_frozen_primary_metric (test_reduced_depth.ReducedDepthTests.test_report_uses_task_split_count_and_frozen_primary_metric) ... ok
+test_bootstrap_is_paired_stratified_equal_weight_and_deterministic (test_reduced_suite.ReducedSuiteTests.test_bootstrap_is_paired_stratified_equal_weight_and_deterministic) ... ok
+test_holm_uses_the_whole_explicit_family_and_preserves_ties (test_reduced_suite.ReducedSuiteTests.test_holm_uses_the_whole_explicit_family_and_preserves_ties) ... ok
+test_missing_task_or_changed_executed_configuration_is_rejected (test_reduced_suite.ReducedSuiteTests.test_missing_task_or_changed_executed_configuration_is_rejected) ... ok
+test_permutation_is_two_sided_with_plus_one_and_correct_null (test_reduced_suite.ReducedSuiteTests.test_permutation_is_two_sided_with_plus_one_and_correct_null) ... ok
+test_suite_means_are_not_sample_weighted_and_keep_both_secondary_views (test_reduced_suite.ReducedSuiteTests.test_suite_means_are_not_sample_weighted_and_keep_both_secondary_views) ... ok
 test_every_recorded_numerical_setting_and_source_must_match (test_run_integrity.ManifestTests.test_every_recorded_numerical_setting_and_source_must_match) ... ok
 test_json_boolean_is_not_equal_to_integer_in_nested_metadata (test_run_integrity.ManifestTests.test_json_boolean_is_not_equal_to_integer_in_nested_metadata) ... ok
 test_legacy_missing_source_hashes_cannot_be_silently_upgraded (test_run_integrity.ManifestTests.test_legacy_missing_source_hashes_cannot_be_silently_upgraded) ... ok
@@ -88,7 +96,7 @@ test_qwen_hashes_installed_package_without_loading_a_model (test_run_integrity.S
 test_streaming_hash_does_not_use_read_bytes (test_run_integrity.SourceHashTests.test_streaming_hash_does_not_use_read_bytes) ... ok
 
 ----------------------------------------------------------------------
-Ran 85 tests in 2.309s
+Ran 93 tests in 3.799s
 
 OK
 make[1]: Leaving directory '/work/zs220/zjsu-loopcd'

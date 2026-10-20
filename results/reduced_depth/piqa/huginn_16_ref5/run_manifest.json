@@ -1,0 +1,117 @@
+{
+  "name": "huginn_16",
+  "configuration": {
+    "family": "huginn",
+    "display": "Huginn-0125 R=16, reference=5",
+    "model_path": "models/Huginn-0125",
+    "model_manifest": "models/huginn_manifest.json",
+    "loops": 16,
+    "fixed": 0.5,
+    "cap": 0.5,
+    "batch_size": 8,
+    "matmul_precision": "highest",
+    "reference_step": 5
+  },
+  "task": "piqa",
+  "task_configuration": {
+    "display": "PIQA",
+    "split": "validation",
+    "count": 1838,
+    "primary_metric": "acc_norm",
+    "shots_by_family": {
+      "ouro": 0,
+      "huginn": 0,
+      "parcae": 0,
+      "looped_qwen": 0
+    },
+    "data_path": "data/tasks/piqa/{shots}shot.jsonl",
+    "protocol_path": "data/tasks/piqa/protocol.json"
+  },
+  "shots": 0,
+  "primary_metric": "acc_norm",
+  "protocol_sha256": "78f7f19b935feae039384d24d03b026eef0bcb84e7d6c616a19bcba9fdd5ec9a",
+  "context_policy": "Left-truncate context only when required by model window, preserving every answer token (pinned harness behavior).",
+  "truncation_details": {
+    "model_max_length": 4096,
+    "original_max_input_tokens": 254,
+    "candidates_truncated": 0,
+    "questions_truncated": 0,
+    "total_removed_context_tokens": 0,
+    "records": []
+  },
+  "documents": 1838,
+  "candidates": 3676,
+  "data_sha256": "c0b5c66a4c01d9d41c5cd401d81794cb4882c063689c6b5d8b46936cf4d8f395",
+  "model_manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+  "code_hashes": {
+    "scripts/evaluate.py": "36f249049e6ed33f7428e4619dc15f633fa8ef8104211161f57c87331799be96",
+    "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+    "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+    "src/adapter_huginn.py": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa",
+    "src/run_integrity.py": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+    "src/registry.py": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc",
+    "src/evaluation.py": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+    "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+    "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
+    "configs/experiments.json": "9a22f0602006e5788d8b8db9f558a61b1932b6601cc41cd97217e98f7ae6ecdc"
+  },
+  "native_source_hashes": {
+    "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+    "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+  },
+  "dtype": "float32",
+  "float32_matmul_precision": "highest",
+  "batch_size": 8,
+  "token_budget": 16384,
+  "seed": 1234,
+  "add_bos": true,
+  "chat_template": false,
+  "max_input_tokens": 254,
+  "truncation": false,
+  "torch": "2.6.0+cu124",
+  "transformers": "4.56.2",
+  "adapter_metadata": {
+    "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+    "loops": 16,
+    "reference_recurrent_update": 5,
+    "reference_is_initial_noise": false,
+    "coda_layers": 2,
+    "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+    "noise_seed": 1234,
+    "noise_key": "SHA256(seed, question ID), independent of answer text",
+    "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+    "noise_std_before_embedding_scale": 0.008703882797784892,
+    "noise_truncation_standard_deviations": [
+      -3,
+      3
+    ],
+    "noise_embedding_scale": 72.6636084983398,
+    "noise_coupling": "same question shares identical positional initial states across options and depths",
+    "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+    "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+    "add_bos_token": true,
+    "bos_token_id": 65504,
+    "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+    "bos_evidence": [
+      "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+      "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+      "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+    ]
+  },
+  "gpu": "NVIDIA H200",
+  "host": "dcc-h200-gpu-ferc-l-e36-9",
+  "slurm_job_id": "59056757",
+  "experiment": {
+    "name": "huginn_half_depth",
+    "model": "huginn_16",
+    "model_overrides": {
+      "display": "Huginn-0125 R=16, reference=5",
+      "reference_step": 5,
+      "fixed": 0.5
+    },
+    "full_depth_model": "huginn_32",
+    "reported_policy": "loopcd_fixed",
+    "paper_setting": "Table A8: Huginn-0125, logit guidance, 32 to 16 loops, reference h5, fixed omega=0.5",
+    "output_name": "huginn_16_ref5"
+  }
+}

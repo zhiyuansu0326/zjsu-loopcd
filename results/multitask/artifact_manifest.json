@@ -4,7 +4,7 @@
   "question_evaluations": 44702,
   "scored_candidates": 153048,
   "answer_token_logprobs_all_four_policies": 4556224,
-  "created_utc": "2026-10-20T19:07:43.409134+00:00",
+  "created_utc": "2026-10-20T19:24:00.070135+00:00",
   "scope": "Four-task LoopCD-Logits evaluation; 21 new configurations and seven reused ARC-Easy runs.",
   "weight_integrity": "Pinned model manifests included; large weights are not rehashed here.",
   "inventory_note": "Logs, caches, downloaded ZIP archives, environment and model weights are excluded.",
@@ -22,12 +22,12 @@
       "sha256": "ea3f4126a96cfe11b752c7ccfc6aa6b14c844952488ccfeac5ebd939517cd334"
     },
     "Makefile": {
-      "bytes": 4441,
-      "sha256": "b3829a6b0040fd138afc7af86c9ffbed023662fd06653d766bc426d3784d09a3"
+      "bytes": 4417,
+      "sha256": "d6e700f4f1aa9d1ca9942f3bbe2b5228fd3fa5456f2028f7b2e2d1e7f0c4041d"
     },
     "README.md": {
-      "bytes": 15703,
-      "sha256": "3aba45b21ad4910d12c6507cb3188cdc2a1b9372f4d2025b6603ad81a5be4e85"
+      "bytes": 17251,
+      "sha256": "c8ece8b9b3b69350884f0ae9a24ead015ce0b4fc9eb5a7f585597b9ff6c7c384"
     },
     "configs/arc_all_models.json": {
       "bytes": 2062,
@@ -519,7 +519,7 @@
     },
     "results/multitask/arc_challenge/comparison.json": {
       "bytes": 149831,
-      "sha256": "e3e3b058efb0b67947fa96469d8ab88e2f61513228a51efa8038871eaf1b550f"
+      "sha256": "3ad258905fc3474c1d8448e6df9ef49bbe508f7f33c704bd1cfd93f0509ba66b"
     },
     "results/multitask/arc_challenge/huginn_16/candidate_scores.jsonl": {
       "bytes": 4008557,
@@ -947,7 +947,7 @@
     },
     "results/multitask/arc_easy/comparison.json": {
       "bytes": 96761,
-      "sha256": "30685702769671a187d98ce3c77790cd6f229c880c2616fbf676e2237989ea34"
+      "sha256": "ed260a816b41ee70d6006777feb52829f9d8759ce1bc1a5d89f5d75108aa314d"
     },
     "results/multitask/comparison.csv": {
       "bytes": 12990,
@@ -955,7 +955,7 @@
     },
     "results/multitask/comparison.json": {
       "bytes": 589974,
-      "sha256": "dba15e8aed02f90649dcd0d29eec48985c9fb42b0952ebb962e4648a23003e5f"
+      "sha256": "aa20059c26223825a4584bb7acce8336c3f4b6e98002b68c9c91c24fef11cbbb"
     },
     "results/multitask/finalization_history/20261020T175926583619Z/artifact_manifest.json": {
       "bytes": 104951,
@@ -989,6 +989,14 @@
       "bytes": 481,
       "sha256": "050f8a7af87b8ca2cc0516992db6b6889ceee0a7d7a8746bac16745b1727ef21"
     },
+    "results/multitask/finalization_history/20261020T192248850416Z/artifact_manifest.json": {
+      "bytes": 106468,
+      "sha256": "804b4549642ceb52615c2a1e92d902f8415990d6871a42380135081b680b0e4d"
+    },
+    "results/multitask/finalization_history/20261020T192248850416Z/completion.json": {
+      "bytes": 495,
+      "sha256": "da58260c213d011a6c85ab61d8b0fc7bd2b4da559df5d0d4c644e288a888f013"
+    },
     "results/multitask/finalization_job.json": {
       "bytes": 1460,
       "sha256": "cb346451091c6abe558d61d9b13073dc1dd7799f3c66fe35282986f3a5d5e4bc"
@@ -1003,7 +1011,7 @@
     },
     "results/multitask/piqa/comparison.json": {
       "bytes": 152912,
-      "sha256": "bf8dcd829a57e3a66da290452857a3860ba6349fab1bc60188a4f2285eed173c"
+      "sha256": "09c9ea866c458a144bf1fdbe05297fe4bdd3224d1997f1799f2c9ede94b9bd70"
     },
     "results/multitask/piqa/huginn_16/candidate_scores.jsonl": {
       "bytes": 8684951,
@@ -1507,7 +1515,7 @@
     },
     "results/multitask/sciq/comparison.json": {
       "bytes": 147486,
-      "sha256": "c7bb28239e2def6666b1945ebd163b5bbf05d083ef30eda0b3037ba49a5d22d8"
+      "sha256": "8a70d67db8d5689b63a80b780814381b0c2ccdefcf661602ea13a5fdad5472f2"
     },
     "results/multitask/sciq/huginn_16/candidate_scores.jsonl": {
       "bytes": 1979396,
@@ -1938,16 +1946,16 @@
       "sha256": "f888fb7745318ca6bcb449649cd19e62b1ba49218e0da3ea169cb17c15cd00b5"
     },
     "scripts/analyze.py": {
-      "bytes": 45593,
-      "sha256": "0ea1b0a174e628a5baa7cd13cbc243294cc24131c83e981c2aa76ffd46fd2c92"
+      "bytes": 49495,
+      "sha256": "8c3c333a527c4690e08ec206103a3f1d6963775090e73ea85756b8879a3ea66d"
     },
     "scripts/analyze_arc_suite.py": {
       "bytes": 36758,
       "sha256": "1d8e53bb1161ec58f93bf98bcb1ec015fc6649b5891033e73b5b88189e5a7579"
     },
     "scripts/analyze_reduced_depth.py": {
-      "bytes": 17121,
-      "sha256": "5badcce791b9a5e86a3409a5f209d91060f7619461fd2832dc4f8a0e3e181ee7"
+      "bytes": 21126,
+      "sha256": "a22db5f7efc90155790c4f5f80c6f6955ea54d20dd274072d40ea7acd730236d"
     },
     "scripts/analyze_results.py": {
       "bytes": 9831,
@@ -2013,6 +2021,10 @@
       "bytes": 13508,
       "sha256": "6559d8373765dcf17b1fccae505237defc4211f9382a7f40d96cf9d0e42134ae"
     },
+    "scripts/reduced_suite.py": {
+      "bytes": 30913,
+      "sha256": "a25099f2cec73a719e0fba4764725ce76c91c1d9c587fc2e16764eee5a38e1b7"
+    },
     "scripts/run_arc.slurm": {
       "bytes": 770,
       "sha256": "9a6239c3320ee4725d953b1a8aaa2847055bfc380b804b4f4008f6733636267b"
@@ -2022,8 +2034,8 @@
       "sha256": "7e5f3b56658e09109a42255d188308597852a91a2df77906bd303b8a75241efe"
     },
     "scripts/run_reduced_depth.slurm": {
-      "bytes": 1208,
-      "sha256": "f6b7a1e88a64ed8275b6ca38b34232e2edf3fecfd9f4384205dc0016825b8521"
+      "bytes": 1267,
+      "sha256": "1e4dd293af973653d1d50a89001824a8ce562bd15108b1797c358336a298c16a"
     },
     "scripts/run_suite.slurm": {
       "bytes": 797,
@@ -2446,8 +2458,12 @@
       "sha256": "493251bc7eced10be39dd52aacd8190623ce634fdf54b57c80cba5acde0f0d02"
     },
     "tests/test_reduced_depth.py": {
-      "bytes": 2956,
-      "sha256": "c80556f66ef7635bc6fffccd571d14beaa1b1943db46841111f8e818201e8049"
+      "bytes": 7937,
+      "sha256": "2c5667e09ac2e8ff28af5d4d562994f2fdcff0b5685c88af26b67eef6bc9aed9"
+    },
+    "tests/test_reduced_suite.py": {
+      "bytes": 7925,
+      "sha256": "021c9195ea6e4275c7c6083870c1f9e7266a0cd40f74e1e8552ee1fc58581200"
     },
     "tests/test_run_integrity.py": {
       "bytes": 10664,

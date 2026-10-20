@@ -15,7 +15,7 @@ The main matrix evaluates multiple-choice answer scoring at each model's full re
 - [x] LoopCD-Logits with fixed and adaptive guidance.
 - [x] Full-depth evaluation: 7 configurations × ARC-Easy, ARC-Challenge, SciQ, and PIQA (28 runs).
 - [x] Unified data preparation, evaluation, and auditing; saved scores and statistics.
-- [x] Huginn × ARC-Challenge at half depth: accuracy, FLOPs, and standalone H200 timing.
+- [x] Huginn × all four tasks at half depth: fixed paper parameters, paired task/mean comparisons, FLOPs, and standalone H200 timing.
 - [ ] LoopCD-Hidden.
 - [ ] Remaining multiple-choice benchmarks, math/code generation, and Thinking models.
 - [ ] Reduced-depth accuracy and FLOPs comparisons across the remaining model/task settings.
@@ -59,29 +59,44 @@ SciQ uses `acc` as its primary metric. The supplementary `acc_norm` scores below
 | Parcae-1.3B R=8 | 83.10 / 85.60 / 85.40 |
 | Looped-Qwen3-4B R=8 | 95.30 / 95.00 / 95.00 |
 
-## Half-depth result: Huginn × ARC-Challenge
+## Half-depth results: Huginn × four tasks
 
-The Table A8 setting uses R=16, reference iteration 5, and fixed strength 0.5.
-The standard R=16 row above uses reference iteration 1.
-The complete 1,172-question test split gives:
+The Table A8 setting uses **R=16, reference iteration 5, and fixed strength 0.5**
+on all four tasks. The standard R=16 row above uses reference iteration 1.
+The extension reuses the completed ARC-Challenge result and adds the other three
+tasks without tuning. It covers all **6,386 questions**, with the same 0-shot
+prompts, FP32 precision, and per-question initial states as the saved baselines.
 
-| Setting | Correct | Accuracy (`acc_norm`) | Relative forward FLOPs |
-|---|---:|---:|---:|
-| Baseline R=32 | 444 | 37.88% | 1.000× |
-| Baseline R=16 | 434 | 37.03% | 0.518× |
-| LoopCD R=16, reference=5 | 460 | 39.25% | 0.539× |
+| Task | R32 baseline (%) | R16 baseline (%) | R16 LoopCD (%) | Change vs R32 (pp) |
+|---|---:|---:|---:|---:|
+| ARC-Easy | 64.27 | 64.39 | 65.32 | +1.05 |
+| ARC-Challenge | 37.88 | 37.03 | 39.25 | +1.37 |
+| SciQ | 93.10 | 93.20 | 93.40 | +0.30 |
+| PIQA | 75.84 | 75.84 | 76.28 | +0.44 |
+| **Equal-task mean** | **67.77** | **67.62** | **68.56** | **+0.79** |
 
-Half-depth LoopCD scores **+1.37 percentage points** above the full-depth baseline
-with **46.14% fewer analytic matrix-product FLOPs**, including its extra readout.
-The paired 95% confidence interval for the accuracy difference is **[-0.51, +3.24] pp**.
-Standalone scoring on three fixed batches of eight candidates gives a **1.88×**
-median speedup on H200 over six repetitions; loading, tokenization, and initial-state
-generation are excluded.
+The primary metrics remain `acc_norm` for ARC-Easy, ARC-Challenge, and PIQA,
+and `acc` for SciQ. Each task has equal weight in the mean. Guided R16 improves
+all four primary scores against both baselines. Against R32, the mean gain is
+**+0.79 pp**, with a stratified paired 95% confidence interval of **[+0.15, +1.43]
+pp** and a two-sided sign-flip **Holm-adjusted p = 0.0345**. Against R16, the gain
+is **+0.94 pp**, with **[+0.34, +1.56] pp** and **p = 0.0085**. Holm correction
+covers the three mean contrasts; no individual task contrast passes the separate
+12-comparison Holm correction. These intervals resample questions within the
+four fixed tasks.
 
-The FLOP ledger uses a 512-token prefill and includes the recurrent injection
-projection. A second ledger matches the paper's printed accounting. See the
-[half-depth report](results/reduced_depth/arc_challenge/REPORT.md) for both ledgers,
-paired statistics, raw timing evidence, and the exact baseline replay check.
+The gain depends on the scoring metric: using `acc` for every task gives a mean
+change of **−0.08 pp** against R32, while using `acc_norm` throughout gives
+**+0.89 pp**. Both secondary views and every task result are included in the
+[four-task half-depth report](results/reduced_depth/REPORT.md).
+
+Guided R16 uses **46.14% fewer analytic matrix-product FLOPs** than R32, including
+its extra readout and the recurrent injection projection, at a 512-token prefill.
+Standalone H200 scoring gives **1.87×–1.89×** per-task speedups and a **1.87×**
+geometric mean. Each task measures three fixed batches of eight candidates over
+six repetitions; loading, tokenization, and initial-state generation are excluded.
+The report includes both FLOP accounting conventions, sampled timings, the exact
+baseline replay checks, and the [frozen analysis plan](results/reduced_depth/analysis_plan.json).
 
 ## Models and evaluation protocol
 
@@ -200,12 +215,14 @@ It selects R=16, reference iteration 5, and fixed guidance strength 0.5 from
 paper Table A8. The seven standard configurations remain in `configs/models.json`;
 experiment settings are in `configs/experiments.json`.
 
-Run the evaluation, independent timing, and report on `scavenger-h200` with a new
-output directory:
+Run each task's evaluation, independent timing, and report on `scavenger-h200`
+with new output directories:
 
 ```bash
-make submit-reduced TASK=arc_challenge \
-  REDUCED_OUTPUT=results/repeats/huginn_half_depth
+for task in arc_easy arc_challenge sciq piqa; do
+  make submit-reduced TASK="$task" \
+    REDUCED_OUTPUT="results/repeats/reduced_depth/$task"
+done
 ```
 
 This compares against the saved R=32 and R=16 baselines. To run only the new
@@ -214,12 +231,19 @@ accuracy evaluation inside an allocated GPU job:
 ```bash
 venv/bin/python -B scripts/evaluate.py \
   --task arc_challenge --model huginn_16 --experiment huginn_half_depth \
-  --output results/repeats/huginn_half_depth/huginn_16_ref5
+  --output results/repeats/reduced_depth/arc_challenge/huginn_16_ref5
 ```
 
-Rebuild the published comparison with `make report-reduced TASK=arc_challenge`.
-Use `REDUCED_OUTPUT` to audit a repeat directory containing both the evaluated run
-and `huginn_costs.json`.
+After all four jobs complete, build the repeat suite with:
+
+```bash
+make report-reduced TASK=all REDUCED_OUTPUT=results/repeats/reduced_depth
+```
+
+Rebuild the published suite with `make report-reduced TASK=all`; use a specific
+`TASK` for one task's comparison. The analysis keeps the registered task metrics
+and gives each task equal weight. The [analysis plan](results/reduced_depth/analysis_plan.json)
+records the fixed parameters, resampling methods, and multiple-comparison families.
 
 ## Audit and report
 

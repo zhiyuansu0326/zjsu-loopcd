@@ -1,0 +1,10 @@
+{
+  "complete": true,
+  "finished_utc": "2026-10-20T19:31:53.772582+00:00",
+  "new_evaluation_runs": 1,
+  "reused_baseline_runs": 2,
+  "questions_per_run": 1000,
+  "new_candidate_scores": 4000,
+  "artifact_manifest_sha256": "fe49a8beb5a72fb8c2c65a0bde0bf491b1a50e31bd6268196f05f8b874fcb55f",
+  "report": "results/reduced_depth/sciq/REPORT.md"
+}

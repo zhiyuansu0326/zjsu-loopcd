@@ -1,0 +1,62 @@
+[
+  {
+    "task": "arc_easy",
+    "job_id": "59056755",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "purpose": "Full fixed-parameter R16 h5 evaluation and independent policy timings",
+    "submitted_utc": "2026-10-20T19:14:50.432016+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=half-huginn-arc_easy",
+      "--export=ALL,LOOPCD_DEFER_ANALYSIS=1",
+      "scripts/run_reduced_depth.slurm",
+      "arc_easy",
+      "results/reduced_depth/arc_easy"
+    ]
+  },
+  {
+    "task": "sciq",
+    "job_id": "59056756",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "purpose": "Full fixed-parameter R16 h5 evaluation and independent policy timings",
+    "submitted_utc": "2026-10-20T19:14:50.487105+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=half-huginn-sciq",
+      "--export=ALL,LOOPCD_DEFER_ANALYSIS=1",
+      "scripts/run_reduced_depth.slurm",
+      "sciq",
+      "results/reduced_depth/sciq"
+    ]
+  },
+  {
+    "task": "piqa",
+    "job_id": "59056757",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "purpose": "Full fixed-parameter R16 h5 evaluation and independent policy timings",
+    "submitted_utc": "2026-10-20T19:14:50.547320+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=half-huginn-piqa",
+      "--export=ALL,LOOPCD_DEFER_ANALYSIS=1",
+      "scripts/run_reduced_depth.slurm",
+      "piqa",
+      "results/reduced_depth/piqa"
+    ]
+  }
+]

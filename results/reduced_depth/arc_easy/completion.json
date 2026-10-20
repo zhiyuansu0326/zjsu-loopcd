@@ -1,0 +1,10 @@
+{
+  "complete": true,
+  "finished_utc": "2026-10-20T19:31:53.476172+00:00",
+  "new_evaluation_runs": 1,
+  "reused_baseline_runs": 2,
+  "questions_per_run": 2376,
+  "new_candidate_scores": 9501,
+  "artifact_manifest_sha256": "a49f87217150ce52036a979823949a9048376baa25b88cf54cf62c8b65309d12",
+  "report": "results/reduced_depth/arc_easy/REPORT.md"
+}

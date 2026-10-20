@@ -29,4 +29,6 @@ venv/bin/python -B scripts/evaluate.py --task "$task" --model huginn_16 --experi
     --output "$output/huginn_16_ref5"
 venv/bin/python -B scripts/benchmark_huginn.py --task "$task" \
     --output "$output/huginn_costs.json"
-venv/bin/python -B scripts/analyze_reduced_depth.py --task "$task" --output "$output"
+if [[ "${LOOPCD_DEFER_ANALYSIS:-0}" != "1" ]]; then
+    venv/bin/python -B scripts/analyze_reduced_depth.py --task "$task" --output "$output"
+fi

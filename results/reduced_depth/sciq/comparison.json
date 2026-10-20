@@ -1,0 +1,3231 @@
+{
+  "complete": true,
+  "generated_at_utc": "2026-10-20T19:31:50.747006+00:00",
+  "task": "sciq",
+  "primary_metric": "acc",
+  "experiment": {
+    "name": "huginn_half_depth",
+    "model": "huginn_16",
+    "model_overrides": {
+      "display": "Huginn-0125 R=16, reference=5",
+      "reference_step": 5,
+      "fixed": 0.5
+    },
+    "full_depth_model": "huginn_32",
+    "reported_policy": "loopcd_fixed",
+    "paper_setting": "Table A8: Huginn-0125, logit guidance, 32 to 16 loops, reference h5, fixed omega=0.5",
+    "output_name": "huginn_16_ref5"
+  },
+  "display": "SciQ",
+  "task_configuration": {
+    "display": "SciQ",
+    "split": "test",
+    "count": 1000,
+    "primary_metric": "acc",
+    "shots_by_family": {
+      "ouro": 0,
+      "huginn": 0,
+      "parcae": 0,
+      "looped_qwen": 0
+    },
+    "data_path": "data/tasks/sciq/{shots}shot.jsonl",
+    "protocol_path": "data/tasks/sciq/protocol.json"
+  },
+  "scope": "Huginn-0125 on the complete SciQ test split, 0-shot.",
+  "policies": {
+    "baseline_r32": {
+      "display": "Baseline R=32",
+      "n": 1000,
+      "correct": {
+        "acc": 931,
+        "acc_norm": 903
+      },
+      "accuracy_percent": {
+        "acc": 93.1,
+        "acc_norm": 90.3
+      },
+      "results_path": "results/multitask/sciq/huginn_32",
+      "policy": "baseline"
+    },
+    "baseline_r16": {
+      "display": "Baseline R=16",
+      "n": 1000,
+      "correct": {
+        "acc": 932,
+        "acc_norm": 901
+      },
+      "accuracy_percent": {
+        "acc": 93.2,
+        "acc_norm": 90.1
+      },
+      "results_path": "results/reduced_depth/sciq/huginn_16_ref5",
+      "policy": "baseline"
+    },
+    "loopcd_r16_ref5": {
+      "display": "LoopCD R=16, reference=5",
+      "n": 1000,
+      "correct": {
+        "acc": 934,
+        "acc_norm": 910
+      },
+      "accuracy_percent": {
+        "acc": 93.4,
+        "acc_norm": 91.0
+      },
+      "results_path": "results/reduced_depth/sciq/huginn_16_ref5",
+      "policy": "loopcd_fixed"
+    }
+  },
+  "paired": {
+    "acc": {
+      "reduced_baseline_vs_full": {
+        "corrected": 6,
+        "regressed": 5,
+        "net_correct": 1,
+        "changed_answers": 11,
+        "delta_percentage_points": 0.1,
+        "paired_bootstrap_95ci_pp": [
+          -0.5,
+          0.8
+        ],
+        "mcnemar_exact_two_sided_p": 1.0,
+        "mcnemar_holm_adjusted_p": 1.0
+      },
+      "guided_reduced_vs_full": {
+        "corrected": 12,
+        "regressed": 9,
+        "net_correct": 3,
+        "changed_answers": 23,
+        "delta_percentage_points": 0.3,
+        "paired_bootstrap_95ci_pp": [
+          -0.6,
+          1.2
+        ],
+        "mcnemar_exact_two_sided_p": 0.6636238098144531,
+        "mcnemar_holm_adjusted_p": 1.0
+      },
+      "guided_vs_reduced_baseline": {
+        "corrected": 12,
+        "regressed": 10,
+        "net_correct": 2,
+        "changed_answers": 24,
+        "delta_percentage_points": 0.2,
+        "paired_bootstrap_95ci_pp": [
+          -0.7,
+          1.1
+        ],
+        "mcnemar_exact_two_sided_p": 0.8318119049072266,
+        "mcnemar_holm_adjusted_p": 1.0
+      }
+    },
+    "acc_norm": {
+      "reduced_baseline_vs_full": {
+        "corrected": 4,
+        "regressed": 6,
+        "net_correct": -2,
+        "changed_answers": 11,
+        "delta_percentage_points": -0.2,
+        "paired_bootstrap_95ci_pp": [
+          -0.8,
+          0.4
+        ],
+        "mcnemar_exact_two_sided_p": 0.75390625,
+        "mcnemar_holm_adjusted_p": 0.75390625
+      },
+      "guided_reduced_vs_full": {
+        "corrected": 16,
+        "regressed": 9,
+        "net_correct": 7,
+        "changed_answers": 29,
+        "delta_percentage_points": 0.7,
+        "paired_bootstrap_95ci_pp": [
+          -0.3,
+          1.7
+        ],
+        "mcnemar_exact_two_sided_p": 0.2295229434967041,
+        "mcnemar_holm_adjusted_p": 0.4590458869934082
+      },
+      "guided_vs_reduced_baseline": {
+        "corrected": 15,
+        "regressed": 6,
+        "net_correct": 9,
+        "changed_answers": 24,
+        "delta_percentage_points": 0.9,
+        "paired_bootstrap_95ci_pp": [
+          0.0,
+          1.8
+        ],
+        "mcnemar_exact_two_sided_p": 0.0783538818359375,
+        "mcnemar_holm_adjusted_p": 0.2350616455078125
+      }
+    }
+  },
+  "baseline_replay": {
+    "candidates": 4000,
+    "answer_tokens": 7740,
+    "maximum_token_logprob_difference": 0.0,
+    "tolerance": 0.001,
+    "identical_predictions_both_metrics": true,
+    "original_path": "results/multitask/sciq/huginn_16"
+  },
+  "costs_file": "results/reduced_depth/sciq/huginn_costs.json",
+  "costs_sha256": "accde21b66ddc5639514018947fec61391edc3eb9c7dc114e4d00317c8e30c59",
+  "costs": {
+    "started_utc": "2026-10-20T19:25:18.911431+00:00",
+    "state": "complete",
+    "complete": true,
+    "task": "sciq",
+    "shots": 0,
+    "flops_512_token_prefill": {
+      "protocol": {
+        "sequence_length": 512,
+        "batch_size": 1,
+        "head_positions": 512,
+        "multiply_accumulate_flops": 2,
+        "attention_count": "Dense QK and AV matrix products, no causal triangle discount.",
+        "counted": "Attention and MLP matrices, recurrent injection, coda, and vocabulary head.",
+        "excluded": "Embedding lookup, normalization, RoPE, activations, biases, residual additions, and guidance vector arithmetic.",
+        "paper_source": "sources/looped_qwen/loopcd.html, Appendix D.1 and Tables A7-A9"
+      },
+      "including_recurrent_injection": {
+        "baseline_r32": {
+          "loops": 32,
+          "guided": false,
+          "sequence_length": 512,
+          "batch_size": 1,
+          "head_positions": 512,
+          "include_recurrent_injection": true,
+          "components_flops": {
+            "prelude": 820783349760,
+            "recurrent_blocks": 52530134384640,
+            "recurrent_injection": 1827038822400,
+            "final_coda": 820783349760,
+            "final_head": 354334801920,
+            "reference_coda": 0,
+            "reference_head": 0
+          },
+          "total_flops": 56353074708480,
+          "total_tflops": 56.35307470848,
+          "per_block_flops": {
+            "qkv": 85642444800,
+            "attention_output": 28547481600,
+            "attention_products": 5536481280,
+            "gated_mlp": 290665267200
+          },
+          "fraction_of_baseline_r32": 1.0,
+          "removed_percent": 0.0
+        },
+        "baseline_r16": {
+          "loops": 16,
+          "guided": false,
+          "sequence_length": 512,
+          "batch_size": 1,
+          "head_positions": 512,
+          "include_recurrent_injection": true,
+          "components_flops": {
+            "prelude": 820783349760,
+            "recurrent_blocks": 26265067192320,
+            "recurrent_injection": 913519411200,
+            "final_coda": 820783349760,
+            "final_head": 354334801920,
+            "reference_coda": 0,
+            "reference_head": 0
+          },
+          "total_flops": 29174488104960,
+          "total_tflops": 29.17448810496,
+          "per_block_flops": {
+            "qkv": 85642444800,
+            "attention_output": 28547481600,
+            "attention_products": 5536481280,
+            "gated_mlp": 290665267200
+          },
+          "fraction_of_baseline_r32": 0.5177088962027804,
+          "removed_percent": 48.22911037972196
+        },
+        "loopcd_r16_ref5": {
+          "loops": 16,
+          "guided": true,
+          "sequence_length": 512,
+          "batch_size": 1,
+          "head_positions": 512,
+          "include_recurrent_injection": true,
+          "components_flops": {
+            "prelude": 820783349760,
+            "recurrent_blocks": 26265067192320,
+            "recurrent_injection": 913519411200,
+            "final_coda": 820783349760,
+            "final_head": 354334801920,
+            "reference_coda": 820783349760,
+            "reference_head": 354334801920
+          },
+          "total_flops": 30349606256640,
+          "total_tflops": 30.34960625664,
+          "per_block_flops": {
+            "qkv": 85642444800,
+            "attention_output": 28547481600,
+            "attention_products": 5536481280,
+            "gated_mlp": 290665267200
+          },
+          "fraction_of_baseline_r32": 0.5385616741170114,
+          "removed_percent": 46.143832588298864
+        }
+      },
+      "matching_paper_table_convention": {
+        "baseline_r32": {
+          "loops": 32,
+          "guided": false,
+          "sequence_length": 512,
+          "batch_size": 1,
+          "head_positions": 512,
+          "include_recurrent_injection": false,
+          "components_flops": {
+            "prelude": 820783349760,
+            "recurrent_blocks": 52530134384640,
+            "recurrent_injection": 0,
+            "final_coda": 820783349760,
+            "final_head": 354334801920,
+            "reference_coda": 0,
+            "reference_head": 0
+          },
+          "total_flops": 54526035886080,
+          "total_tflops": 54.52603588608,
+          "per_block_flops": {
+            "qkv": 85642444800,
+            "attention_output": 28547481600,
+            "attention_products": 5536481280,
+            "gated_mlp": 290665267200
+          },
+          "fraction_of_baseline_r32": 1.0,
+          "removed_percent": 0.0
+        },
+        "baseline_r16": {
+          "loops": 16,
+          "guided": false,
+          "sequence_length": 512,
+          "batch_size": 1,
+          "head_positions": 512,
+          "include_recurrent_injection": false,
+          "components_flops": {
+            "prelude": 820783349760,
+            "recurrent_blocks": 26265067192320,
+            "recurrent_injection": 0,
+            "final_coda": 820783349760,
+            "final_head": 354334801920,
+            "reference_coda": 0,
+            "reference_head": 0
+          },
+          "total_flops": 28260968693760,
+          "total_tflops": 28.26096869376,
+          "per_block_flops": {
+            "qkv": 85642444800,
+            "attention_output": 28547481600,
+            "attention_products": 5536481280,
+            "gated_mlp": 290665267200
+          },
+          "fraction_of_baseline_r32": 0.5183022795349546,
+          "removed_percent": 48.16977204650455
+        },
+        "loopcd_r16_ref5": {
+          "loops": 16,
+          "guided": true,
+          "sequence_length": 512,
+          "batch_size": 1,
+          "head_positions": 512,
+          "include_recurrent_injection": false,
+          "components_flops": {
+            "prelude": 820783349760,
+            "recurrent_blocks": 26265067192320,
+            "recurrent_injection": 0,
+            "final_coda": 820783349760,
+            "final_head": 354334801920,
+            "reference_coda": 820783349760,
+            "reference_head": 354334801920
+          },
+          "total_flops": 29436086845440,
+          "total_tflops": 29.43608684544,
+          "per_block_flops": {
+            "qkv": 85642444800,
+            "attention_output": 28547481600,
+            "attention_products": 5536481280,
+            "gated_mlp": 290665267200
+          },
+          "fraction_of_baseline_r32": 0.539853784840331,
+          "removed_percent": 46.0146215159669
+        }
+      },
+      "paper_reported": {
+        "baseline_r32_tflops": 54.526,
+        "baseline_r16_tflops": 28.261,
+        "loopcd_r16_fraction_of_baseline_r32": 0.54,
+        "loopcd_r16_removed_percent": 46.0
+      },
+      "accounting_difference": "The printed Huginn TFLOPs match the Transformer blocks and head with dense attention. Including the released core_block_forward's 2d-to-d injection matrix adds one projection per recurrent step. Both ledgers are shown; the injection-inclusive ledger counts all forward matrix products."
+    },
+    "checkpoint_config": {
+      "activation_checkpoint_impl": "per-iteration",
+      "architecture_class_name": "RecurrentGPT",
+      "architectures": [
+        "RavenForCausalLM"
+      ],
+      "auto_map": {
+        "AutoConfig": "raven_config_minimal.RavenConfig",
+        "AutoModelForCausalLM": "raven_modeling_minimal.RavenForCausalLM"
+      },
+      "bias": false,
+      "block_class_name": "SandwichBlock",
+      "block_size": 4096,
+      "effective_expected_depth": 132,
+      "head_dim": 96,
+      "init_orthogonal": false,
+      "init_strategy": "takase",
+      "init_values": {
+        "embed_scale": 72.6636084983398,
+        "embedding": 0.008703882797784892,
+        "out_proj": 0.0005356869554443541,
+        "std": 0.008703882797784892
+      },
+      "injection_type": "linear",
+      "intermediate_size": 17920,
+      "mean_backprop_depth": 8,
+      "mean_recurrence": 32,
+      "mlp_class_name": "GatedMLP",
+      "model_type": "huginn_raven",
+      "n_embd": 5280,
+      "n_heads": 55,
+      "n_layers": 8,
+      "n_layers_in_coda": 2,
+      "n_layers_in_prelude": 2,
+      "n_layers_in_recurrent_block": 4,
+      "nonlin_name": "SiLU",
+      "norm_class_name": "RMSNorm_llama",
+      "norm_eps": 1e-06,
+      "num_key_value_heads": 55,
+      "padded_vocab_size": 65536,
+      "padding_multiple": 4096,
+      "qk_bias": true,
+      "rope_base": 50000,
+      "sampling_scheme": "poisson-lognormal-filling",
+      "state_init": "like-init",
+      "tie_embeddings": true,
+      "torch_dtype": "float32",
+      "transformers_version": "4.44.2",
+      "vocab_size": 65536,
+      "bos_token_id": 65504,
+      "eos_token_id": 65505,
+      "pad_token_id": 65509
+    },
+    "checkpoint_config_sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c",
+    "methodology": {
+      "policies": {
+        "baseline_r32": {
+          "loops": 32,
+          "reference_step": null,
+          "coda_passes": 1
+        },
+        "baseline_r16": {
+          "loops": 16,
+          "reference_step": null,
+          "coda_passes": 1
+        },
+        "loopcd_r16_ref5": {
+          "loops": 16,
+          "reference_step": 5,
+          "fixed_strength": 0.5,
+          "coda_passes": 2
+        }
+      },
+      "selection": "Sort all task candidates by input length, question index, and choice index. Use contiguous fixed-size slices centered on i/(batches+1) length quantiles.",
+      "scope": "Standalone teacher-forced answer-token log probabilities on sampled batches.",
+      "timed_operations": "Input validation, initial-state clone, embedding, prelude, recurrence, policy-specific coda/head, fixed guidance if used, log_softmax and target gather. CUDA is synchronized before and after each perf_counter measurement.",
+      "excluded_from_policy_timing": "Checkpoint loading, tokenizer/data preparation, tensor construction/transfer, initial random-state generation and its transfer, warmup, and result serialization.",
+      "initial_state_handling": "One stable CPU truncated-normal state per input batch is transferred before timing and reused unchanged for every policy and repetition. Separate timings record the actual adapter state generation plus GPU transfer.",
+      "initial_state_storage": "Precomputed initial states for all sampled batches remain on GPU.",
+      "output_projection": "All vocabulary logits at answer-predicting positions only.",
+      "cache": false,
+      "dtype": "float32",
+      "float32_matmul_precision": "highest",
+      "warmup_per_policy_per_batch": 2,
+      "repetitions_per_policy_per_batch": 6,
+      "order": "Repetition r rotates batch order by r; within batch b it rotates policy order by r+b. Each measurement uses an independent forward pass.",
+      "aggregate": "Sum one measured latency from each sampled batch within a repetition; report median, quartiles and MAD across repetitions. Speedup is the ratio of baseline-R32 median aggregate latency to policy median aggregate latency.",
+      "interpretation": "Sampled inference latency; full-task evaluation throughput is not measured."
+    },
+    "provenance": {
+      "data_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+      "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f",
+      "model_manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+      "code_hashes": {
+        "scripts/benchmark_huginn.py": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7",
+        "src/huginn_costs.py": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629",
+        "src/adapter_huginn.py": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa",
+        "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+        "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+        "src/evaluation.py": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+        "src/run_integrity.py": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+        "src/registry.py": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc",
+        "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+        "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
+        "models/Huginn-0125/config.json": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+      },
+      "native_source_hashes": {
+        "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+        "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+      },
+      "paper_source_sha256": "a850609addf17d7e90c1ef01dea437463bfe66a0b65ef62d323ccf9e29ff46a8",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.56.2",
+      "cuda": "12.4",
+      "host": "dcc-h200-gpu-ferc-l-e36-9",
+      "slurm": {
+        "JobId": "59056756",
+        "Account": "scavenger-h200",
+        "Partition": "scavenger-h200",
+        "QOS": "normal",
+        "NodeList": "dcc-h200-gpu-ferc-l-e36-9",
+        "AllocTRES": "cpu=7,mem=64G,node=1,billing=7,gres/gpu=1,gres/gpu:h200=1",
+        "TresPerNode": "gres/gpu:h200:1"
+      },
+      "gpu": "NVIDIA H200",
+      "gpu_total_memory_gib": 139.84423828125,
+      "seed": 1234
+    },
+    "raw_samples": [
+      {
+        "repetition": 0,
+        "batch_index": 0,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 0,
+        "seconds": 0.9731969712302089,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 0,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 1,
+        "seconds": 0.5038719917647541,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 0,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 2,
+        "seconds": 0.5176310790702701,
+        "peak_gpu_allocated_gib": 13.515552043914795,
+        "peak_incremental_gpu_allocated_gib": 0.15956878662109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 1,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 0,
+        "seconds": 0.8721871180459857,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 1,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 1,
+        "seconds": 0.9002108070999384,
+        "peak_gpu_allocated_gib": 13.647960186004639,
+        "peak_incremental_gpu_allocated_gib": 0.2919769287109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 1,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 2,
+        "seconds": 1.6967948912642896,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 2,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 0,
+        "seconds": 1.467091757338494,
+        "peak_gpu_allocated_gib": 13.825448513031006,
+        "peak_incremental_gpu_allocated_gib": 0.4694652557373047,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 2,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 1,
+        "seconds": 2.76594919199124,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 0,
+        "batch_index": 2,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 2,
+        "seconds": 1.4241141849197447,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 1,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 0,
+        "seconds": 0.8985805329866707,
+        "peak_gpu_allocated_gib": 13.647960186004639,
+        "peak_incremental_gpu_allocated_gib": 0.2919769287109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 1,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 1,
+        "seconds": 1.6972887148149312,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 1,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 2,
+        "seconds": 0.8747727037407458,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 2,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 0,
+        "seconds": 2.7719715321436524,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 2,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 1,
+        "seconds": 1.4249892411753535,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 2,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 2,
+        "seconds": 1.4664367199875414,
+        "peak_gpu_allocated_gib": 13.825448513031006,
+        "peak_incremental_gpu_allocated_gib": 0.4694652557373047,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 0,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 0,
+        "seconds": 0.503787615802139,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 0,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 1,
+        "seconds": 0.5185335329733789,
+        "peak_gpu_allocated_gib": 13.515552043914795,
+        "peak_incremental_gpu_allocated_gib": 0.15956878662109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 1,
+        "batch_index": 0,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 2,
+        "seconds": 0.9763144091702998,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 2,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 0,
+        "seconds": 1.4255179949104786,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 2,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 1,
+        "seconds": 1.4692476517520845,
+        "peak_gpu_allocated_gib": 13.825448513031006,
+        "peak_incremental_gpu_allocated_gib": 0.4694652557373047,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 2,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 2,
+        "seconds": 2.76980358408764,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 0,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 0,
+        "seconds": 0.518337894231081,
+        "peak_gpu_allocated_gib": 13.515552043914795,
+        "peak_incremental_gpu_allocated_gib": 0.15956878662109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 0,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 1,
+        "seconds": 0.9769612587988377,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 0,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 2,
+        "seconds": 0.5040984102524817,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 1,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 0,
+        "seconds": 1.6979210209101439,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 1,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 1,
+        "seconds": 0.8746277582831681,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 2,
+        "batch_index": 1,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 2,
+        "seconds": 0.9014834249392152,
+        "peak_gpu_allocated_gib": 13.647960186004639,
+        "peak_incremental_gpu_allocated_gib": 0.2919769287109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 0,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 0,
+        "seconds": 0.9771511163562536,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 0,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 1,
+        "seconds": 0.5018819561228156,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 0,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 2,
+        "seconds": 0.5202330769971013,
+        "peak_gpu_allocated_gib": 13.515552043914795,
+        "peak_incremental_gpu_allocated_gib": 0.15956878662109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 1,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 0,
+        "seconds": 0.8762042871676385,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 1,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 1,
+        "seconds": 0.901062885299325,
+        "peak_gpu_allocated_gib": 13.647960186004639,
+        "peak_incremental_gpu_allocated_gib": 0.2919769287109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 1,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 2,
+        "seconds": 1.6991350590251386,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 2,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 0,
+        "seconds": 1.4672522959299386,
+        "peak_gpu_allocated_gib": 13.825448513031006,
+        "peak_incremental_gpu_allocated_gib": 0.4694652557373047,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 2,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 1,
+        "seconds": 2.7737134131602943,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 3,
+        "batch_index": 2,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 2,
+        "seconds": 1.427595192566514,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 1,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 0,
+        "seconds": 0.8987404708750546,
+        "peak_gpu_allocated_gib": 13.647960186004639,
+        "peak_incremental_gpu_allocated_gib": 0.2919769287109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 1,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 1,
+        "seconds": 1.7007171879522502,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 1,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 2,
+        "seconds": 0.8757239477708936,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 2,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 0,
+        "seconds": 2.7702917368151248,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 2,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 1,
+        "seconds": 1.4278184631839395,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 2,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 2,
+        "seconds": 1.4688836666755378,
+        "peak_gpu_allocated_gib": 13.825448513031006,
+        "peak_incremental_gpu_allocated_gib": 0.4694652557373047,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 0,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 0,
+        "seconds": 0.5046737580560148,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 0,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 1,
+        "seconds": 0.5186282079666853,
+        "peak_gpu_allocated_gib": 13.515552043914795,
+        "peak_incremental_gpu_allocated_gib": 0.15956878662109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 4,
+        "batch_index": 0,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 2,
+        "seconds": 0.9781465502455831,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 2,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 0,
+        "seconds": 1.426000876352191,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 2,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 1,
+        "seconds": 1.4706847732886672,
+        "peak_gpu_allocated_gib": 13.825448513031006,
+        "peak_incremental_gpu_allocated_gib": 0.4694652557373047,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 2,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 2,
+        "seconds": 2.7721535516902804,
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 0,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 0,
+        "seconds": 0.5203975629992783,
+        "peak_gpu_allocated_gib": 13.515552043914795,
+        "peak_incremental_gpu_allocated_gib": 0.15956878662109375,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 0,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 1,
+        "seconds": 0.9780745534226298,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 0,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 2,
+        "seconds": 0.5042245592921972,
+        "peak_gpu_allocated_gib": 13.500760555267334,
+        "peak_incremental_gpu_allocated_gib": 0.1447772979736328,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 1,
+        "policy": "baseline_r32",
+        "policy_order_in_batch": 0,
+        "seconds": 1.700080535840243,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 1,
+        "policy": "baseline_r16",
+        "policy_order_in_batch": 1,
+        "seconds": 0.8756486531347036,
+        "peak_gpu_allocated_gib": 13.62089490890503,
+        "peak_incremental_gpu_allocated_gib": 0.2649116516113281,
+        "peak_gpu_reserved_gib": 14.578125
+      },
+      {
+        "repetition": 5,
+        "batch_index": 1,
+        "policy": "loopcd_r16_ref5",
+        "policy_order_in_batch": 2,
+        "seconds": 0.9017792758531868,
+        "peak_gpu_allocated_gib": 13.647960186004639,
+        "peak_incremental_gpu_allocated_gib": 0.2919769287109375,
+        "peak_gpu_reserved_gib": 14.578125
+      }
+    ],
+    "batches": [
+      {
+        "batch_index": 0,
+        "length_quantile": 0.25,
+        "start_in_length_sorted_candidates": 995,
+        "candidate_count": 8,
+        "padded_length": 47,
+        "input_tokens_without_padding": 376,
+        "answer_prediction_positions": 16,
+        "candidates": [
+          {
+            "question_index": 12,
+            "question_id": "sciq:test:000012",
+            "choice_index": 2,
+            "input_length": 47,
+            "target_ids": [
+              10141,
+              57889
+            ]
+          },
+          {
+            "question_index": 12,
+            "question_id": "sciq:test:000012",
+            "choice_index": 3,
+            "input_length": 47,
+            "target_ids": [
+              22480,
+              52763
+            ]
+          },
+          {
+            "question_index": 47,
+            "question_id": "sciq:test:000047",
+            "choice_index": 0,
+            "input_length": 47,
+            "target_ids": [
+              23642,
+              272
+            ]
+          },
+          {
+            "question_index": 47,
+            "question_id": "sciq:test:000047",
+            "choice_index": 1,
+            "input_length": 47,
+            "target_ids": [
+              23147,
+              12315
+            ]
+          },
+          {
+            "question_index": 90,
+            "question_id": "sciq:test:000090",
+            "choice_index": 0,
+            "input_length": 47,
+            "target_ids": [
+              305,
+              34596
+            ]
+          },
+          {
+            "question_index": 104,
+            "question_id": "sciq:test:000104",
+            "choice_index": 0,
+            "input_length": 47,
+            "target_ids": [
+              3615,
+              3874
+            ]
+          },
+          {
+            "question_index": 104,
+            "question_id": "sciq:test:000104",
+            "choice_index": 1,
+            "input_length": 47,
+            "target_ids": [
+              4240,
+              1524
+            ]
+          },
+          {
+            "question_index": 104,
+            "question_id": "sciq:test:000104",
+            "choice_index": 2,
+            "input_length": 47,
+            "target_ids": [
+              2110,
+              3874
+            ]
+          }
+        ],
+        "initial_state_generation_seconds": {
+          "n": 6,
+          "median": 0.008930369978770614,
+          "mean": 0.009119938515747586,
+          "minimum": 0.008709154091775417,
+          "maximum": 0.010165862739086151,
+          "p25": 0.008757863310165703,
+          "p75": 0.009195227408781648,
+          "iqr": 0.0004373640986159444,
+          "median_absolute_deviation": 0.00019899988546967506
+        },
+        "initial_state_generation_raw_seconds": [
+          0.00875358609482646,
+          0.010165862739086151,
+          0.009230288211256266,
+          0.008770694956183434,
+          0.009090045001357794,
+          0.008709154091775417
+        ],
+        "flops": {
+          "baseline_r32": {
+            "loops": 32,
+            "guided": false,
+            "sequence_length": 47,
+            "batch_size": 8,
+            "head_positions": 16,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 595377530880,
+              "recurrent_blocks": 38104161976320,
+              "recurrent_injection": 1341731635200,
+              "final_coda": 595377530880,
+              "final_head": 11072962560,
+              "reference_coda": 0,
+              "reference_head": 0
+            },
+            "total_flops": 40647721635840,
+            "total_tflops": 40.64772163584,
+            "per_block_flops": {
+              "qkv": 62893670400,
+              "attention_output": 20964556800,
+              "attention_products": 373232640,
+              "gated_mlp": 213457305600
+            },
+            "fraction_of_baseline_r32": 1.0,
+            "removed_percent": 0.0
+          },
+          "baseline_r16": {
+            "loops": 16,
+            "guided": false,
+            "sequence_length": 47,
+            "batch_size": 8,
+            "head_positions": 16,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 595377530880,
+              "recurrent_blocks": 19052080988160,
+              "recurrent_injection": 670865817600,
+              "final_coda": 595377530880,
+              "final_head": 11072962560,
+              "reference_coda": 0,
+              "reference_head": 0
+            },
+            "total_flops": 20924774830080,
+            "total_tflops": 20.92477483008,
+            "per_block_flops": {
+              "qkv": 62893670400,
+              "attention_output": 20964556800,
+              "attention_products": 373232640,
+              "gated_mlp": 213457305600
+            },
+            "fraction_of_baseline_r32": 0.514783461113603,
+            "removed_percent": 48.521653888639705
+          },
+          "loopcd_r16_ref5": {
+            "loops": 16,
+            "guided": true,
+            "sequence_length": 47,
+            "batch_size": 8,
+            "head_positions": 16,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 595377530880,
+              "recurrent_blocks": 19052080988160,
+              "recurrent_injection": 670865817600,
+              "final_coda": 595377530880,
+              "final_head": 11072962560,
+              "reference_coda": 595377530880,
+              "reference_head": 11072962560
+            },
+            "total_flops": 21531225323520,
+            "total_tflops": 21.53122532352,
+            "per_block_flops": {
+              "qkv": 62893670400,
+              "attention_output": 20964556800,
+              "attention_products": 373232640,
+              "gated_mlp": 213457305600
+            },
+            "fraction_of_baseline_r32": 0.5297031286628238,
+            "removed_percent": 47.02968713371762
+          }
+        }
+      },
+      {
+        "batch_index": 1,
+        "length_quantile": 0.5,
+        "start_in_length_sorted_candidates": 1995,
+        "candidate_count": 8,
+        "padded_length": 86,
+        "input_tokens_without_padding": 688,
+        "answer_prediction_positions": 17,
+        "candidates": [
+          {
+            "question_index": 58,
+            "question_id": "sciq:test:000058",
+            "choice_index": 0,
+            "input_length": 86,
+            "target_ids": [
+              27100,
+              6195,
+              38527,
+              384,
+              20541,
+              23399
+            ]
+          },
+          {
+            "question_index": 93,
+            "question_id": "sciq:test:000093",
+            "choice_index": 0,
+            "input_length": 86,
+            "target_ids": [
+              10620
+            ]
+          },
+          {
+            "question_index": 93,
+            "question_id": "sciq:test:000093",
+            "choice_index": 1,
+            "input_length": 86,
+            "target_ids": [
+              38196
+            ]
+          },
+          {
+            "question_index": 108,
+            "question_id": "sciq:test:000108",
+            "choice_index": 3,
+            "input_length": 86,
+            "target_ids": [
+              7049,
+              57834
+            ]
+          },
+          {
+            "question_index": 206,
+            "question_id": "sciq:test:000206",
+            "choice_index": 0,
+            "input_length": 86,
+            "target_ids": [
+              51659,
+              12625
+            ]
+          },
+          {
+            "question_index": 456,
+            "question_id": "sciq:test:000456",
+            "choice_index": 0,
+            "input_length": 86,
+            "target_ids": [
+              752,
+              6992
+            ]
+          },
+          {
+            "question_index": 456,
+            "question_id": "sciq:test:000456",
+            "choice_index": 1,
+            "input_length": 86,
+            "target_ids": [
+              29619,
+              10656
+            ]
+          },
+          {
+            "question_index": 574,
+            "question_id": "sciq:test:000574",
+            "choice_index": 0,
+            "input_length": 86,
+            "target_ids": [
+              2509
+            ]
+          }
+        ],
+        "initial_state_generation_seconds": {
+          "n": 6,
+          "median": 0.024998692562803626,
+          "mean": 0.024947480376188953,
+          "minimum": 0.024587404914200306,
+          "maximum": 0.025330150965601206,
+          "p25": 0.024775544763542712,
+          "p75": 0.02505125745665282,
+          "iqr": 0.0002757126931101084,
+          "median_absolute_deviation": 0.0001663153525441885
+        },
+        "initial_state_generation_raw_seconds": [
+          0.024587404914200306,
+          0.025330150965601206,
+          0.02471865527331829,
+          0.025051285978406668,
+          0.025051171891391277,
+          0.024946213234215975
+        ],
+        "flops": {
+          "baseline_r32": {
+            "loops": 32,
+            "guided": false,
+            "sequence_length": 86,
+            "batch_size": 8,
+            "head_positions": 17,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 1090547589120,
+              "recurrent_blocks": 69795045703680,
+              "recurrent_injection": 2455083417600,
+              "final_coda": 1090547589120,
+              "final_head": 11765022720,
+              "reference_coda": 0,
+              "reference_head": 0
+            },
+            "total_flops": 74442989322240,
+            "total_tflops": 74.44298932224,
+            "per_block_flops": {
+              "qkv": 115082035200,
+              "attention_output": 38360678400,
+              "attention_products": 1249628160,
+              "gated_mlp": 390581452800
+            },
+            "fraction_of_baseline_r32": 1.0,
+            "removed_percent": 0.0
+          },
+          "baseline_r16": {
+            "loops": 16,
+            "guided": false,
+            "sequence_length": 86,
+            "batch_size": 8,
+            "head_positions": 17,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 1090547589120,
+              "recurrent_blocks": 34897522851840,
+              "recurrent_injection": 1227541708800,
+              "final_coda": 1090547589120,
+              "final_head": 11765022720,
+              "reference_coda": 0,
+              "reference_head": 0
+            },
+            "total_flops": 38317924761600,
+            "total_tflops": 38.3179247616,
+            "per_block_flops": {
+              "qkv": 115082035200,
+              "attention_output": 38360678400,
+              "attention_products": 1249628160,
+              "gated_mlp": 390581452800
+            },
+            "fraction_of_baseline_r32": 0.514728453417338,
+            "removed_percent": 48.527154658266205
+          },
+          "loopcd_r16_ref5": {
+            "loops": 16,
+            "guided": true,
+            "sequence_length": 86,
+            "batch_size": 8,
+            "head_positions": 17,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 1090547589120,
+              "recurrent_blocks": 34897522851840,
+              "recurrent_injection": 1227541708800,
+              "final_coda": 1090547589120,
+              "final_head": 11765022720,
+              "reference_coda": 1090547589120,
+              "reference_head": 11765022720
+            },
+            "total_flops": 39420237373440,
+            "total_tflops": 39.42023737344,
+            "per_block_flops": {
+              "qkv": 115082035200,
+              "attention_output": 38360678400,
+              "attention_products": 1249628160,
+              "gated_mlp": 390581452800
+            },
+            "fraction_of_baseline_r32": 0.5295359271885542,
+            "removed_percent": 47.046407281144575
+          }
+        }
+      },
+      {
+        "batch_index": 2,
+        "length_quantile": 0.75,
+        "start_in_length_sorted_candidates": 2995,
+        "candidate_count": 8,
+        "padded_length": 138,
+        "input_tokens_without_padding": 1098,
+        "answer_prediction_positions": 20,
+        "candidates": [
+          {
+            "question_index": 218,
+            "question_id": "sciq:test:000218",
+            "choice_index": 1,
+            "input_length": 137,
+            "target_ids": [
+              18666,
+              4793
+            ]
+          },
+          {
+            "question_index": 218,
+            "question_id": "sciq:test:000218",
+            "choice_index": 2,
+            "input_length": 137,
+            "target_ids": [
+              3629,
+              9082
+            ]
+          },
+          {
+            "question_index": 218,
+            "question_id": "sciq:test:000218",
+            "choice_index": 3,
+            "input_length": 137,
+            "target_ids": [
+              3638,
+              9082
+            ]
+          },
+          {
+            "question_index": 264,
+            "question_id": "sciq:test:000264",
+            "choice_index": 2,
+            "input_length": 137,
+            "target_ids": [
+              14253
+            ]
+          },
+          {
+            "question_index": 383,
+            "question_id": "sciq:test:000383",
+            "choice_index": 3,
+            "input_length": 137,
+            "target_ids": [
+              6892,
+              846
+            ]
+          },
+          {
+            "question_index": 694,
+            "question_id": "sciq:test:000694",
+            "choice_index": 3,
+            "input_length": 137,
+            "target_ids": [
+              658,
+              1638,
+              333,
+              566,
+              329
+            ]
+          },
+          {
+            "question_index": 32,
+            "question_id": "sciq:test:000032",
+            "choice_index": 0,
+            "input_length": 138,
+            "target_ids": [
+              4199,
+              298,
+              406
+            ]
+          },
+          {
+            "question_index": 45,
+            "question_id": "sciq:test:000045",
+            "choice_index": 1,
+            "input_length": 138,
+            "target_ids": [
+              2414,
+              3398,
+              5082
+            ]
+          }
+        ],
+        "initial_state_generation_seconds": {
+          "n": 6,
+          "median": 0.037442043190822005,
+          "mean": 0.03789276893561085,
+          "minimum": 0.03721632994711399,
+          "maximum": 0.03963459422811866,
+          "p25": 0.0372587067540735,
+          "p75": 0.038178517133928835,
+          "iqr": 0.0009198103798553348,
+          "median_absolute_deviation": 0.0002167245838791132
+        },
+        "initial_state_generation_raw_seconds": [
+          0.03721632994711399,
+          0.03838729579001665,
+          0.03963459422811866,
+          0.03733190521597862,
+          0.03755218116566539,
+          0.03723430726677179
+        ],
+        "flops": {
+          "baseline_r32": {
+            "loops": 32,
+            "guided": false,
+            "sequence_length": 138,
+            "batch_size": 8,
+            "head_positions": 20,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 1752373370880,
+              "recurrent_blocks": 112151895736320,
+              "recurrent_injection": 3939552460800,
+              "final_coda": 1752373370880,
+              "final_head": 13841203200,
+              "reference_coda": 0,
+              "reference_head": 0
+            },
+            "total_flops": 119610036142080,
+            "total_tflops": 119.61003614208,
+            "per_block_flops": {
+              "qkv": 184666521600,
+              "attention_output": 61555507200,
+              "attention_products": 3217674240,
+              "gated_mlp": 626746982400
+            },
+            "fraction_of_baseline_r32": 1.0,
+            "removed_percent": 0.0
+          },
+          "baseline_r16": {
+            "loops": 16,
+            "guided": false,
+            "sequence_length": 138,
+            "batch_size": 8,
+            "head_positions": 20,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 1752373370880,
+              "recurrent_blocks": 56075947868160,
+              "recurrent_injection": 1969776230400,
+              "final_coda": 1752373370880,
+              "final_head": 13841203200,
+              "reference_coda": 0,
+              "reference_head": 0
+            },
+            "total_flops": 61564312043520,
+            "total_tflops": 61.56431204352,
+            "per_block_flops": {
+              "qkv": 184666521600,
+              "attention_output": 61555507200,
+              "attention_products": 3217674240,
+              "gated_mlp": 626746982400
+            },
+            "fraction_of_baseline_r32": 0.5147085815640938,
+            "removed_percent": 48.529141843590615
+          },
+          "loopcd_r16_ref5": {
+            "loops": 16,
+            "guided": true,
+            "sequence_length": 138,
+            "batch_size": 8,
+            "head_positions": 20,
+            "include_recurrent_injection": true,
+            "components_flops": {
+              "prelude": 1752373370880,
+              "recurrent_blocks": 56075947868160,
+              "recurrent_injection": 1969776230400,
+              "final_coda": 1752373370880,
+              "final_head": 13841203200,
+              "reference_coda": 1752373370880,
+              "reference_head": 13841203200
+            },
+            "total_flops": 63330526617600,
+            "total_tflops": 63.3305266176,
+            "per_block_flops": {
+              "qkv": 184666521600,
+              "attention_output": 61555507200,
+              "attention_products": 3217674240,
+              "gated_mlp": 626746982400
+            },
+            "fraction_of_baseline_r32": 0.5294750228348079,
+            "removed_percent": 47.05249771651921
+          }
+        }
+      }
+    ],
+    "checkpoint_load_seconds": 3.5887862569652498,
+    "adapter_metadata": {
+      "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+      "loops": 16,
+      "reference_recurrent_update": 5,
+      "reference_is_initial_noise": false,
+      "coda_layers": 2,
+      "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+      "noise_seed": 1234,
+      "noise_key": "SHA256(seed, question ID), independent of answer text",
+      "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+      "noise_std_before_embedding_scale": 0.008703882797784892,
+      "noise_truncation_standard_deviations": [
+        -3,
+        3
+      ],
+      "noise_embedding_scale": 72.6636084983398,
+      "noise_coupling": "same question shares identical positional initial states across options and depths",
+      "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+      "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+      "add_bos_token": true,
+      "bos_token_id": 65504,
+      "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+      "bos_evidence": [
+        "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+        "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+        "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+      ]
+    },
+    "truncation_details": {
+      "model_max_length": 4096,
+      "original_max_input_tokens": 668,
+      "candidates_truncated": 0,
+      "questions_truncated": 0,
+      "total_removed_context_tokens": 0,
+      "records": []
+    },
+    "validation": {
+      "baseline_r32": {
+        "standalone_matches_joint_baseline_exactly": true,
+        "max_absolute_logit_difference": 0.0
+      },
+      "baseline_r16": {
+        "standalone_matches_joint_baseline_exactly": true,
+        "max_absolute_logit_difference": 0.0
+      },
+      "loopcd_r16_ref5": {
+        "matches_shared_evaluator_token_logprobs_exactly": true,
+        "max_absolute_token_logprob_difference": 0.0,
+        "precomputed_noise_matches_normal_state_generation": true
+      }
+    },
+    "timing": {
+      "baseline_r32": {
+        "aggregate_seconds": {
+          "n": 6,
+          "median": 5.447365065570921,
+          "mean": 5.445944213153173,
+          "minimum": 5.435941054485738,
+          "maximum": 5.450308640953153,
+          "p25": 5.444908061879687,
+          "p75": 5.449788560159504,
+          "iqr": 0.004880498279817402,
+          "median_absolute_deviation": 0.002656862372532487
+        },
+        "aggregate_raw_seconds": [
+          5.435941054485738,
+          5.445574656128883,
+          5.444685863796622,
+          5.4499995885416865,
+          5.449155475012958,
+          5.450308640953153
+        ],
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "by_batch": [
+          {
+            "batch_index": 0,
+            "seconds": {
+              "n": 6,
+              "median": 0.9770561875775456,
+              "mean": 0.9766408098706355,
+              "minimum": 0.9731969712302089,
+              "maximum": 0.9781465502455831,
+              "p25": 0.9764761215774342,
+              "p75": 0.9778436941560358,
+              "iqr": 0.0013675725786015391,
+              "median_absolute_deviation": 0.0008800721261650324
+            },
+            "raw_seconds": [
+              0.9731969712302089,
+              0.9763144091702998,
+              0.9769612587988377,
+              0.9771511163562536,
+              0.9781465502455831,
+              0.9780745534226298
+            ],
+            "peak_gpu_allocated_gib": 13.500760555267334
+          },
+          {
+            "batch_index": 1,
+            "seconds": {
+              "n": 6,
+              "median": 1.6985280399676412,
+              "mean": 1.6986562349678327,
+              "minimum": 1.6967948912642896,
+              "maximum": 1.7007171879522502,
+              "p25": 1.6974467913387343,
+              "p75": 1.699844166636467,
+              "iqr": 0.0023973752977326512,
+              "median_absolute_deviation": 0.0013959105126559734
+            },
+            "raw_seconds": [
+              1.6967948912642896,
+              1.6972887148149312,
+              1.6979210209101439,
+              1.6991350590251386,
+              1.7007171879522502,
+              1.700080535840243
+            ],
+            "peak_gpu_allocated_gib": 13.62089490890503
+          },
+          {
+            "batch_index": 2,
+            "seconds": {
+              "n": 6,
+              "median": 2.7711316344793886,
+              "mean": 2.770647168314705,
+              "minimum": 2.76594919199124,
+              "maximum": 2.7737134131602943,
+              "p25": 2.7699256222695112,
+              "p75": 2.7721080468036234,
+              "iqr": 0.002182424534112215,
+              "median_absolute_deviation": 0.0011749838013201952
+            },
+            "raw_seconds": [
+              2.76594919199124,
+              2.7719715321436524,
+              2.76980358408764,
+              2.7737134131602943,
+              2.7702917368151248,
+              2.7721535516902804
+            ],
+            "peak_gpu_allocated_gib": 13.782018184661865
+          }
+        ],
+        "speedup_vs_baseline_r32": 1.0
+      },
+      "baseline_r16": {
+        "aggregate_seconds": {
+          "n": 6,
+          "median": 2.8049627996515483,
+          "mean": 2.8046231187569597,
+          "minimum": 2.8001732947304845,
+          "maximum": 2.808216169010848,
+          "p25": 2.803723211400211,
+          "p75": 2.805825925548561,
+          "iqr": 0.00210271414835006,
+          "median_absolute_deviation": 0.0011622640304267406
+        },
+        "aggregate_raw_seconds": [
+          2.8001732947304845,
+          2.8035495607182384,
+          2.8042441634461284,
+          2.805681435856968,
+          2.808216169010848,
+          2.805874088779092
+        ],
+        "peak_gpu_allocated_gib": 13.782018184661865,
+        "peak_incremental_gpu_allocated_gib": 0.42603492736816406,
+        "by_batch": [
+          {
+            "batch_index": 0,
+            "seconds": {
+              "n": 6,
+              "median": 0.5039852010086179,
+              "mean": 0.5037563818817338,
+              "minimum": 0.5018819561228156,
+              "maximum": 0.5046737580560148,
+              "p25": 0.5038087097927928,
+              "p75": 0.5041930220322683,
+              "iqr": 0.00038431223947554827,
+              "median_absolute_deviation": 0.00021847174502909184
+            },
+            "raw_seconds": [
+              0.5038719917647541,
+              0.503787615802139,
+              0.5040984102524817,
+              0.5018819561228156,
+              0.5046737580560148,
+              0.5042245592921972
+            ],
+            "peak_gpu_allocated_gib": 13.500760555267334
+          },
+          {
+            "batch_index": 1,
+            "seconds": {
+              "n": 6,
+              "median": 0.8752106784377247,
+              "mean": 0.8748607446905226,
+              "minimum": 0.8721871180459857,
+              "maximum": 0.8762042871676385,
+              "p25": 0.8746639946475625,
+              "p75": 0.8757051241118461,
+              "iqr": 0.0010411294642835855,
+              "median_absolute_deviation": 0.0005480947438627481
+            },
+            "raw_seconds": [
+              0.8721871180459857,
+              0.8747727037407458,
+              0.8746277582831681,
+              0.8762042871676385,
+              0.8757239477708936,
+              0.8756486531347036
+            ],
+            "peak_gpu_allocated_gib": 13.62089490890503
+          },
+          {
+            "batch_index": 2,
+            "seconds": {
+              "n": 6,
+              "median": 1.4257594356313348,
+              "mean": 1.4260059921847035,
+              "minimum": 1.4241141849197447,
+              "maximum": 1.4278184631839395,
+              "p25": 1.4251214296091348,
+              "p75": 1.4271966135129333,
+              "iqr": 0.002075183903798461,
+              "median_absolute_deviation": 0.0012077225837856531
+            },
+            "raw_seconds": [
+              1.4241141849197447,
+              1.4249892411753535,
+              1.4255179949104786,
+              1.427595192566514,
+              1.4278184631839395,
+              1.426000876352191
+            ],
+            "peak_gpu_allocated_gib": 13.782018184661865
+          }
+        ],
+        "speedup_vs_baseline_r32": 1.9420453869290637
+      },
+      "loopcd_r16_ref5": {
+        "aggregate_seconds": {
+          "n": 6,
+          "median": 2.8874003018718213,
+          "mean": 2.8875359360439083,
+          "minimum": 2.883550785947591,
+          "maximum": 2.8928616121411324,
+          "p25": 2.8852633190108463,
+          "p75": 2.8889387927483767,
+          "iqr": 0.0036754737375304103,
+          "median_absolute_deviation": 0.0020676637068390846
+        },
+        "aggregate_raw_seconds": [
+          2.8849336435087025,
+          2.883550785947591,
+          2.8890689709223807,
+          2.888548258226365,
+          2.8862523455172777,
+          2.8928616121411324
+        ],
+        "peak_gpu_allocated_gib": 13.825448513031006,
+        "peak_incremental_gpu_allocated_gib": 0.4694652557373047,
+        "by_batch": [
+          {
+            "batch_index": 0,
+            "seconds": {
+              "n": 6,
+              "median": 0.5185808704700321,
+              "mean": 0.5189602257062992,
+              "minimum": 0.5176310790702701,
+              "maximum": 0.5203975629992783,
+              "p25": 0.5183868039166555,
+              "p75": 0.5198318597394973,
+              "iqr": 0.001445055822841823,
+              "median_absolute_deviation": 0.0005963838193565607
+            },
+            "raw_seconds": [
+              0.5176310790702701,
+              0.5185335329733789,
+              0.518337894231081,
+              0.5202330769971013,
+              0.5186282079666853,
+              0.5203975629992783
+            ],
+            "peak_gpu_allocated_gib": 13.515552043914795
+          },
+          {
+            "batch_index": 1,
+            "seconds": {
+              "n": 6,
+              "median": 0.9006368461996317,
+              "mean": 0.9003095661755651,
+              "minimum": 0.8985805329866707,
+              "maximum": 0.9017792758531868,
+              "p25": 0.8991080549312755,
+              "p75": 0.9013782900292426,
+              "iqr": 0.0022702350979670882,
+              "median_absolute_deviation": 0.0009945041965693235
+            },
+            "raw_seconds": [
+              0.9002108070999384,
+              0.8985805329866707,
+              0.9014834249392152,
+              0.901062885299325,
+              0.8987404708750546,
+              0.9017792758531868
+            ],
+            "peak_gpu_allocated_gib": 13.647960186004639
+          },
+          {
+            "batch_index": 2,
+            "seconds": {
+              "n": 6,
+              "median": 1.4680679813027382,
+              "mean": 1.468266144162044,
+              "minimum": 1.4664367199875414,
+              "maximum": 1.4706847732886672,
+              "p25": 1.4671318919863552,
+              "p75": 1.4691566554829478,
+              "iqr": 0.002024763496592641,
+              "median_absolute_deviation": 0.0010779472067952156
+            },
+            "raw_seconds": [
+              1.467091757338494,
+              1.4664367199875414,
+              1.4692476517520845,
+              1.4672522959299386,
+              1.4688836666755378,
+              1.4706847732886672
+            ],
+            "peak_gpu_allocated_gib": 13.825448513031006
+          }
+        ],
+        "speedup_vs_baseline_r32": 1.8865984955530917
+      }
+    },
+    "finished_utc": "2026-10-20T19:27:13.829526+00:00"
+  },
+  "cost_audit": {
+    "passed": true,
+    "costs_sha256": "accde21b66ddc5639514018947fec61391edc3eb9c7dc114e4d00317c8e30c59",
+    "verified_source_files": 11,
+    "verified_native_files": 2,
+    "independent_retokenization": true,
+    "verified_sampled_candidates": 24,
+    "verified_raw_timing_samples": 54,
+    "flops_recomputed": true,
+    "timing_statistics_recomputed": true,
+    "shared_evaluation_provenance": true,
+    "standalone_validation_passed": true
+  },
+  "audited_runs": {
+    "full": {
+      "display": "Huginn-0125 R=32",
+      "configuration": {
+        "family": "huginn",
+        "display": "Huginn-0125 R=32",
+        "model_path": "models/Huginn-0125",
+        "model_manifest": "models/huginn_manifest.json",
+        "loops": 32,
+        "fixed": 0.5,
+        "cap": 0.5,
+        "batch_size": 8,
+        "matmul_precision": "highest"
+      },
+      "shots": 0,
+      "results_path": "results/multitask/sciq/huginn_32",
+      "n": 1000,
+      "correct": {
+        "acc": {
+          "baseline": 931,
+          "loopcd_fixed": 927,
+          "loopcd_adaptive": 929,
+          "reference": 577
+        },
+        "acc_norm": {
+          "baseline": 903,
+          "loopcd_fixed": 907,
+          "loopcd_adaptive": 913,
+          "reference": 512
+        }
+      },
+      "accuracy_percent": {
+        "acc": {
+          "baseline": 93.1,
+          "loopcd_fixed": 92.7,
+          "loopcd_adaptive": 92.9,
+          "reference": 57.7
+        },
+        "acc_norm": {
+          "baseline": 90.3,
+          "loopcd_fixed": 90.7,
+          "loopcd_adaptive": 91.3,
+          "reference": 51.2
+        }
+      },
+      "paired": {
+        "acc": {
+          "loopcd_fixed": {
+            "corrected": 10,
+            "regressed": 14,
+            "net_correct": -4,
+            "changed_answers": 26,
+            "delta_percentage_points": -0.4,
+            "paired_bootstrap_95ci_pp": [
+              -1.4,
+              0.6
+            ],
+            "mcnemar_exact_two_sided_p": 0.5412561893463135
+          },
+          "loopcd_adaptive": {
+            "corrected": 11,
+            "regressed": 13,
+            "net_correct": -2,
+            "changed_answers": 28,
+            "delta_percentage_points": -0.2,
+            "paired_bootstrap_95ci_pp": [
+              -1.2,
+              0.8
+            ],
+            "mcnemar_exact_two_sided_p": 0.8388197422027588
+          }
+        },
+        "acc_norm": {
+          "loopcd_fixed": {
+            "corrected": 15,
+            "regressed": 11,
+            "net_correct": 4,
+            "changed_answers": 30,
+            "delta_percentage_points": 0.4,
+            "paired_bootstrap_95ci_pp": [
+              -0.6,
+              1.4
+            ],
+            "mcnemar_exact_two_sided_p": 0.557197093963623
+          },
+          "loopcd_adaptive": {
+            "corrected": 16,
+            "regressed": 6,
+            "net_correct": 10,
+            "changed_answers": 24,
+            "delta_percentage_points": 1.0,
+            "paired_bootstrap_95ci_pp": [
+              0.1,
+              1.9
+            ],
+            "mcnemar_exact_two_sided_p": 0.052478790283203125
+          }
+        }
+      },
+      "paper_table2": {
+        "baseline": 90.4,
+        "loopcd_fixed": 91.1,
+        "loopcd_adaptive": 91.2
+      },
+      "actual_minus_paper_pp": {
+        "baseline": 2.6999999999999886,
+        "loopcd_fixed": 1.6000000000000085,
+        "loopcd_adaptive": 1.7000000000000028
+      },
+      "checkpoint": {
+        "repository": "tomg-group-umd/huginn-0125",
+        "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+        "manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+        "metadata_sha256_verified": {
+          "models/Huginn-0125/README.md": "66a7c428fc8aa7dd63ec0682009c1eee099fe86d251e704918bef642f4e755fa",
+          "models/Huginn-0125/config.json": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c",
+          "models/Huginn-0125/generation_config.json": "3ed2b71c39d566df6ab667a2b843322cbafd2dd7dace7a27bc39dc7c3c3627ee",
+          "models/Huginn-0125/model.safetensors.index.json": "a28061573e97ba3645b482c11d82ba903b40942de0113472b30afb5a3cf4c1eb",
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+          "models/Huginn-0125/special_tokens_map.json": "1291ad5fcb7b7628c3885a2d973f165d006cb87530ca368db90374dc9942224e",
+          "models/Huginn-0125/tokenizer.json": "9cc201a5061b70aba0d227ef9766fcfe21e0989e0c0ba442b4d7732c4de12308",
+          "models/Huginn-0125/tokenizer_config.json": "ff9e171e16f200e7865c27fa38e661722848ab665af1610d5bb2b62502d6cdcf"
+        },
+        "native_source_hashes": {
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+        },
+        "large_weights": {
+          "models/Huginn-0125/model-00001-of-00004.safetensors": {
+            "bytes": 4771970936,
+            "download_verified_sha256": "5b461584b74249e87eabec34b59a13e188791dd8a7ccf2c7be95bb7fa8383e43"
+          },
+          "models/Huginn-0125/model-00002-of-00004.safetensors": {
+            "bytes": 4744780096,
+            "download_verified_sha256": "44bac332b204abb687b2820eb0fadcb5795fdb0cfc06b3b6f2ac5241eec5c591"
+          },
+          "models/Huginn-0125/model-00003-of-00004.safetensors": {
+            "bytes": 4744737616,
+            "download_verified_sha256": "07160dce9da01918d0b0bf2159ffe11d007e1fbe661d687ad4a7b0e65bde4e84"
+          },
+          "models/Huginn-0125/model-00004-of-00004.safetensors": {
+            "bytes": 1384120448,
+            "download_verified_sha256": "40ce4f159938857dbbfa1020962045e1b96303ff902cfa76051ce54d2d51dea4"
+          }
+        },
+        "large_weight_audit_scope": "Current file sizes checked; SHA256 values are the pinned download verification records. This analysis does not rehash large weight files or prove which bytes were loaded by a past process."
+      },
+      "precision_decision": null,
+      "audit": {
+        "passed": true,
+        "unique_documents": 1000,
+        "unique_candidates": 4000,
+        "answer_token_count_per_policy": 7740,
+        "data": {
+          "canonical_raw_and_complete_prompts_verified": true,
+          "validation": {
+            "passed": true,
+            "documents": 1000,
+            "unique_ids": 1000,
+            "candidates": 4000,
+            "all_source_fields_order_choices_labels_and_contexts_match": true,
+            "support_empty_count": 116,
+            "piqa_author_site_matches_archive": null,
+            "canonical_raw_and_frozen_harness_hashes_verified": true,
+            "raw_and_source_sha256": {
+              "data/raw/sciq/SciQ.zip": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c",
+              "data/raw/sciq/README.official.md": "f16f71b220a0e205672f6f0c8afb40e37f7a158541f759593745fe52162f8ad8",
+              "data/raw/sciq/test.json": "7340983c427dc2ffd3dccf1adb758b6cdc9455bd22bf3db0ddf6ffcae0452006",
+              "data/raw/sciq/readme.txt": "67c00d15da00e2ba4045930f81b051bbfab38c956dad0bb3d0c697a47efb69ec",
+              "data/raw/sciq/license.txt": "6f2f301537b1f94b025af00467a9c3412bc249a40b4075a6d31b1c21ad7359e3",
+              "sources/lm_eval/lm_eval/tasks/sciq/sciq.yaml": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de",
+              "sources/lm_eval/lm_eval/tasks/sciq/README.md": "5c25c17f729fa4f589a818aa2a8811feac96a852be5d028e8661a8ce5470e346"
+            },
+            "output_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+            "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+          },
+          "raw_and_harness_source_sha256": {
+            "data/raw/sciq/SciQ.zip": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c",
+            "data/raw/sciq/README.official.md": "f16f71b220a0e205672f6f0c8afb40e37f7a158541f759593745fe52162f8ad8",
+            "data/raw/sciq/test.json": "7340983c427dc2ffd3dccf1adb758b6cdc9455bd22bf3db0ddf6ffcae0452006",
+            "data/raw/sciq/readme.txt": "67c00d15da00e2ba4045930f81b051bbfab38c956dad0bb3d0c697a47efb69ec",
+            "data/raw/sciq/license.txt": "6f2f301537b1f94b025af00467a9c3412bc249a40b4075a6d31b1c21ad7359e3",
+            "sources/lm_eval/lm_eval/tasks/sciq/sciq.yaml": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de",
+            "sources/lm_eval/lm_eval/tasks/sciq/README.md": "5c25c17f729fa4f589a818aa2a8811feac96a852be5d028e8661a8ce5470e346",
+            "sources/lm_eval/LICENSE.md": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f"
+          },
+          "data_path": "data/tasks/sciq/0shot.jsonl",
+          "data_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+          "protocol_path": "data/tasks/sciq/protocol.json",
+          "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+        },
+        "independent_retokenization": true,
+        "all_token_sums_predictions_and_summary_match": true,
+        "truncation_details": {
+          "model_max_length": 4096,
+          "original_max_input_tokens": 668,
+          "candidates_truncated": 0,
+          "questions_truncated": 0,
+          "total_removed_context_tokens": 0,
+          "records": []
+        },
+        "verified_code": {
+          "scripts/evaluate.py": {
+            "sha256": "61943012fd0649713b7d9ac8f86530a43dc02524a0b7a5dcb82222edd69fb3af",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/evaluate.py"
+          },
+          "src/suite_scoring.py": {
+            "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/suite_scoring.py"
+          },
+          "src/loopcd.py": {
+            "sha256": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/loopcd.py"
+          },
+          "src/adapter_huginn.py": {
+            "sha256": "875042fe214df484a171dd75b47db74a72860d3d46c45ec01a42996d6e55f66d",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/adapter_huginn.py"
+          },
+          "src/run_integrity.py": {
+            "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/run_integrity.py"
+          },
+          "src/registry.py": {
+            "sha256": "5833065c4c7fea4e07f92a483399c066f2d652465265bb777ee5782a7e03d60e",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/registry.py"
+          },
+          "src/evaluation.py": {
+            "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/evaluation.py"
+          },
+          "configs/models.json": {
+            "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/models.json"
+          },
+          "configs/tasks.json": {
+            "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
+            "verified_file": "results/multitask/sciq/huginn_32/source_snapshot/tasks.json"
+          }
+        },
+        "validation": {
+          "zero_guidance_identity": true,
+          "batch_single_max_error": 1.239776611328125e-05,
+          "batch_single_tolerance": 0.001,
+          "early_final_mean_abs_difference": 1.4690816402435303,
+          "native_readout_max_abs_error": 2.384185791015625e-05
+        },
+        "result_file_sha256": {
+          "summary.json": "4d381e364a95a15b5826e88523e3469166268acb0bfebcbda7d884ed71fc4f4b",
+          "predictions.jsonl": "8c251054602a52c3a2717c2ef88229a983344705594107073b839e2d36d6cbb1",
+          "candidate_scores.jsonl": "8a12f5b360bdcacc429f41389fe31e4fa6095f5c4e78929dc042b8d9c3709bc6",
+          "run_manifest.json": "f25b33b070f1266a3d161846cb3d20e07290c18665fe67837908442d64a1ac47",
+          "validation.json": "831f51e00fed6e4cad4ef50d0adbe5ac798a6352ff4c7c259e384195f17a82d2",
+          "data_protocol.json": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+        }
+      },
+      "run_manifest": {
+        "name": "huginn_32",
+        "configuration": {
+          "family": "huginn",
+          "display": "Huginn-0125 R=32",
+          "model_path": "models/Huginn-0125",
+          "model_manifest": "models/huginn_manifest.json",
+          "loops": 32,
+          "fixed": 0.5,
+          "cap": 0.5,
+          "batch_size": 8,
+          "matmul_precision": "highest"
+        },
+        "task": "sciq",
+        "task_configuration": {
+          "display": "SciQ",
+          "split": "test",
+          "count": 1000,
+          "primary_metric": "acc",
+          "shots_by_family": {
+            "ouro": 0,
+            "huginn": 0,
+            "parcae": 0,
+            "looped_qwen": 0
+          },
+          "data_path": "data/tasks/sciq/{shots}shot.jsonl",
+          "protocol_path": "data/tasks/sciq/protocol.json"
+        },
+        "shots": 0,
+        "primary_metric": "acc",
+        "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f",
+        "context_policy": "Left-truncate context only when required by model window, preserving every answer token (pinned harness behavior).",
+        "truncation_details": {
+          "model_max_length": 4096,
+          "original_max_input_tokens": 668,
+          "candidates_truncated": 0,
+          "questions_truncated": 0,
+          "total_removed_context_tokens": 0,
+          "records": []
+        },
+        "documents": 1000,
+        "candidates": 4000,
+        "data_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+        "model_manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+        "code_hashes": {
+          "scripts/evaluate.py": "61943012fd0649713b7d9ac8f86530a43dc02524a0b7a5dcb82222edd69fb3af",
+          "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+          "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+          "src/adapter_huginn.py": "875042fe214df484a171dd75b47db74a72860d3d46c45ec01a42996d6e55f66d",
+          "src/run_integrity.py": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+          "src/registry.py": "5833065c4c7fea4e07f92a483399c066f2d652465265bb777ee5782a7e03d60e",
+          "src/evaluation.py": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+          "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+          "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+        },
+        "native_source_hashes": {
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+        },
+        "dtype": "float32",
+        "float32_matmul_precision": "highest",
+        "batch_size": 8,
+        "token_budget": 16384,
+        "seed": 1234,
+        "add_bos": true,
+        "chat_template": false,
+        "max_input_tokens": 668,
+        "truncation": false,
+        "torch": "2.6.0+cu124",
+        "transformers": "4.56.2",
+        "adapter_metadata": {
+          "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+          "loops": 32,
+          "reference_recurrent_update": 1,
+          "reference_is_initial_noise": false,
+          "coda_layers": 2,
+          "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+          "noise_seed": 1234,
+          "noise_key": "SHA256(seed, question ID), independent of answer text",
+          "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+          "noise_std_before_embedding_scale": 0.008703882797784892,
+          "noise_truncation_standard_deviations": [
+            -3,
+            3
+          ],
+          "noise_embedding_scale": 72.6636084983398,
+          "noise_coupling": "same question shares identical positional initial states across options and depths",
+          "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+          "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+          "add_bos_token": true,
+          "bos_token_id": 65504,
+          "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+          "bos_evidence": [
+            "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+            "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+            "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+          ]
+        },
+        "gpu": "NVIDIA H200",
+        "host": "dcc-h200-gpu-ferc-l-e36-1",
+        "slurm_job_id": "59040511"
+      },
+      "native_validation": {
+        "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+        "loops": 32,
+        "reference_recurrent_update": 1,
+        "reference_is_initial_noise": false,
+        "coda_layers": 2,
+        "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+        "noise_seed": 1234,
+        "noise_key": "SHA256(seed, question ID), independent of answer text",
+        "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+        "noise_std_before_embedding_scale": 0.008703882797784892,
+        "noise_truncation_standard_deviations": [
+          -3,
+          3
+        ],
+        "noise_embedding_scale": 72.6636084983398,
+        "noise_coupling": "same question shares identical positional initial states across options and depths",
+        "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+        "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+        "add_bos_token": true,
+        "bos_token_id": 65504,
+        "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+        "bos_evidence": [
+          "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+          "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+          "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+        ],
+        "native_final_hidden_max_abs_error": 0.0,
+        "native_same_shape_logits_max_abs_error": 0.0,
+        "native_full_logits_max_abs_error": 2.384185791015625e-05,
+        "zero_guidance_matches_native_same_shape_exactly": true,
+        "early_final_mean_abs_logit_difference": 1.4690816402435303,
+        "same_initial_states_supplied_to_native": true,
+        "zero_guidance_matches_baseline_exactly": true,
+        "batch_single_token_logprob_errors": {
+          "baseline": 1.0013580322265625e-05,
+          "loopcd_fixed": 7.62939453125e-06,
+          "loopcd_adaptive": 1.239776611328125e-05,
+          "reference": 6.67572021484375e-06
+        },
+        "batch_single_tolerance": 0.001,
+        "masked_padding_token_change_max_abs_error": 0.0,
+        "early_final_mean_abs_difference": 1.4690816402435303,
+        "stochastic": true
+      },
+      "runtime": {
+        "load_and_validation_seconds": 11.896973419003189,
+        "this_invocation_scoring_seconds": 1052.851384270005,
+        "this_invocation_total_seconds": 1064.7483588559553,
+        "peak_gpu_allocated_gib": 15.687082767486572
+      }
+    },
+    "original_reduced": {
+      "display": "Huginn-0125 R=16",
+      "configuration": {
+        "family": "huginn",
+        "display": "Huginn-0125 R=16",
+        "model_path": "models/Huginn-0125",
+        "model_manifest": "models/huginn_manifest.json",
+        "loops": 16,
+        "fixed": 0.5,
+        "cap": 0.5,
+        "batch_size": 8,
+        "matmul_precision": "highest"
+      },
+      "shots": 0,
+      "results_path": "results/multitask/sciq/huginn_16",
+      "n": 1000,
+      "correct": {
+        "acc": {
+          "baseline": 932,
+          "loopcd_fixed": 931,
+          "loopcd_adaptive": 934,
+          "reference": 577
+        },
+        "acc_norm": {
+          "baseline": 901,
+          "loopcd_fixed": 906,
+          "loopcd_adaptive": 909,
+          "reference": 512
+        }
+      },
+      "accuracy_percent": {
+        "acc": {
+          "baseline": 93.2,
+          "loopcd_fixed": 93.1,
+          "loopcd_adaptive": 93.4,
+          "reference": 57.7
+        },
+        "acc_norm": {
+          "baseline": 90.1,
+          "loopcd_fixed": 90.6,
+          "loopcd_adaptive": 90.9,
+          "reference": 51.2
+        }
+      },
+      "paired": {
+        "acc": {
+          "loopcd_fixed": {
+            "corrected": 11,
+            "regressed": 12,
+            "net_correct": -1,
+            "changed_answers": 26,
+            "delta_percentage_points": -0.1,
+            "paired_bootstrap_95ci_pp": [
+              -1.0,
+              0.8
+            ],
+            "mcnemar_exact_two_sided_p": 1.0
+          },
+          "loopcd_adaptive": {
+            "corrected": 13,
+            "regressed": 11,
+            "net_correct": 2,
+            "changed_answers": 26,
+            "delta_percentage_points": 0.2,
+            "paired_bootstrap_95ci_pp": [
+              -0.7,
+              1.2
+            ],
+            "mcnemar_exact_two_sided_p": 0.8388197422027588
+          }
+        },
+        "acc_norm": {
+          "loopcd_fixed": {
+            "corrected": 16,
+            "regressed": 11,
+            "net_correct": 5,
+            "changed_answers": 29,
+            "delta_percentage_points": 0.5,
+            "paired_bootstrap_95ci_pp": [
+              -0.5,
+              1.5
+            ],
+            "mcnemar_exact_two_sided_p": 0.44206833839416504
+          },
+          "loopcd_adaptive": {
+            "corrected": 17,
+            "regressed": 9,
+            "net_correct": 8,
+            "changed_answers": 27,
+            "delta_percentage_points": 0.8,
+            "paired_bootstrap_95ci_pp": [
+              -0.2,
+              1.8
+            ],
+            "mcnemar_exact_two_sided_p": 0.16863754391670227
+          }
+        }
+      },
+      "paper_table2": {
+        "baseline": 90.3,
+        "loopcd_fixed": 90.9,
+        "loopcd_adaptive": 91.2
+      },
+      "actual_minus_paper_pp": {
+        "baseline": 2.9000000000000057,
+        "loopcd_fixed": 2.1999999999999886,
+        "loopcd_adaptive": 2.200000000000003
+      },
+      "checkpoint": {
+        "repository": "tomg-group-umd/huginn-0125",
+        "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+        "manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+        "metadata_sha256_verified": {
+          "models/Huginn-0125/README.md": "66a7c428fc8aa7dd63ec0682009c1eee099fe86d251e704918bef642f4e755fa",
+          "models/Huginn-0125/config.json": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c",
+          "models/Huginn-0125/generation_config.json": "3ed2b71c39d566df6ab667a2b843322cbafd2dd7dace7a27bc39dc7c3c3627ee",
+          "models/Huginn-0125/model.safetensors.index.json": "a28061573e97ba3645b482c11d82ba903b40942de0113472b30afb5a3cf4c1eb",
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+          "models/Huginn-0125/special_tokens_map.json": "1291ad5fcb7b7628c3885a2d973f165d006cb87530ca368db90374dc9942224e",
+          "models/Huginn-0125/tokenizer.json": "9cc201a5061b70aba0d227ef9766fcfe21e0989e0c0ba442b4d7732c4de12308",
+          "models/Huginn-0125/tokenizer_config.json": "ff9e171e16f200e7865c27fa38e661722848ab665af1610d5bb2b62502d6cdcf"
+        },
+        "native_source_hashes": {
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+        },
+        "large_weights": {
+          "models/Huginn-0125/model-00001-of-00004.safetensors": {
+            "bytes": 4771970936,
+            "download_verified_sha256": "5b461584b74249e87eabec34b59a13e188791dd8a7ccf2c7be95bb7fa8383e43"
+          },
+          "models/Huginn-0125/model-00002-of-00004.safetensors": {
+            "bytes": 4744780096,
+            "download_verified_sha256": "44bac332b204abb687b2820eb0fadcb5795fdb0cfc06b3b6f2ac5241eec5c591"
+          },
+          "models/Huginn-0125/model-00003-of-00004.safetensors": {
+            "bytes": 4744737616,
+            "download_verified_sha256": "07160dce9da01918d0b0bf2159ffe11d007e1fbe661d687ad4a7b0e65bde4e84"
+          },
+          "models/Huginn-0125/model-00004-of-00004.safetensors": {
+            "bytes": 1384120448,
+            "download_verified_sha256": "40ce4f159938857dbbfa1020962045e1b96303ff902cfa76051ce54d2d51dea4"
+          }
+        },
+        "large_weight_audit_scope": "Current file sizes checked; SHA256 values are the pinned download verification records. This analysis does not rehash large weight files or prove which bytes were loaded by a past process."
+      },
+      "precision_decision": null,
+      "audit": {
+        "passed": true,
+        "unique_documents": 1000,
+        "unique_candidates": 4000,
+        "answer_token_count_per_policy": 7740,
+        "data": {
+          "canonical_raw_and_complete_prompts_verified": true,
+          "validation": {
+            "passed": true,
+            "documents": 1000,
+            "unique_ids": 1000,
+            "candidates": 4000,
+            "all_source_fields_order_choices_labels_and_contexts_match": true,
+            "support_empty_count": 116,
+            "piqa_author_site_matches_archive": null,
+            "canonical_raw_and_frozen_harness_hashes_verified": true,
+            "raw_and_source_sha256": {
+              "data/raw/sciq/SciQ.zip": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c",
+              "data/raw/sciq/README.official.md": "f16f71b220a0e205672f6f0c8afb40e37f7a158541f759593745fe52162f8ad8",
+              "data/raw/sciq/test.json": "7340983c427dc2ffd3dccf1adb758b6cdc9455bd22bf3db0ddf6ffcae0452006",
+              "data/raw/sciq/readme.txt": "67c00d15da00e2ba4045930f81b051bbfab38c956dad0bb3d0c697a47efb69ec",
+              "data/raw/sciq/license.txt": "6f2f301537b1f94b025af00467a9c3412bc249a40b4075a6d31b1c21ad7359e3",
+              "sources/lm_eval/lm_eval/tasks/sciq/sciq.yaml": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de",
+              "sources/lm_eval/lm_eval/tasks/sciq/README.md": "5c25c17f729fa4f589a818aa2a8811feac96a852be5d028e8661a8ce5470e346"
+            },
+            "output_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+            "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+          },
+          "raw_and_harness_source_sha256": {
+            "data/raw/sciq/SciQ.zip": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c",
+            "data/raw/sciq/README.official.md": "f16f71b220a0e205672f6f0c8afb40e37f7a158541f759593745fe52162f8ad8",
+            "data/raw/sciq/test.json": "7340983c427dc2ffd3dccf1adb758b6cdc9455bd22bf3db0ddf6ffcae0452006",
+            "data/raw/sciq/readme.txt": "67c00d15da00e2ba4045930f81b051bbfab38c956dad0bb3d0c697a47efb69ec",
+            "data/raw/sciq/license.txt": "6f2f301537b1f94b025af00467a9c3412bc249a40b4075a6d31b1c21ad7359e3",
+            "sources/lm_eval/lm_eval/tasks/sciq/sciq.yaml": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de",
+            "sources/lm_eval/lm_eval/tasks/sciq/README.md": "5c25c17f729fa4f589a818aa2a8811feac96a852be5d028e8661a8ce5470e346",
+            "sources/lm_eval/LICENSE.md": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f"
+          },
+          "data_path": "data/tasks/sciq/0shot.jsonl",
+          "data_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+          "protocol_path": "data/tasks/sciq/protocol.json",
+          "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+        },
+        "independent_retokenization": true,
+        "all_token_sums_predictions_and_summary_match": true,
+        "truncation_details": {
+          "model_max_length": 4096,
+          "original_max_input_tokens": 668,
+          "candidates_truncated": 0,
+          "questions_truncated": 0,
+          "total_removed_context_tokens": 0,
+          "records": []
+        },
+        "verified_code": {
+          "scripts/evaluate.py": {
+            "sha256": "61943012fd0649713b7d9ac8f86530a43dc02524a0b7a5dcb82222edd69fb3af",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/evaluate.py"
+          },
+          "src/suite_scoring.py": {
+            "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/suite_scoring.py"
+          },
+          "src/loopcd.py": {
+            "sha256": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/loopcd.py"
+          },
+          "src/adapter_huginn.py": {
+            "sha256": "875042fe214df484a171dd75b47db74a72860d3d46c45ec01a42996d6e55f66d",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/adapter_huginn.py"
+          },
+          "src/run_integrity.py": {
+            "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/run_integrity.py"
+          },
+          "src/registry.py": {
+            "sha256": "5833065c4c7fea4e07f92a483399c066f2d652465265bb777ee5782a7e03d60e",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/registry.py"
+          },
+          "src/evaluation.py": {
+            "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/evaluation.py"
+          },
+          "configs/models.json": {
+            "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/models.json"
+          },
+          "configs/tasks.json": {
+            "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
+            "verified_file": "results/multitask/sciq/huginn_16/source_snapshot/tasks.json"
+          }
+        },
+        "validation": {
+          "zero_guidance_identity": true,
+          "batch_single_max_error": 1.1444091796875e-05,
+          "batch_single_tolerance": 0.001,
+          "early_final_mean_abs_difference": 1.467712163925171,
+          "native_readout_max_abs_error": 2.765655517578125e-05
+        },
+        "result_file_sha256": {
+          "summary.json": "277436fbdccdeb3d399ed94e890d25ec59d29079f5f9b5a707d7eec0af3ccecd",
+          "predictions.jsonl": "72d18b1eacd615982ba626c431c6ce3da1fd6001537dde65e197b06e28ac8bb7",
+          "candidate_scores.jsonl": "369829afa128b2bb36aa5a287786575bcd9ecd39512c123ee158b381efffa9ab",
+          "run_manifest.json": "3542e5225628b852c11c10da22a8aaf82fb76e9c6ab9fbfc64398d2a22e0f0fd",
+          "validation.json": "14e7bf7020df771163a87d36fc6a05fdd61bd2ee08483e5693da5cf0b9a4861d",
+          "data_protocol.json": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+        }
+      },
+      "run_manifest": {
+        "name": "huginn_16",
+        "configuration": {
+          "family": "huginn",
+          "display": "Huginn-0125 R=16",
+          "model_path": "models/Huginn-0125",
+          "model_manifest": "models/huginn_manifest.json",
+          "loops": 16,
+          "fixed": 0.5,
+          "cap": 0.5,
+          "batch_size": 8,
+          "matmul_precision": "highest"
+        },
+        "task": "sciq",
+        "task_configuration": {
+          "display": "SciQ",
+          "split": "test",
+          "count": 1000,
+          "primary_metric": "acc",
+          "shots_by_family": {
+            "ouro": 0,
+            "huginn": 0,
+            "parcae": 0,
+            "looped_qwen": 0
+          },
+          "data_path": "data/tasks/sciq/{shots}shot.jsonl",
+          "protocol_path": "data/tasks/sciq/protocol.json"
+        },
+        "shots": 0,
+        "primary_metric": "acc",
+        "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f",
+        "context_policy": "Left-truncate context only when required by model window, preserving every answer token (pinned harness behavior).",
+        "truncation_details": {
+          "model_max_length": 4096,
+          "original_max_input_tokens": 668,
+          "candidates_truncated": 0,
+          "questions_truncated": 0,
+          "total_removed_context_tokens": 0,
+          "records": []
+        },
+        "documents": 1000,
+        "candidates": 4000,
+        "data_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+        "model_manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+        "code_hashes": {
+          "scripts/evaluate.py": "61943012fd0649713b7d9ac8f86530a43dc02524a0b7a5dcb82222edd69fb3af",
+          "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+          "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+          "src/adapter_huginn.py": "875042fe214df484a171dd75b47db74a72860d3d46c45ec01a42996d6e55f66d",
+          "src/run_integrity.py": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+          "src/registry.py": "5833065c4c7fea4e07f92a483399c066f2d652465265bb777ee5782a7e03d60e",
+          "src/evaluation.py": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+          "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+          "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+        },
+        "native_source_hashes": {
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+        },
+        "dtype": "float32",
+        "float32_matmul_precision": "highest",
+        "batch_size": 8,
+        "token_budget": 16384,
+        "seed": 1234,
+        "add_bos": true,
+        "chat_template": false,
+        "max_input_tokens": 668,
+        "truncation": false,
+        "torch": "2.6.0+cu124",
+        "transformers": "4.56.2",
+        "adapter_metadata": {
+          "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+          "loops": 16,
+          "reference_recurrent_update": 1,
+          "reference_is_initial_noise": false,
+          "coda_layers": 2,
+          "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+          "noise_seed": 1234,
+          "noise_key": "SHA256(seed, question ID), independent of answer text",
+          "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+          "noise_std_before_embedding_scale": 0.008703882797784892,
+          "noise_truncation_standard_deviations": [
+            -3,
+            3
+          ],
+          "noise_embedding_scale": 72.6636084983398,
+          "noise_coupling": "same question shares identical positional initial states across options and depths",
+          "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+          "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+          "add_bos_token": true,
+          "bos_token_id": 65504,
+          "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+          "bos_evidence": [
+            "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+            "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+            "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+          ]
+        },
+        "gpu": "NVIDIA H200",
+        "host": "dcc-h200-gpu-ferc-l-e36-9",
+        "slurm_job_id": "59040515"
+      },
+      "native_validation": {
+        "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+        "loops": 16,
+        "reference_recurrent_update": 1,
+        "reference_is_initial_noise": false,
+        "coda_layers": 2,
+        "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+        "noise_seed": 1234,
+        "noise_key": "SHA256(seed, question ID), independent of answer text",
+        "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+        "noise_std_before_embedding_scale": 0.008703882797784892,
+        "noise_truncation_standard_deviations": [
+          -3,
+          3
+        ],
+        "noise_embedding_scale": 72.6636084983398,
+        "noise_coupling": "same question shares identical positional initial states across options and depths",
+        "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+        "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+        "add_bos_token": true,
+        "bos_token_id": 65504,
+        "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+        "bos_evidence": [
+          "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+          "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+          "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+        ],
+        "native_final_hidden_max_abs_error": 0.0,
+        "native_same_shape_logits_max_abs_error": 0.0,
+        "native_full_logits_max_abs_error": 2.765655517578125e-05,
+        "zero_guidance_matches_native_same_shape_exactly": true,
+        "early_final_mean_abs_logit_difference": 1.467712163925171,
+        "same_initial_states_supplied_to_native": true,
+        "zero_guidance_matches_baseline_exactly": true,
+        "batch_single_token_logprob_errors": {
+          "baseline": 1.9073486328125e-06,
+          "loopcd_fixed": 3.814697265625e-06,
+          "loopcd_adaptive": 1.1444091796875e-05,
+          "reference": 6.67572021484375e-06
+        },
+        "batch_single_tolerance": 0.001,
+        "masked_padding_token_change_max_abs_error": 0.0,
+        "early_final_mean_abs_difference": 1.467712163925171,
+        "stochastic": true
+      },
+      "runtime": {
+        "load_and_validation_seconds": 9.20746984705329,
+        "this_invocation_scoring_seconds": 531.3595544253476,
+        "this_invocation_total_seconds": 540.5670263050124,
+        "peak_gpu_allocated_gib": 15.687082767486572
+      }
+    },
+    "reduced": {
+      "display": "Huginn-0125 R=16, reference=5",
+      "configuration": {
+        "family": "huginn",
+        "display": "Huginn-0125 R=16, reference=5",
+        "model_path": "models/Huginn-0125",
+        "model_manifest": "models/huginn_manifest.json",
+        "loops": 16,
+        "fixed": 0.5,
+        "cap": 0.5,
+        "batch_size": 8,
+        "matmul_precision": "highest",
+        "reference_step": 5
+      },
+      "shots": 0,
+      "results_path": "results/reduced_depth/sciq/huginn_16_ref5",
+      "n": 1000,
+      "correct": {
+        "acc": {
+          "baseline": 932,
+          "loopcd_fixed": 934,
+          "loopcd_adaptive": 929,
+          "reference": 903
+        },
+        "acc_norm": {
+          "baseline": 901,
+          "loopcd_fixed": 910,
+          "loopcd_adaptive": 908,
+          "reference": 816
+        }
+      },
+      "accuracy_percent": {
+        "acc": {
+          "baseline": 93.2,
+          "loopcd_fixed": 93.4,
+          "loopcd_adaptive": 92.9,
+          "reference": 90.3
+        },
+        "acc_norm": {
+          "baseline": 90.1,
+          "loopcd_fixed": 91.0,
+          "loopcd_adaptive": 90.8,
+          "reference": 81.6
+        }
+      },
+      "paired": {
+        "acc": {
+          "loopcd_fixed": {
+            "corrected": 12,
+            "regressed": 10,
+            "net_correct": 2,
+            "changed_answers": 24,
+            "delta_percentage_points": 0.2,
+            "paired_bootstrap_95ci_pp": [
+              -0.7,
+              1.1
+            ],
+            "mcnemar_exact_two_sided_p": 0.8318119049072266
+          },
+          "loopcd_adaptive": {
+            "corrected": 7,
+            "regressed": 10,
+            "net_correct": -3,
+            "changed_answers": 19,
+            "delta_percentage_points": -0.3,
+            "paired_bootstrap_95ci_pp": [
+              -1.1,
+              0.5
+            ],
+            "mcnemar_exact_two_sided_p": 0.629058837890625
+          }
+        },
+        "acc_norm": {
+          "loopcd_fixed": {
+            "corrected": 15,
+            "regressed": 6,
+            "net_correct": 9,
+            "changed_answers": 24,
+            "delta_percentage_points": 0.9,
+            "paired_bootstrap_95ci_pp": [
+              0.0,
+              1.8
+            ],
+            "mcnemar_exact_two_sided_p": 0.0783538818359375
+          },
+          "loopcd_adaptive": {
+            "corrected": 12,
+            "regressed": 5,
+            "net_correct": 7,
+            "changed_answers": 20,
+            "delta_percentage_points": 0.7,
+            "paired_bootstrap_95ci_pp": [
+              -0.1,
+              1.5
+            ],
+            "mcnemar_exact_two_sided_p": 0.143463134765625
+          }
+        }
+      },
+      "paper_table2": {},
+      "actual_minus_paper_pp": {},
+      "checkpoint": {
+        "repository": "tomg-group-umd/huginn-0125",
+        "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+        "manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+        "metadata_sha256_verified": {
+          "models/Huginn-0125/README.md": "66a7c428fc8aa7dd63ec0682009c1eee099fe86d251e704918bef642f4e755fa",
+          "models/Huginn-0125/config.json": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c",
+          "models/Huginn-0125/generation_config.json": "3ed2b71c39d566df6ab667a2b843322cbafd2dd7dace7a27bc39dc7c3c3627ee",
+          "models/Huginn-0125/model.safetensors.index.json": "a28061573e97ba3645b482c11d82ba903b40942de0113472b30afb5a3cf4c1eb",
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+          "models/Huginn-0125/special_tokens_map.json": "1291ad5fcb7b7628c3885a2d973f165d006cb87530ca368db90374dc9942224e",
+          "models/Huginn-0125/tokenizer.json": "9cc201a5061b70aba0d227ef9766fcfe21e0989e0c0ba442b4d7732c4de12308",
+          "models/Huginn-0125/tokenizer_config.json": "ff9e171e16f200e7865c27fa38e661722848ab665af1610d5bb2b62502d6cdcf"
+        },
+        "native_source_hashes": {
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+        },
+        "large_weights": {
+          "models/Huginn-0125/model-00001-of-00004.safetensors": {
+            "bytes": 4771970936,
+            "download_verified_sha256": "5b461584b74249e87eabec34b59a13e188791dd8a7ccf2c7be95bb7fa8383e43"
+          },
+          "models/Huginn-0125/model-00002-of-00004.safetensors": {
+            "bytes": 4744780096,
+            "download_verified_sha256": "44bac332b204abb687b2820eb0fadcb5795fdb0cfc06b3b6f2ac5241eec5c591"
+          },
+          "models/Huginn-0125/model-00003-of-00004.safetensors": {
+            "bytes": 4744737616,
+            "download_verified_sha256": "07160dce9da01918d0b0bf2159ffe11d007e1fbe661d687ad4a7b0e65bde4e84"
+          },
+          "models/Huginn-0125/model-00004-of-00004.safetensors": {
+            "bytes": 1384120448,
+            "download_verified_sha256": "40ce4f159938857dbbfa1020962045e1b96303ff902cfa76051ce54d2d51dea4"
+          }
+        },
+        "large_weight_audit_scope": "Current file sizes checked; SHA256 values are the pinned download verification records. This analysis does not rehash large weight files or prove which bytes were loaded by a past process."
+      },
+      "precision_decision": null,
+      "audit": {
+        "passed": true,
+        "unique_documents": 1000,
+        "unique_candidates": 4000,
+        "answer_token_count_per_policy": 7740,
+        "data": {
+          "canonical_raw_and_complete_prompts_verified": true,
+          "validation": {
+            "passed": true,
+            "documents": 1000,
+            "unique_ids": 1000,
+            "candidates": 4000,
+            "all_source_fields_order_choices_labels_and_contexts_match": true,
+            "support_empty_count": 116,
+            "piqa_author_site_matches_archive": null,
+            "canonical_raw_and_frozen_harness_hashes_verified": true,
+            "raw_and_source_sha256": {
+              "data/raw/sciq/SciQ.zip": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c",
+              "data/raw/sciq/README.official.md": "f16f71b220a0e205672f6f0c8afb40e37f7a158541f759593745fe52162f8ad8",
+              "data/raw/sciq/test.json": "7340983c427dc2ffd3dccf1adb758b6cdc9455bd22bf3db0ddf6ffcae0452006",
+              "data/raw/sciq/readme.txt": "67c00d15da00e2ba4045930f81b051bbfab38c956dad0bb3d0c697a47efb69ec",
+              "data/raw/sciq/license.txt": "6f2f301537b1f94b025af00467a9c3412bc249a40b4075a6d31b1c21ad7359e3",
+              "sources/lm_eval/lm_eval/tasks/sciq/sciq.yaml": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de",
+              "sources/lm_eval/lm_eval/tasks/sciq/README.md": "5c25c17f729fa4f589a818aa2a8811feac96a852be5d028e8661a8ce5470e346"
+            },
+            "output_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+            "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+          },
+          "raw_and_harness_source_sha256": {
+            "data/raw/sciq/SciQ.zip": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c",
+            "data/raw/sciq/README.official.md": "f16f71b220a0e205672f6f0c8afb40e37f7a158541f759593745fe52162f8ad8",
+            "data/raw/sciq/test.json": "7340983c427dc2ffd3dccf1adb758b6cdc9455bd22bf3db0ddf6ffcae0452006",
+            "data/raw/sciq/readme.txt": "67c00d15da00e2ba4045930f81b051bbfab38c956dad0bb3d0c697a47efb69ec",
+            "data/raw/sciq/license.txt": "6f2f301537b1f94b025af00467a9c3412bc249a40b4075a6d31b1c21ad7359e3",
+            "sources/lm_eval/lm_eval/tasks/sciq/sciq.yaml": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de",
+            "sources/lm_eval/lm_eval/tasks/sciq/README.md": "5c25c17f729fa4f589a818aa2a8811feac96a852be5d028e8661a8ce5470e346",
+            "sources/lm_eval/LICENSE.md": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f"
+          },
+          "data_path": "data/tasks/sciq/0shot.jsonl",
+          "data_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+          "protocol_path": "data/tasks/sciq/protocol.json",
+          "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+        },
+        "independent_retokenization": true,
+        "all_token_sums_predictions_and_summary_match": true,
+        "truncation_details": {
+          "model_max_length": 4096,
+          "original_max_input_tokens": 668,
+          "candidates_truncated": 0,
+          "questions_truncated": 0,
+          "total_removed_context_tokens": 0,
+          "records": []
+        },
+        "verified_code": {
+          "scripts/evaluate.py": {
+            "sha256": "36f249049e6ed33f7428e4619dc15f633fa8ef8104211161f57c87331799be96",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/evaluate.py"
+          },
+          "src/suite_scoring.py": {
+            "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/suite_scoring.py"
+          },
+          "src/loopcd.py": {
+            "sha256": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/loopcd.py"
+          },
+          "src/adapter_huginn.py": {
+            "sha256": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/adapter_huginn.py"
+          },
+          "src/run_integrity.py": {
+            "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/run_integrity.py"
+          },
+          "src/registry.py": {
+            "sha256": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/registry.py"
+          },
+          "src/evaluation.py": {
+            "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/evaluation.py"
+          },
+          "configs/models.json": {
+            "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/models.json"
+          },
+          "configs/tasks.json": {
+            "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/tasks.json"
+          },
+          "configs/experiments.json": {
+            "sha256": "9a22f0602006e5788d8b8db9f558a61b1932b6601cc41cd97217e98f7ae6ecdc",
+            "verified_file": "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/experiments.json"
+          }
+        },
+        "validation": {
+          "zero_guidance_identity": true,
+          "batch_single_max_error": 4.291534423828125e-06,
+          "batch_single_tolerance": 0.001,
+          "early_final_mean_abs_difference": 0.6352055668830872,
+          "native_readout_max_abs_error": 2.765655517578125e-05
+        },
+        "result_file_sha256": {
+          "summary.json": "73854260c5cadafebcd9c46bdf8872af89f6511b98c9479250b9ce1715b05223",
+          "predictions.jsonl": "156b649748610d9056d886c82c5194be2ef6e73bb646b1da86222e096152314e",
+          "candidate_scores.jsonl": "4f5d8acf06255fbf28ca627e162bc34fe6a8849cb2aa7ca9dde1166daab56129",
+          "run_manifest.json": "04f356f44cbf5494d7c4d8a27761a8efc9c5dd2b371b619bd869dbc4656a6e60",
+          "validation.json": "7cd75bae97a3cbec2862d85e1161754a175a0ddd6c9d4d076d917b952bed1715",
+          "data_protocol.json": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+        }
+      },
+      "run_manifest": {
+        "name": "huginn_16",
+        "configuration": {
+          "family": "huginn",
+          "display": "Huginn-0125 R=16, reference=5",
+          "model_path": "models/Huginn-0125",
+          "model_manifest": "models/huginn_manifest.json",
+          "loops": 16,
+          "fixed": 0.5,
+          "cap": 0.5,
+          "batch_size": 8,
+          "matmul_precision": "highest",
+          "reference_step": 5
+        },
+        "task": "sciq",
+        "task_configuration": {
+          "display": "SciQ",
+          "split": "test",
+          "count": 1000,
+          "primary_metric": "acc",
+          "shots_by_family": {
+            "ouro": 0,
+            "huginn": 0,
+            "parcae": 0,
+            "looped_qwen": 0
+          },
+          "data_path": "data/tasks/sciq/{shots}shot.jsonl",
+          "protocol_path": "data/tasks/sciq/protocol.json"
+        },
+        "shots": 0,
+        "primary_metric": "acc",
+        "protocol_sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f",
+        "context_policy": "Left-truncate context only when required by model window, preserving every answer token (pinned harness behavior).",
+        "truncation_details": {
+          "model_max_length": 4096,
+          "original_max_input_tokens": 668,
+          "candidates_truncated": 0,
+          "questions_truncated": 0,
+          "total_removed_context_tokens": 0,
+          "records": []
+        },
+        "documents": 1000,
+        "candidates": 4000,
+        "data_sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+        "model_manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+        "code_hashes": {
+          "scripts/evaluate.py": "36f249049e6ed33f7428e4619dc15f633fa8ef8104211161f57c87331799be96",
+          "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+          "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+          "src/adapter_huginn.py": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa",
+          "src/run_integrity.py": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+          "src/registry.py": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc",
+          "src/evaluation.py": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+          "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+          "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07",
+          "configs/experiments.json": "9a22f0602006e5788d8b8db9f558a61b1932b6601cc41cd97217e98f7ae6ecdc"
+        },
+        "native_source_hashes": {
+          "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+          "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+        },
+        "dtype": "float32",
+        "float32_matmul_precision": "highest",
+        "batch_size": 8,
+        "token_budget": 16384,
+        "seed": 1234,
+        "add_bos": true,
+        "chat_template": false,
+        "max_input_tokens": 668,
+        "truncation": false,
+        "torch": "2.6.0+cu124",
+        "transformers": "4.56.2",
+        "adapter_metadata": {
+          "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+          "loops": 16,
+          "reference_recurrent_update": 5,
+          "reference_is_initial_noise": false,
+          "coda_layers": 2,
+          "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+          "noise_seed": 1234,
+          "noise_key": "SHA256(seed, question ID), independent of answer text",
+          "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+          "noise_std_before_embedding_scale": 0.008703882797784892,
+          "noise_truncation_standard_deviations": [
+            -3,
+            3
+          ],
+          "noise_embedding_scale": 72.6636084983398,
+          "noise_coupling": "same question shares identical positional initial states across options and depths",
+          "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+          "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+          "add_bos_token": true,
+          "bos_token_id": 65504,
+          "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+          "bos_evidence": [
+            "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+            "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+            "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+          ]
+        },
+        "gpu": "NVIDIA H200",
+        "host": "dcc-h200-gpu-ferc-l-e36-9",
+        "slurm_job_id": "59056756",
+        "experiment": {
+          "name": "huginn_half_depth",
+          "model": "huginn_16",
+          "model_overrides": {
+            "display": "Huginn-0125 R=16, reference=5",
+            "reference_step": 5,
+            "fixed": 0.5
+          },
+          "full_depth_model": "huginn_32",
+          "reported_policy": "loopcd_fixed",
+          "paper_setting": "Table A8: Huginn-0125, logit guidance, 32 to 16 loops, reference h5, fixed omega=0.5",
+          "output_name": "huginn_16_ref5"
+        }
+      },
+      "native_validation": {
+        "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+        "loops": 16,
+        "reference_recurrent_update": 5,
+        "reference_is_initial_noise": false,
+        "coda_layers": 2,
+        "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+        "noise_seed": 1234,
+        "noise_key": "SHA256(seed, question ID), independent of answer text",
+        "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+        "noise_std_before_embedding_scale": 0.008703882797784892,
+        "noise_truncation_standard_deviations": [
+          -3,
+          3
+        ],
+        "noise_embedding_scale": 72.6636084983398,
+        "noise_coupling": "same question shares identical positional initial states across options and depths",
+        "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+        "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+        "add_bos_token": true,
+        "bos_token_id": 65504,
+        "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+        "bos_evidence": [
+          "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+          "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+          "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+        ],
+        "native_final_hidden_max_abs_error": 0.0,
+        "native_same_shape_logits_max_abs_error": 0.0,
+        "native_full_logits_max_abs_error": 2.765655517578125e-05,
+        "native_reference_hidden_max_abs_error": 0.0,
+        "native_reference_same_shape_logits_max_abs_error": 0.0,
+        "native_reference_full_logits_max_abs_error": 2.6702880859375e-05,
+        "zero_guidance_matches_native_same_shape_exactly": true,
+        "early_final_mean_abs_logit_difference": 0.6352055668830872,
+        "same_initial_states_supplied_to_native": true,
+        "zero_guidance_matches_baseline_exactly": true,
+        "batch_single_token_logprob_errors": {
+          "baseline": 1.9073486328125e-06,
+          "loopcd_fixed": 4.291534423828125e-06,
+          "loopcd_adaptive": 3.814697265625e-06,
+          "reference": 2.86102294921875e-06
+        },
+        "batch_single_tolerance": 0.001,
+        "masked_padding_token_change_max_abs_error": 0.0,
+        "early_final_mean_abs_difference": 0.6352055668830872,
+        "stochastic": true
+      },
+      "runtime": {
+        "load_and_validation_seconds": 8.995865921955556,
+        "this_invocation_scoring_seconds": 598.027185053099,
+        "this_invocation_total_seconds": 607.0230539212935,
+        "peak_gpu_allocated_gib": 15.687082767486572
+      }
+    }
+  },
+  "statistical_protocol": {
+    "bootstrap": "20000 paired question resamples, seed 1234, percentile 95% CI",
+    "mcnemar": "Exact two-sided; Holm correction across three contrasts separately per metric",
+    "primary_comparison": "R16 fixed LoopCD reference5 against R32 baseline, acc",
+    "paper_comparison": "Table A8 configuration; paper Figure 4 reports a seven-task mean",
+    "randomness": "One deterministic per-question initial-state seed, shared across depths"
+  },
+  "analysis_source_sha256": {
+    "scripts/analyze_reduced_depth.py": "a22db5f7efc90155790c4f5f80c6f6955ea54d20dd274072d40ea7acd730236d",
+    "scripts/analyze.py": "8c3c333a527c4690e08ec206103a3f1d6963775090e73ea85756b8879a3ea66d",
+    "scripts/analyze_arc_suite.py": "1d8e53bb1161ec58f93bf98bcb1ec015fc6649b5891033e73b5b88189e5a7579",
+    "scripts/reduced_cost_audit.py": "6559d8373765dcf17b1fccae505237defc4211f9382a7f40d96cf9d0e42134ae"
+  }
+}

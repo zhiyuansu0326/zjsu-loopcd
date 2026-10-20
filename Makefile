@@ -6,7 +6,7 @@ TASK ?= all
 OUTPUT ?= results/repeats/$(TASK)/$(MODEL)
 AUDIT_OUTPUT ?= results/maintenance/latest_audit.json
 MATMUL_PRECISION ?=
-REDUCED_OUTPUT ?= results/reduced_depth/$(TASK)
+REDUCED_OUTPUT ?= $(if $(filter all,$(TASK)),results/reduced_depth,results/reduced_depth/$(TASK))
 
 export PYTHONDONTWRITEBYTECODE := 1
 
@@ -26,7 +26,7 @@ help:
 	  '                      Override precision explicitly with MATMUL_PRECISION=highest' \
 	  'make submit-reduced TASK=arc_challenge REDUCED_OUTPUT=results/repeats/huginn_half_depth' \
 	  '                      Evaluate/time Huginn with half-depth guidance' \
-	  'make report-reduced TASK=arc_challenge  Audit/rebuild the half-depth comparison'
+	  'make report-reduced TASK=all  Audit/rebuild all four half-depth tasks and equal-weight means'
 
 check-env:
 	"$(PYTHON)" -B -c 'import sys, torch, transformers; print("Python:", sys.version.split()[0]); print("Environment:", sys.prefix); print("Torch:", torch.__version__, "CUDA build:", torch.version.cuda); print("Transformers:", transformers.__version__); print("CUDA visible in this process:", torch.cuda.is_available())'
@@ -67,7 +67,7 @@ submit:
 	  sbatch --partition=scavenger-h200 --account=scavenger-h200 --qos=normal scripts/run_suite.slurm --task "$(TASK)" --model "$(MODEL)" --output "$(OUTPUT)" --matmul-precision "$$precision"
 
 submit-reduced:
-	"$(PYTHON)" -B -c 'import sys; from src.registry import resolve_run; assert sys.argv[1]=="arc_challenge", "This experiment currently covers ARC-Challenge"; r=resolve_run(sys.argv[1],"huginn_16","huginn_half_depth"); assert r["data_path"].is_file(), "Run make prepare-data first"' "$(TASK)"
+	"$(PYTHON)" -B -c 'import sys; from src.registry import resolve_run; r=resolve_run(sys.argv[1],"huginn_16","huginn_half_depth"); assert r["data_path"].is_file(), "Run make prepare-data first"' "$(TASK)"
 	@mkdir -p results/reduced_depth/logs
 	sbatch --partition=scavenger-h200 --account=scavenger-h200 --qos=normal scripts/run_reduced_depth.slurm "$(TASK)" "$(REDUCED_OUTPUT)"
 

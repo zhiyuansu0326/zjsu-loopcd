@@ -1,0 +1,4 @@
+policy,n,primary_metric,correct_primary,primary_accuracy_percent,correct_acc_norm,correct_acc,acc_norm_percent,acc_percent,prefill_tflops,relative_flops,sampled_median_ms,sampled_speedup
+baseline_r32,1000,acc,931,93.1,903,931,90.3,93.1,56.35307470848,1.0,5447.365065570921,1.0
+baseline_r16,1000,acc,932,93.2,901,932,90.1,93.2,29.17448810496,0.5177088962027804,2804.9627996515483,1.9420453869290637
+loopcd_r16_ref5,1000,acc,934,93.4,910,934,91.0,93.4,30.34960625664,0.5385616741170114,2887.4003018718213,1.8865984955530917

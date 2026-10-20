@@ -1,10 +1,10 @@
 {
   "complete": true,
-  "finished_utc": "2026-10-20T19:08:56.307561+00:00",
+  "finished_utc": "2026-10-20T19:31:53.641815+00:00",
   "new_evaluation_runs": 1,
   "reused_baseline_runs": 2,
   "questions_per_run": 1172,
   "new_candidate_scores": 4687,
-  "artifact_manifest_sha256": "6fe25ff3d653991e9ab39429a45cefb9c317958c2802c3a92a5fba06c8683935",
+  "artifact_manifest_sha256": "f79df9b783dddb896be49d8d68577842b724349c06dbe84954a17f2597d65c2a",
   "report": "results/reduced_depth/arc_challenge/REPORT.md"
 }

@@ -1,0 +1,14 @@
+{
+  "started_utc": "2026-10-20T19:06:31.195056+00:00",
+  "slurm_job_id": "59024966",
+  "partition": "gpu-common",
+  "complete": true,
+  "state": "complete",
+  "configurations": 28,
+  "question_evaluations": 44702,
+  "scored_candidates": 153048,
+  "answer_token_logprobs_all_four_policies": 4556224,
+  "artifact_manifest_sha256": "804b4549642ceb52615c2a1e92d902f8415990d6871a42380135081b680b0e4d",
+  "report": "results/multitask/REPORT.md",
+  "finished_utc": "2026-10-20T19:07:43.416676+00:00"
+}

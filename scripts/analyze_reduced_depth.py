@@ -84,6 +84,46 @@ def verify_reused_baseline(previous, current):
     }
 
 
+def audit_historical_arc(name, resolved, cache):
+    """Audit frozen ARC-Easy scores while retaining their original manifest."""
+    registry = analyze.read_json(ROOT / "configs/arc_all_models.json")
+    config = registry["models"][name]
+    analyze.require(registry["seed"] == resolved["seed"]
+                    and registry["dataset_size"] == resolved["task"]["count"]
+                    and config["shots"] == resolved["shots"], "Historical ARC-Easy task changed")
+    analyze.require(
+        {key: value for key, value in config.items() if key not in {"shots", "paper", "reuse"}}
+        == {key: value for key, value in resolved["model"].items() if key != "matmul_precision"},
+        "Historical ARC-Easy model configuration changed",
+    )
+    result = analyze.legacy.audit_model(name, config, cache)
+    checkpoint = analyze.audit_checkpoint(resolved["model"], cache)
+    _, data = analyze.audit_data("arc_easy", resolved, cache)
+    manifest = result["run_manifest"]
+    analyze.require(set(manifest["code_hashes"]) == {
+        "scripts/evaluate_arc_suite.py", "src/suite_scoring.py", "src/loopcd.py", "src/adapter_huginn.py",
+    }, "Historical Huginn source inventory differs")
+    analyze.require(manifest["data_sha256"] == data["data_sha256"]
+                    and manifest["model_manifest_sha256"] == checkpoint["manifest_sha256"]
+                    and manifest["adapter_metadata"]["model_revision"] == checkpoint["revision"],
+                    "Historical ARC-Easy data/checkpoint identity changed")
+    result["checkpoint"] = checkpoint
+    result["audit"]["data"] = data
+    result["comparable_manifest"] = {
+        **manifest,
+        "shots": config["shots"], "protocol_sha256": data["protocol_sha256"],
+        "native_source_hashes": checkpoint["native_source_hashes"],
+    }
+    result["historical_schema_alignment"] = {
+        "original_manifest_preserved": True,
+        "shots": "Read from the original frozen configuration.",
+        "protocol_sha256": "Derived from the verified protocol copy and identical prepared data; not recorded by the original runner.",
+        "native_source_hashes": "Resolved from the verified pinned checkpoint whose manifest SHA matches the original run; not recorded by the original runner.",
+    }
+    resolved["output"] = ROOT / result["results_path"]
+    return result
+
+
 def build_result(task, costs_path=None, output=None):
     _, tasks = load_registry()
     cache = {}
@@ -93,24 +133,30 @@ def build_result(task, costs_path=None, output=None):
         "original_reduced": resolve_run(task, "huginn_16"),
         "reduced": resolve_run(task, "huginn_16", EXPERIMENT),
     }
-    output = output or ROOT / "results/reduced_depth" / task
+    output = Path(output) if output is not None else ROOT / "results/reduced_depth" / task
     resolved["reduced"]["output"] = output / "huginn_16_ref5"
-    analyze.require(task != "arc_easy", "Historical ARC-Easy source layout needs its legacy audit")
     audited = {}
     for key, run in resolved.items():
         name = "huginn_32" if key == "full" else "huginn_16"
         print(f"Auditing {task}/{key}", file=sys.stderr, flush=True)
-        audited[key] = analyze.audit_model(task, name, run, tasks, paper, cache)
+        if task == "arc_easy" and key != "reduced":
+            audited[key] = audit_historical_arc(name, run, cache)
+        else:
+            audited[key] = analyze.audit_model(task, name, run, tasks, paper, cache)
     new_manifest = audited["reduced"]["run_manifest"]
     shared_fields = (
         "data_sha256", "protocol_sha256", "model_manifest_sha256", "native_source_hashes",
         "dtype", "float32_matmul_precision", "seed", "shots", "add_bos", "chat_template",
         "batch_size", "token_budget", "torch", "transformers", "gpu",
     )
+    comparable = [row.get("comparable_manifest", row["run_manifest"]) for row in audited.values()]
     for field in shared_fields:
-        analyze.require(all(row["run_manifest"][field] == new_manifest[field] for row in audited.values()),
+        analyze.require(all(manifest[field] == new_manifest[field] for manifest in comparable),
                         f"Unmatched setting across depths: {field}")
-    for key in ("noise_seed", "noise_key", "noise_generation", "noise_coupling"):
+    noise_keys = {key for key in new_manifest["adapter_metadata"] if key.startswith("noise_")}
+    analyze.require(all({key for key in row["run_manifest"]["adapter_metadata"] if key.startswith("noise_")}
+                        == noise_keys for row in audited.values()), "Random initial-state metadata changed")
+    for key in sorted(noise_keys):
         analyze.require(all(row["run_manifest"]["adapter_metadata"][key]
                             == new_manifest["adapter_metadata"][key] for row in audited.values()),
                         f"Random initial-state protocol changed: {key}")
@@ -156,18 +202,20 @@ def build_result(task, costs_path=None, output=None):
     for policy in POLICIES:
         analyze.require(costs["timing"][policy]["aggregate_seconds"]["median"] > 0,
                         "Missing positive standalone timing")
+    task_config = resolved["reduced"]["task"]
     return {
         "complete": True, "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "task": task, "primary_metric": resolved["reduced"]["task"]["primary_metric"],
         "experiment": resolved["reduced"]["experiment"],
-        "scope": "Huginn-0125 on the complete ARC-Challenge test split, 0-shot.",
+        "display": task_config["display"], "task_configuration": task_config,
+        "scope": f"Huginn-0125 on the complete {task_config['display']} {task_config['split']} split, {resolved['reduced']['shots']}-shot.",
         "policies": results, "paired": paired, "baseline_replay": identity,
         "costs_file": analyze.relative(costs_path), "costs_sha256": analyze.digest(costs_path),
         "costs": costs, "cost_audit": cost_audit, "audited_runs": audited,
         "statistical_protocol": {
             "bootstrap": "20000 paired question resamples, seed 1234, percentile 95% CI",
             "mcnemar": "Exact two-sided; Holm correction across three contrasts separately per metric",
-            "primary_comparison": "R16 fixed LoopCD reference5 against R32 baseline, acc_norm",
+            "primary_comparison": f"R16 fixed LoopCD reference5 against R32 baseline, {task_config['primary_metric']}",
             "paper_comparison": "Table A8 configuration; paper Figure 4 reports a seven-task mean",
             "randomness": "One deterministic per-question initial-state seed, shared across depths",
         },
@@ -181,23 +229,31 @@ def build_result(task, costs_path=None, output=None):
 
 def write_report(result, output):
     metric = result["primary_metric"]
+    task = result["task"]
+    task_config = result["task_configuration"]
+    display = task_config["display"]
+    n = result["policies"]["baseline_r32"]["n"]
+    candidate_count = result["audited_runs"]["reduced"]["audit"]["unique_candidates"]
+    shots = result["audited_runs"]["reduced"]["run_manifest"]["shots"]
+    secondary_metric = "acc" if metric == "acc_norm" else "acc_norm"
     costs = result["costs"]
     flops = costs["flops_512_token_prefill"]["including_recurrent_injection"]
     paper_flops = costs["flops_512_token_prefill"]["matching_paper_table_convention"]
     lines = [
-        "# Huginn × ARC-Challenge: half-depth LoopCD", "",
-        "Complete test split: 1,172 questions, 4,687 answer candidates, 0-shot. "
+        f"# Huginn × {display}: half-depth LoopCD", "",
+        f"Complete {task_config['split']} split: {n:,} questions, {candidate_count:,} answer candidates, {shots}-shot. "
         "The checkpoint, prompts, FP32 precision, and per-question initial states are shared. "
-        "The reduced-depth setting follows Table A8: R=16, reference h5, fixed strength 0.5.", "",
+        "The reduced-depth setting follows Table A8: R=16, reference h5, fixed strength 0.5. "
+        f"The primary metric is {metric}.", "",
         "## Accuracy and compute", "",
-        "| Setting | Correct / 1,172 | acc_norm (%) | acc (%) | Forward TFLOPs | Relative FLOPs |",
+        f"| Setting | Correct / {n:,} ({metric}) | {metric} (%) | {secondary_metric} (%) | Forward TFLOPs | Relative FLOPs |",
         "|---|---:|---:|---:|---:|---:|",
     ]
     for policy, row in result["policies"].items():
         cost = flops[policy]
         lines.append(
             f"| {row['display']} | {row['correct'][metric]} | "
-            f"{row['accuracy_percent']['acc_norm']:.2f} | {row['accuracy_percent']['acc']:.2f} | "
+            f"{row['accuracy_percent'][metric]:.2f} | {row['accuracy_percent'][secondary_metric]:.2f} | "
             f"{cost['total_tflops']:.3f} | {cost['fraction_of_baseline_r32']:.3f}× |"
         )
     primary = result["paired"][metric]["guided_reduced_vs_full"]
@@ -222,7 +278,7 @@ def write_report(result, output):
         "Both ledgers are saved in the cost JSON.",
         "",
         "## Paired comparisons", "",
-        "| Comparison (acc_norm) | Change (pp) | 95% paired CI | Corrected / regressed | Exact p | Holm p |",
+        f"| Comparison ({metric}) | Change (pp) | 95% paired CI | Corrected / regressed | Exact p | Holm p |",
         "|---|---:|---:|---:|---:|---:|",
     ]
     labels = {
@@ -250,7 +306,7 @@ def write_report(result, output):
                      f"{1000*stats['iqr']:.2f} | {timing['speedup_vs_baseline_r32']:.2f}× |")
     lines += [
         "", "Policies run independently on the same allocated H200 and identical sampled "
-        "ARC-Challenge batches. Baselines perform one readout; guided scoring performs two. "
+        f"{display} batches. Baselines perform one readout; guided scoring performs two. "
         "Timing uses warmup, CUDA synchronization, and repeated measurements. Model loading, "
         "tokenization, and initial-state construction are excluded; the same prepared initial "
         "states are supplied to all policies. These are sampled scoring measurements; "
@@ -263,19 +319,21 @@ def write_report(result, output):
         f"log-probability difference: {result['baseline_replay']['maximum_token_logprob_difference']:.3g}.",
         "", "[Comparison JSON](comparison.json) · [CSV](comparison.csv) · "
         "[Cost and timing evidence](huginn_costs.json)", "",
-        "Reproduce with `make submit-reduced TASK=arc_challenge "
-        "REDUCED_OUTPUT=results/repeats/huginn_half_depth`; "
-        "rebuild this report with `make report-reduced TASK=arc_challenge`.", "",
+        f"Reproduce with `make submit-reduced TASK={task} "
+        f"REDUCED_OUTPUT=results/repeats/reduced_depth/{task}`; "
+        f"rebuild this report with `make report-reduced TASK={task}`.", "",
     ]
     output.mkdir(parents=True, exist_ok=True)
     (output / "REPORT.md").write_text("\n".join(lines))
     (output / "comparison.json").write_text(json.dumps(result, indent=2) + "\n")
     stream = io.StringIO()
     writer = csv.writer(stream, lineterminator="\n")
-    writer.writerow(["policy", "n", "correct_acc_norm", "acc_norm_percent", "acc_percent",
+    writer.writerow(["policy", "n", "primary_metric", "correct_primary", "primary_accuracy_percent",
+                     "correct_acc_norm", "correct_acc", "acc_norm_percent", "acc_percent",
                      "prefill_tflops", "relative_flops", "sampled_median_ms", "sampled_speedup"])
     for policy, row in result["policies"].items():
-        writer.writerow([policy, row["n"], row["correct"]["acc_norm"],
+        writer.writerow([policy, row["n"], metric, row["correct"][metric], row["accuracy_percent"][metric],
+                         row["correct"]["acc_norm"], row["correct"]["acc"],
                          row["accuracy_percent"]["acc_norm"], row["accuracy_percent"]["acc"],
                          flops[policy]["total_tflops"], flops[policy]["fraction_of_baseline_r32"],
                          costs["timing"][policy]["aggregate_seconds"]["median"] * 1000,
@@ -283,14 +341,9 @@ def write_report(result, output):
     (output / "comparison.csv").write_text(stream.getvalue())
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--task", choices=["arc_challenge"], default="arc_challenge")
-    parser.add_argument("--output", type=Path, help="Comparison directory containing the run and costs")
-    args = parser.parse_args()
-    output = args.output or ROOT / "results/reduced_depth" / args.task
-    result = build_result(args.task, output=output)
-    write_report(result, output)
+def seal_result(result, output):
+    """Write completion and file hashes after a per-task report has been rebuilt."""
+    output = Path(output)
     inventory = {
         analyze.relative(path): {"bytes": path.stat().st_size, "sha256": analyze.digest(path)}
         for path in sorted(output.rglob("*"))
@@ -299,7 +352,7 @@ def main():
     }
     artifact_path = output / "artifact_manifest.json"
     artifact_path.write_text(json.dumps({
-        "scope": "Huginn ARC-Challenge half-depth evaluation, standalone timing, and paired comparisons",
+        "scope": f"Huginn {result['display']} half-depth evaluation, standalone timing, and paired comparisons",
         "files": inventory,
     }, indent=2) + "\n")
     (output / "completion.json").write_text(json.dumps({
@@ -310,6 +363,21 @@ def main():
         "artifact_manifest_sha256": analyze.digest(artifact_path),
         "report": analyze.relative(output / "REPORT.md"),
     }, indent=2) + "\n")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--task", choices=["all", *analyze.TASK_NAMES], default="arc_challenge")
+    parser.add_argument("--output", type=Path, help="Comparison directory, or four-task root for --task all")
+    args = parser.parse_args()
+    if args.task == "all":
+        from scripts.reduced_suite import run_suite
+        run_suite(output=args.output)
+        return
+    output = args.output or ROOT / "results/reduced_depth" / args.task
+    result = build_result(args.task, output=output)
+    write_report(result, output)
+    seal_result(result, output)
     print(json.dumps({"complete": True, "report": analyze.relative(output / "REPORT.md"),
                       "policies": result["policies"]}), flush=True)
 

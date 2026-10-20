@@ -180,10 +180,78 @@ def retokenize(documents, tokenizer, add_bos, max_length):
     }
 
 
+def audit_arc_easy_data(resolved):
+    """Verify the original ARC-Easy protocol schemas and complete prepared data."""
+    shots = resolved["shots"]
+    require(shots in (0, 8) and resolved["seed"] == 1234,
+            "Unsupported historical ARC-Easy few-shot/seed protocol")
+    require(resolved["task"]["split"] == "test"
+            and resolved["task"]["count"] == legacy.N_DOCUMENTS,
+            "Historical ARC-Easy split/count changed")
+    data_path, protocol_path = resolved["data_path"], resolved["protocol_path"]
+    require(data_path.resolve() == (ROOT / f"data/arc_easy_{shots}shot.jsonl").resolve(),
+            "Unexpected ARC-Easy prepared-data path")
+    require(protocol_path.resolve()
+            == (ROOT / f"data/tasks/arc_easy/protocol_{shots}shot.json").resolve(),
+            "Unexpected ARC-Easy protocol path")
+    original_protocol = ROOT / "data" / ("protocol_0shot.json" if shots == 0 else "protocol.json")
+    require(digest(protocol_path) == digest(original_protocol), "ARC-Easy protocol copy differs")
+    documents = read_jsonl(data_path)
+    require(len(documents) == legacy.N_DOCUMENTS
+            and len({doc["id"] for doc in documents}) == len(documents),
+            "Wrong or duplicate ARC-Easy documents")
+    legacy.audit_prepared_data(documents, shots)
+    protocol = read_json(protocol_path)
+    base_path = ROOT / "data/protocol.json"
+    base = read_json(base_path)
+    require(base["task"] == "arc_easy" and base["split"] == "test"
+            and base["fewshot_seed"] == resolved["seed"] and base["num_fewshot"] == 8
+            and base["counts"]["test"] == len(documents)
+            and base["output"]["path"] == "data/arc_easy_8shot.jsonl"
+            and base["output"]["rows"] == len(documents)
+            and base["apply_chat_template"] is False, "ARC-Easy base protocol changed")
+    if shots == 0:
+        require(protocol["shots"] == 0 and protocol["n"] == len(documents)
+                and protocol["choices_and_gold_unchanged"] is True,
+                "ARC-Easy zero-shot protocol changed")
+        require(protocol["output"] == str(data_path.relative_to(ROOT))
+                and protocol["output_sha256"] == digest(data_path),
+                "ARC-Easy zero-shot output mismatch")
+        require(protocol["source"] == base["output"]["path"]
+                and protocol["source_sha256"] == base["output"]["sha256"]
+                and digest(ROOT / protocol["source"]) == protocol["source_sha256"],
+                "ARC-Easy zero-shot source lineage mismatch")
+    else:
+        require(base["output"]["path"] == str(data_path.relative_to(ROOT))
+                and base["output"]["sha256"] == digest(data_path)
+                and base["output"]["rows"] == len(documents), "ARC-Easy eight-shot output mismatch")
+    source_hashes = {}
+    for entry in base["sources"]:
+        path = ROOT / entry["path"]
+        require(path.resolve().is_relative_to(ROOT.resolve()), "ARC-Easy source escapes repository")
+        require(path.is_file() and digest(path) == entry["sha256"],
+                f"ARC-Easy provenance hash mismatch: {entry['path']}")
+        source_hashes[entry["path"]] = entry["sha256"]
+    source_hashes[relative(base_path)] = digest(base_path)
+    if shots == 0:
+        source_hashes[protocol["source"]] = protocol["source_sha256"]
+    return documents, {
+        "canonical_raw_and_complete_prompts_verified": True,
+        "validation": {"canonical_test_and_training_fewshot_context_verified": True,
+                       "protocol_schema": f"historical_arc_easy_{shots}shot"},
+        "raw_and_harness_source_sha256": source_hashes,
+        "data_path": relative(data_path), "data_sha256": digest(data_path),
+        "protocol_path": relative(protocol_path), "protocol_sha256": digest(protocol_path),
+    }
+
+
 def audit_data(task, resolved, cache):
     data_path, shots = resolved["data_path"], resolved["shots"]
     key = ("data", task, shots)
     if key in cache:
+        return cache[key]
+    if task == "arc_easy":
+        cache[key] = audit_arc_easy_data(resolved)
         return cache[key]
     require(data_path.resolve() == (ROOT / f"data/tasks/{task}/{shots}shot.jsonl").resolve(),
             "Unexpected prepared-data path")

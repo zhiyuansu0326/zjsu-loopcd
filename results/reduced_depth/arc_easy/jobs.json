@@ -1,0 +1,22 @@
+[
+  {
+    "task": "arc_easy",
+    "job_id": "59056755",
+    "partition": "scavenger-h200",
+    "account": "scavenger-h200",
+    "purpose": "Full fixed-parameter R16 h5 evaluation and independent policy timings",
+    "submitted_utc": "2026-10-20T19:14:50.432016+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name=half-huginn-arc_easy",
+      "--export=ALL,LOOPCD_DEFER_ANALYSIS=1",
+      "scripts/run_reduced_depth.slurm",
+      "arc_easy",
+      "results/reduced_depth/arc_easy"
+    ]
+  }
+]

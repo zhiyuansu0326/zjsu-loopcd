@@ -1,6 +1,6 @@
 {
   "complete": true,
-  "generated_at_utc": "2026-10-20T19:08:56.204321+00:00",
+  "generated_at_utc": "2026-10-20T19:31:47.921207+00:00",
   "task": "arc_challenge",
   "primary_metric": "acc_norm",
   "experiment": {
@@ -15,6 +15,21 @@
     "reported_policy": "loopcd_fixed",
     "paper_setting": "Table A8: Huginn-0125, logit guidance, 32 to 16 loops, reference h5, fixed omega=0.5",
     "output_name": "huginn_16_ref5"
+  },
+  "display": "ARC-Challenge",
+  "task_configuration": {
+    "display": "ARC-Challenge",
+    "split": "test",
+    "count": 1172,
+    "primary_metric": "acc_norm",
+    "shots_by_family": {
+      "ouro": 25,
+      "huginn": 0,
+      "parcae": 25,
+      "looped_qwen": 25
+    },
+    "data_path": "data/tasks/arc_challenge/{shots}shot.jsonl",
+    "protocol_path": "data/tasks/arc_challenge/protocol.json"
   },
   "scope": "Huginn-0125 on the complete ARC-Challenge test split, 0-shot.",
   "policies": {
@@ -3324,8 +3339,8 @@
     "randomness": "One deterministic per-question initial-state seed, shared across depths"
   },
   "analysis_source_sha256": {
-    "scripts/analyze_reduced_depth.py": "5badcce791b9a5e86a3409a5f209d91060f7619461fd2832dc4f8a0e3e181ee7",
-    "scripts/analyze.py": "0ea1b0a174e628a5baa7cd13cbc243294cc24131c83e981c2aa76ffd46fd2c92",
+    "scripts/analyze_reduced_depth.py": "a22db5f7efc90155790c4f5f80c6f6955ea54d20dd274072d40ea7acd730236d",
+    "scripts/analyze.py": "8c3c333a527c4690e08ec206103a3f1d6963775090e73ea85756b8879a3ea66d",
     "scripts/analyze_arc_suite.py": "1d8e53bb1161ec58f93bf98bcb1ec015fc6649b5891033e73b5b88189e5a7579",
     "scripts/reduced_cost_audit.py": "6559d8373765dcf17b1fccae505237defc4211f9382a7f40d96cf9d0e42134ae"
   }

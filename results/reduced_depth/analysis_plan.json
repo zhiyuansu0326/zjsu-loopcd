@@ -1,0 +1,63 @@
+{
+  "created_utc": "2026-10-20T19:14:17.074751+00:00",
+  "scope": "Extend the completed ARC-Challenge half-depth experiment to the four existing tasks.",
+  "existing_result": "results/reduced_depth/arc_challenge/comparison.json",
+  "existing_result_sha256": "05f764a9b3aff8e7bf3c12fd01921bae4564f973e62dca38c58b013772c4ebf6",
+  "new_tasks": [
+    "arc_easy",
+    "sciq",
+    "piqa"
+  ],
+  "task_order": [
+    "arc_easy",
+    "arc_challenge",
+    "sciq",
+    "piqa"
+  ],
+  "fixed_parameters": {
+    "checkpoint": "tomg-group-umd/huginn-0125",
+    "reduced_loops": 16,
+    "full_baseline_loops": 32,
+    "reference_step": 5,
+    "fixed_strength": 0.5,
+    "seed": 1234,
+    "dtype": "float32",
+    "matmul_precision": "highest"
+  },
+  "primary_metrics": {
+    "arc_easy": "acc_norm",
+    "arc_challenge": "acc_norm",
+    "sciq": "acc",
+    "piqa": "acc_norm"
+  },
+  "primary_mean": "Equal arithmetic weight for each of the four task accuracies, using each frozen primary metric.",
+  "secondary_means": [
+    "All four tasks using acc",
+    "All four tasks using acc_norm"
+  ],
+  "primary_contrast": "Guided R16 minus baseline R32",
+  "other_contrasts": [
+    "Baseline R16 minus baseline R32",
+    "Guided R16 minus baseline R16"
+  ],
+  "bootstrap": {
+    "samples": 20000,
+    "seed": 1234,
+    "method": "Paired question resampling independently within each fixed task; equal-weight mean of task differences; percentile 95% interval"
+  },
+  "permutation": {
+    "samples": 200000,
+    "seed": 1234,
+    "method": "Two-sided paired sign flips on correctness discordances within tasks; equal-weight mean; plus-one Monte Carlo p"
+  },
+  "multiplicity": {
+    "suite": "Holm over three mean contrasts using frozen task primary metrics; secondary metric views report descriptive means and differences.",
+    "tasks": "Holm over 12 task contrasts (four tasks times three comparisons), using frozen task primary metrics"
+  },
+  "timing": "Three fixed length-quantile batches of eight candidates per task, warmup 2 and repetitions 6; independent policies on same H200 allocation; macro speedup geometric mean, per-task values reported.",
+  "configuration_sha256": {
+    "configs/experiments.json": "9a22f0602006e5788d8b8db9f558a61b1932b6601cc41cd97217e98f7ae6ecdc",
+    "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+    "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+  }
+}

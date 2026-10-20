@@ -1,10 +1,10 @@
 # Huginn × ARC-Challenge: half-depth LoopCD
 
-Complete test split: 1,172 questions, 4,687 answer candidates, 0-shot. The checkpoint, prompts, FP32 precision, and per-question initial states are shared. The reduced-depth setting follows Table A8: R=16, reference h5, fixed strength 0.5.
+Complete test split: 1,172 questions, 4,687 answer candidates, 0-shot. The checkpoint, prompts, FP32 precision, and per-question initial states are shared. The reduced-depth setting follows Table A8: R=16, reference h5, fixed strength 0.5. The primary metric is acc_norm.
 
 ## Accuracy and compute
 
-| Setting | Correct / 1,172 | acc_norm (%) | acc (%) | Forward TFLOPs | Relative FLOPs |
+| Setting | Correct / 1,172 (acc_norm) | acc_norm (%) | acc (%) | Forward TFLOPs | Relative FLOPs |
 |---|---:|---:|---:|---:|---:|
 | Baseline R=32 | 444 | 37.88 | 35.15 | 56.353 | 1.000× |
 | Baseline R=16 | 434 | 37.03 | 32.76 | 29.174 | 0.518× |
@@ -42,4 +42,4 @@ Saved candidate tokens, likelihood sums, predictions, summaries, source snapshot
 
 [Comparison JSON](comparison.json) · [CSV](comparison.csv) · [Cost and timing evidence](huginn_costs.json)
 
-Reproduce with `make submit-reduced TASK=arc_challenge REDUCED_OUTPUT=results/repeats/huginn_half_depth`; rebuild this report with `make report-reduced TASK=arc_challenge`.
+Reproduce with `make submit-reduced TASK=arc_challenge REDUCED_OUTPUT=results/repeats/reduced_depth/arc_challenge`; rebuild this report with `make report-reduced TASK=arc_challenge`.

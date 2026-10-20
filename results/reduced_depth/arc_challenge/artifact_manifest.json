@@ -2,16 +2,16 @@
   "scope": "Huginn ARC-Challenge half-depth evaluation, standalone timing, and paired comparisons",
   "files": {
     "results/reduced_depth/arc_challenge/REPORT.md": {
-      "bytes": 3378,
-      "sha256": "cfc784309c1ee3c533198d83edd570892acd8772887f03b5aa1db10b2ae75270"
+      "bytes": 3431,
+      "sha256": "643b7df6fcb245ec61f74d47c9d54072a7878e4d03816fb8fb08b9cb1b4cd866"
     },
     "results/reduced_depth/arc_challenge/comparison.csv": {
-      "bytes": 482,
-      "sha256": "12759adca603b1b7df28b98524ece7e01f3881fe11bbe7ffa4ba07198d249a0d"
+      "bytes": 654,
+      "sha256": "731d0150e0717cee2fc74374692dd70126a94582a6975e2ebf453fc8c85d6067"
     },
     "results/reduced_depth/arc_challenge/comparison.json": {
-      "bytes": 132812,
-      "sha256": "05f764a9b3aff8e7bf3c12fd01921bae4564f973e62dca38c58b013772c4ebf6"
+      "bytes": 133217,
+      "sha256": "705b980f668c197b654c554edce9602b700a44bc6dd1bdd363b5bbb8935f7bea"
     },
     "results/reduced_depth/arc_challenge/huginn_16_ref5/candidate_scores.jsonl": {
       "bytes": 4014451,

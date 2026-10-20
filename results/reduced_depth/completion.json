@@ -1,0 +1,17 @@
+{
+  "complete": true,
+  "finished_utc": "2026-10-20T19:31:54.239946+00:00",
+  "tasks": [
+    "arc_easy",
+    "arc_challenge",
+    "sciq",
+    "piqa"
+  ],
+  "reduced_evaluation_runs": 4,
+  "audited_historical_baseline_runs": 8,
+  "reduced_question_evaluations": 6386,
+  "reduced_scored_candidates": 21864,
+  "analysis_plan_sha256": "9fafe2a2248cfd96cd62a31c9d2898aa6caea5f15317a384c07f4daeefeef495",
+  "artifact_manifest_sha256": "5952164902a4fc7fc1413f6a33bb5d198c01f2b57320871bae7ef89be33bc1e1",
+  "report": "results/reduced_depth/REPORT.md"
+}

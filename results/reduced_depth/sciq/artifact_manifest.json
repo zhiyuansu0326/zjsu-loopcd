@@ -1,0 +1,137 @@
+{
+  "scope": "Huginn SciQ half-depth evaluation, standalone timing, and paired comparisons",
+  "files": {
+    "results/reduced_depth/sciq/REPORT.md": {
+      "bytes": 3346,
+      "sha256": "a3ffb3e34ac46993c1b2f6114afe64ffec398079cedbb99462e6c37928490515"
+    },
+    "results/reduced_depth/sciq/comparison.csv": {
+      "bytes": 522,
+      "sha256": "b8d2c35f9554b575141434dd1cd38bd48f5ea0c1cc506cc6de93db1cb0068809"
+    },
+    "results/reduced_depth/sciq/comparison.json": {
+      "bytes": 129224,
+      "sha256": "853cc8b7adc17cd3f63cf578aeade3758de8646506bbbf3daff9e9000305b7f1"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/candidate_scores.jsonl": {
+      "bytes": 1979634,
+      "sha256": "4f5d8acf06255fbf28ca627e162bc34fe6a8849cb2aa7ca9dde1166daab56129"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/data_protocol.json": {
+      "bytes": 5394,
+      "sha256": "77a00d002bd53d4e45299c5a3a78b2ff48069d4d3939a2bd4680c60d7b9a901f"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/predictions.jsonl": {
+      "bytes": 1251070,
+      "sha256": "156b649748610d9056d886c82c5194be2ef6e73bb646b1da86222e096152314e"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/run_manifest.json": {
+      "bytes": 4956,
+      "sha256": "04f356f44cbf5494d7c4d8a27761a8efc9c5dd2b371b619bd869dbc4656a6e60"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/adapter_huginn.py": {
+      "bytes": 15636,
+      "sha256": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/evaluate.py": {
+      "bytes": 11463,
+      "sha256": "36f249049e6ed33f7428e4619dc15f633fa8ef8104211161f57c87331799be96"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/experiments.json": {
+      "bytes": 455,
+      "sha256": "9a22f0602006e5788d8b8db9f558a61b1932b6601cc41cd97217e98f7ae6ecdc"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/loopcd.py": {
+      "bytes": 7443,
+      "sha256": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/registry.py": {
+      "bytes": 2064,
+      "sha256": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/suite_scoring.py": {
+      "bytes": 4968,
+      "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/source_snapshot/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/summary.json": {
+      "bytes": 987,
+      "sha256": "73854260c5cadafebcd9c46bdf8872af89f6511b98c9479250b9ce1715b05223"
+    },
+    "results/reduced_depth/sciq/huginn_16_ref5/validation.json": {
+      "bytes": 2355,
+      "sha256": "7cd75bae97a3cbec2862d85e1161754a175a0ddd6c9d4d076d917b952bed1715"
+    },
+    "results/reduced_depth/sciq/huginn_costs.json": {
+      "bytes": 58527,
+      "sha256": "accde21b66ddc5639514018947fec61391edc3eb9c7dc114e4d00317c8e30c59"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/configs/models.json": {
+      "bytes": 2141,
+      "sha256": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/configs/tasks.json": {
+      "bytes": 1796,
+      "sha256": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/models/Huginn-0125/config.json": {
+      "bytes": 1447,
+      "sha256": "e9fe79df06a783ca33a76038c59a715b6a62f15c4a5b17b9681e697fea46c79c"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/scripts/benchmark_huginn.py": {
+      "bytes": 19223,
+      "sha256": "5c5f129cff4fdd1440268519ad4a9b419c1fb907bdbcbd07ed0c6cd65f4c33d7"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/src/adapter_huginn.py": {
+      "bytes": 15636,
+      "sha256": "ef60efcce8a050597e16dfa2bbb16553d1731ceaab57f398a25fcbaab1b69caa"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/src/evaluation.py": {
+      "bytes": 3263,
+      "sha256": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/src/huginn_costs.py": {
+      "bytes": 6132,
+      "sha256": "37f54cc9ea3e672196445a1ad09de0bcd11626f66b6165bf39f374f94c1d0629"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/src/loopcd.py": {
+      "bytes": 7443,
+      "sha256": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/src/registry.py": {
+      "bytes": 2064,
+      "sha256": "f12dd767e2df355f0b3ad45800a4488cd8d3c44d203256df8f7c096ffea7d7fc"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/src/run_integrity.py": {
+      "bytes": 10076,
+      "sha256": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc"
+    },
+    "results/reduced_depth/sciq/huginn_costs_source_snapshot/src/suite_scoring.py": {
+      "bytes": 4968,
+      "sha256": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901"
+    },
+    "results/reduced_depth/sciq/jobs.json": {
+      "bytes": 595,
+      "sha256": "cb33d9cdbaa2d14b79097295bfe168d122f1b7e1da7f79122302ebefc42a9d41"
+    },
+    "results/reduced_depth/sciq/slurm_accounting.txt": {
+      "bytes": 62,
+      "sha256": "d11579f89a5b49f4ad910fd722682210ec0c427583141f805785bb6ba924fed2"
+    }
+  }
+}

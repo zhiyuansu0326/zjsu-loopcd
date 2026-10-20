@@ -1,0 +1,16 @@
+{
+  "experiments": {
+    "huginn_half_depth": {
+      "model": "huginn_16",
+      "model_overrides": {
+        "display": "Huginn-0125 R=16, reference=5",
+        "reference_step": 5,
+        "fixed": 0.5
+      },
+      "full_depth_model": "huginn_32",
+      "reported_policy": "loopcd_fixed",
+      "paper_setting": "Table A8: Huginn-0125, logit guidance, 32 to 16 loops, reference h5, fixed omega=0.5",
+      "output_name": "huginn_16_ref5"
+    }
+  }
+}
