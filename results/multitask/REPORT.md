@@ -1,14 +1,14 @@
-# 多任务 LoopCD-Logits 复现
+# Multitask LoopCD-Logits reproduction
 
-下列任务全部通过七个模型配置的完整候选与逐题审计；各项均报告基线、固定和自适应引导。主指标在评分前确定，补充指标完整保留。
+All tasks below passed complete candidate-level and question-level audits across seven model configurations. Each task reports baseline, fixed, and adaptive guidance. Primary metrics were determined before scoring; supplementary metrics are retained in full.
 
-| 任务 | 划分 / 题数 | 主指标 | 配置数 | 详细报告 |
+| Task | Split / questions | Primary metric | Configurations | Detailed report |
 |---|---|---|---:|---|
 | ARC-Easy | test / 2376 | acc_norm | 7 | [arc_easy](arc_easy/REPORT.md) |
 | ARC-Challenge | test / 1172 | acc_norm | 7 | [arc_challenge](arc_challenge/REPORT.md) |
 | SciQ | test / 1000 | acc | 7 | [sciq](sciq/REPORT.md) |
 | PIQA | validation / 1838 | acc_norm | 7 | [piqa](piqa/REPORT.md) |
 
-每个任务分别在 14 个比较内做 Holm 校正，没有合并成跨任务显著性结论。未计算不同提示协议、不同指标之间的合并准确率，也不以结果选择最佳策略。论文未公开全部评测细节，因此这是固定协议的独立复现，不能把接近的分数视为逐位重现。
+Each task applies Holm correction within its own family of 14 comparisons; results are not combined into a cross-task significance claim. Accuracy is not pooled across different prompt protocols or metrics, and results are not used to choose a best policy. Because the paper does not publish every evaluation detail, this is an independent reproduction under a fixed protocol; close scores do not establish bit-for-bit replication.
 
-本总报告只包含本次 `--task` 选择且完整审计的任务；`--task all` 包含全部四项。原始 ARC-Easy 评分和报告保留不变。逐任务、模型、指标的机器可读表见 comparison.csv；该表只在主指标行填论文引用值，补充指标行的论文列留空。
+This combined report includes only the fully audited tasks selected by `--task`; `--task all` includes all four tasks. Original ARC-Easy scores are preserved. See comparison.csv for a machine-readable table by task, model, and metric. Paper reference values appear only in primary-metric rows; the paper columns in supplementary-metric rows are left empty.

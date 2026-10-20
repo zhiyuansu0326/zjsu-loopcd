@@ -319,7 +319,7 @@ class FinalArtifactsTests(unittest.TestCase):
     def result(self):
         _, _, _, _, summary = fixture()
         model = {
-            "display": "Tiny, Unicode 模型", "shots": 0, "n": 1,
+            "display": "Tiny, Unicode modèle", "shots": 0, "n": 1,
             "accuracy_percent": summary["accuracy_percent"], "correct": summary["correct"],
             "paper_table2": {"baseline": 10., "loopcd_fixed": 20., "loopcd_adaptive": 30.},
             "paired": {
@@ -348,7 +348,7 @@ class FinalArtifactsTests(unittest.TestCase):
         self.assertEqual(len(rows), 14)
         self.assertEqual({row["model"] for row in rows}, analyze.MODEL_NAMES)
         for row in rows:
-            self.assertEqual(row["display"], "Tiny, Unicode 模型")
+            self.assertEqual(row["display"], "Tiny, Unicode modèle")
             if row["metric"] == "acc":
                 self.assertEqual(row["is_primary"], "True")
                 self.assertEqual(float(row["paper_baseline_percent"]), 10.)
@@ -359,11 +359,11 @@ class FinalArtifactsTests(unittest.TestCase):
 
     def test_sciq_report_keeps_preselected_metric_and_protocol_limit(self):
         text = analyze.report_task(self.result())
-        self.assertIn("主指标为 `acc`", text)
-        self.assertIn("未按接近论文的程度重新指定主指标", text)
-        self.assertIn("不是作者协议已获确认的证据", text)
-        self.assertIn("未归一化分数更接近论文", text)
-        self.assertIn("没有跨任务校正", text)
+        self.assertIn("The primary metric was fixed as `acc`", text)
+        self.assertIn("the primary metric has not been reassigned based on agreement with the paper", text)
+        self.assertIn("not confirmation of their evaluation protocol", text)
+        self.assertIn("unnormalized scores are closer to the paper", text)
+        self.assertIn("no cross-task correction", text)
 
     def test_final_artifacts_reject_incomplete_task_even_when_called_directly(self):
         result = self.result()

@@ -1,12 +1,12 @@
-# ARC-Easy：论文全部模型配置的 LoopCD-Logits 复现
+# ARC-Easy: LoopCD-Logits reproduction for all paper model configurations
 
-本报告仅覆盖论文 Table 2 的 ARC-Easy 全部模型配置及 LoopCD-Logits，不包括 Thinking、隐藏态引导或速度扩展。完成4个模型家族、6份权重、7个循环深度配置；每项均使用完整2376题、9501个候选答案。下表的分数均由保存的答案 token 对数概率独立重算，且通过重新分词、逐题预测、汇总结果及文件哈希核对。
+This report covers LoopCD-Logits on ARC-Easy for every model configuration in Table 2 of the paper. It excludes Thinking, hidden-state guidance, and speed extensions. Four model families, six checkpoints, and seven loop-depth configurations are complete, each using all 2,376 questions and 9,501 candidate answers. Scores below were independently recomputed from saved answer-token log probabilities and checked against retokenization, per-question predictions, summaries, and file hashes.
 
-## 实测与论文
+## Reproduction and paper results
 
-预先固定以 acc_norm 展示：候选答案全部 token 的条件对数似然之和，除以原答案文本的 Unicode 字符数，不计额外添加的前导空格。论文没有明确区分 acc 与 acc_norm，故同时报告未归一化 acc，不能据此认定与作者未公开的评测程序完全一致。单元格为“本次 / 论文”，单位为%。
+The predetermined display metric is acc_norm: the sum of conditional log likelihoods over every candidate-answer token, divided by the original answer text's Unicode character count, excluding any added leading space. The paper does not explicitly distinguish acc from acc_norm, so unnormalized acc is also reported. These results do not establish exact agreement with the authors' unreleased evaluation program. Cells show reproduced / paper percentages.
 
-| 配置 | 普通解码 | LoopCD 固定 | LoopCD 自适应 | 固定净增答对 / pp | 自适应净增答对 / pp |
+| Configuration | Baseline | LoopCD fixed | LoopCD adaptive | Fixed net correct / pp | Adaptive net correct / pp |
 |---|---:|---:|---:|---:|---:|
 | Ouro-1.4B R=4 | 84.09 / 84.09 | 84.39 / 84.39 | 84.13 / 84.26 | +7 / +0.29 | +1 / +0.04 |
 | Ouro-2.6B R=4 | 88.17 / 88.01 | 88.93 / 89.10 | 88.72 / 89.02 | +18 / +0.76 | +13 / +0.55 |
@@ -16,74 +16,74 @@
 | Parcae-1.3B R=8 | 64.90 / 65.07 | 66.16 / 65.91 | 65.49 / 66.16 | +30 / +1.26 | +14 / +0.59 |
 | Looped-Qwen3-4B R=8 | 79.38 / 79.25 | 79.25 / 79.00 | 79.00 / 78.58 | -3 / -0.13 | -9 / -0.38 |
 
-**结论对评分口径敏感。** 以下比较在两种口径下方向相反，不能概括为全面提升：Huginn-0125 R=16 固定：acc_norm +1.94 pp，acc -2.19 pp；Huginn-0125 R=16 自适应：acc_norm +1.85 pp，acc -1.35 pp；Huginn-0125 R=32 固定：acc_norm +1.01 pp，acc -2.40 pp；Huginn-0125 R=32 自适应：acc_norm +1.43 pp，acc -1.60 pp；Parcae-1.3B R=8 固定：acc_norm +1.26 pp，acc -0.84 pp；Parcae-1.3B R=8 自适应：acc_norm +0.59 pp，acc -1.77 pp；Looped-Qwen3-4B R=8 固定：acc_norm -0.13 pp，acc +0.21 pp；Looped-Qwen3-4B R=8 自适应：acc_norm -0.38 pp，acc +0.34 pp。两种口径在实验前均已固定保留，没有按结果选择。
+**Conclusions depend on the scoring metric.** The following comparisons change direction between metrics and do not support a claim of improvement across the board: Huginn-0125 R=16 Fixed: acc_norm +1.94 pp, acc -2.19 pp; Huginn-0125 R=16 Adaptive: acc_norm +1.85 pp, acc -1.35 pp; Huginn-0125 R=32 Fixed: acc_norm +1.01 pp, acc -2.40 pp; Huginn-0125 R=32 Adaptive: acc_norm +1.43 pp, acc -1.60 pp; Parcae-1.3B R=8 Fixed: acc_norm +1.26 pp, acc -0.84 pp; Parcae-1.3B R=8 Adaptive: acc_norm +0.59 pp, acc -1.77 pp; Looped-Qwen3-4B R=8 Fixed: acc_norm -0.13 pp, acc +0.21 pp; Looped-Qwen3-4B R=8 Adaptive: acc_norm -0.38 pp, acc +0.34 pp. Both metrics were retained before the experiments and were not selected from the results.
 
-普通解码指各模型指定深度的原生最终输出；Looped-Qwen 的基线是8步阻尼循环后的输出。所有比较均使用各自同一次循环轨迹；弱参考取第1次完整更新后的状态，经该模型完整输出路径得到 logits。
+Baseline denotes each model's native final output at its specified depth; the Looped-Qwen baseline is the output after eight damped loop updates. Each comparison shares a single loop trajectory. The weak reference uses the state after the first complete update, passed through the model's full output path to obtain logits.
 
-## 同题配对变化（acc_norm）
+## Paired changes on the same questions (acc_norm)
 
-| 配置 | 策略 | 改对 | 改错 | 答案改变 | 净增 | 95%配对区间（pp） | McNemar p | Holm p |
+| Configuration | Policy | Corrected | Regressed | Changed answers | Net correct | Paired 95% CI (pp) | McNemar p | Holm p |
 |---|---|---:|---:|---:|---:|---|---:|---:|
-| Ouro-1.4B R=4 | 固定 | 38 | 31 | 88 | +7 | [-0.38, +0.97] | 0.4704 | 1.0000 |
-| Ouro-1.4B R=4 | 自适应 | 48 | 47 | 117 | +1 | [-0.76, +0.84] | 1.0000 | 1.0000 |
-| Ouro-2.6B R=4 | 固定 | 39 | 21 | 68 | +18 | [+0.13, +1.39] | 0.0273 | 0.3007 |
-| Ouro-2.6B R=4 | 自适应 | 54 | 41 | 107 | +13 | [-0.25, +1.35] | 0.2181 | 1.0000 |
-| Huginn-0125 R=16 | 固定 | 168 | 122 | 364 | +46 | [+0.55, +3.32] | 0.0081 | 0.1055 |
-| Huginn-0125 R=16 | 自适应 | 146 | 102 | 309 | +44 | [+0.55, +3.16] | 0.0062 | 0.0869 |
-| Huginn-0125 R=32 | 固定 | 156 | 132 | 367 | +24 | [-0.42, +2.40] | 0.1752 | 1.0000 |
-| Huginn-0125 R=32 | 自适应 | 145 | 111 | 329 | +34 | [+0.13, +2.74] | 0.0390 | 0.3895 |
-| Parcae-370M R=8 | 固定 | 57 | 57 | 158 | +0 | [-0.88, +0.88] | 1.0000 | 1.0000 |
-| Parcae-370M R=8 | 自适应 | 91 | 93 | 259 | -2 | [-1.22, +1.01] | 0.9413 | 1.0000 |
-| Parcae-1.3B R=8 | 固定 | 91 | 61 | 200 | +30 | [+0.21, +2.27] | 0.0184 | 0.2204 |
-| Parcae-1.3B R=8 | 自适应 | 131 | 117 | 320 | +14 | [-0.72, +1.89] | 0.4091 | 1.0000 |
-| Looped-Qwen3-4B R=8 | 固定 | 45 | 48 | 116 | -3 | [-0.93, +0.67] | 0.8358 | 1.0000 |
-| Looped-Qwen3-4B R=8 | 自适应 | 44 | 53 | 130 | -9 | [-1.22, +0.42] | 0.4168 | 1.0000 |
+| Ouro-1.4B R=4 | Fixed | 38 | 31 | 88 | +7 | [-0.38, +0.97] | 0.4704 | 1.0000 |
+| Ouro-1.4B R=4 | Adaptive | 48 | 47 | 117 | +1 | [-0.76, +0.84] | 1.0000 | 1.0000 |
+| Ouro-2.6B R=4 | Fixed | 39 | 21 | 68 | +18 | [+0.13, +1.39] | 0.0273 | 0.3007 |
+| Ouro-2.6B R=4 | Adaptive | 54 | 41 | 107 | +13 | [-0.25, +1.35] | 0.2181 | 1.0000 |
+| Huginn-0125 R=16 | Fixed | 168 | 122 | 364 | +46 | [+0.55, +3.32] | 0.0081 | 0.1055 |
+| Huginn-0125 R=16 | Adaptive | 146 | 102 | 309 | +44 | [+0.55, +3.16] | 0.0062 | 0.0869 |
+| Huginn-0125 R=32 | Fixed | 156 | 132 | 367 | +24 | [-0.42, +2.40] | 0.1752 | 1.0000 |
+| Huginn-0125 R=32 | Adaptive | 145 | 111 | 329 | +34 | [+0.13, +2.74] | 0.0390 | 0.3895 |
+| Parcae-370M R=8 | Fixed | 57 | 57 | 158 | +0 | [-0.88, +0.88] | 1.0000 | 1.0000 |
+| Parcae-370M R=8 | Adaptive | 91 | 93 | 259 | -2 | [-1.22, +1.01] | 0.9413 | 1.0000 |
+| Parcae-1.3B R=8 | Fixed | 91 | 61 | 200 | +30 | [+0.21, +2.27] | 0.0184 | 0.2204 |
+| Parcae-1.3B R=8 | Adaptive | 131 | 117 | 320 | +14 | [-0.72, +1.89] | 0.4091 | 1.0000 |
+| Looped-Qwen3-4B R=8 | Fixed | 45 | 48 | 116 | -3 | [-0.93, +0.67] | 0.8358 | 1.0000 |
+| Looped-Qwen3-4B R=8 | Adaptive | 44 | 53 | 130 | -9 | [-1.22, +0.42] | 0.4168 | 1.0000 |
 
-改对/改错按同题相对于普通解码计算；“答案改变”还包含错误选项之间的变化。95%区间使用20000次配对 bootstrap（seed=1234），反映题目抽样不确定性，不包含随机初态、多次模型运行或协议选择的不确定性。McNemar 为精确双侧检验；Holm 在14个主口径比较内校正多重检验，区间本身未经多重校正。
+Corrected and regressed counts compare the same questions against baseline; changed answers also include switches between incorrect options. The 95% intervals use 20,000 paired bootstrap resamples (seed=1234) and describe uncertainty from sampling questions. They exclude uncertainty from random initial states, repeated model runs, and protocol selection. McNemar tests are exact and two-sided. Holm correction applies across the 14 primary-metric comparisons; the intervals themselves are not adjusted for multiple comparisons.
 
-在 acc_norm 主口径下，按 Holm p<0.05 的判据，本次没有足够证据认定任何一项变化显著。
+Under the primary acc_norm metric, no change has sufficient evidence of significance at Holm p<0.05.
 
-## 两种口径的完整正确率
+## Complete accuracy results for both metrics
 
-各项以“答对数（百分比）”列出；弱参考仅用于诊断，没有对应论文 Table 2 列。
+Each cell shows the correct count (percentage). The weak reference is diagnostic only and has no corresponding column in the paper's Table 2.
 
-| 配置 | 口径 | 普通解码 | 固定 | 自适应 | 第1循环弱参考 |
+| Configuration | Metric | Baseline | Fixed | Adaptive | First-loop weak reference |
 |---|---|---:|---:|---:|---:|
-| Ouro-1.4B R=4 | acc | 1991（83.80%） | 2006（84.43%） | 2009（84.55%） | 1527（64.27%） |
-| Ouro-1.4B R=4 | acc_norm | 1998（84.09%） | 2005（84.39%） | 1999（84.13%） | 1386（58.33%） |
-| Ouro-2.6B R=4 | acc | 2071（87.16%） | 2086（87.79%） | 2088（87.88%） | 1713（72.10%） |
-| Ouro-2.6B R=4 | acc_norm | 2095（88.17%） | 2113（88.93%） | 2108（88.72%） | 1630（68.60%） |
-| Huginn-0125 R=16 | acc | 1647（69.32%） | 1595（67.13%） | 1615（67.97%） | 859（36.15%） |
-| Huginn-0125 R=16 | acc_norm | 1530（64.39%） | 1576（66.33%） | 1574（66.25%） | 786（33.08%） |
-| Huginn-0125 R=32 | acc | 1642（69.11%） | 1585（66.71%） | 1604（67.51%） | 859（36.15%） |
-| Huginn-0125 R=32 | acc_norm | 1527（64.27%） | 1551（65.28%） | 1561（65.70%） | 786（33.08%） |
-| Parcae-370M R=8 | acc | 1459（61.41%） | 1464（61.62%） | 1437（60.48%） | 1321（55.60%） |
-| Parcae-370M R=8 | acc_norm | 1297（54.59%） | 1297（54.59%） | 1295（54.50%） | 1184（49.83%） |
-| Parcae-1.3B R=8 | acc | 1669（70.24%） | 1649（69.40%） | 1627（68.48%） | 1497（63.01%） |
-| Parcae-1.3B R=8 | acc_norm | 1542（64.90%） | 1572（66.16%） | 1556（65.49%） | 1320（55.56%） |
-| Looped-Qwen3-4B R=8 | acc | 1915（80.60%） | 1920（80.81%） | 1923（80.93%） | 1806（76.01%） |
-| Looped-Qwen3-4B R=8 | acc_norm | 1886（79.38%） | 1883（79.25%） | 1877（79.00%） | 1752（73.74%） |
+| Ouro-1.4B R=4 | acc | 1991 (83.80%) | 2006 (84.43%) | 2009 (84.55%) | 1527 (64.27%) |
+| Ouro-1.4B R=4 | acc_norm | 1998 (84.09%) | 2005 (84.39%) | 1999 (84.13%) | 1386 (58.33%) |
+| Ouro-2.6B R=4 | acc | 2071 (87.16%) | 2086 (87.79%) | 2088 (87.88%) | 1713 (72.10%) |
+| Ouro-2.6B R=4 | acc_norm | 2095 (88.17%) | 2113 (88.93%) | 2108 (88.72%) | 1630 (68.60%) |
+| Huginn-0125 R=16 | acc | 1647 (69.32%) | 1595 (67.13%) | 1615 (67.97%) | 859 (36.15%) |
+| Huginn-0125 R=16 | acc_norm | 1530 (64.39%) | 1576 (66.33%) | 1574 (66.25%) | 786 (33.08%) |
+| Huginn-0125 R=32 | acc | 1642 (69.11%) | 1585 (66.71%) | 1604 (67.51%) | 859 (36.15%) |
+| Huginn-0125 R=32 | acc_norm | 1527 (64.27%) | 1551 (65.28%) | 1561 (65.70%) | 786 (33.08%) |
+| Parcae-370M R=8 | acc | 1459 (61.41%) | 1464 (61.62%) | 1437 (60.48%) | 1321 (55.60%) |
+| Parcae-370M R=8 | acc_norm | 1297 (54.59%) | 1297 (54.59%) | 1295 (54.50%) | 1184 (49.83%) |
+| Parcae-1.3B R=8 | acc | 1669 (70.24%) | 1649 (69.40%) | 1627 (68.48%) | 1497 (63.01%) |
+| Parcae-1.3B R=8 | acc_norm | 1542 (64.90%) | 1572 (66.16%) | 1556 (65.49%) | 1320 (55.56%) |
+| Looped-Qwen3-4B R=8 | acc | 1915 (80.60%) | 1920 (80.81%) | 1923 (80.93%) | 1806 (76.01%) |
+| Looped-Qwen3-4B R=8 | acc_norm | 1886 (79.38%) | 1883 (79.25%) | 1877 (79.00%) | 1752 (73.74%) |
 
-补充 acc 口径中，通过该口径14项比较的 Holm p<0.05 判据的变化为：Huginn-0125 R=16 固定（-2.19 pp，Holm p=0.0197）；Huginn-0125 R=32 固定（-2.40 pp，Holm p=0.0046）。
+For the supplementary acc metric, the following changes meet Holm p<0.05 across that metric's 14 comparisons: Huginn-0125 R=16 Fixed (-2.19 pp, Holm p=0.0197); Huginn-0125 R=32 Fixed (-2.40 pp, Holm p=0.0046).
 
-acc 的改对/改错、净增、bootstrap 和 McNemar 检验也完整保存在 comparison.json；其 Holm 校正在独立的14个 acc 比较内进行，属于补充口径。
+Corrected and regressed counts, net changes, bootstrap intervals, and McNemar tests for acc are also saved in comparison.json. Its Holm correction is performed separately across the 14 acc comparisons as a supplementary metric.
 
-## 固定协议与可比性限制
+## Fixed protocol and comparability limitations
 
-- Ouro 使用训练集8-shot；其余配置0-shot。所有题目保留原顺序，提示为 `Question: ...\nAnswer:`，评分完整答案文本，不评分选项字母，不使用聊天模板，不生成答案、不截断上下文。8-shot 用 advancing `random.Random(1234).sample(train, 8)`，每题重新抽示例；不依据测试标签挑示例。
-- 公式为 `z′ = z_R + ω(z_R − z_1)`。固定 ω=0.5；自适应 `ω = cap × [1 − (p_R,top1 − p_R,top2)]`，概率在完整词表上计算。Huginn 的 cap=0.5，其余 cap=1.0；均来自论文 Table A4，无准确率驱动的强度或种子搜索。
-- Ouro 的4轮均走完整堆栈，每轮使用原生归一化。Huginn 使用16/32次完整更新，第1更新状态经过完整 coda 和输出归一化；其官方 tokenizer/evaluator 要求恰好一个 BOS。
-- Huginn 与已发布 Parcae 检查点的循环初态含随机量。为使候选答案、批量长度和策略之间可比较，保持原生初态分布，按 seed=1234 与问题 ID 确定共享的位置初态；不以答案文本产生种子。原生前向验证使用同一显式初态。论文未说明随机种子/耦合方式，此处是明确的复现假设。
-- Looped-Qwen 采用官方 Qwen/Qwen3-4B 原始发布权重（不是单独的 Qwen3-4B-Base），前15层、循环窗口零起始索引15:19、后17层；8次更新为 `u_next = (7/8)u + (1/8)g(u)`，无额外 anchor。早期输出在第1次阻尼更新后继续完整 tail/head。遵循 LoopCD 附录的 K=8；上游 Training-Free 项目索引 README 的默认 K=6/anchor 配方不用于本次。作者 GitHub 源码下载返回404，证据留档；wrapper 根据论文实现，并检查独立8步重放及 K=1 恢复普通 dense 输出。
-- 论文未固定完整模型 revision、harness commit、few-shot实例、随机状态及所有数值实现细节。本项目冻结本地官方权重和源码哈希，采用固定 lm-eval 提示规则；分数接近或偏离论文均如实报告。这些配置在同一 ARC-Easy 任务上的结果不支持推断其他任务、隐藏态引导或减循环速度结论。
+- Ouro uses 8-shot examples from the training set; other configurations are 0-shot. Questions retain their original order, with prompts formatted as `Question: ...\nAnswer:`. Scoring uses complete answer text rather than option letters, without chat templates, generated answers, or context truncation. The 8-shot procedure advances one `random.Random(1234)` instance with `.sample(train, 8)`, resampling examples for each question without selecting against test labels.
+- The formula is `z′ = z_R + ω(z_R − z_1)`. Fixed ω=0.5; adaptive `ω = cap × [1 − (p_R,top1 − p_R,top2)]`, with probabilities computed over the full vocabulary. Huginn uses cap=0.5; all others use cap=1.0, following Table A4. No accuracy-driven strength or seed search was performed.
+- All four Ouro loops traverse the complete stack and use native normalization. Huginn performs 16 or 32 complete updates. Its first-update state passes through the full coda and output normalization; the official tokenizer/evaluator requires exactly one BOS.
+- Huginn and the published Parcae checkpoints have stochastic loop initialization. To make candidate answers, batch lengths, and policies comparable, the native initialization distribution is retained, with shared position states determined by seed=1234 and question ID. Answer text does not determine the seed. Native forward checks use the same explicit initial state. The paper does not specify seeds or their coupling, so this is an explicit reproduction assumption.
+- Looped-Qwen uses the original official Qwen/Qwen3-4B release weights, not the separate Qwen3-4B-Base checkpoint. It uses a 15-layer prefix, the zero-indexed loop window 15:19, and a 17-layer tail. Eight updates follow `u_next = (7/8)u + (1/8)g(u)`, without an additional anchor. The early output passes through the complete tail/head after the first damped update. K=8 follows the LoopCD appendix; the default K=6/anchor recipe in the upstream Training-Free project index README is not used. Downloading the authors' GitHub source returned 404, with evidence retained. The wrapper follows the paper and is checked by independent eight-step replay and recovery of the ordinary dense output at K=1.
+- The paper does not fix complete model revisions, a harness commit, few-shot examples, random states, or every numerical implementation detail. This project freezes local official weights and source hashes and uses fixed lm-eval prompt rules. Both agreement with and deviations from the paper are reported. These ARC-Easy configurations alone cannot establish results for other tasks, hidden-state guidance, or speed gains from fewer loops.
 
-## 数值验证和联合运行资源
+## Numerical validation and joint-run resources
 
-每项检查零强度恒等、原生/独立循环输出一致性、早晚读出不同、单条与补齐批量评分一致性；新统一评测器还检查改变被掩码的补齐 token 不影响有效输出。旧 Ouro-1.4B 复用先前完成的原生和批量一致性验证。GPU 运行时采用下表记录的 dtype 与 matmul 设置；logits 引导和 log_softmax 为 FP32。`high` 允许较快的内部矩阵乘法，`highest` 使用最高精度。精度切换依据评分前的数值一致性检查，未查看准确率调参。
+Each configuration checks zero-guidance identity, agreement with native or independently replayed loop outputs, distinct early and final readouts, and agreement between single-example and padded-batch scoring. The new unified evaluator also checks that changing masked padding tokens leaves valid outputs unchanged. The earlier Ouro-1.4B run reuses its completed native-output and batch-consistency checks. GPU runs use the dtype and matmul settings below; logit guidance and log_softmax use FP32. `high` permits faster internal matrix multiplication, while `highest` uses the highest precision. Precision changes follow numerical consistency checks before scoring, without accuracy-based tuning.
 
-Huginn 与 Looped-Qwen 的 `high` 预检曾未通过，随后在正式评分前改用 `highest`，保留原有公式和校验容差；具体失败误差、作业及精度决策见 precision_decisions.json。
+Huginn and Looped-Qwen initially failed numerical preflight with `high` and switched to `highest` before formal scoring, retaining the formulas and validation tolerances. Failed error measurements, job records, and precision decisions are recorded in precision_decisions.json.
 
-| 配置 | dtype / matmul | 单条-批量最大 token logp 差 | 本次评分调用秒数 | 峰值显存 GiB |
+| Configuration | dtype / matmul | Maximum single/batch token logp difference | Scoring seconds in this invocation | Peak GPU memory (GiB) |
 |---|---|---:|---:|---:|
 | Ouro-1.4B R=4 | float32 / high | 0 | 147.9 | 6.66 |
 | Ouro-2.6B R=4 | float32 / high | 0 | 298.7 | 10.83 |
@@ -93,12 +93,12 @@ Huginn 与 Looped-Qwen 的 `high` 预检曾未通过，随后在正式评分前�
 | Parcae-1.3B R=8 | float32 / high | 0 | 22.7 | 5.42 |
 | Looped-Qwen3-4B R=8 | float32 / highest | 6.1e-05 | 131.5 | 15.57 |
 
-以上是普通解码、两种 LoopCD 和弱参考共享循环轨迹的联合实验资源，不能用它计算独立策略加速比或验证论文“几乎免费”的吞吐结论。计时字段记录本次调用；如恢复已有候选，不包含此前调用的时间。模型加载/验证时间及 GPU/作业信息见 comparison.json。
+These resources cover the joint experiment in which baseline, both LoopCD policies, and the weak reference share loop trajectories. They cannot establish standalone policy speedups or validate the paper's 'almost free' throughput claim. Timing covers the current invocation and excludes earlier invocations when resuming saved candidates. Model loading/validation time and GPU/job information are recorded in comparison.json.
 
-## 可复核产物与来源
+## Auditable artifacts and sources
 
-每项子目录保留 candidate_scores.jsonl、predictions.jsonl、summary.json、run_manifest.json、validation.json，新运行另保存 source_snapshot；Ouro-1.4B 复用 ../arc_easy。comparison.json 包含全部审计计数、文件哈希、运行参数和两种口径统计，可用 `venv/bin/python scripts/analyze_arc_suite.py` 重新生成本报告。
+Each configuration directory retains candidate_scores.jsonl, predictions.jsonl, summary.json, run_manifest.json, and validation.json. New runs additionally save source_snapshot; Ouro-1.4B reuses ../arc_easy. comparison.json contains all audit counts, file hashes, run parameters, and statistics for both metrics. Regenerate this report with `venv/bin/python scripts/analyze_arc_suite.py`.
 
-独立的数据重建记录见 data_audit.json；官方模型实现和元数据核验见 source_integrity.json。聚合脚本还自行核验原始 Train/Test 文件哈希，重建全部原题和 few-shot 上下文，按模型家族强制检查原生输出/独立重放验证字段，不能以零强度代数恒等代替原生一致性。
+Independent data reconstruction is recorded in data_audit.json; checks of official model implementations and metadata are recorded in source_integrity.json. The aggregation script also verifies the original Train/Test file hashes, reconstructs all original questions and few-shot contexts, and requires native-output or independent-replay validation fields for each model family. Zero-guidance algebraic identity is not a substitute for native-output consistency.
 
-依据：[LoopCD 论文 Table 2、A1、A2、A4](https://arxiv.org/html/2610.02185v1)、[Training-Free Looped Transformers](https://arxiv.org/html/2605.23872v1)、[固定 lm-eval 源码](https://github.com/EleutherAI/lm-evaluation-harness/tree/d6de81643928d653435c431bae19945d41d32520)。模型官方仓库及精确版本见各 models/*manifest.json；数据来源、字符归一化和采样依据见 data/protocol.json。
+Sources: [LoopCD Tables 2, A1, A2, and A4](https://arxiv.org/html/2610.02185v1), [Training-Free Looped Transformers](https://arxiv.org/html/2605.23872v1), and [pinned lm-eval source](https://github.com/EleutherAI/lm-evaluation-harness/tree/d6de81643928d653435c431bae19945d41d32520). Official model repositories and exact revisions are recorded in models/*manifest.json; data sources, character normalization, and sampling references are recorded in data/protocol.json.

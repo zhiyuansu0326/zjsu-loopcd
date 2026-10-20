@@ -73,7 +73,7 @@ test_qwen_hashes_installed_package_without_loading_a_model (test_run_integrity.S
 test_streaming_hash_does_not_use_read_bytes (test_run_integrity.SourceHashTests.test_streaming_hash_does_not_use_read_bytes) ... ok
 
 ----------------------------------------------------------------------
-Ran 70 tests in 2.132s
+Ran 70 tests in 2.026s
 
 OK
 make[1]: Leaving directory '/work/zs220/zjsu-loopcd'

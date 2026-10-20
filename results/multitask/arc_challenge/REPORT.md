@@ -1,12 +1,12 @@
-# ARC-Challenge：LoopCD-Logits 全部七个模型配置
+# ARC-Challenge: LoopCD-Logits across all seven model configurations
 
-完整 test 划分，每配置 1172 题。所有候选的 token 概率、分词边界、逐题预测和汇总已重新核对；原始数据、完整提示、来源快照和原生前向验证也通过检查。
+The full test split contains 1172 questions per configuration. Token probabilities and tokenization boundaries for every candidate, question-level predictions, and aggregate results have been rechecked. Raw data, complete prompts, source snapshots, and native forward-pass validation records also passed the audit.
 
-预先固定主指标为 `acc_norm`，同时保留两种评分口径。`acc` 使用完整答案的条件对数似然之和；`acc_norm` 再除以原答案的 Unicode 字符数，不计添加的前导空格。论文 Table 2 未逐任务明确两者，因此与论文绝对数值的比较存在协议不确定性。
+The primary metric was fixed as `acc_norm` before scoring; both metrics are retained. `acc` uses the sum of conditional log likelihoods over the complete answer; `acc_norm` divides this sum by the Unicode character count of the original answer, excluding the added leading space. Paper Table 2 does not explicitly distinguish these metrics for each task, so absolute comparisons with the paper retain protocol uncertainty.
 
-## 实测 / 论文（%）
+## Reproduction / paper (%)
 
-| 配置 | shots | 基线 | 固定 | 自适应 | 固定变化 pp | 自适应变化 pp |
+| Configuration | Shots | Baseline | Fixed | Adaptive | Fixed change (pp) | Adaptive change (pp) |
 |---|---:|---:|---:|---:|---:|---:|
 | Ouro-1.4B R=4 | 25 | 60.24 / 60.41 | 61.86 / 62.29 | 61.60 / 61.69 | +1.62 | +1.37 |
 | Ouro-2.6B R=4 | 25 | 66.55 / 66.21 | 69.03 / 68.60 | 69.37 / 69.71 | +2.47 | +2.82 |
@@ -16,32 +16,32 @@
 | Parcae-1.3B R=8 | 25 | 40.36 / 41.21 | 43.77 / 43.86 | 44.45 / 45.31 | +3.41 | +4.10 |
 | Looped-Qwen3-4B R=8 | 25 | 62.46 / 62.12 | 62.80 / 62.54 | 63.82 / 64.08 | +0.34 | +1.37 |
 
-## 同题配对统计（acc_norm）
+## Paired question-level statistics (acc_norm)
 
-| 配置 | 策略 | 改对 | 改错 | 答案改变 | 净增 | 95% 配对区间 pp | McNemar p | Holm p |
+| Configuration | Policy | Corrected | Regressed | Answers changed | Net correct | Paired 95% CI (pp) | McNemar p | Holm p |
 |---|---|---:|---:|---:|---:|---|---:|---:|
-| Ouro-1.4B R=4 | 固定 | 43 | 24 | 88 | +19 | [+0.26, +2.99] | 0.02712 | 0.1627 |
-| Ouro-1.4B R=4 | 自适应 | 51 | 35 | 122 | +16 | [-0.17, +2.90] | 0.1052 | 0.3201 |
-| Ouro-2.6B R=4 | 固定 | 50 | 21 | 87 | +29 | [+1.11, +3.92] | 0.0007668 | 0.007668 |
-| Ouro-2.6B R=4 | 自适应 | 65 | 32 | 122 | +33 | [+1.19, +4.44] | 0.00105 | 0.009446 |
-| Huginn-0125 R=16 | 固定 | 103 | 68 | 258 | +35 | [+0.77, +5.12] | 0.009122 | 0.07298 |
-| Huginn-0125 R=16 | 自适应 | 90 | 58 | 219 | +32 | [+0.68, +4.78] | 0.01058 | 0.07408 |
-| Huginn-0125 R=32 | 固定 | 88 | 65 | 245 | +23 | [-0.17, +4.01] | 0.07496 | 0.3201 |
-| Huginn-0125 R=32 | 自适应 | 70 | 59 | 211 | +11 | [-0.94, +2.82] | 0.3787 | 0.7574 |
-| Parcae-370M R=8 | 固定 | 62 | 25 | 145 | +37 | [+1.62, +4.69] | 9.061e-05 | 0.0009967 |
-| Parcae-370M R=8 | 自适应 | 84 | 39 | 213 | +45 | [+2.05, +5.63] | 6.1e-05 | 0.000732 |
-| Parcae-1.3B R=8 | 固定 | 64 | 24 | 135 | +40 | [+1.88, +4.95] | 2.373e-05 | 0.0003322 |
-| Parcae-1.3B R=8 | 自适应 | 90 | 42 | 202 | +48 | [+2.22, +5.97] | 3.574e-05 | 0.0004646 |
-| Looped-Qwen3-4B R=8 | 固定 | 28 | 24 | 72 | +4 | [-0.85, +1.54] | 0.6778 | 0.7574 |
-| Looped-Qwen3-4B R=8 | 自适应 | 41 | 25 | 87 | +16 | [+0.00, +2.73] | 0.06402 | 0.3201 |
+| Ouro-1.4B R=4 | Fixed | 43 | 24 | 88 | +19 | [+0.26, +2.99] | 0.02712 | 0.1627 |
+| Ouro-1.4B R=4 | Adaptive | 51 | 35 | 122 | +16 | [-0.17, +2.90] | 0.1052 | 0.3201 |
+| Ouro-2.6B R=4 | Fixed | 50 | 21 | 87 | +29 | [+1.11, +3.92] | 0.0007668 | 0.007668 |
+| Ouro-2.6B R=4 | Adaptive | 65 | 32 | 122 | +33 | [+1.19, +4.44] | 0.00105 | 0.009446 |
+| Huginn-0125 R=16 | Fixed | 103 | 68 | 258 | +35 | [+0.77, +5.12] | 0.009122 | 0.07298 |
+| Huginn-0125 R=16 | Adaptive | 90 | 58 | 219 | +32 | [+0.68, +4.78] | 0.01058 | 0.07408 |
+| Huginn-0125 R=32 | Fixed | 88 | 65 | 245 | +23 | [-0.17, +4.01] | 0.07496 | 0.3201 |
+| Huginn-0125 R=32 | Adaptive | 70 | 59 | 211 | +11 | [-0.94, +2.82] | 0.3787 | 0.7574 |
+| Parcae-370M R=8 | Fixed | 62 | 25 | 145 | +37 | [+1.62, +4.69] | 9.061e-05 | 0.0009967 |
+| Parcae-370M R=8 | Adaptive | 84 | 39 | 213 | +45 | [+2.05, +5.63] | 6.1e-05 | 0.000732 |
+| Parcae-1.3B R=8 | Fixed | 64 | 24 | 135 | +40 | [+1.88, +4.95] | 2.373e-05 | 0.0003322 |
+| Parcae-1.3B R=8 | Adaptive | 90 | 42 | 202 | +48 | [+2.22, +5.97] | 3.574e-05 | 0.0004646 |
+| Looped-Qwen3-4B R=8 | Fixed | 28 | 24 | 72 | +4 | [-0.85, +1.54] | 0.6778 | 0.7574 |
+| Looped-Qwen3-4B R=8 | Adaptive | 41 | 25 | 87 | +16 | [+0.00, +2.73] | 0.06402 | 0.3201 |
 
-本任务主指标中通过 Holm p<0.05 的变化：Ouro-2.6B R=4 固定（+2.47 pp）；Ouro-2.6B R=4 自适应（+2.82 pp）；Parcae-370M R=8 固定（+3.16 pp）；Parcae-370M R=8 自适应（+3.84 pp）；Parcae-1.3B R=8 固定（+3.41 pp）；Parcae-1.3B R=8 自适应（+4.10 pp）。
+Primary-metric changes with Holm p<0.05 for this task: Ouro-2.6B R=4 Fixed (+2.47 pp); Ouro-2.6B R=4 Adaptive (+2.82 pp); Parcae-370M R=8 Fixed (+3.16 pp); Parcae-370M R=8 Adaptive (+3.84 pp); Parcae-1.3B R=8 Fixed (+3.41 pp); Parcae-1.3B R=8 Adaptive (+4.10 pp).
 
-使用 20000 次同题配对 bootstrap（seed=1234），区间未经多重校正；精确双侧 McNemar 检验在本任务的 14 个主指标比较内做 Holm 校正。补充指标另行校正 14 次比较；各任务分别成组，没有跨任务校正。区间只反映题目抽样变化，不包含初态种子、多次模型运行或评测协议的不确定性。
+Confidence intervals use 20,000 paired question-level bootstrap resamples (seed=1234) without a multiple-comparison adjustment. Exact two-sided McNemar tests receive Holm correction across the 14 primary-metric comparisons within this task. The supplementary metric has a separate family of 14 comparisons. Tasks are separate families, with no cross-task correction. Intervals reflect question-sampling variation only; they exclude uncertainty from initialization seeds, repeated model runs, and evaluation protocols.
 
-## 两种指标与参考状态
+## Both metrics and the reference state
 
-| 配置 | 指标 | 基线 | 固定 | 自适应 | 第1完整循环参考 |
+| Configuration | Metric | Baseline | Fixed | Adaptive | First full-loop reference |
 |---|---|---:|---:|---:|---:|
 | Ouro-1.4B R=4 | acc | 657 (56.06%) | 674 (57.51%) | 674 (57.51%) | 434 (37.03%) |
 | Ouro-1.4B R=4 | acc_norm | 706 (60.24%) | 725 (61.86%) | 722 (61.60%) | 451 (38.48%) |
@@ -58,16 +58,16 @@
 | Looped-Qwen3-4B R=8 | acc | 679 (57.94%) | 689 (58.79%) | 701 (59.81%) | 581 (49.57%) |
 | Looped-Qwen3-4B R=8 | acc_norm | 732 (62.46%) | 736 (62.80%) | 748 (63.82%) | 627 (53.50%) |
 
-## 协议与边界
+## Protocol and limitations
 
-- 固定强度为 0.5；Huginn 自适应 cap 为 0.5，其余为 1.0。自适应不确定性在完整词表上计算。参考为第1次完整更新并经过完整 coda/head；所有策略共享同一循环轨迹。
-- shot 数来自论文 Table A2；种子固定为 1234。非零 shot 从训练集随题推进抽样；不根据测试标签挑示例。SciQ 提示包含 support；PIQA 使用有标签的 validation 划分。
-- Huginn 按官方接口添加一个 BOS，其余无额外 BOS；不使用聊天模板。Huginn/Parcae 的随机初态按问题 ID 固定，候选共享位置噪声。论文未公开完全相同的种子策略。
-- 新任务仅在模型窗口不足时左截断上下文，完整答案 token 和每个预测位置都必须保留。下表逐配置列出影响；这可能使长提示配置实际保留的示例少于名义 shot 数。
-- checkpoint manifest、小型模型文件、tokenizer 和原生源码均校验 SHA256。大型权重本次只核对文件大小并引用下载时的哈希校验，不把它描述为重新完整哈希。
-- 联合调用时间不能用于估计单独策略的吞吐收益。这些结果仅覆盖已评测任务的全深度 LoopCD-Logits，不验证隐藏态引导、减深度或速度结论。
+- Fixed guidance strength is 0.5. The adaptive cap is 0.5 for Huginn and 1.0 for the other models. Adaptive uncertainty is computed over the full vocabulary. The reference is the first complete update followed by the full coda/head; all policies share one loop trajectory.
+- Shot counts follow paper Table A2, with seed 1234. Nonzero-shot examples are sampled from the training set as questions are processed, without using test labels to select examples. SciQ prompts include support, and PIQA uses the labeled validation split.
+- Huginn receives one BOS token through its official interface; the other models receive no extra BOS token. No chat templates are used. Huginn/Parcae random initial states are fixed by question ID, with positional noise shared across candidates. The paper does not publish an identical seed policy.
+- For the new tasks, context is truncated from the left only when the model window is insufficient; all answer tokens and prediction positions must be preserved. The table below reports the effect for each configuration. For long prompts, truncation may retain fewer examples than the nominal shot count.
+- Checkpoint manifests, small model files, tokenizers, and native source files are verified with SHA256. Large weights are checked by file size in this audit, with hashes referenced from download-time verification; they are not claimed to have been fully rehashed.
+- Joint execution time cannot estimate the throughput benefit of running a policy alone. These results cover full-depth LoopCD-Logits on the evaluated tasks only; they do not validate hidden-state guidance, reduced-depth evaluation, or speed claims.
 
-| 配置 | dtype / matmul | 截断题数 / 候选数 | 最长输入 token | 批量一致性最大 token logp 差 |
+| Configuration | dtype / matmul | Truncated questions / candidates | Maximum input tokens | Maximum batch/single token logp difference |
 |---|---|---:|---:|---:|
 | Ouro-1.4B R=4 | float32 / high | 0 / 0 | 1311 | 0 |
 | Ouro-2.6B R=4 | float32 / high | 0 / 0 | 1311 | 0 |
@@ -77,6 +77,6 @@
 | Parcae-1.3B R=8 | float32 / highest | 0 / 0 | 1311 | 0.00013 |
 | Looped-Qwen3-4B R=8 | float32 / highest | 0 / 0 | 1279 | 8.11e-05 |
 
-各配置来源路径、逐候选截断清单、两种指标的配对统计和完整审计证据见 comparison.json。可运行 `venv/bin/python scripts/analyze.py --task arc_challenge` 重新生成。
+See comparison.json for source paths, candidate-level truncation inventories, paired statistics for both metrics, and full audit evidence for each configuration. Regenerate with `venv/bin/python scripts/analyze.py --task arc_challenge`.
 
-来源：[论文 Table 2 / A2 / A4](https://arxiv.org/html/2610.02185v1)、[固定 lm-eval 实现](https://github.com/EleutherAI/lm-evaluation-harness/tree/d6de81643928d653435c431bae19945d41d32520)。新增任务论文引用值与证据存于 configs/paper_mc_reference.json；ARC-Easy 引用值沿用 configs/arc_all_models.json。
+Sources: [paper Tables 2 / A2 / A4](https://arxiv.org/html/2610.02185v1) and the [pinned lm-eval implementation](https://github.com/EleutherAI/lm-evaluation-harness/tree/d6de81643928d653435c431bae19945d41d32520). Paper reference values and supporting evidence for the new tasks are stored in configs/paper_mc_reference.json; ARC-Easy reference values remain in configs/arc_all_models.json.

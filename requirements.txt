@@ -1,5 +1,5 @@
 # Core inference/audit dependencies pinned to the existing venv.
-# Install the matching CUDA build of torch first; see docs/ENVIRONMENT.md.
+# Install the matching CUDA build of torch first; see README.md.
 torch==2.6.0
 transformers==4.56.2
 accelerate==1.10.1

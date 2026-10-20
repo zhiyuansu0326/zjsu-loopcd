@@ -96,7 +96,7 @@ def main():
         files = set()
         for name in ("AGENTS.md", "README.md", "Makefile", ".gitignore",
                      "requirements.txt", "requirements.freeze.txt",
-                     "results/README.md", "results/cleanup_20261020.json"):
+                     "results/cleanup_20261020.json"):
             files.add(ROOT / name)
         files.update(ROOT.glob("*.pdf"))
         files.update((ROOT / "models").glob("*manifest.json"))

@@ -194,7 +194,6 @@ The analyzer reads the registered published result locations. Runs under `result
 | `results/arc_easy/` | Original Ouro-1.4B ARC-Easy evaluation |
 | `results/arc_all_models/` | Other six original ARC-Easy evaluations |
 | `results/multitask/` | Three additional tasks, all-task comparisons, and completion evidence |
-| `docs/` | Detailed reproduction, environment, and structure notes |
 
 Each completed run retains `candidate_scores.jsonl`, `predictions.jsonl`, `summary.json`, `run_manifest.json`, and validation evidence. The original Ouro-1.4B ARC-Easy run retains its historical provenance format; the other 27 runs also include a `source_snapshot/`. Historical entry points remain for compatibility; new work should use the unified scripts above.
 
@@ -208,4 +207,4 @@ For Looped-Qwen3, the referenced wrapper repository was unavailable when inspect
 
 All four scoring policies share one recurrent trajectory. Their joint runtime is not an isolated policy benchmark and cannot establish a LoopCD speedup.
 
-See [the detailed reproduction guide](docs/REPRODUCING.md), [environment notes](docs/ENVIRONMENT.md), and [result index](results/README.md) for additional provenance. Supporting documents and generated reports include Chinese material; this README provides the English usage guide. Upstream models, datasets, and vendored sources retain their respective licenses.
+See the [combined report](results/multitask/REPORT.md) and [machine-readable results](results/multitask/comparison.json) for additional provenance. Documentation and generated reports are in English. Upstream models, datasets, and vendored sources retain their respective licenses.

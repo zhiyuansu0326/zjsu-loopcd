@@ -1,5 +1,5 @@
 {
-  "started_utc": "2026-10-20T17:59:26.583601+00:00",
+  "started_utc": "2026-10-20T18:10:15.061616+00:00",
   "slurm_job_id": null,
   "partition": null,
   "complete": true,
@@ -8,7 +8,7 @@
   "question_evaluations": 44702,
   "scored_candidates": 153048,
   "answer_token_logprobs_all_four_policies": 4556224,
-  "artifact_manifest_sha256": "6fe1740916863e8c01a3b554402c0ec035e920ef5824b421af3cacdd77158eaf",
+  "artifact_manifest_sha256": "ff6fde62922a8c808cb37b95dc481413fab665fae483312a9c0a072677f6c5c0",
   "report": "results/multitask/REPORT.md",
-  "finished_utc": "2026-10-20T18:00:39.113858+00:00"
+  "finished_utc": "2026-10-20T18:11:25.142930+00:00"
 }
