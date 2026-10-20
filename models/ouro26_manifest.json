@@ -1,0 +1,104 @@
+{
+  "repository": "ByteDance/Ouro-2.6B",
+  "source": "https://huggingface.co/ByteDance/Ouro-2.6B",
+  "revision": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+  "model_variant": "base (not Thinking)",
+  "official_metadata_url": "https://huggingface.co/api/models/ByteDance/Ouro-2.6B/revision/1ed04250da1a9936042725d302e81c8fa2ab5abd?blobs=true",
+  "download_started_at_utc": "2026-10-20T14:16:20.626424+00:00",
+  "complete": true,
+  "integrity_checks": "LFS SHA256 for weights; Git blob SHA1 for small files; SHA256 recorded for every file.",
+  "files": [
+    {
+      "path": "models/Ouro-2.6B/config.json",
+      "filename": "config.json",
+      "bytes": 2000,
+      "sha256": "23b5c6942a9f0ca8619fb15acfaca93e02c169cdc4e03dbceb4d8a2df145697a",
+      "official_git_blob_sha1": "f29483da162da618ea731debdbf6ddb059e26ed4",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/config.json?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/configuration_ouro.py",
+      "filename": "configuration_ouro.py",
+      "bytes": 11550,
+      "sha256": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+      "official_git_blob_sha1": "ed783160ba1a64292bb0b060bb0e2e920afbe3b2",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/configuration_ouro.py?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/modeling_ouro.py",
+      "filename": "modeling_ouro.py",
+      "bytes": 33350,
+      "sha256": "c5c68fbb368ce2909c257ae2afc50719be8c91539333d3295e19312c4316f413",
+      "official_git_blob_sha1": "daf1cc7b84d22cf67dd903528240590a407e2d84",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/modeling_ouro.py?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/tokenizer_config.json",
+      "filename": "tokenizer_config.json",
+      "bytes": 4211,
+      "sha256": "7e010da95d71b0fa1aa809552922c74cc1dd98d628f21ba39ca6c35aa18d5d91",
+      "official_git_blob_sha1": "b5a0c01a64da3076bcbb3ea0251f57cf0c7af7d4",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/tokenizer_config.json?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/special_tokens_map.json",
+      "filename": "special_tokens_map.json",
+      "bytes": 825,
+      "sha256": "55087bb8409060d9cb0f80495e34f4e0d8a84f68a799a6b0cab3132be0aae319",
+      "official_git_blob_sha1": "b4ba320a61e7ea7943bd8d0a11666e53820af952",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/special_tokens_map.json?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/tokenizer.json",
+      "filename": "tokenizer.json",
+      "bytes": 3522644,
+      "sha256": "fcb808fe5e7642f5299be28aea07fc7f6d4f4364c3ac5e408e15a772cbc8fa8d",
+      "official_git_blob_sha1": "5046b313b3e16fa14cd3662ef70c105b08c92092",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/tokenizer.json?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/vocab.json",
+      "filename": "vocab.json",
+      "bytes": 800656,
+      "sha256": "7b9de3f47796abf8d00ab96be299fea0dc9afdf1827f34e7e0b9fb44593efe5c",
+      "official_git_blob_sha1": "6a22c055228041f2f7b055686644c157cb5d21fc",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/vocab.json?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/merges.txt",
+      "filename": "merges.txt",
+      "bytes": 466391,
+      "sha256": "0b54e8aa4e53d5383e2e4bc635a56b43f9647f7b13832d5d9ecd8f82dac4f510",
+      "official_git_blob_sha1": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/merges.txt?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/README.md",
+      "filename": "README.md",
+      "bytes": 4360,
+      "sha256": "a40689d50119e4eebbe2a3f25e1544617252c2dd12c5810e8433ca0318d113e1",
+      "official_git_blob_sha1": "e86a4ed7e17946a2d7ead7ad1672086f6fe840a7",
+      "official_lfs_sha256": null,
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/README.md?download=true"
+    },
+    {
+      "path": "models/Ouro-2.6B/model.safetensors",
+      "filename": "model.safetensors",
+      "bytes": 5336011242,
+      "sha256": "2fdf9805a3510b7dc82959a2db4872ef767a5bdc55520c6a1b54fc3e463c1bba",
+      "official_git_blob_sha1": "573a8cffe61ba83ecaa00e2ec9345de6261bd928",
+      "official_lfs_sha256": "2fdf9805a3510b7dc82959a2db4872ef767a5bdc55520c6a1b54fc3e463c1bba",
+      "source_url": "https://huggingface.co/ByteDance/Ouro-2.6B/resolve/1ed04250da1a9936042725d302e81c8fa2ab5abd/model.safetensors?download=true"
+    }
+  ],
+  "total_bytes": 5340857229,
+  "completed_at_utc": "2026-10-20T14:17:32.920648+00:00"
+}

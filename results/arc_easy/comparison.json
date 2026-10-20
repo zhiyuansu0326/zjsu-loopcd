@@ -1,0 +1,63 @@
+{
+  "n": 2376,
+  "paper_table2_arc_easy": {
+    "baseline": 84.09,
+    "loopcd_fixed": 84.39,
+    "loopcd_adaptive": 84.26
+  },
+  "paired": {
+    "acc": {
+      "loopcd_fixed": {
+        "corrected": 38,
+        "regressed": 23,
+        "changed_answers": 75,
+        "net_correct": 15,
+        "delta_percentage_points": 0.6313131313131313,
+        "paired_bootstrap_95ci_pp": [
+          0.0,
+          1.2626262626262625
+        ],
+        "mcnemar_exact_two_sided_p": 0.07217743850092258
+      },
+      "loopcd_adaptive": {
+        "corrected": 56,
+        "regressed": 38,
+        "changed_answers": 113,
+        "net_correct": 18,
+        "delta_percentage_points": 0.7575757575757576,
+        "paired_bootstrap_95ci_pp": [
+          -0.04208754208754209,
+          1.5572390572390573
+        ],
+        "mcnemar_exact_two_sided_p": 0.07897554800108209
+      }
+    },
+    "acc_norm": {
+      "loopcd_fixed": {
+        "corrected": 38,
+        "regressed": 31,
+        "changed_answers": 88,
+        "net_correct": 7,
+        "delta_percentage_points": 0.2946127946127946,
+        "paired_bootstrap_95ci_pp": [
+          -0.3787878787878788,
+          0.968013468013468
+        ],
+        "mcnemar_exact_two_sided_p": 0.4703685318581444
+      },
+      "loopcd_adaptive": {
+        "corrected": 48,
+        "regressed": 47,
+        "changed_answers": 117,
+        "net_correct": 1,
+        "delta_percentage_points": 0.04208754208754209,
+        "paired_bootstrap_95ci_pp": [
+          -0.7575757575757576,
+          0.8417508417508418
+        ],
+        "mcnemar_exact_two_sided_p": 1.0
+      }
+    }
+  },
+  "metric_note": "acc_norm is per-character normalized candidate log likelihood; acc is unnormalized. Both are retained because the paper does not explicitly name the ARC-E headline metric."
+}

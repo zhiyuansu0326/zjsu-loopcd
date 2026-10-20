@@ -1,0 +1,151 @@
+[build-system]
+requires = [
+    "setuptools>=68.2.2",
+    "wheel>=0.41.2",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "parcae"
+version = "0.1"
+requires-python = ">= 3.11"
+dependencies = [
+  "numpy<2.0",
+  "einops",
+  "lightning==2.3.0.dev20240328",
+  "jsonargparse[signatures]>=4.27.6",
+  "requests>=2.31.0",
+  "tensorboard>=2.14.0",
+  "torchmetrics>=1.3.1",
+  "lm-eval>=0.4.2",
+  "wandb",
+  "sentencepiece>=0.2.0",
+  "tokenizers>=0.15.2",
+  "safetensors>=0.4.3",
+  "datasets>=2.18.0",
+  "transformers>=4.38.0",
+  "axonn@git+https://github.com/axonn-ai/axonn@c5ef65d3d4f329c20292a2d26681e8d9cbcccecf",
+  "pandas",
+  "plotly",
+  "packaging",
+  "ninja",
+  "torchdata",
+]
+
+[project.optional-dependencies]
+# toggling between different torch versions
+torch221 = ["torch==2.2.1"]
+torchgte240 = ["torch>=2.4.0"]
+
+# only for testing
+dev = [
+  "pytest",
+  "pytest-rerunfailures",
+  "pytest-timeout",
+  "transformers>=4.38.0",
+  "einops",
+  "protobuf",
+  "docstring_parser",
+  "lightning-cloud",
+]
+
+# only for data preproc
+data = [
+  "litdata>=0.2.2",
+  "requests",
+  "zstandard",
+  "pandas",
+  "pyarrow",
+]
+
+quant = [
+  "bitsandbytes==0.42.0",
+  "scipy",
+]
+
+[tool.setuptools.packages.find]
+include = [
+    "parcae_lm",
+    "parcae_lm.*",
+    "recpre",
+    "recpre.*",
+    "receval",
+    "receval.*",
+]
+exclude = []
+
+[tool.setuptools.package-data]
+parcae_lm = [
+    "LICENSE",
+    "README.md",
+]
+recpre = [
+    "LICENSE",
+    "README.md",
+]
+
+[tool.ruff]
+target-version = 'py311'
+line-length = 120
+fix = true
+
+exclude = [
+    ".git",
+    "./.git",
+    "/build",
+    "notebooks",
+    "__pycache__",
+    "dl/*",
+    "log/*",
+    "*.pyi",
+    "outputs"
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "C4", "PLC", "G", "PIE", "SIM", "W", "B9"]
+ignore = [
+    "E203",
+    "E305",
+    "E402",
+    "E501",
+    "E721",
+    "E741",
+    "F405",
+    "C408",
+    "E302",
+    "W291",
+    "E303",
+    "E275",
+    "B007",
+    "B008",
+    "B017",
+    "B019",
+    "B020",
+    "B023",
+    "B024",
+    "B026",
+    "B028",
+    "B904",
+    "B905",
+    "G101",
+    "G201",
+    "G202",
+    "SIM103",
+    "B006",
+    "G004",
+    "E731",
+    "B011",
+    "PT015",
+    "E266",
+]
+
+[tool.pyright]
+include = ["parcae_lm", "recpre", "receval"]
+exclude = ["**/__pycache__", "**/*ipynb*"]
+
+pythonVersion = "3.11"
+pythonPlatform = "Linux"
+
+reportPrivateImportUsage = false
+typeCheckingMode = "basic"
+

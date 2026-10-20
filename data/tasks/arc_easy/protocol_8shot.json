@@ -1,0 +1,138 @@
+{
+  "task": "arc_easy",
+  "dataset": "allenai/ai2_arc",
+  "subset": "ARC-Easy",
+  "split": "test",
+  "counts": {
+    "train": 2251,
+    "validation": 570,
+    "test": 2376
+  },
+  "num_fewshot": 8,
+  "fewshot_source": "train",
+  "fewshot_seed": 1234,
+  "fewshot_sampling": "random.Random(seed).sample(train, 8) for each test document in original order; RNG advances between documents",
+  "seed_status": "Paper does not specify the seed; 1234 is the pinned harness default and an explicit reproduction assumption",
+  "paper_url": "https://arxiv.org/html/2610.02185v1",
+  "paper_settings": "Table A2: Ouro ARC-Easy 8-shot. Table A4: logit guidance fixed 0.5, adaptive cap 1.0. Table 2: 84.09/84.39/84.26 percent baseline/fixed/adaptive.",
+  "harness_repository": "https://github.com/EleutherAI/lm-evaluation-harness",
+  "harness_commit": "d6de81643928d653435c431bae19945d41d32520",
+  "harness_version_status": "Paper does not pin a version; this commit is an explicit reproduction assumption",
+  "apply_chat_template": false,
+  "system_instruction": null,
+  "prompt_template": "Question: {question}\nAnswer:",
+  "fewshot_separator": "\n\n",
+  "fewshot_answer": "one leading space followed by full correct answer text; no A/B/C/D label",
+  "continuation": "one leading space followed by full candidate text",
+  "token_boundary": "Move trailing whitespace from context to continuation; tokenize context+continuation and context with identical tokenizer special-token settings; continuation_ids=whole_ids[len(context_ids):]. Score only continuation tokens at causal positions shifted by one.",
+  "tokenizer_special_tokens": "Use tokenizer defaults consistently; tokenizer identity/revision and BOS policy must be recorded by the inference runner.",
+  "acc": "argmax over sum of natural log probabilities of all continuation tokens",
+  "acc_norm": "argmax over continuation log-likelihood sum / len(original_choice_text), using Python Unicode character count, excluding the added leading space; NOT token count",
+  "ties": "First maximum in original choice order, matching numpy.argmax",
+  "paper_metric_ambiguity": "Paper says likelihood-based accuracy without specifying acc versus acc_norm; report both and do not select a metric after seeing the result.",
+  "selection_policy": "All 2376 test rows retained, in original order; no tuning or selection based on test labels",
+  "archive": {
+    "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+    "bytes": 680841265,
+    "etag": "\"1127a48008065e274e98c503e844e064-41\"",
+    "observed_s3_version_id": "nRMm.3j2cEmnJuI_ZfN4Bdm9QPoKdUWX",
+    "retrieval": "HTTP Range requests for selected ZIP members, guarded by If-Match",
+    "integrity": "ZIP CRC and hard-coded SHA256 verified for every extracted member; full archive SHA256 not measured because the unrelated corpus was not fetched"
+  },
+  "sources": [
+    {
+      "path": "sources/lm_eval/LICENSE.md",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/LICENSE.md",
+      "sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/api/model.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/model.py",
+      "sha256": "b8b1db336e168b53d9ca808fe837d5bf8943d9dca76a14cf747e4f3a22d50545"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/api/samplers.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/samplers.py",
+      "sha256": "b9541ec0ea1144d2003301ae6584f86abfab2237aebeafb0f7dd2a3adaf82c42"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/api/task.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/task.py",
+      "sha256": "4c25a4f1949488483b833ce4fcf91cfd3e066084a9ea00079c6879ae3ba95657"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/api/utils.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/utils.py",
+      "sha256": "027862cf6efb657861b78a8827ad33a88ad3a1284f9086cc00b2826c74423dfa"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/config/task.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/config/task.py",
+      "sha256": "c9ec7ce71a5ee6c84cd85436eec47a8fdf9842f2bd7011cc336c83ecb4cd958a"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/defaults.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/defaults.py",
+      "sha256": "135d3c74587354d890aba98fbcb95bde6808b74ebd236fb404c1c7c4b101d1ec"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/evaluator.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/evaluator.py",
+      "sha256": "581e7767820aaa8503e6b23682360a6dbcd0c0f8e5b50b53e3f282c64b5bc986"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/models/huggingface.py",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/models/huggingface.py",
+      "sha256": "56d215b8f713d7579f9c7b58a9b8771b09c88e0e4fb8d1b6dd9068033b614b80"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/tasks/arc/arc_easy.yaml",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/arc/arc_easy.yaml",
+      "sha256": "96da1d9efe1df88659481cedc13985cb347dc068554a2eae561303fa39bfab3f"
+    },
+    {
+      "path": "data/ai2_arc_loader.py",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/4d4ed1b0a54f45df33cd8eb45c157cc00cdaf35e/ai2_arc.py",
+      "sha256": "c0e2af39a9692c9f3163df11b8d97f807f918a538f04a957d9a91dbf2940ae18"
+    },
+    {
+      "path": "data/raw/ARC-Easy/ARC-Easy-Train.jsonl",
+      "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Easy/ARC-Easy-Train.jsonl",
+      "sha256": "c62e5482d8c01f2d5a7f24239ac9db3b12f9e47267c4e3f088c6ffe41d5545ef"
+    },
+    {
+      "path": "data/raw/ARC-Easy/ARC-Easy-Dev.jsonl",
+      "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Easy/ARC-Easy-Dev.jsonl",
+      "sha256": "f4364b808a68df6bf500ce1070fb0105d40cacd2391c210deb00ff83ba75d1f4"
+    },
+    {
+      "path": "data/raw/ARC-Easy/ARC-Easy-Test.jsonl",
+      "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Easy/ARC-Easy-Test.jsonl",
+      "sha256": "ce32a0774b4beb1977d2c6b16dda5dd2b24fdc9c7f506882c452678676bd09be"
+    },
+    {
+      "path": "data/raw/README.txt",
+      "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_member": "ARC-V1-Feb2018-2/README.txt",
+      "sha256": "4f9f190ab3398a1278dc4940335beaa2c9e9a69a15ffd8e894a69d2d7697f81a"
+    }
+  ],
+  "output": {
+    "path": "data/arc_easy_8shot.jsonl",
+    "sha256": "d06e382aa9fdc0f922bd961c85bc60c81cfc63ebe11d79876cff84468cde71c3",
+    "rows": 2376
+  },
+  "validation": {
+    "upstream_sampler_all_2376_selections_match": true,
+    "train_test_ids_disjoint": true,
+    "test_label_invariance": true,
+    "count_choices": {
+      "3": 7,
+      "4": 2365,
+      "5": 4
+    }
+  }
+}

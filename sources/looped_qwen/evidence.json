@@ -1,0 +1,39 @@
+{
+  "sources": [
+    {
+      "file": "loopcd.html",
+      "url": "https://arxiv.org/html/2610.02185v1",
+      "sha256": "a850609addf17d7e90c1ef01dea437463bfe66a0b65ef62d323ccf9e29ff46a8"
+    },
+    {
+      "file": "training_free_looped_transformers.html",
+      "url": "https://arxiv.org/html/2605.23872v1",
+      "sha256": "b187464911b5f9a89fe2d0a3bddd8835a6bc034f07040d02544cb2a0d7143a7d"
+    },
+    {
+      "file": "hf_modeling_qwen3.py",
+      "url": "https://raw.githubusercontent.com/huggingface/transformers/v4.56.2/src/transformers/models/qwen3/modeling_qwen3.py",
+      "sha256": "4b95c371fd26d40c69083dab36ac1eafd8cf82b415a0bb827275097c5ad2305b"
+    },
+    {
+      "file": "hf_configuration_qwen3.py",
+      "url": "https://raw.githubusercontent.com/huggingface/transformers/v4.56.2/src/transformers/models/qwen3/configuration_qwen3.py",
+      "sha256": "12bfdce91ba4f836a254755ef3e876678f41818b5e8c9b9232c36ebb53456320"
+    }
+  ],
+  "runtime_source_matches_official_v4_56_2": true,
+  "upstream_wrapper_repository": "https://github.com/L-z-Chen/Training-Free-Looped-Transformer",
+  "upstream_fetch_status": {
+    "api": "HTTP 404",
+    "raw_main_loop_qwen3_py": "HTTP 404",
+    "raw_master_loop_qwen3_py": "HTTP 404",
+    "github_blob_main": "HTTP 404"
+  },
+  "upstream_indexed_readme": "Search-indexed author README identifies zero-based [15,16,17,18], damped Euler update, and a different default K=6/beta=0.5 anchored recipe. No third-party code used.",
+  "implementation_basis": "LoopCD Appendix A.2 explicit damped substep; Training-Free Looped Transformers Eq.10; native Transformers v4.56.2 Qwen3 blocks.",
+  "assumptions": [
+    "No anchor blend: LoopCD explicit recurrence does not specify one.",
+    "The authors do not pin exact model revision or expose their wrapper implementation.",
+    "Full-sequence likelihood scoring with use_cache=False; cache handling for incremental generation is out of scope."
+  ]
+}

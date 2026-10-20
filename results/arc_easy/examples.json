@@ -1,0 +1,682 @@
+[
+  {
+    "policy": "loopcd_fixed",
+    "category": "corrected",
+    "id": "Mercury_7239733",
+    "question": "Meiosis is a type of cell division in which germ cells divide to produce haploid cells. Where does meiosis occur?",
+    "choices": [
+      "brain cells",
+      "bone cells",
+      "muscle cells",
+      "ovary cells"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 3,
+    "scores": {
+      "baseline": [
+        -11.68071162700653,
+        -16.200915813446045,
+        -11.009194284677505,
+        -11.020792007446289
+      ],
+      "loopcd_fixed": [
+        -14.68081021308899,
+        -20.432469367980957,
+        -14.023934185504913,
+        -12.754668712615967
+      ],
+      "loopcd_adaptive": [
+        -14.100831031799316,
+        -17.87283945083618,
+        -13.290897130966187,
+        -13.964356422424316
+      ],
+      "reference": [
+        -12.316735744476318,
+        -12.901732444763184,
+        -11.855847835540771,
+        -13.938299179077148
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -1.0618828751824119,
+        -1.6200915813446044,
+        -0.9174328570564588,
+        -1.0018901824951172
+      ],
+      "loopcd_fixed": [
+        -1.3346191102808171,
+        -2.043246936798096,
+        -1.1686611821254094,
+        -1.1595153375105425
+      ],
+      "loopcd_adaptive": [
+        -1.2818937301635742,
+        -1.7872839450836182,
+        -1.1075747609138489,
+        -1.2694869474931196
+      ],
+      "reference": [
+        -1.1197032494978472,
+        -1.2901732444763183,
+        -0.9879873196283976,
+        -1.2671181071888318
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 2,
+        "loopcd_fixed": 3,
+        "loopcd_adaptive": 2,
+        "reference": 2
+      },
+      "acc_norm": {
+        "baseline": 2,
+        "loopcd_fixed": 3,
+        "loopcd_adaptive": 2,
+        "reference": 2
+      }
+    }
+  },
+  {
+    "policy": "loopcd_fixed",
+    "category": "corrected",
+    "id": "Mercury_7166145",
+    "question": "The circulatory system and the endocrine system work together in the human body. Which describes one way in which these systems interact?",
+    "choices": [
+      "taking in oxygen and transporting it to cells of the body",
+      "releasing hormones and transporting them to cells of the body",
+      "absorbing nutrients from food and transporting them to cells in the body",
+      "collecting waste products from the cells and transporting it out of the body"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 1,
+    "scores": {
+      "baseline": [
+        -29.01312494277954,
+        -23.89758090302348,
+        -26.29483462870121,
+        -31.848154552746564
+      ],
+      "loopcd_fixed": [
+        -37.75879501225427,
+        -27.33970140106976,
+        -33.0449035782367,
+        -37.464022726751864
+      ],
+      "loopcd_adaptive": [
+        -46.41025264188647,
+        -31.551651868969202,
+        -40.60203267261386,
+        -41.318824235349894
+      ],
+      "reference": [
+        -33.66309542953968,
+        -38.82664328813553,
+        -33.79993763566017,
+        -41.61651058215648
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -0.5090021919785884,
+        -0.3917636213610407,
+        -0.36520603650973904,
+        -0.41905466516771794
+      ],
+      "loopcd_fixed": [
+        -0.6624350002149871,
+        -0.44819182624704523,
+        -0.4589569941421764,
+        -0.4929476674572614
+      ],
+      "loopcd_adaptive": [
+        -0.8142149586295873,
+        -0.5172401945732656,
+        -0.5639171204529703,
+        -0.5436687399388144
+      ],
+      "reference": [
+        -0.5905806215708715,
+        -0.6365023489858284,
+        -0.46944357827305794,
+        -0.5475856655546906
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 1,
+        "loopcd_fixed": 1,
+        "loopcd_adaptive": 1,
+        "reference": 0
+      },
+      "acc_norm": {
+        "baseline": 2,
+        "loopcd_fixed": 1,
+        "loopcd_adaptive": 1,
+        "reference": 2
+      }
+    }
+  },
+  {
+    "policy": "loopcd_fixed",
+    "category": "regressed",
+    "id": "Mercury_SC_405199",
+    "question": "Which of these will most likely harm a habitat?",
+    "choices": [
+      "planting trees",
+      "water pollution",
+      "rainfall",
+      "sunlight"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 1,
+    "scores": {
+      "baseline": [
+        -6.637134552001953,
+        -6.291554927825928,
+        -9.17628002166748,
+        -9.406366348266602
+      ],
+      "loopcd_fixed": [
+        -5.707491517066956,
+        -6.658277228474617,
+        -10.698030471801758,
+        -11.429697036743164
+      ],
+      "loopcd_adaptive": [
+        -5.467777371406555,
+        -7.757688596844673,
+        -12.54752254486084,
+        -13.750412940979004
+      ],
+      "reference": [
+        -14.051486015319824,
+        -12.127848625183105,
+        -8.90781021118164,
+        -8.134737014770508
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -0.47408103942871094,
+        -0.41943699518839517,
+        -1.147035002708435,
+        -1.1757957935333252
+      ],
+      "loopcd_fixed": [
+        -0.4076779655047825,
+        -0.44388514856497446,
+        -1.3372538089752197,
+        -1.4287121295928955
+      ],
+      "loopcd_adaptive": [
+        -0.39055552652903963,
+        -0.5171792397896449,
+        -1.568440318107605,
+        -1.7188016176223755
+      ],
+      "reference": [
+        -1.0036775725228446,
+        -0.8085232416788737,
+        -1.113476276397705,
+        -1.0168421268463135
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 1,
+        "loopcd_fixed": 0,
+        "loopcd_adaptive": 0,
+        "reference": 3
+      },
+      "acc_norm": {
+        "baseline": 1,
+        "loopcd_fixed": 0,
+        "loopcd_adaptive": 0,
+        "reference": 1
+      }
+    }
+  },
+  {
+    "policy": "loopcd_fixed",
+    "category": "regressed",
+    "id": "Mercury_7146195",
+    "question": "A research scientist writes a paper on the initial regrowth of a forest after a fire has damaged the entire ecosystem. Which title would be best for the paper?",
+    "choices": [
+      "Primary Succession",
+      "Stable Communities",
+      "Climax Communities",
+      "Secondary Succession"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 3,
+    "scores": {
+      "baseline": [
+        -6.5158186357002705,
+        -16.937808513641357,
+        -12.27701210975647,
+        -7.107379288412631
+      ],
+      "loopcd_fixed": [
+        -6.907567694433965,
+        -20.204452514648438,
+        -14.084133386611938,
+        -7.682449062354863
+      ],
+      "loopcd_adaptive": [
+        -7.574060402344912,
+        -23.200769662857056,
+        -16.404835641384125,
+        -7.992364691570401
+      ],
+      "reference": [
+        -19.917229413986206,
+        -26.268299102783203,
+        -21.794018745422363,
+        -19.774869918823242
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -0.3619899242055706,
+        -0.9409893618689643,
+        -0.6820562283198038,
+        -0.35536896442063154
+      ],
+      "loopcd_fixed": [
+        -0.38375376080188695,
+        -1.1224695841471355,
+        -0.7824518548117744,
+        -0.3841224531177431
+      ],
+      "loopcd_adaptive": [
+        -0.42078113346360624,
+        -1.2889316479365032,
+        -0.9113797578546736,
+        -0.3996182345785201
+      ],
+      "reference": [
+        -1.1065127452214558,
+        -1.4593499501546223,
+        -1.2107788191901312,
+        -0.9887434959411621
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 0,
+        "loopcd_fixed": 0,
+        "loopcd_adaptive": 0,
+        "reference": 3
+      },
+      "acc_norm": {
+        "baseline": 3,
+        "loopcd_fixed": 0,
+        "loopcd_adaptive": 3,
+        "reference": 3
+      }
+    }
+  },
+  {
+    "policy": "loopcd_adaptive",
+    "category": "corrected",
+    "id": "Mercury_7166145",
+    "question": "The circulatory system and the endocrine system work together in the human body. Which describes one way in which these systems interact?",
+    "choices": [
+      "taking in oxygen and transporting it to cells of the body",
+      "releasing hormones and transporting them to cells of the body",
+      "absorbing nutrients from food and transporting them to cells in the body",
+      "collecting waste products from the cells and transporting it out of the body"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 1,
+    "scores": {
+      "baseline": [
+        -29.01312494277954,
+        -23.89758090302348,
+        -26.29483462870121,
+        -31.848154552746564
+      ],
+      "loopcd_fixed": [
+        -37.75879501225427,
+        -27.33970140106976,
+        -33.0449035782367,
+        -37.464022726751864
+      ],
+      "loopcd_adaptive": [
+        -46.41025264188647,
+        -31.551651868969202,
+        -40.60203267261386,
+        -41.318824235349894
+      ],
+      "reference": [
+        -33.66309542953968,
+        -38.82664328813553,
+        -33.79993763566017,
+        -41.61651058215648
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -0.5090021919785884,
+        -0.3917636213610407,
+        -0.36520603650973904,
+        -0.41905466516771794
+      ],
+      "loopcd_fixed": [
+        -0.6624350002149871,
+        -0.44819182624704523,
+        -0.4589569941421764,
+        -0.4929476674572614
+      ],
+      "loopcd_adaptive": [
+        -0.8142149586295873,
+        -0.5172401945732656,
+        -0.5639171204529703,
+        -0.5436687399388144
+      ],
+      "reference": [
+        -0.5905806215708715,
+        -0.6365023489858284,
+        -0.46944357827305794,
+        -0.5475856655546906
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 1,
+        "loopcd_fixed": 1,
+        "loopcd_adaptive": 1,
+        "reference": 0
+      },
+      "acc_norm": {
+        "baseline": 2,
+        "loopcd_fixed": 1,
+        "loopcd_adaptive": 1,
+        "reference": 2
+      }
+    }
+  },
+  {
+    "policy": "loopcd_adaptive",
+    "category": "corrected",
+    "id": "Mercury_SC_402980",
+    "question": "During which activity should a student wear goggles?",
+    "choices": [
+      "writing a science report",
+      "mixing baking soda with water",
+      "measuring the length of a shadow",
+      "examining a leaf with a microscope"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 1,
+    "scores": {
+      "baseline": [
+        -14.237536191940308,
+        -13.716116234660149,
+        -17.616650447249413,
+        -15.440597487613559
+      ],
+      "loopcd_fixed": [
+        -16.592428505420685,
+        -15.176134027540684,
+        -19.406790249049664,
+        -15.497373535297811
+      ],
+      "loopcd_adaptive": [
+        -19.923786222934723,
+        -13.51357913762331,
+        -22.655780099332333,
+        -16.925001362338662
+      ],
+      "reference": [
+        -21.016167640686035,
+        -22.421256065368652,
+        -29.646115116775036,
+        -35.25348901748657
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -0.5932306746641794,
+        -0.4729695253331086,
+        -0.5505203264765441,
+        -0.4541352202239282
+      ],
+      "loopcd_fixed": [
+        -0.6913511877258619,
+        -0.5233149664669201,
+        -0.606462195282802,
+        -0.45580510397934737
+      ],
+      "loopcd_adaptive": [
+        -0.8301577592889468,
+        -0.46598548750425206,
+        -0.7079931281041354,
+        -0.497794157715843
+      ],
+      "reference": [
+        -0.8756736516952515,
+        -0.7731467608747811,
+        -0.9264410973992199,
+        -1.0368673240437227
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 1,
+        "loopcd_fixed": 1,
+        "loopcd_adaptive": 1,
+        "reference": 0
+      },
+      "acc_norm": {
+        "baseline": 3,
+        "loopcd_fixed": 3,
+        "loopcd_adaptive": 1,
+        "reference": 1
+      }
+    }
+  },
+  {
+    "policy": "loopcd_adaptive",
+    "category": "regressed",
+    "id": "Mercury_SC_405199",
+    "question": "Which of these will most likely harm a habitat?",
+    "choices": [
+      "planting trees",
+      "water pollution",
+      "rainfall",
+      "sunlight"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 1,
+    "scores": {
+      "baseline": [
+        -6.637134552001953,
+        -6.291554927825928,
+        -9.17628002166748,
+        -9.406366348266602
+      ],
+      "loopcd_fixed": [
+        -5.707491517066956,
+        -6.658277228474617,
+        -10.698030471801758,
+        -11.429697036743164
+      ],
+      "loopcd_adaptive": [
+        -5.467777371406555,
+        -7.757688596844673,
+        -12.54752254486084,
+        -13.750412940979004
+      ],
+      "reference": [
+        -14.051486015319824,
+        -12.127848625183105,
+        -8.90781021118164,
+        -8.134737014770508
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -0.47408103942871094,
+        -0.41943699518839517,
+        -1.147035002708435,
+        -1.1757957935333252
+      ],
+      "loopcd_fixed": [
+        -0.4076779655047825,
+        -0.44388514856497446,
+        -1.3372538089752197,
+        -1.4287121295928955
+      ],
+      "loopcd_adaptive": [
+        -0.39055552652903963,
+        -0.5171792397896449,
+        -1.568440318107605,
+        -1.7188016176223755
+      ],
+      "reference": [
+        -1.0036775725228446,
+        -0.8085232416788737,
+        -1.113476276397705,
+        -1.0168421268463135
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 1,
+        "loopcd_fixed": 0,
+        "loopcd_adaptive": 0,
+        "reference": 3
+      },
+      "acc_norm": {
+        "baseline": 1,
+        "loopcd_fixed": 0,
+        "loopcd_adaptive": 0,
+        "reference": 1
+      }
+    }
+  },
+  {
+    "policy": "loopcd_adaptive",
+    "category": "regressed",
+    "id": "VASoL_2011_5_34",
+    "question": "Which layer of Earth is the thinnest?",
+    "choices": [
+      "Inner core",
+      "Crust",
+      "Outer core",
+      "Mantle"
+    ],
+    "labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "gold": 1,
+    "scores": {
+      "baseline": [
+        -5.183977574110031,
+        -1.6346148392185569,
+        -4.409639835357666,
+        -4.254280851688236
+      ],
+      "loopcd_fixed": [
+        -4.959313713014126,
+        -1.6483299685060047,
+        -3.7218117117881775,
+        -4.344546844251454
+      ],
+      "loopcd_adaptive": [
+        -4.8947437554597855,
+        -1.7492883233353496,
+        -3.2986614406108856,
+        -4.483590400777757
+      ],
+      "reference": [
+        -10.41433572769165,
+        -10.196887969970703,
+        -11.201199293136597,
+        -6.115016283467412
+      ]
+    },
+    "scores_per_character": {
+      "baseline": [
+        -0.5183977574110031,
+        -0.3269229678437114,
+        -0.4409639835357666,
+        -0.709046808614706
+      ],
+      "loopcd_fixed": [
+        -0.49593137130141257,
+        -0.3296659937012009,
+        -0.37218117117881777,
+        -0.7240911407085756
+      ],
+      "loopcd_adaptive": [
+        -0.48947437554597856,
+        -0.3498576646670699,
+        -0.32986614406108855,
+        -0.7472650667962929
+      ],
+      "reference": [
+        -1.041433572769165,
+        -2.0393775939941405,
+        -1.1201199293136597,
+        -1.019169380577902
+      ]
+    },
+    "predictions": {
+      "acc": {
+        "baseline": 1,
+        "loopcd_fixed": 1,
+        "loopcd_adaptive": 1,
+        "reference": 3
+      },
+      "acc_norm": {
+        "baseline": 1,
+        "loopcd_fixed": 1,
+        "loopcd_adaptive": 2,
+        "reference": 3
+      }
+    }
+  }
+]

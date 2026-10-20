@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate.py", line 210, in <module>
+    main()
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate.py", line 136, in main
+    validation = scorer.validate(candidates)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/src/suite_scoring.py", line 73, in validate
+    validation = self.adapter.validate(inputs, mask, rows, positions, sample_keys=keys)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/src/adapter_parcae.py", line 265, in validate
+    torch.testing.assert_close(single[mode], output[mode][selected], rtol=3e-5, atol=tolerance)
+  File "/work/zs220/zjsu-loopcd/venv/lib/python3.12/site-packages/torch/testing/_comparison.py", line 1530, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not close!
+
+Mismatched elements: 159332 / 196608 (81.0%)
+Greatest absolute difference: 0.14212799072265625 at index (2, 5214) (up to 0.0003 allowed)
+Greatest relative difference: 0.002444281941279769 at index (2, 19713) (up to 3e-05 allowed)

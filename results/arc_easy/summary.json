@@ -1,0 +1,36 @@
+{
+  "n": 2376,
+  "correct": {
+    "acc": {
+      "baseline": 1991,
+      "loopcd_fixed": 2006,
+      "loopcd_adaptive": 2009,
+      "reference": 1527
+    },
+    "acc_norm": {
+      "baseline": 1998,
+      "loopcd_fixed": 2005,
+      "loopcd_adaptive": 1999,
+      "reference": 1386
+    }
+  },
+  "accuracy_percent": {
+    "acc": {
+      "baseline": 83.79629629629629,
+      "loopcd_fixed": 84.42760942760943,
+      "loopcd_adaptive": 84.55387205387206,
+      "reference": 64.26767676767676
+    },
+    "acc_norm": {
+      "baseline": 84.0909090909091,
+      "loopcd_fixed": 84.38552188552188,
+      "loopcd_adaptive": 84.13299663299664,
+      "reference": 58.333333333333336
+    }
+  },
+  "load_and_validation_seconds": 12.99053372303024,
+  "this_invocation_scoring_seconds": 147.87247151415795,
+  "this_invocation_total_seconds": 160.8630079217255,
+  "peak_gpu_allocated_gib": 6.662695407867432,
+  "note": "All policies share the same four-pass trajectory. Joint runtime is not a policy speedup measurement."
+}

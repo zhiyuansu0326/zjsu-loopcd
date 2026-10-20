@@ -1,0 +1,203 @@
+{
+  "_id": "677e5da6e25244bffa8e4a17",
+  "id": "tomg-group-umd/huginn-0125",
+  "private": false,
+  "pipeline_tag": "text-generation",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "safetensors",
+    "huginn_raven",
+    "text-generation",
+    "code",
+    "math",
+    "reasoning",
+    "llm",
+    "conversational",
+    "custom_code",
+    "en",
+    "dataset:tomg-group-umd/huginn-dataset",
+    "arxiv:2502.05171",
+    "license:apache-2.0",
+    "region:us"
+  ],
+  "downloads": 10955,
+  "likes": 315,
+  "modelId": "tomg-group-umd/huginn-0125",
+  "author": "tomg-group-umd",
+  "sha": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "lastModified": "2025-07-29T09:40:51.000Z",
+  "gated": false,
+  "disabled": false,
+  "widgetData": [
+    {
+      "text": "Hi, what can you help me with?"
+    },
+    {
+      "text": "What is 84 * 3 / 2?"
+    },
+    {
+      "text": "Tell me an interesting fact about the universe!"
+    },
+    {
+      "text": "Explain quantum computing in simple terms."
+    }
+  ],
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "RavenForCausalLM"
+    ],
+    "auto_map": {
+      "AutoConfig": "raven_config_minimal.RavenConfig",
+      "AutoModelForCausalLM": "raven_modeling_minimal.RavenForCausalLM"
+    },
+    "model_type": "huginn_raven",
+    "tokenizer_config": {
+      "bos_token": "<|begin_text|>",
+      "chat_template": "{% set loop_messages = messages %}{% for message in loop_messages %}{% set start_content = '<|begin_header|>' %}{% set end_content = message['content'] | trim  + '<|end_turn|>' %}{% if loop.index0 == 0 %}{% set start_content = bos_token + start_content %}{% endif %}{% if message['role'] == 'Huginn' or message['role'] == 'assistant' %}{% set start_content = start_content + 'Huginn<|end_header|>\n\n' %}{{ start_content }}{% generation %}{{ end_content }}{% endgeneration %}{% else %}{% set start_content = start_content + message['role'] + '<|end_header|>\n\n' %}{{ start_content }}{{ end_content }}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ '<|begin_header|>Huginn<|end_header|>\n\n' }}{% else %}{{ '<|end_text|>' }}{% endif %}",
+      "eos_token": "<|end_text|>",
+      "pad_token": "<|pad|>"
+    }
+  },
+  "cardData": {
+    "library_name": "transformers",
+    "tags": [
+      "code",
+      "math",
+      "reasoning",
+      "llm"
+    ],
+    "license": "apache-2.0",
+    "language": [
+      "en"
+    ],
+    "pipeline_tag": "text-generation",
+    "datasets": [
+      "tomg-group-umd/huginn-dataset"
+    ]
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModelForCausalLM",
+    "custom_class": "raven_modeling_minimal.RavenForCausalLM",
+    "pipeline_tag": "text-generation"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "7f696e74b8b415ee9d4ea8742fb061ff1517a64f",
+      "size": 1566
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "bdd81dab215385b4d21839d948a29a2f8118fd21",
+      "size": 13691
+    },
+    {
+      "rfilename": "asset1.gif",
+      "blobId": "f7f7c2289c2aa4634a10ef6b062bf95607bbff50",
+      "size": 3015077,
+      "lfs": {
+        "sha256": "061ce8c13c7f0151ae0ae0287dc372f1f85a9a92951944ada57a85ea0936b586",
+        "size": 3015077,
+        "pointerSize": 132
+      }
+    },
+    {
+      "rfilename": "asset2.jpeg",
+      "blobId": "9e7d383c4d5eb27dad02a4d8f19f476055935d85",
+      "size": 46921
+    },
+    {
+      "rfilename": "config.json",
+      "blobId": "f448f9b60b283751af64243818b5965d1cd7ab8c",
+      "size": 1447
+    },
+    {
+      "rfilename": "generation_config.json",
+      "blobId": "5d625768ec0e6f0b4aacd266ca3fc0ed8a930cd5",
+      "size": 178
+    },
+    {
+      "rfilename": "model-00001-of-00004.safetensors",
+      "blobId": "c607ab306d9f29f54554ab28f90a6c9c1e9e0560",
+      "size": 4771970936,
+      "lfs": {
+        "sha256": "5b461584b74249e87eabec34b59a13e188791dd8a7ccf2c7be95bb7fa8383e43",
+        "size": 4771970936,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00002-of-00004.safetensors",
+      "blobId": "ee4aa576398551e2586a7b5b10b4426ad738b63b",
+      "size": 4744780096,
+      "lfs": {
+        "sha256": "44bac332b204abb687b2820eb0fadcb5795fdb0cfc06b3b6f2ac5241eec5c591",
+        "size": 4744780096,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00003-of-00004.safetensors",
+      "blobId": "02bf3472243cfd29bedeefa7319ff4418b178dc0",
+      "size": 4744737616,
+      "lfs": {
+        "sha256": "07160dce9da01918d0b0bf2159ffe11d007e1fbe661d687ad4a7b0e65bde4e84",
+        "size": 4744737616,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model-00004-of-00004.safetensors",
+      "blobId": "46b275a1b95e6f75c02296bb660a7773d25fcee4",
+      "size": 1384120448,
+      "lfs": {
+        "sha256": "40ce4f159938857dbbfa1020962045e1b96303ff902cfa76051ce54d2d51dea4",
+        "size": 1384120448,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "model.safetensors.index.json",
+      "blobId": "7dd127c3bcb85de38c60a4c13e1a687e340b4450",
+      "size": 6188
+    },
+    {
+      "rfilename": "raven_config_minimal.py",
+      "blobId": "3d02eb20e5e248bd3edfe2454bde0e4d448aaffe",
+      "size": 3913
+    },
+    {
+      "rfilename": "raven_modeling_minimal.py",
+      "blobId": "d57a41491acf24701e59b449fc457467d8b10c20",
+      "size": 88021
+    },
+    {
+      "rfilename": "special_tokens_map.json",
+      "blobId": "68ea7550618dcfd65a1faf6fdfb37336eeaa96f1",
+      "size": 435
+    },
+    {
+      "rfilename": "tokenizer.json",
+      "blobId": "ba898bc0ca9d948ef26ad339d5bf041b2de604ef",
+      "size": 2726482
+    },
+    {
+      "rfilename": "tokenizer_config.json",
+      "blobId": "33657b7f5efddc9b9a71ce613d42b58cbad23306",
+      "size": 6624
+    }
+  ],
+  "spaces": [
+    "Sal-ONE/Huginn"
+  ],
+  "createdAt": "2025-01-08T11:12:38.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 3911400096
+    },
+    "total": 3911400096
+  },
+  "usedStorage": 15648624173
+}

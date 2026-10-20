@@ -1,0 +1,37 @@
+{
+  "selection_basis": "Numerical consistency checks before evaluating accuracy; no accuracy-based parameter search",
+  "ouro_previous_bfloat16": {
+    "max_batch_single_answer_token_logprob_error": 0.28756,
+    "decision": "Use float32/high as in previous accepted reproduction"
+  },
+  "huginn_32_float32_high": {
+    "job_id": "59032284",
+    "status": "Validation failed before full test scoring",
+    "batch_single_max_errors": {
+      "baseline": 0.0019016265869140625,
+      "loopcd_fixed": 0.002796649932861328,
+      "loopcd_adaptive": 0.002628326416015625,
+      "reference": 0.001870870590209961
+    },
+    "required_tolerance": 0.001,
+    "decision": "Disable TF32 using matmul_precision=highest for both Huginn depths"
+  },
+  "huginn_32_float32_highest": {
+    "job_id": "59032889",
+    "status": "Full checkpoint validation passed; formal scoring uses highest",
+    "batch_single_token_logprob_max_error": 1.71661376953125e-05
+  },
+  "looped_qwen_float32_high": {
+    "job_id": "59032893",
+    "status": "Validation failed before test scoring",
+    "native_algebraically_equivalent_replay_max_abs_logit_error": 0.01125478744506836,
+    "absolute_tolerance": 0.0005,
+    "relative_tolerance": 1e-05,
+    "decision": "Disable TF32 using matmul_precision=highest; preserve formula and validation thresholds"
+  },
+  "looped_qwen_float32_highest": {
+    "job_id": "59034857",
+    "status": "Full checkpoint validation passed; formal scoring uses highest",
+    "batch_single_token_logprob_max_error": 6.103515625e-05
+  }
+}

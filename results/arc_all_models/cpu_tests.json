@@ -1,0 +1,18 @@
+{
+  "command": "OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 ./venv-stage3c-h/bin/python -B -m unittest discover -s tests -v",
+  "tests_run": 33,
+  "passed": 33,
+  "failures": 0,
+  "errors": 0,
+  "test_runtime_seconds": 0.859,
+  "scope": "20 model/formula/tokenizer tests plus 13 resume/data-integrity tests; full checkpoint numerical validation saved per GPU run",
+  "test_files": [
+    "tests/test_loopcd.py",
+    "tests/test_huginn_adapter.py",
+    "tests/test_parcae_adapter.py",
+    "tests/test_looped_qwen_adapter.py",
+    "tests/test_run_integrity.py"
+  ],
+  "log": "results/arc_all_models/tests.log",
+  "log_sha256": "bf7cc4c585d5e01f2aacf113ace4fc1a304a9e9fa97262d2cbaee842d18d9136"
+}

@@ -1,0 +1,1415 @@
+[
+  {
+    "task": "arc_challenge",
+    "model": "ouro_26",
+    "job_id": "59038133",
+    "submitted_utc": "2026-10-20T15:17:48.143701+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-arcc-ouro_26",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "ouro_26"
+    ],
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "RUNNING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "parcae_370",
+    "job_id": "59038134",
+    "submitted_utc": "2026-10-20T15:17:48.189797+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-arcc-parcae_370",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "parcae_370"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038134",
+      "utc": "2026-10-20T15:20:35.531953+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "huginn_32",
+    "job_id": "59038153",
+    "submitted_utc": "2026-10-20T15:18:08.062397+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-sciq-huginn_32",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "huginn_32"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038153",
+      "utc": "2026-10-20T15:20:35.640445+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "huginn_32",
+    "job_id": "59038154",
+    "submitted_utc": "2026-10-20T15:18:08.831588+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-piqa-huginn_32",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "huginn_32"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038154",
+      "utc": "2026-10-20T15:20:35.749799+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "huginn_32",
+    "job_id": "59038155",
+    "submitted_utc": "2026-10-20T15:18:08.873178+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-arc_challenge-huginn_32",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "huginn_32"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038155",
+      "utc": "2026-10-20T15:20:35.857168+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "huginn_16",
+    "job_id": "59038156",
+    "submitted_utc": "2026-10-20T15:18:08.983267+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-sciq-huginn_16",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "huginn_16"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038156",
+      "utc": "2026-10-20T15:20:36.018312+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "huginn_16",
+    "job_id": "59038157",
+    "submitted_utc": "2026-10-20T15:18:09.022613+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-piqa-huginn_16",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "huginn_16"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038157",
+      "utc": "2026-10-20T15:20:36.127322+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "huginn_16",
+    "job_id": "59038158",
+    "submitted_utc": "2026-10-20T15:18:09.062707+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-arc_challenge-huginn_16",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "huginn_16"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038158",
+      "utc": "2026-10-20T15:20:36.228362+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "ouro_14",
+    "job_id": "59038159",
+    "submitted_utc": "2026-10-20T15:18:09.102061+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-sciq-ouro_14",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "ouro_14"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038159",
+      "utc": "2026-10-20T15:20:36.347768+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "ouro_14",
+    "job_id": "59038160",
+    "submitted_utc": "2026-10-20T15:18:09.139798+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-piqa-ouro_14",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "ouro_14"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038160",
+      "utc": "2026-10-20T15:20:36.458039+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "ouro_14",
+    "job_id": "59038161",
+    "submitted_utc": "2026-10-20T15:18:09.179152+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-arc_challenge-ouro_14",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "ouro_14"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038161",
+      "utc": "2026-10-20T15:20:36.566606+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "looped_qwen",
+    "job_id": "59038162",
+    "submitted_utc": "2026-10-20T15:18:09.217778+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-sciq-looped_qwen",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "looped_qwen"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038162",
+      "utc": "2026-10-20T15:20:36.738258+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "looped_qwen",
+    "job_id": "59038163",
+    "submitted_utc": "2026-10-20T15:18:09.316755+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-piqa-looped_qwen",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "looped_qwen"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038163",
+      "utc": "2026-10-20T15:20:36.841037+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "looped_qwen",
+    "job_id": "59038164",
+    "submitted_utc": "2026-10-20T15:18:10.078211+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-arc_challenge-looped_qwen",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "looped_qwen"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038164",
+      "utc": "2026-10-20T15:20:36.983652+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "ouro_26",
+    "job_id": "59038165",
+    "submitted_utc": "2026-10-20T15:18:10.120306+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-sciq-ouro_26",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "ouro_26"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038165",
+      "utc": "2026-10-20T15:20:37.090205+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "ouro_26",
+    "job_id": "59038166",
+    "submitted_utc": "2026-10-20T15:18:10.163819+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-piqa-ouro_26",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "ouro_26"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038166",
+      "utc": "2026-10-20T15:20:37.198865+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "parcae_13",
+    "job_id": "59038167",
+    "submitted_utc": "2026-10-20T15:18:10.207103+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-sciq-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "parcae_13"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038167",
+      "utc": "2026-10-20T15:20:37.308461+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "parcae_13",
+    "job_id": "59038168",
+    "submitted_utc": "2026-10-20T15:18:10.246553+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-piqa-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "parcae_13"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038168",
+      "utc": "2026-10-20T15:20:37.416092+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "parcae_13",
+    "job_id": "59038169",
+    "submitted_utc": "2026-10-20T15:18:10.285249+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-arc_challenge-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "parcae_13"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038169",
+      "utc": "2026-10-20T15:20:37.520937+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "parcae_370",
+    "job_id": "59038170",
+    "submitted_utc": "2026-10-20T15:18:10.323655+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-sciq-parcae_370",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "parcae_370"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038170",
+      "utc": "2026-10-20T15:20:37.623306+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "parcae_370",
+    "job_id": "59038171",
+    "submitted_utc": "2026-10-20T15:18:10.367611+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--job-name",
+      "lc-piqa-parcae_370",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "parcae_370"
+    ],
+    "scheduling_update": {
+      "returncode": 1,
+      "message": "Access/permission denied for job 59038171",
+      "utc": "2026-10-20T15:20:37.731026+00:00"
+    },
+    "allocation_settings": {
+      "Account": "chenglab_h200",
+      "QOS": "chenglab_h200",
+      "Partition": "h200-hp",
+      "JobState": "PENDING"
+    },
+    "user_stop_requested_utc": "2026-10-20T15:23:11.978538+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "looped_qwen",
+    "job_id": "59040422",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.657982+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-arc_challenge-looped_qwen",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "looped_qwen"
+    ],
+    "requested_minutes": 45,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:45:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:02.789419+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "looped_qwen",
+    "job_id": "59040423",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.699070+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-sciq-looped_qwen",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "looped_qwen"
+    ],
+    "requested_minutes": 20,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:20:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:02.826504+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "looped_qwen",
+    "job_id": "59040424",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.744896+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-piqa-looped_qwen",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "looped_qwen"
+    ],
+    "requested_minutes": 20,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:20:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:02.944717+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "ouro_14",
+    "job_id": "59040425",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.788227+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-arc_challenge-ouro_14",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "ouro_14"
+    ],
+    "requested_minutes": 30,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:30:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:02.978537+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "ouro_14",
+    "job_id": "59040426",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.831952+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-piqa-ouro_14",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "ouro_14"
+    ],
+    "requested_minutes": 20,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:20:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:03.012640+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "ouro_26",
+    "job_id": "59040427",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.877184+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-sciq-ouro_26",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "ouro_26"
+    ],
+    "requested_minutes": 20,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:20:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:03.047062+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "ouro_26",
+    "job_id": "59040428",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.921393+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-piqa-ouro_26",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "ouro_26"
+    ],
+    "requested_minutes": 20,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:20:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:03.079182+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "parcae_13",
+    "job_id": "59040429",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:04.965586+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-arc_challenge-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "parcae_13"
+    ],
+    "requested_minutes": 15,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:15:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:03.113151+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "parcae_13",
+    "job_id": "59040430",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:05.077435+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-sciq-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "parcae_13"
+    ],
+    "requested_minutes": 15,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:15:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:03.147295+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "parcae_13",
+    "job_id": "59040431",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:05.122023+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-piqa-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "parcae_13"
+    ],
+    "requested_minutes": 15,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:15:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:03.182126+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "parcae_370",
+    "job_id": "59040432",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:05.165028+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-sciq-parcae_370",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "parcae_370"
+    ],
+    "requested_minutes": 15,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:15:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:03.261024+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "parcae_370",
+    "job_id": "59040433",
+    "phase": "scavenger_only_continuation",
+    "resume": false,
+    "submitted_utc": "2026-10-20T15:37:05.208532+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-piqa-parcae_370",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "parcae_370"
+    ],
+    "requested_minutes": 15,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:15:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.042697+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "huginn_32",
+    "job_id": "59040511",
+    "phase": "scavenger_only_continuation",
+    "resume": true,
+    "submitted_utc": "2026-10-20T15:37:40.794866+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-resume-sciq-huginn_32",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "huginn_32"
+    ],
+    "requested_minutes": 45,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:45:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.083357+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "huginn_32",
+    "job_id": "59040512",
+    "phase": "scavenger_only_continuation",
+    "resume": true,
+    "submitted_utc": "2026-10-20T15:37:40.836283+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-resume-piqa-huginn_32",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "huginn_32"
+    ],
+    "requested_minutes": 45,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:45:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.150444+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "huginn_32",
+    "job_id": "59040514",
+    "phase": "scavenger_only_continuation",
+    "resume": true,
+    "submitted_utc": "2026-10-20T15:37:40.959389+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-resume-arc_challenge-huginn_32",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "huginn_32"
+    ],
+    "requested_minutes": 45,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:45:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.187301+00:00"
+  },
+  {
+    "task": "sciq",
+    "model": "huginn_16",
+    "job_id": "59040515",
+    "phase": "scavenger_only_continuation",
+    "resume": true,
+    "submitted_utc": "2026-10-20T15:37:40.999391+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-resume-sciq-huginn_16",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "huginn_16"
+    ],
+    "requested_minutes": 30,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:30:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.223194+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "huginn_16",
+    "job_id": "59040516",
+    "phase": "scavenger_only_continuation",
+    "resume": true,
+    "submitted_utc": "2026-10-20T15:37:41.039203+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-resume-piqa-huginn_16",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "huginn_16"
+    ],
+    "requested_minutes": 30,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:30:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.262754+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "huginn_16",
+    "job_id": "59040517",
+    "phase": "scavenger_only_continuation",
+    "resume": true,
+    "submitted_utc": "2026-10-20T15:37:41.079786+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-resume-arc_challenge-huginn_16",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "huginn_16"
+    ],
+    "requested_minutes": 30,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:30:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.299226+00:00"
+  },
+  {
+    "task": "arc_challenge",
+    "model": "ouro_26",
+    "job_id": "59040518",
+    "phase": "scavenger_only_continuation",
+    "resume": true,
+    "submitted_utc": "2026-10-20T15:37:41.120785+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--job-name",
+      "lc-resume-arc_challenge-ouro_26",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "ouro_26"
+    ],
+    "requested_minutes": 30,
+    "time_limit_reason": "Shorter conservative limits improve backfill eligibility; resume remains enabled with identical scoring settings.",
+    "allocation_settings": {
+      "Partition": "scavenger-h200",
+      "Account": "scavenger-h200",
+      "QOS": "normal",
+      "JobState": "PENDING",
+      "TimeLimit": "00:30:00",
+      "ReqTRES": "cpu=6,mem=64G,node=1,billing=6,gres/gpu=1,gres/gpu:h200=1"
+    },
+    "allocation_verified_utc": "2026-10-20T15:46:04.337916+00:00"
+  },
+  {
+    "task": "piqa",
+    "model": "ouro_14",
+    "job_id": "59045138",
+    "phase": "scavenger_precision_retry",
+    "replaces_job_id": "59040426",
+    "matmul_precision": "highest",
+    "submitted_utc": "2026-10-20T16:27:04.766622+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--time=00:30:00",
+      "--job-name",
+      "lc-fp32-piqa-ouro_14",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "ouro_14",
+      "--matmul-precision",
+      "highest"
+    ]
+  },
+  {
+    "task": "piqa",
+    "model": "ouro_26",
+    "job_id": "59045139",
+    "phase": "scavenger_precision_retry",
+    "replaces_job_id": "59040428",
+    "matmul_precision": "highest",
+    "submitted_utc": "2026-10-20T16:27:04.809537+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--time=00:30:00",
+      "--job-name",
+      "lc-fp32-piqa-ouro_26",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "ouro_26",
+      "--matmul-precision",
+      "highest"
+    ]
+  },
+  {
+    "task": "arc_challenge",
+    "model": "parcae_13",
+    "job_id": "59045141",
+    "phase": "scavenger_precision_retry",
+    "replaces_job_id": "59040429",
+    "matmul_precision": "highest",
+    "submitted_utc": "2026-10-20T16:27:04.897210+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--time=00:30:00",
+      "--job-name",
+      "lc-fp32-arc_challenge-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "arc_challenge",
+      "--model",
+      "parcae_13",
+      "--matmul-precision",
+      "highest"
+    ]
+  },
+  {
+    "task": "sciq",
+    "model": "parcae_13",
+    "job_id": "59045142",
+    "phase": "scavenger_precision_retry",
+    "replaces_job_id": "59040430",
+    "matmul_precision": "highest",
+    "submitted_utc": "2026-10-20T16:27:04.938638+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--time=00:30:00",
+      "--job-name",
+      "lc-fp32-sciq-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "parcae_13",
+      "--matmul-precision",
+      "highest"
+    ]
+  },
+  {
+    "task": "piqa",
+    "model": "parcae_13",
+    "job_id": "59045143",
+    "phase": "scavenger_precision_retry",
+    "replaces_job_id": "59040431",
+    "matmul_precision": "highest",
+    "submitted_utc": "2026-10-20T16:27:04.979285+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--time=00:30:00",
+      "--job-name",
+      "lc-fp32-piqa-parcae_13",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "parcae_13",
+      "--matmul-precision",
+      "highest"
+    ]
+  },
+  {
+    "task": "sciq",
+    "model": "parcae_370",
+    "job_id": "59045144",
+    "phase": "scavenger_precision_retry",
+    "replaces_job_id": "59040432",
+    "matmul_precision": "highest",
+    "submitted_utc": "2026-10-20T16:27:05.019797+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--time=00:30:00",
+      "--job-name",
+      "lc-fp32-sciq-parcae_370",
+      "scripts/run_suite.slurm",
+      "--task",
+      "sciq",
+      "--model",
+      "parcae_370",
+      "--matmul-precision",
+      "highest"
+    ]
+  },
+  {
+    "task": "piqa",
+    "model": "parcae_370",
+    "job_id": "59045145",
+    "phase": "scavenger_precision_retry",
+    "replaces_job_id": "59040433",
+    "matmul_precision": "highest",
+    "submitted_utc": "2026-10-20T16:27:05.060053+00:00",
+    "command": [
+      "sbatch",
+      "--parsable",
+      "--partition=scavenger-h200",
+      "--account=scavenger-h200",
+      "--qos=normal",
+      "--time=00:30:00",
+      "--job-name",
+      "lc-fp32-piqa-parcae_370",
+      "scripts/run_suite.slurm",
+      "--task",
+      "piqa",
+      "--model",
+      "parcae_370",
+      "--matmul-precision",
+      "highest"
+    ]
+  }
+]

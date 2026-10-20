@@ -1,0 +1,44 @@
+{
+  "name": "ouro_26",
+  "configuration": {
+    "family": "ouro",
+    "display": "Ouro-2.6B R=4",
+    "model_path": "models/Ouro-2.6B",
+    "model_manifest": "models/ouro26_manifest.json",
+    "loops": 4,
+    "shots": 8,
+    "fixed": 0.5,
+    "cap": 1.0,
+    "batch_size": 16,
+    "paper": [
+      88.01,
+      89.1,
+      89.02
+    ]
+  },
+  "documents": 2376,
+  "candidates": 9501,
+  "data_sha256": "d06e382aa9fdc0f922bd961c85bc60c81cfc63ebe11d79876cff84468cde71c3",
+  "model_manifest_sha256": "2e41c94e69e07e0825cc819fedc9b39bfaaabe5c94f94fa061f166d286eb1d44",
+  "code_hashes": {
+    "scripts/evaluate_arc_suite.py": "f357b54a55e12b8016c17d45a7d55dd1a40605900ea006dd7c26b0c39b8ecf7d",
+    "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+    "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+    "src/adapter_ouro.py": "76218b02a45571304da376b917cbcf27fcb71bef161abf7111f39d85b9656ccb"
+  },
+  "dtype": "float32",
+  "float32_matmul_precision": "high",
+  "batch_size": 16,
+  "token_budget": 16384,
+  "seed": 1234,
+  "add_bos": false,
+  "chat_template": false,
+  "max_input_tokens": 524,
+  "truncation": false,
+  "torch": "2.6.0+cu124",
+  "transformers": "4.56.2",
+  "adapter_metadata": {},
+  "gpu": "NVIDIA H200",
+  "host": "dcc-h200-gpu-ferc-l-e36-25",
+  "slurm_job_id": "59032282"
+}

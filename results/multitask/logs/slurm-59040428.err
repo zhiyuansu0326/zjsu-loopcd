@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate.py", line 210, in <module>
+    main()
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate.py", line 136, in main
+    validation = scorer.validate(candidates)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/src/suite_scoring.py", line 95, in validate
+    raise AssertionError(f"Batch/single numeric mismatch: {errors}")
+AssertionError: Batch/single numeric mismatch: {'baseline': 0.0026640892028808594, 'loopcd_fixed': 0.004866838455200195, 'loopcd_adaptive': 0.006705522537231445, 'reference': 0.0021119117736816406}

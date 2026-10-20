@@ -1,0 +1,28 @@
+{
+  "configuration": "ouro_14",
+  "reuse_reason": "Previous completed full ARC-Easy reproduction, identical checkpoint/data/LoopCD parameters; no rerun or re-selection",
+  "source": "results/arc_easy",
+  "original_slurm_job_id": "59026151",
+  "artifacts": {
+    "results/arc_easy/summary.json": {
+      "sha256": "9d4d38b671857e675cecf2ee8deaf3cb13ed992d5a14db1048d1ec56949b4557",
+      "bytes": 1009
+    },
+    "results/arc_easy/predictions.jsonl": {
+      "sha256": "800bcf63820f153eabe33ebe4f81cce8277218951fe52a01d43bf61d4a679a6f",
+      "bytes": 3184991
+    },
+    "results/arc_easy/candidate_scores.jsonl": {
+      "sha256": "f29bec014712baaabd42c9ad45158e9801b725a8d3c82b490f798f1893b54d21",
+      "bytes": 6745952
+    },
+    "results/arc_easy/run_manifest.json": {
+      "sha256": "cc16ff550091b543b4428ebead4120d5837411d1cbb4cbb3e60a916bc01db60d",
+      "bytes": 1056
+    },
+    "results/arc_easy/validation.json": {
+      "sha256": "e884b1c6460ca3617908855cdab1a81756fc4e40642336b7a4f698a18049fee6",
+      "bytes": 412
+    }
+  }
+}

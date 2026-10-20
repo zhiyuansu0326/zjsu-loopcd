@@ -1,0 +1,294 @@
+{
+  "arc_challenge": {
+    "ouro_14": [
+      60.41,
+      62.29,
+      61.69
+    ],
+    "ouro_26": [
+      66.21,
+      68.6,
+      69.71
+    ],
+    "huginn_32": [
+      37.63,
+      39.51,
+      39.42
+    ],
+    "huginn_16": [
+      37.63,
+      39.76,
+      39.33
+    ],
+    "parcae_370": [
+      32.59,
+      35.15,
+      36.95
+    ],
+    "parcae_13": [
+      41.21,
+      43.86,
+      45.31
+    ],
+    "looped_qwen": [
+      62.12,
+      62.54,
+      64.08
+    ]
+  },
+  "sciq": {
+    "ouro_14": [
+      94.7,
+      95.3,
+      95.2
+    ],
+    "ouro_26": [
+      94.2,
+      94.6,
+      94.3
+    ],
+    "huginn_32": [
+      90.4,
+      91.1,
+      91.2
+    ],
+    "huginn_16": [
+      90.3,
+      90.9,
+      91.2
+    ],
+    "parcae_370": [
+      78.6,
+      79.4,
+      79.8
+    ],
+    "parcae_13": [
+      83.7,
+      85.8,
+      85.3
+    ],
+    "looped_qwen": [
+      95.3,
+      95.0,
+      95.1
+    ]
+  },
+  "piqa": {
+    "ouro_14": [
+      78.51,
+      79.05,
+      78.73
+    ],
+    "ouro_26": [
+      80.25,
+      80.74,
+      80.69
+    ],
+    "huginn_32": [
+      75.79,
+      74.97,
+      75.79
+    ],
+    "huginn_16": [
+      75.52,
+      74.54,
+      74.86
+    ],
+    "parcae_370": [
+      66.97,
+      68.01,
+      67.41
+    ],
+    "parcae_13": [
+      72.03,
+      71.44,
+      70.35
+    ],
+    "looped_qwen": [
+      75.19,
+      74.65,
+      75.14
+    ]
+  },
+  "_metadata": {
+    "schema_version": 1,
+    "array_order": [
+      "baseline",
+      "loopcd_fixed",
+      "loopcd_adaptive"
+    ],
+    "units": "accuracy percentage; two decimal places as printed in Table 2",
+    "paper": {
+      "arxiv_id": "2610.02185v1",
+      "url": "https://arxiv.org/html/2610.02185v1",
+      "local_pdf": "Liu et al. - 2026 - Decoding Looped Transformers Better for (Almost) Free.pdf",
+      "sha256": "ea3f4126a96cfe11b752c7ccfc6aa6b14c844952488ccfeac5ebd939517cd334",
+      "numeric_table": {
+        "table": "2",
+        "page": 6,
+        "url": "https://arxiv.org/html/2610.02185v1#S4.T2"
+      },
+      "shots_table": {
+        "table": "A2",
+        "page": 17,
+        "url": "https://arxiv.org/html/2610.02185v1#A2.T2"
+      },
+      "strengths_table": {
+        "table": "A4",
+        "page": 18,
+        "url": "https://arxiv.org/html/2610.02185v1#A2.T4"
+      }
+    },
+    "independent_numeric_verification": {
+      "passed": true,
+      "method": "All 21 rows independently parsed from local PDF extracted text and official arXiv v1 HTML Table 2; all 147 benchmark cells agree, including the 63 cells stored here. Row labels explicitly checked: Huginn R=32 precedes R=16.",
+      "stored_cells": 63,
+      "full_table_cells_compared": 147,
+      "pdf_text_sha256": "bc11c571ee75f946bcbd11582d570e392a8b13d6864c063df263ba2471076b20",
+      "table2_html_fragment_sha256": "b07bc43c55870e350bb2ecc159459842e68a954456025fc3eb55baf3c4270ab9",
+      "table2_model_row_order": [
+        "ouro_14",
+        "ouro_26",
+        "huginn_32",
+        "huginn_16",
+        "parcae_370",
+        "parcae_13",
+        "looped_qwen"
+      ]
+    },
+    "shots_by_task_and_model": {
+      "arc_challenge": {
+        "ouro_14": 25,
+        "ouro_26": 25,
+        "huginn_32": 0,
+        "huginn_16": 0,
+        "parcae_370": 25,
+        "parcae_13": 25,
+        "looped_qwen": 25
+      },
+      "sciq": {
+        "ouro_14": 0,
+        "ouro_26": 0,
+        "huginn_32": 0,
+        "huginn_16": 0,
+        "parcae_370": 0,
+        "parcae_13": 0,
+        "looped_qwen": 0
+      },
+      "piqa": {
+        "ouro_14": 0,
+        "ouro_26": 0,
+        "huginn_32": 0,
+        "huginn_16": 0,
+        "parcae_370": 0,
+        "parcae_13": 0,
+        "looped_qwen": 0
+      }
+    },
+    "guidance_by_model": {
+      "ouro_14": {
+        "fixed_strength": 0.5,
+        "adaptive_cap": 1.0,
+        "reference_complete_update": 1
+      },
+      "ouro_26": {
+        "fixed_strength": 0.5,
+        "adaptive_cap": 1.0,
+        "reference_complete_update": 1
+      },
+      "huginn_32": {
+        "fixed_strength": 0.5,
+        "adaptive_cap": 0.5,
+        "reference_complete_update": 1
+      },
+      "huginn_16": {
+        "fixed_strength": 0.5,
+        "adaptive_cap": 0.5,
+        "reference_complete_update": 1
+      },
+      "parcae_370": {
+        "fixed_strength": 0.5,
+        "adaptive_cap": 1.0,
+        "reference_complete_update": 1
+      },
+      "parcae_13": {
+        "fixed_strength": 0.5,
+        "adaptive_cap": 1.0,
+        "reference_complete_update": 1
+      },
+      "looped_qwen": {
+        "fixed_strength": 0.5,
+        "adaptive_cap": 1.0,
+        "reference_complete_update": 1
+      }
+    },
+    "harness": {
+      "repository": "https://github.com/EleutherAI/lm-evaluation-harness",
+      "commit": "d6de81643928d653435c431bae19945d41d32520",
+      "task_sources": {
+        "lm_eval/tasks/arc/arc_challenge.yaml": {
+          "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/arc/arc_challenge.yaml",
+          "sha256": "682621c26ae24b1065a2d732460a55a8ef2b9f2544574431666c9309a9efd7bd"
+        },
+        "lm_eval/tasks/arc/arc_easy.yaml": {
+          "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/arc/arc_easy.yaml",
+          "sha256": "96da1d9efe1df88659481cedc13985cb347dc068554a2eae561303fa39bfab3f"
+        },
+        "lm_eval/tasks/sciq/sciq.yaml": {
+          "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/sciq/sciq.yaml",
+          "sha256": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de"
+        },
+        "lm_eval/tasks/piqa/piqa.yaml": {
+          "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/piqa/piqa.yaml",
+          "sha256": "e874f7956ccac325b888d4a5dc600bad867b79fba2bd358fe8761ab8263270fb"
+        }
+      },
+      "normalization": "acc_norm divides summed conditional continuation log likelihood by Python len(original choice), excluding the added target delimiter; acc uses the unnormalized sum.",
+      "registered_metrics": [
+        "acc",
+        "acc_norm"
+      ],
+      "primary_metric_declared": false
+    },
+    "tasks": {
+      "arc_challenge": {
+        "dataset_path": "allenai/ai2_arc",
+        "dataset_name": "ARC-Challenge",
+        "evaluation_split": "test",
+        "fewshot_split": "train",
+        "doc_to_text": "Question: {{question}}\nAnswer:",
+        "doc_to_choice": "choices.text",
+        "doc_to_target": "choices.label.index(answerKey)"
+      },
+      "sciq": {
+        "dataset_path": "allenai/sciq",
+        "dataset_name": null,
+        "evaluation_split": "test",
+        "fewshot_split": "train",
+        "doc_to_text": "{{support.lstrip()}}\nQuestion: {{question}}\nAnswer:",
+        "doc_to_choice": [
+          "distractor1",
+          "distractor2",
+          "distractor3",
+          "correct_answer"
+        ],
+        "doc_to_target": 3
+      },
+      "piqa": {
+        "dataset_path": "baber/piqa",
+        "dataset_name": null,
+        "evaluation_split": "validation",
+        "fewshot_split": "train",
+        "doc_to_text": "Question: {{goal}}\nAnswer:",
+        "doc_to_choice": [
+          "sol1",
+          "sol2"
+        ],
+        "doc_to_target": "label",
+        "test_split": null
+      }
+    },
+    "metric_assumption": "Table 2 does not identify acc versus acc_norm for each task, and all three pinned harness tasks register both without designating a primary. The reproduction primary metric is frozen separately in configs/tasks.json; both metrics must be retained. A primary choice is a reproduction assumption, not an attributed paper specification. Appendix Table A13 (page 29) describes per-character ARC-Challenge scores, which supports acc_norm there but does not disambiguate every Table 2 task.",
+    "scope": "Full-depth LoopCD-Logits only. Values are published reference scores, not local measurements; no test-set parameter tuning."
+  }
+}

@@ -1,0 +1,14 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:05<00:15,  5.17s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:10<00:10,  5.23s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:15<00:05,  5.09s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:16<00:00,  3.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:16<00:00,  4.19s/it]
+Traceback (most recent call last):
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate_arc_suite.py", line 194, in <module>
+    main()
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate_arc_suite.py", line 116, in main
+    validation = scorer.validate(candidates)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/venv-stage3c-h/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/src/suite_scoring.py", line 95, in validate
+    raise AssertionError(f"Batch/single numeric mismatch: {errors}")
+AssertionError: Batch/single numeric mismatch: {'baseline': 0.0019016265869140625, 'loopcd_fixed': 0.002796649932861328, 'loopcd_adaptive': 0.002628326416015625, 'reference': 0.001870870590209961}

@@ -1,0 +1,189 @@
+{
+  "archive": {
+    "etag": "\"1127a48008065e274e98c503e844e064-41\"",
+    "observed_s3_version_id": "nRMm.3j2cEmnJuI_ZfN4Bdm9QPoKdUWX",
+    "size_bytes": 680841265,
+    "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+    "verification": "Selected HTTP ranges guarded by If-Match ETag; ZIP CRC32 and pinned SHA256 of every extracted member. Full archive SHA256 was not computed."
+  },
+  "counts": {
+    "test": 1172,
+    "train": 1119,
+    "validation": 299
+  },
+  "dataset": "allenai/ai2_arc",
+  "fewshot_sampling": "One random.Random(seed), advancing sample(train, shots) for each test document in official order; pinned ContextSampler verified for every row.",
+  "fewshot_seed": 1234,
+  "fewshot_source": "train",
+  "harness_commit": "d6de81643928d653435c431bae19945d41d32520",
+  "harness_repository": "https://github.com/EleutherAI/lm-evaluation-harness",
+  "implementation": {
+    "path": "src/data_arc_challenge.py",
+    "range_downloader": "scripts/prepare_arc.py",
+    "range_downloader_sha256": "573cc04ced03de21b27f0901baecba455e7c078a7f63474f4f60ed0638c19817",
+    "sha256": "0f35f5facc24a308df8b61fb54b5012fc5453879a5d83b759be3c77f9d4a141b"
+  },
+  "outputs": {
+    "0": {
+      "audit": {
+        "all_raw_fields_match": true,
+        "candidate_count": 4687,
+        "count_choices": {
+          "3": 4,
+          "4": 1165,
+          "5": 3
+        },
+        "full_contexts_match": true,
+        "rows_checked": 1172,
+        "test_label_invariance": true,
+        "train_test_ids_disjoint": true,
+        "upstream_sampler_all_selections_match": true
+      },
+      "bytes": 715032,
+      "path": "data/tasks/arc_challenge/0shot.jsonl",
+      "rows": 1172,
+      "sha256": "76f11dc751b141608d0d51c4633acc244c0ec14e66e08885ab115e0cdc92fe41",
+      "shots": 0
+    },
+    "25": {
+      "audit": {
+        "all_raw_fields_match": true,
+        "candidate_count": 4687,
+        "count_choices": {
+          "3": 4,
+          "4": 1165,
+          "5": 3
+        },
+        "full_contexts_match": true,
+        "rows_checked": 1172,
+        "test_label_invariance": true,
+        "train_test_ids_disjoint": true,
+        "upstream_sampler_all_selections_match": true
+      },
+      "bytes": 6571197,
+      "path": "data/tasks/arc_challenge/25shot.jsonl",
+      "rows": 1172,
+      "sha256": "8729f40a90ccc2e76a194fdfe913efc49ec841740dbeaf8f0291aae212eae383",
+      "shots": 25
+    }
+  },
+  "paper_settings": "Table A2: Huginn 0-shot; Ouro, Parcae, Looped-Qwen 25-shot.",
+  "paper_url": "https://arxiv.org/html/2610.02185v1",
+  "prompt": {
+    "chat_template": false,
+    "context_truncation_during_preparation": false,
+    "doc_to_text": "Question: {question}\nAnswer:",
+    "fewshot_delimiter": "\n\n",
+    "fewshot_target": "Full correct answer text",
+    "target_delimiter": " "
+  },
+  "schema_version": 1,
+  "scoring": {
+    "acc": "Argmax of sum of natural log probabilities of every continuation token.",
+    "acc_norm": "Argmax of the same sum divided by Python len(original choice text), excluding the prepended target delimiter.",
+    "ties": "First choice wins (numpy.argmax convention).",
+    "tokenization": "Pinned harness causal pair encoding; no chat template; family-specific BOS and any inference-time left context truncation are recorded by evaluator."
+  },
+  "seed_status": "Paper does not specify seed; 1234 is the pinned harness default.",
+  "sources": [
+    {
+      "bytes": 1067,
+      "path": "sources/lm_eval/LICENSE.md",
+      "sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/LICENSE.md"
+    },
+    {
+      "bytes": 21823,
+      "path": "sources/lm_eval/lm_eval/api/model.py",
+      "sha256": "b8b1db336e168b53d9ca808fe837d5bf8943d9dca76a14cf747e4f3a22d50545",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/model.py"
+    },
+    {
+      "bytes": 4545,
+      "path": "sources/lm_eval/lm_eval/api/samplers.py",
+      "sha256": "b9541ec0ea1144d2003301ae6584f86abfab2237aebeafb0f7dd2a3adaf82c42",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/samplers.py"
+    },
+    {
+      "bytes": 71925,
+      "path": "sources/lm_eval/lm_eval/api/task.py",
+      "sha256": "4c25a4f1949488483b833ce4fcf91cfd3e066084a9ea00079c6879ae3ba95657",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/task.py"
+    },
+    {
+      "bytes": 3465,
+      "path": "sources/lm_eval/lm_eval/api/utils.py",
+      "sha256": "027862cf6efb657861b78a8827ad33a88ad3a1284f9086cc00b2826c74423dfa",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/api/utils.py"
+    },
+    {
+      "bytes": 8259,
+      "path": "sources/lm_eval/lm_eval/config/task.py",
+      "sha256": "c9ec7ce71a5ee6c84cd85436eec47a8fdf9842f2bd7011cc336c83ecb4cd958a",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/config/task.py"
+    },
+    {
+      "bytes": 1351,
+      "path": "sources/lm_eval/lm_eval/defaults.py",
+      "sha256": "135d3c74587354d890aba98fbcb95bde6808b74ebd236fb404c1c7c4b101d1ec",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/defaults.py"
+    },
+    {
+      "bytes": 30396,
+      "path": "sources/lm_eval/lm_eval/evaluator.py",
+      "sha256": "581e7767820aaa8503e6b23682360a6dbcd0c0f8e5b50b53e3f282c64b5bc986",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/evaluator.py"
+    },
+    {
+      "bytes": 78180,
+      "path": "sources/lm_eval/lm_eval/models/huggingface.py",
+      "sha256": "56d215b8f713d7579f9c7b58a9b8771b09c88e0e4fb8d1b6dd9068033b614b80",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/models/huggingface.py"
+    },
+    {
+      "bytes": 579,
+      "path": "sources/lm_eval/lm_eval/tasks/arc/arc_easy.yaml",
+      "sha256": "96da1d9efe1df88659481cedc13985cb347dc068554a2eae561303fa39bfab3f",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/arc/arc_easy.yaml"
+    },
+    {
+      "bytes": 71,
+      "path": "sources/lm_eval/lm_eval/tasks/arc/arc_challenge.yaml",
+      "sha256": "682621c26ae24b1065a2d732460a55a8ef2b9f2544574431666c9309a9efd7bd",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/arc/arc_challenge.yaml"
+    },
+    {
+      "bytes": 5369,
+      "path": "data/ai2_arc_loader.py",
+      "sha256": "c0e2af39a9692c9f3163df11b8d97f807f918a538f04a957d9a91dbf2940ae18",
+      "url": "https://huggingface.co/datasets/allenai/ai2_arc/resolve/4d4ed1b0a54f45df33cd8eb45c157cc00cdaf35e/ai2_arc.py"
+    },
+    {
+      "bytes": 461680,
+      "path": "data/raw/ARC-Challenge/ARC-Challenge-Train.jsonl",
+      "sha256": "e02837c53ee86f6d73c259f91c77725c5062ef4531130b7f473a9d9b01118a77",
+      "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_crc32": "d1a0022d",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Challenge/ARC-Challenge-Train.jsonl"
+    },
+    {
+      "bytes": 126540,
+      "path": "data/raw/ARC-Challenge/ARC-Challenge-Dev.jsonl",
+      "sha256": "55224364abd2477f66a9a57c5cbef109fb71d83019aa5e37aec0e7ab757746ca",
+      "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_crc32": "08ff48b0",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Challenge/ARC-Challenge-Dev.jsonl"
+    },
+    {
+      "bytes": 492726,
+      "path": "data/raw/ARC-Challenge/ARC-Challenge-Test.jsonl",
+      "sha256": "9fa8ffb3e3a1f88cb302d53dd95aae81e39209ad9bcf974376b319d8fd35717c",
+      "url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_crc32": "bc2fd48c",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Challenge/ARC-Challenge-Test.jsonl"
+    }
+  ],
+  "split": "test",
+  "subset": "ARC-Challenge",
+  "task": "arc_challenge"
+}

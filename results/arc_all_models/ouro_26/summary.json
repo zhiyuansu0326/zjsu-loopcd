@@ -1,0 +1,36 @@
+{
+  "n": 2376,
+  "correct": {
+    "acc": {
+      "baseline": 2071,
+      "loopcd_fixed": 2086,
+      "loopcd_adaptive": 2088,
+      "reference": 1713
+    },
+    "acc_norm": {
+      "baseline": 2095,
+      "loopcd_fixed": 2113,
+      "loopcd_adaptive": 2108,
+      "reference": 1630
+    }
+  },
+  "accuracy_percent": {
+    "acc": {
+      "baseline": 87.16329966329967,
+      "loopcd_fixed": 87.79461279461279,
+      "loopcd_adaptive": 87.87878787878788,
+      "reference": 72.0959595959596
+    },
+    "acc_norm": {
+      "baseline": 88.17340067340068,
+      "loopcd_fixed": 88.93097643097643,
+      "loopcd_adaptive": 88.72053872053873,
+      "reference": 68.6026936026936
+    }
+  },
+  "load_and_validation_seconds": 17.333264499902725,
+  "this_invocation_scoring_seconds": 298.74203096935526,
+  "this_invocation_total_seconds": 316.0752963819541,
+  "peak_gpu_allocated_gib": 10.834099292755127,
+  "note": "Joint readouts share a recurrent trajectory; runtime is not a policy speedup measurement."
+}

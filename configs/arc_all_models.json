@@ -1,0 +1,15 @@
+{
+  "scope": "Paper Table 2, ARC-Easy: all four model families, six checkpoints, seven recurrent-depth configurations. LoopCD-Logits.",
+  "dataset_size": 2376,
+  "metric": "acc_norm primary, acc also retained",
+  "seed": 1234,
+  "models": {
+    "ouro_14": {"family": "ouro", "display": "Ouro-1.4B R=4", "model_path": "models/Ouro-1.4B", "model_manifest": "models/model_manifest.json", "loops": 4, "shots": 8, "fixed": 0.5, "cap": 1.0, "batch_size": 24, "paper": [84.09, 84.39, 84.26], "reuse": "results/arc_easy"},
+    "ouro_26": {"family": "ouro", "display": "Ouro-2.6B R=4", "model_path": "models/Ouro-2.6B", "model_manifest": "models/ouro26_manifest.json", "loops": 4, "shots": 8, "fixed": 0.5, "cap": 1.0, "batch_size": 16, "paper": [88.01, 89.10, 89.02]},
+    "huginn_16": {"family": "huginn", "display": "Huginn-0125 R=16", "model_path": "models/Huginn-0125", "model_manifest": "models/huginn_manifest.json", "loops": 16, "shots": 0, "fixed": 0.5, "cap": 0.5, "batch_size": 8, "paper": [64.31, 64.86, 64.94]},
+    "huginn_32": {"family": "huginn", "display": "Huginn-0125 R=32", "model_path": "models/Huginn-0125", "model_manifest": "models/huginn_manifest.json", "loops": 32, "shots": 0, "fixed": 0.5, "cap": 0.5, "batch_size": 8, "paper": [64.31, 64.10, 64.69]},
+    "parcae_370": {"family": "parcae", "display": "Parcae-370M R=8", "model_path": "models/Parcae-370M", "model_manifest": "models/parcae_370m_manifest.json", "loops": 8, "shots": 0, "fixed": 0.5, "cap": 1.0, "batch_size": 32, "paper": [54.42, 55.05, 54.63]},
+    "parcae_13": {"family": "parcae", "display": "Parcae-1.3B R=8", "model_path": "models/Parcae-1.3B", "model_manifest": "models/parcae_1_3b_manifest.json", "loops": 8, "shots": 0, "fixed": 0.5, "cap": 1.0, "batch_size": 24, "paper": [65.07, 65.91, 66.16]},
+    "looped_qwen": {"family": "looped_qwen", "display": "Looped-Qwen3-4B R=8", "model_path": "models/Qwen3-4B", "model_manifest": "models/looped_qwen_manifest.json", "loops": 8, "shots": 0, "fixed": 0.5, "cap": 1.0, "batch_size": 16, "paper": [79.25, 79.00, 78.58]}
+  }
+}

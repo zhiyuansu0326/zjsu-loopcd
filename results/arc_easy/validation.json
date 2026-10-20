@@ -1,0 +1,14 @@
+{
+  "native_final_logits_max_abs_error": 0.0,
+  "zero_guidance_matches_native_exactly": true,
+  "batch_single_max_token_logprob_error": 0.0,
+  "batch_single_errors_by_policy": {
+    "baseline": 0.0,
+    "loopcd_fixed": 0.0,
+    "loopcd_adaptive": 0.0,
+    "reference": 0.0
+  },
+  "batch_single_absolute_tolerance": 0.0001,
+  "early_final_mean_abs_logit_difference": 0.7279285788536072,
+  "recurrent_passes": 4
+}

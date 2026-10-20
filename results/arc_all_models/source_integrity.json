@@ -1,0 +1,199 @@
+{
+  "created_utc": "2026-10-20T14:30:54.899418+00:00",
+  "note": "Independent source audit while suite jobs run. Weights verified by pinned download manifests; this audit hashes native Python and all model files smaller than 20 MB.",
+  "models": {
+    "ouro_14": {
+      "native_source_hashes": {
+        "models/Ouro-1.4B/configuration_ouro.py": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+        "models/Ouro-1.4B/modeling_ouro.py": "c5c68fbb368ce2909c257ae2afc50719be8c91539333d3295e19312c4316f413"
+      },
+      "checked_model_metadata_files": [
+        "models/Ouro-1.4B/config.json",
+        "models/Ouro-1.4B/configuration_ouro.py",
+        "models/Ouro-1.4B/modeling_ouro.py",
+        "models/Ouro-1.4B/tokenizer_config.json",
+        "models/Ouro-1.4B/special_tokens_map.json",
+        "models/Ouro-1.4B/tokenizer.json",
+        "models/Ouro-1.4B/vocab.json",
+        "models/Ouro-1.4B/merges.txt",
+        "models/Ouro-1.4B/README.md"
+      ]
+    },
+    "ouro_26": {
+      "native_source_hashes": {
+        "models/Ouro-2.6B/configuration_ouro.py": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+        "models/Ouro-2.6B/modeling_ouro.py": "c5c68fbb368ce2909c257ae2afc50719be8c91539333d3295e19312c4316f413"
+      },
+      "checked_model_metadata_files": [
+        "models/Ouro-2.6B/config.json",
+        "models/Ouro-2.6B/configuration_ouro.py",
+        "models/Ouro-2.6B/modeling_ouro.py",
+        "models/Ouro-2.6B/tokenizer_config.json",
+        "models/Ouro-2.6B/special_tokens_map.json",
+        "models/Ouro-2.6B/tokenizer.json",
+        "models/Ouro-2.6B/vocab.json",
+        "models/Ouro-2.6B/merges.txt",
+        "models/Ouro-2.6B/README.md"
+      ]
+    },
+    "huginn_16": {
+      "native_source_hashes": {
+        "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+        "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+      },
+      "checked_model_metadata_files": [
+        "models/Huginn-0125/README.md",
+        "models/Huginn-0125/config.json",
+        "models/Huginn-0125/generation_config.json",
+        "models/Huginn-0125/model.safetensors.index.json",
+        "models/Huginn-0125/raven_config_minimal.py",
+        "models/Huginn-0125/raven_modeling_minimal.py",
+        "models/Huginn-0125/special_tokens_map.json",
+        "models/Huginn-0125/tokenizer.json",
+        "models/Huginn-0125/tokenizer_config.json"
+      ]
+    },
+    "huginn_32": {
+      "native_source_hashes": {
+        "models/Huginn-0125/raven_config_minimal.py": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278",
+        "models/Huginn-0125/raven_modeling_minimal.py": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+      },
+      "checked_model_metadata_files": [
+        "models/Huginn-0125/README.md",
+        "models/Huginn-0125/config.json",
+        "models/Huginn-0125/generation_config.json",
+        "models/Huginn-0125/model.safetensors.index.json",
+        "models/Huginn-0125/raven_config_minimal.py",
+        "models/Huginn-0125/raven_modeling_minimal.py",
+        "models/Huginn-0125/special_tokens_map.json",
+        "models/Huginn-0125/tokenizer.json",
+        "models/Huginn-0125/tokenizer_config.json"
+      ]
+    },
+    "parcae_370": {
+      "native_source_hashes": {
+        "sources/parcae/parcae_lm/__init__.py": "453bdfc947ecb921b3fca9f6d558a1fe8a6a43e0992b4758c8b8f2627cfc1aac",
+        "sources/parcae/parcae_lm/attention_backends/__init__.py": "7d576a833ef9390ea34d98019bbd5988c9548c30608ff6e01b47ee06a3564469",
+        "sources/parcae/parcae_lm/attention_backends/flash_attention.py": "aaafb0a7ff405c2d8ebf02c25d493d0181971c254009d7b8ea54ab2b29c47179",
+        "sources/parcae/parcae_lm/attention_backends/interface.py": "8408ef34eee9f802d7984eaabc686b8edee431588c283bc3156ed4e6d1c4f7ad",
+        "sources/parcae/parcae_lm/configs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-large-770m.py": "8e23a14ac65cb2b757685a489d350db1056927b99d2aa2978207127ddd826225",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-medium-370m.py": "f28ebdbc20b1ed6629f3dd88c35f55379437df8edf72fdc1c046a54add46631e",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-small-140m.py": "a1045d80847ac696a5ad1c0153b18b7f49d44dd300e06a838116af3dc5724c05",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-xlarge-1_3b.py": "e541bc9f6104273bb560b6a85b4ae538f3f8b6910f30a72e1fc19966f634b67a",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-large-770m.py": "7ec136304a6d084f2398950233d772c101bf7325516f5ccdff888ea10075b186",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-medium-370m.py": "bd04ed716d2464e4dd0644e9e2008e49c5a97415ab43b6df286628df22a43023",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-small-140m.py": "9f3d479cb3945ec4fb6c42d154c3e25a71422e691467959929d20434ad05d497",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-xlarge-1_3b.py": "0dcece886bf857c00fdb01a9e711cde8a7f6c0f8a4c387df2d8ed7621fb4317b",
+        "sources/parcae/parcae_lm/models/__init__.py": "acd62b76b5ee7da7c7062b5deafa1a69df07bcf2c3440e5c9f112a93dad96c4f",
+        "sources/parcae/parcae_lm/models/config.py": "6c44badecd52f2a58ce3d3a14b70bcb64a181ea058b9bde99cbfbf76d917df95",
+        "sources/parcae/parcae_lm/models/gpt/__init__.py": "b9d85819b4903d46e016b4ab3ae20931cc33ac8437fde1402f9cdc9fb5a5e766",
+        "sources/parcae/parcae_lm/models/gpt/config.py": "aa3269ab541fce0c406cb41128e660925266e97ff5b6b8be38eaa76438b790d8",
+        "sources/parcae/parcae_lm/models/gpt/gpt.py": "0b73c3ad16bf343450dcd5c774e7bcdbebc91fcceea19e951d348ccabd7f53df",
+        "sources/parcae/parcae_lm/models/gpt/init.py": "e0b0c7d62dc550be9f0e0b8078eba4220ba9a3ee26d8245202ba58e688bdf5bc",
+        "sources/parcae/parcae_lm/models/parcae/__init__.py": "aa607640573ed4b2012f5efa353a44d5a970a36a4c8c772b9da2b83f59acb9e6",
+        "sources/parcae/parcae_lm/models/parcae/config.py": "e9a5e7515b8f5261191491964e4ea45fdb09f633bd55835d604fd544f41e0d18",
+        "sources/parcae/parcae_lm/models/parcae/init.py": "46b5a24f697f3375bbd8b388314ea96d1c1a75c522240354768f48faeb19594b",
+        "sources/parcae/parcae_lm/models/parcae/parcae.py": "c0d792379c3e965ec75bbe88dbdcf500392a12fd0c67f8a484543b2398470c3d",
+        "sources/parcae/parcae_lm/models/registry.py": "c4e039f967998fc4b001ad2cf6a09142e8017fbae71359116afcafd5b37ee0ca",
+        "sources/parcae/parcae_lm/modules/__init__.py": "21f71f895602cef16d301c257ef89edb1eeee77c559f7d86c9df1c335deffe63",
+        "sources/parcae/parcae_lm/modules/basic.py": "b2b38a8ab0fe6754c41634969d3fa52a6d1aab1a63e3757a63da69dc73ba63cc",
+        "sources/parcae/parcae_lm/modules/blocks.py": "96232cf3543dcf7674d5610d1cb2e1c6bb0aae3c5a244d42db79b502c3d70ea3",
+        "sources/parcae/parcae_lm/modules/injection.py": "a163acbf86824ba58fb741cae9e1b04c51eb0a4b3cb5d354492b412670a74f48",
+        "sources/parcae/parcae_lm/modules/mixer.py": "7706683f5ce886db336fef84a290eb37f3fed6aff72f682203de4829c4ef5c4c",
+        "sources/parcae/parcae_lm/modules/mlp.py": "5e108d54fc2890bb6327110bb7da9e81ba3b7beeb9142fac0de9d74fbde1edad",
+        "sources/parcae/parcae_lm/modules/norms.py": "888cb97a5e29ef5b49b23eb39d83aa75cd126a5425a78ac75caa47923a3e16ba",
+        "sources/parcae/parcae_lm/modules/utils.py": "e21f09ac8b6c33ac43837877c352c723a97218166a139dd0e9e8222dd7b3b2c5",
+        "sources/parcae/parcae_lm/ops/__init__.py": "d0e62d8740c8debfa4d0fe1dd6dad56c32dd16a2291393fc21b3a8a530390d06",
+        "sources/parcae/parcae_lm/ops/linear_cross_entropy.py": "3279c078b2dc22b37ea8ea02b42ab8d13f263ec19c03b434ec4185c8673cf65f",
+        "sources/parcae/parcae_lm/registry.py": "37e62f769bd482d0c01fab71cc9a6e24622528066106f789a50b6e7cf88087ca",
+        "sources/parcae/parcae_lm/tokenizer.py": "3aec59f3f7beed5be2b5fe9dfc5ab44632699fa843e915a9b2da9d0a5abecacb",
+        "sources/parcae/parcae_lm/utils/__init__.py": "f942d05d1d57367bdbe87a47047714cda5f280beb845ec471a17be807a24c035",
+        "sources/parcae/parcae_lm/utils/cache.py": "c1368f87d17430f14a608bad90d0c50f5d784fa2c7d3df48ba3f2c61f29a1d19",
+        "sources/parcae/parcae_lm/utils/init.py": "7df119be7f8ba293b3d3a1c80a581283b6c0c769778da1f8cb6759490ae8e3b6",
+        "sources/parcae/receval/models/parcae.py": "14363edd0b425f6d264517ae6d8f941a394313899425e97aaff596efddb2b382",
+        "sources/parcae/receval/settings.py": "d852cc1793238cfa907e8173b1fcc6508baadabbaa4747182b95f8dcfc552683",
+        "sources/parcae/receval/tasks/lm_eval.py": "ae1d344a92112f97bcfc70ad1c8bcd9f3027f5f99659310bcb3a36c211a2ba0c",
+        "sources/parcae/scripts/eval.py": "c0014abd37e95de5bfda22c9003e74ceef20e4c2acd3c68c92eef739cc045940"
+      },
+      "checked_model_metadata_files": [
+        "models/Parcae-370M/README.md",
+        "models/Parcae-370M/config.json",
+        "models/Parcae-370M/tokenizer.json"
+      ]
+    },
+    "parcae_13": {
+      "native_source_hashes": {
+        "sources/parcae/parcae_lm/__init__.py": "453bdfc947ecb921b3fca9f6d558a1fe8a6a43e0992b4758c8b8f2627cfc1aac",
+        "sources/parcae/parcae_lm/attention_backends/__init__.py": "7d576a833ef9390ea34d98019bbd5988c9548c30608ff6e01b47ee06a3564469",
+        "sources/parcae/parcae_lm/attention_backends/flash_attention.py": "aaafb0a7ff405c2d8ebf02c25d493d0181971c254009d7b8ea54ab2b29c47179",
+        "sources/parcae/parcae_lm/attention_backends/interface.py": "8408ef34eee9f802d7984eaabc686b8edee431588c283bc3156ed4e6d1c4f7ad",
+        "sources/parcae/parcae_lm/configs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-large-770m.py": "8e23a14ac65cb2b757685a489d350db1056927b99d2aa2978207127ddd826225",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-medium-370m.py": "f28ebdbc20b1ed6629f3dd88c35f55379437df8edf72fdc1c046a54add46631e",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-small-140m.py": "a1045d80847ac696a5ad1c0153b18b7f49d44dd300e06a838116af3dc5724c05",
+        "sources/parcae/parcae_lm/configs/gpt/gpt-xlarge-1_3b.py": "e541bc9f6104273bb560b6a85b4ae538f3f8b6910f30a72e1fc19966f634b67a",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-large-770m.py": "7ec136304a6d084f2398950233d772c101bf7325516f5ccdff888ea10075b186",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-medium-370m.py": "bd04ed716d2464e4dd0644e9e2008e49c5a97415ab43b6df286628df22a43023",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-small-140m.py": "9f3d479cb3945ec4fb6c42d154c3e25a71422e691467959929d20434ad05d497",
+        "sources/parcae/parcae_lm/configs/parcae/parcae-xlarge-1_3b.py": "0dcece886bf857c00fdb01a9e711cde8a7f6c0f8a4c387df2d8ed7621fb4317b",
+        "sources/parcae/parcae_lm/models/__init__.py": "acd62b76b5ee7da7c7062b5deafa1a69df07bcf2c3440e5c9f112a93dad96c4f",
+        "sources/parcae/parcae_lm/models/config.py": "6c44badecd52f2a58ce3d3a14b70bcb64a181ea058b9bde99cbfbf76d917df95",
+        "sources/parcae/parcae_lm/models/gpt/__init__.py": "b9d85819b4903d46e016b4ab3ae20931cc33ac8437fde1402f9cdc9fb5a5e766",
+        "sources/parcae/parcae_lm/models/gpt/config.py": "aa3269ab541fce0c406cb41128e660925266e97ff5b6b8be38eaa76438b790d8",
+        "sources/parcae/parcae_lm/models/gpt/gpt.py": "0b73c3ad16bf343450dcd5c774e7bcdbebc91fcceea19e951d348ccabd7f53df",
+        "sources/parcae/parcae_lm/models/gpt/init.py": "e0b0c7d62dc550be9f0e0b8078eba4220ba9a3ee26d8245202ba58e688bdf5bc",
+        "sources/parcae/parcae_lm/models/parcae/__init__.py": "aa607640573ed4b2012f5efa353a44d5a970a36a4c8c772b9da2b83f59acb9e6",
+        "sources/parcae/parcae_lm/models/parcae/config.py": "e9a5e7515b8f5261191491964e4ea45fdb09f633bd55835d604fd544f41e0d18",
+        "sources/parcae/parcae_lm/models/parcae/init.py": "46b5a24f697f3375bbd8b388314ea96d1c1a75c522240354768f48faeb19594b",
+        "sources/parcae/parcae_lm/models/parcae/parcae.py": "c0d792379c3e965ec75bbe88dbdcf500392a12fd0c67f8a484543b2398470c3d",
+        "sources/parcae/parcae_lm/models/registry.py": "c4e039f967998fc4b001ad2cf6a09142e8017fbae71359116afcafd5b37ee0ca",
+        "sources/parcae/parcae_lm/modules/__init__.py": "21f71f895602cef16d301c257ef89edb1eeee77c559f7d86c9df1c335deffe63",
+        "sources/parcae/parcae_lm/modules/basic.py": "b2b38a8ab0fe6754c41634969d3fa52a6d1aab1a63e3757a63da69dc73ba63cc",
+        "sources/parcae/parcae_lm/modules/blocks.py": "96232cf3543dcf7674d5610d1cb2e1c6bb0aae3c5a244d42db79b502c3d70ea3",
+        "sources/parcae/parcae_lm/modules/injection.py": "a163acbf86824ba58fb741cae9e1b04c51eb0a4b3cb5d354492b412670a74f48",
+        "sources/parcae/parcae_lm/modules/mixer.py": "7706683f5ce886db336fef84a290eb37f3fed6aff72f682203de4829c4ef5c4c",
+        "sources/parcae/parcae_lm/modules/mlp.py": "5e108d54fc2890bb6327110bb7da9e81ba3b7beeb9142fac0de9d74fbde1edad",
+        "sources/parcae/parcae_lm/modules/norms.py": "888cb97a5e29ef5b49b23eb39d83aa75cd126a5425a78ac75caa47923a3e16ba",
+        "sources/parcae/parcae_lm/modules/utils.py": "e21f09ac8b6c33ac43837877c352c723a97218166a139dd0e9e8222dd7b3b2c5",
+        "sources/parcae/parcae_lm/ops/__init__.py": "d0e62d8740c8debfa4d0fe1dd6dad56c32dd16a2291393fc21b3a8a530390d06",
+        "sources/parcae/parcae_lm/ops/linear_cross_entropy.py": "3279c078b2dc22b37ea8ea02b42ab8d13f263ec19c03b434ec4185c8673cf65f",
+        "sources/parcae/parcae_lm/registry.py": "37e62f769bd482d0c01fab71cc9a6e24622528066106f789a50b6e7cf88087ca",
+        "sources/parcae/parcae_lm/tokenizer.py": "3aec59f3f7beed5be2b5fe9dfc5ab44632699fa843e915a9b2da9d0a5abecacb",
+        "sources/parcae/parcae_lm/utils/__init__.py": "f942d05d1d57367bdbe87a47047714cda5f280beb845ec471a17be807a24c035",
+        "sources/parcae/parcae_lm/utils/cache.py": "c1368f87d17430f14a608bad90d0c50f5d784fa2c7d3df48ba3f2c61f29a1d19",
+        "sources/parcae/parcae_lm/utils/init.py": "7df119be7f8ba293b3d3a1c80a581283b6c0c769778da1f8cb6759490ae8e3b6",
+        "sources/parcae/receval/models/parcae.py": "14363edd0b425f6d264517ae6d8f941a394313899425e97aaff596efddb2b382",
+        "sources/parcae/receval/settings.py": "d852cc1793238cfa907e8173b1fcc6508baadabbaa4747182b95f8dcfc552683",
+        "sources/parcae/receval/tasks/lm_eval.py": "ae1d344a92112f97bcfc70ad1c8bcd9f3027f5f99659310bcb3a36c211a2ba0c",
+        "sources/parcae/scripts/eval.py": "c0014abd37e95de5bfda22c9003e74ceef20e4c2acd3c68c92eef739cc045940"
+      },
+      "checked_model_metadata_files": [
+        "models/Parcae-1.3B/README.md",
+        "models/Parcae-1.3B/config.json",
+        "models/Parcae-1.3B/tokenizer.json"
+      ]
+    },
+    "looped_qwen": {
+      "native_source_hashes": {
+        "transformers/models/qwen3/__init__.py": "e4953cb8ef71d00989f988d8dfa331b5b30a4ff077f1d2c992b9c0c0bca37136",
+        "transformers/models/qwen3/configuration_qwen3.py": "12bfdce91ba4f836a254755ef3e876678f41818b5e8c9b9232c36ebb53456320",
+        "transformers/models/qwen3/modeling_qwen3.py": "4b95c371fd26d40c69083dab36ac1eafd8cf82b415a0bb827275097c5ad2305b",
+        "transformers/models/qwen3/modular_qwen3.py": "580fed2220bc50ecabc729f091b3d097e6bccd14dde9b3db5640f98caf62ad5b"
+      },
+      "checked_model_metadata_files": [
+        "models/Qwen3-4B/LICENSE",
+        "models/Qwen3-4B/README.md",
+        "models/Qwen3-4B/config.json",
+        "models/Qwen3-4B/generation_config.json",
+        "models/Qwen3-4B/merges.txt",
+        "models/Qwen3-4B/vocab.json",
+        "models/Qwen3-4B/tokenizer.json",
+        "models/Qwen3-4B/tokenizer_config.json",
+        "models/Qwen3-4B/model.safetensors.index.json"
+      ]
+    }
+  },
+  "parcae_official_source_files_verified": 47,
+  "qwen_installed_core_source_matches_pinned_official": true
+}

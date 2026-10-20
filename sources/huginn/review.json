@@ -1,0 +1,55 @@
+{
+  "huggingface_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "huggingface_source": "https://huggingface.co/tomg-group-umd/huginn-0125/tree/bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "github_revision": "1ea7220ec7eb42d13e89db0663df254d0bcdc28e",
+  "github_source": "https://github.com/seal-rg/recurrent-pretraining/tree/1ea7220ec7eb42d13e89db0663df254d0bcdc28e",
+  "remote_code_review": {
+    "files": [
+      "raven_config_minimal.py",
+      "raven_modeling_minimal.py"
+    ],
+    "unmodified": true,
+    "reviewed_behavior": "Configuration, torch model layers, inference, cache and generation routines; no filesystem, network, shell, subprocess or dynamic exec/eval operations found.",
+    "adapter_path": "Official embedding/prelude, core_block_forward repeated R times, then ln_f/full coda/ln_f/lm_head for each h1 and hR.",
+    "mask_limitation": "Native forward ignores attention_mask; adapter rejects left padding/holes and only gathers true prefix positions. Causal attention prevents right suffix padding from influencing scored positions.",
+    "initialization": "Native std=config.init_values[std], truncation +/-3 std, then multiply model.emb_scale. Adapter draws inverse-CDF trunc_normal on CPU float32 in fixed 64-token blocks, keyed by SHA256(seed1234,questionID), and supplies identical input_states for native validation.",
+    "rng_difference": "Native performs an unused randn draw before trunc_normal; adapter omits that shape-sensitive RNG consumption. Paper seed and sample ordering are not specified."
+  },
+  "bos_evidence": {
+    "tokenizer": "tokenizer.json TemplateProcessing.single prepends token65504 <|begin_text|>",
+    "official_evaluator": "evaluate_raven/quick_checkpoint_eval.py:139 prepends [tokenizer.bos_token_id] to likelihood inputs; lines332-338 include ARC-Easy and zero-shot setup",
+    "policy": "Add exactly one context BOS, no chat template and no continuation special tokens."
+  },
+  "cpu_tests": {
+    "command": "venv-stage3c-h/bin/python -B -m unittest discover -s tests -p 'test_huginn_adapter.py' -v",
+    "passed": 6,
+    "real_weights_loaded": false
+  },
+  "source_files": [
+    {
+      "path": "sources/huginn/evaluate_raven/local_lm_eval.py",
+      "bytes": 20391,
+      "sha256": "37744ea98396591a1b83aa01e6aae2eaf70032ac9163d0645ae3dea3297be8a3"
+    },
+    {
+      "path": "sources/huginn/evaluate_raven/misc_benchmark_variants/eval_alternate_loops.py",
+      "bytes": 799,
+      "sha256": "7ddbd3e38bbf21e4f84d35bca42a6b9d7f7f93362a0946af9f9a3628cdcab628"
+    },
+    {
+      "path": "sources/huginn/evaluate_raven/quick_checkpoint_eval.py",
+      "bytes": 15346,
+      "sha256": "64f9eb35133f391883fa2b2936abf7daf8219a2c4c6b9074561f0ff4e79b7a0e"
+    },
+    {
+      "path": "sources/huginn/raven_config_minimal.py",
+      "bytes": 3913,
+      "sha256": "36a39939e76dc9e8f7563187c6498e012ca7f64a3d86b32ff1daa7f4c41a4278"
+    },
+    {
+      "path": "sources/huginn/raven_modeling_minimal.py",
+      "bytes": 88021,
+      "sha256": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "source": "data/arc_easy_8shot.jsonl",
+  "source_sha256": "d06e382aa9fdc0f922bd961c85bc60c81cfc63ebe11d79876cff84468cde71c3",
+  "output": "data/arc_easy_0shot.jsonl",
+  "output_sha256": "e51c617a67965d3f5ebefb20149f0ab577066c0a3474094ac28c282db656ae4f",
+  "n": 2376,
+  "shots": 0,
+  "template": "Question: {question}\\nAnswer:",
+  "choices_and_gold_unchanged": true,
+  "paper": "Table A2: Huginn, Parcae, Looped-Qwen3 use zero-shot ARC-Easy."
+}

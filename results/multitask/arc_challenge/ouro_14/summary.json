@@ -1,0 +1,41 @@
+{
+  "n": 1172,
+  "correct": {
+    "acc": {
+      "baseline": 657,
+      "loopcd_fixed": 674,
+      "loopcd_adaptive": 674,
+      "reference": 434
+    },
+    "acc_norm": {
+      "baseline": 706,
+      "loopcd_fixed": 725,
+      "loopcd_adaptive": 722,
+      "reference": 451
+    }
+  },
+  "accuracy_percent": {
+    "acc": {
+      "baseline": 56.0580204778157,
+      "loopcd_fixed": 57.508532423208194,
+      "loopcd_adaptive": 57.508532423208194,
+      "reference": 37.03071672354949
+    },
+    "acc_norm": {
+      "baseline": 60.23890784982935,
+      "loopcd_fixed": 61.86006825938566,
+      "loopcd_adaptive": 61.60409556313993,
+      "reference": 38.48122866894198
+    }
+  },
+  "task": "arc_challenge",
+  "model": "ouro_14",
+  "primary_metric": "acc_norm",
+  "shots": 25,
+  "split": "test",
+  "load_and_validation_seconds": 17.322865238878876,
+  "this_invocation_scoring_seconds": 296.60413197567686,
+  "this_invocation_total_seconds": 313.9269988629967,
+  "peak_gpu_allocated_gib": 7.300362586975098,
+  "note": "Joint readouts share a recurrent trajectory; runtime is not a policy speedup measurement."
+}

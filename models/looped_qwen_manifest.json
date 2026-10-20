@@ -1,0 +1,138 @@
+{
+  "repository": "Qwen/Qwen3-4B",
+  "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "official_metadata_url": "https://huggingface.co/api/models/Qwen/Qwen3-4B/revision/1cfa9a7208912126459214e8b04321603b3df60c?blobs=true",
+  "complete": true,
+  "stored_dtype": "bfloat16",
+  "model_variant": "Original Qwen3-4B release; not the distinct Qwen3-4B-Base checkpoint",
+  "runtime_dtype": "Selected by adapter constructor; recorded separately by each evaluation run",
+  "files": [
+    {
+      "filename": "LICENSE",
+      "bytes": 11343,
+      "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "6634c8cc3133b3848ec74b9f275acaaa1ea618ab",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/LICENSE"
+    },
+    {
+      "filename": "README.md",
+      "bytes": 16857,
+      "sha256": "71add1cd091c309b1cb1a6b943f2476eb2b004124b3bd1d32dcd0b24cc1abc47",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "2de5ee7eee214bb55ea33ec7505c5838a7adf7f6",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/README.md"
+    },
+    {
+      "filename": "config.json",
+      "bytes": 726,
+      "sha256": "8ba006f74fecfaaeb392872a60f4a480e7ec9860153d2e1b769ec81f9a147f8a",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "e49eccdc32f36da9c09cfa0e737084f9e0105e5e",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/config.json"
+    },
+    {
+      "filename": "generation_config.json",
+      "bytes": 239,
+      "sha256": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "20a8a9156fc8c3f25295ca067f61fdf120d517c5",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/generation_config.json"
+    },
+    {
+      "filename": "merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/merges.txt"
+    },
+    {
+      "filename": "vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "4783fe10ac3adce15ac8f358ef5462739852c569",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/vocab.json"
+    },
+    {
+      "filename": "tokenizer.json",
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "official_lfs_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "official_git_blob_sha1": "cd71f61a15a522601badb3dc960d800d9cb3766c",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/tokenizer.json"
+    },
+    {
+      "filename": "tokenizer_config.json",
+      "bytes": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "417d038a63fa3de29cfde265caedae14d1a58d92",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/tokenizer_config.json"
+    },
+    {
+      "filename": "model.safetensors.index.json",
+      "bytes": 32819,
+      "sha256": "6dc0981b8829fead746441f68f38f24c5ca4a3a66351f652c26c6df0efc43ab2",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "95c0a0059df040d75dc6c396b174382cf61d2f91",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/model.safetensors.index.json"
+    },
+    {
+      "filename": "model-00001-of-00003.safetensors",
+      "bytes": 3957900840,
+      "sha256": "328a91d3122359d5547f9d79521205bc0a46e1f79a792dfe650e99fc2d651223",
+      "official_lfs_sha256": "328a91d3122359d5547f9d79521205bc0a46e1f79a792dfe650e99fc2d651223",
+      "official_git_blob_sha1": "546625baab99f4de2b975842100c119fec83919f",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/model-00001-of-00003.safetensors"
+    },
+    {
+      "filename": "model-00002-of-00003.safetensors",
+      "bytes": 3987450520,
+      "sha256": "6cd087b316306a68c562436b5492edbcf6e16c6dba3a1308279caa5a58e21ca5",
+      "official_lfs_sha256": "6cd087b316306a68c562436b5492edbcf6e16c6dba3a1308279caa5a58e21ca5",
+      "official_git_blob_sha1": "3e4d29aad0be87c083e078b50765cd056e793c51",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/model-00002-of-00003.safetensors"
+    },
+    {
+      "filename": "model-00003-of-00003.safetensors",
+      "bytes": 99630640,
+      "sha256": "e4bf436957184f4eeb86a80e9db394503f1f56446b2e6b7edeac5b81470f4ca1",
+      "official_lfs_sha256": "e4bf436957184f4eeb86a80e9db394503f1f56446b2e6b7edeac5b81470f4ca1",
+      "official_git_blob_sha1": "79fb0e18fca00d3a2ab04e5b732a2a740539b913",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-4B/resolve/1cfa9a7208912126459214e8b04321603b3df60c/model-00003-of-00003.safetensors"
+    }
+  ],
+  "total_bytes": 8060925056,
+  "wrapper": {
+    "source": "LoopCD arXiv:2610.02185v1 Table A1, Appendix A.2",
+    "prelude_zero_based": [
+      0,
+      14
+    ],
+    "window_zero_based": [
+      15,
+      18
+    ],
+    "tail_zero_based": [
+      19,
+      35
+    ],
+    "loops": 8,
+    "update": "h_next=(1-1/8)*h + (1/8)*g(h)",
+    "reference": "first completed damped substep, then all 17 tail layers, final norm and shared lm_head",
+    "anchor_weight": 0,
+    "use_cache": false,
+    "fewshot": 0,
+    "fixed_strength": 0.5,
+    "adaptive_cap": 1.0,
+    "assumptions": [
+      "LoopCD does not identify an exact checkpoint revision or release a complete wrapper.",
+      "Use Qwen/Qwen3-4B, matching the stated dense Qwen3-4B name; the exact authors' checkpoint choice is not proven.",
+      "Use only the damped Euler rule explicitly given by LoopCD; no anchored blend or additional normalization inside recurrence.",
+      "The upstream Training-Free repository default K=6, beta=0.5 is not the LoopCD K=8 recipe.",
+      "All likelihood positions use complete causal sequences without KV-cache reuse; decode-time cache choices do not apply."
+    ]
+  }
+}

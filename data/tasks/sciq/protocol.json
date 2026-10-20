@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "task": "sciq",
+  "split": "test",
+  "count": 1000,
+  "candidates": 4000,
+  "shots": 0,
+  "seed": 1234,
+  "seed_effect": "None for zero-shot data preparation; retained for experiment provenance.",
+  "primary_metric": "acc",
+  "reported_metrics": [
+    "acc",
+    "acc_norm"
+  ],
+  "primary_metric_status": "Predeclared reproduction convention; the paper does not unambiguously specify this normalization. Both metrics are retained.",
+  "harness_repository": "https://github.com/EleutherAI/lm-evaluation-harness",
+  "harness_commit": "d6de81643928d653435c431bae19945d41d32520",
+  "harness_dataset_path": "allenai/sciq",
+  "data_source": "Official AI2 release archive",
+  "source_revision": {
+    "kind": "sha256",
+    "archive_sha256": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c"
+  },
+  "official_sciq_card_revision": "2c94ad3e1aafab77146f384e23536f97a4849815",
+  "prompt_template": "{{support.lstrip()}}\nQuestion: {{question}}\nAnswer:",
+  "choice_fields": [
+    "distractor1",
+    "distractor2",
+    "distractor3",
+    "correct_answer"
+  ],
+  "target_rule": "Fixed index 3, matching original field order",
+  "support_policy": "Include support.lstrip(); retain all 1000 test rows, including empty support.",
+  "split_note": "Official labeled test split.",
+  "selection_policy": "Complete official split in source order; no filtering, answer shuffling, or label-based selection.",
+  "continuation": "one leading space followed by complete candidate answer text",
+  "apply_chat_template": false,
+  "system_instruction": null,
+  "truncation": false,
+  "token_boundary": "Move context trailing whitespace to continuation; encode context and context+continuation identically; score all continuation tokens only.",
+  "tokenizer_special_tokens": "Chosen and recorded by model adapter; not added during data preparation.",
+  "acc": "argmax of summed conditional natural-log token probabilities",
+  "acc_norm": "argmax of summed conditional natural-log token probabilities / Python len(original choice text); Unicode characters, not tokens, excluding added leading space",
+  "ties": "first maximum in original candidate order",
+  "license": {
+    "name": "Creative Commons Attribution-NonCommercial 3.0 Unported",
+    "spdx": "CC-BY-NC-3.0",
+    "source": "data/raw/sciq/license.txt",
+    "url": "https://creativecommons.org/licenses/by-nc/3.0/"
+  },
+  "raw_files": [
+    {
+      "path": "data/raw/sciq/SciQ.zip",
+      "bytes": 2821345,
+      "sha256": "7f3312f6ac6b09970b32942d106a8c44ec0dad46a0369f17d635aff8e348a87c",
+      "url": "https://ai2-public-datasets.s3.amazonaws.com/sciq/SciQ.zip",
+      "pinning": "sha256"
+    },
+    {
+      "path": "data/raw/sciq/README.official.md",
+      "bytes": 7016,
+      "sha256": "f16f71b220a0e205672f6f0c8afb40e37f7a158541f759593745fe52162f8ad8",
+      "url": "https://huggingface.co/datasets/allenai/sciq/resolve/2c94ad3e1aafab77146f384e23536f97a4849815/README.md",
+      "pinning": "sha256"
+    },
+    {
+      "path": "data/raw/sciq/test.json",
+      "bytes": 879642,
+      "sha256": "7340983c427dc2ffd3dccf1adb758b6cdc9455bd22bf3db0ddf6ffcae0452006",
+      "archive": "data/raw/sciq/SciQ.zip",
+      "member": "SciQ dataset-2 3/test.json"
+    },
+    {
+      "path": "data/raw/sciq/readme.txt",
+      "bytes": 1894,
+      "sha256": "67c00d15da00e2ba4045930f81b051bbfab38c956dad0bb3d0c697a47efb69ec",
+      "archive": "data/raw/sciq/SciQ.zip",
+      "member": "SciQ dataset-2 3/readme.txt"
+    },
+    {
+      "path": "data/raw/sciq/license.txt",
+      "bytes": 262,
+      "sha256": "6f2f301537b1f94b025af00467a9c3412bc249a40b4075a6d31b1c21ad7359e3",
+      "archive": "data/raw/sciq/SciQ.zip",
+      "member": "SciQ dataset-2 3/license.txt"
+    }
+  ],
+  "sources": [
+    {
+      "path": "sources/lm_eval/lm_eval/tasks/sciq/sciq.yaml",
+      "bytes": 574,
+      "sha256": "d0409dc9466fed64e908c45111489a73c4a004d6af9a968dc5d85228823696de",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/sciq/sciq.yaml",
+      "pinning": "sha256",
+      "revision": "d6de81643928d653435c431bae19945d41d32520"
+    },
+    {
+      "path": "sources/lm_eval/lm_eval/tasks/sciq/README.md",
+      "bytes": 1480,
+      "sha256": "5c25c17f729fa4f589a818aa2a8811feac96a852be5d028e8661a8ce5470e346",
+      "url": "https://raw.githubusercontent.com/EleutherAI/lm-evaluation-harness/d6de81643928d653435c431bae19945d41d32520/lm_eval/tasks/sciq/README.md",
+      "pinning": "sha256",
+      "revision": "d6de81643928d653435c431bae19945d41d32520"
+    },
+    {
+      "path": "sources/lm_eval/LICENSE.md",
+      "bytes": 1067,
+      "sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f",
+      "revision": "d6de81643928d653435c431bae19945d41d32520",
+      "license": "MIT",
+      "url": "https://github.com/EleutherAI/lm-evaluation-harness/blob/d6de81643928d653435c431bae19945d41d32520/LICENSE.md"
+    }
+  ],
+  "output": {
+    "path": "data/tasks/sciq/0shot.jsonl",
+    "sha256": "88e4c8464e3e1126f494e7a6febbc98589978d9b58739925c0eaadf6d5fb5b07",
+    "rows": 1000
+  },
+  "validation": {
+    "passed": true,
+    "documents": 1000,
+    "unique_ids": 1000,
+    "candidates": 4000,
+    "all_source_fields_order_choices_labels_and_contexts_match": true,
+    "support_empty_count": 116,
+    "piqa_author_site_matches_archive": null
+  }
+}

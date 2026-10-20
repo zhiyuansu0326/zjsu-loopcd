@@ -1,0 +1,75 @@
+{
+  "name": "ouro_14",
+  "configuration": {
+    "family": "ouro",
+    "display": "Ouro-1.4B R=4",
+    "model_path": "models/Ouro-1.4B",
+    "model_manifest": "models/model_manifest.json",
+    "loops": 4,
+    "fixed": 0.5,
+    "cap": 1.0,
+    "batch_size": 24,
+    "matmul_precision": "high"
+  },
+  "task": "piqa",
+  "task_configuration": {
+    "display": "PIQA",
+    "split": "validation",
+    "count": 1838,
+    "primary_metric": "acc_norm",
+    "shots_by_family": {
+      "ouro": 0,
+      "huginn": 0,
+      "parcae": 0,
+      "looped_qwen": 0
+    },
+    "data_path": "data/tasks/piqa/{shots}shot.jsonl",
+    "protocol_path": "data/tasks/piqa/protocol.json"
+  },
+  "shots": 0,
+  "primary_metric": "acc_norm",
+  "protocol_sha256": "78f7f19b935feae039384d24d03b026eef0bcb84e7d6c616a19bcba9fdd5ec9a",
+  "context_policy": "Left-truncate context only when required by model window, preserving every answer token (pinned harness behavior).",
+  "truncation_details": {
+    "model_max_length": 65536,
+    "original_max_input_tokens": 241,
+    "candidates_truncated": 0,
+    "questions_truncated": 0,
+    "total_removed_context_tokens": 0,
+    "records": []
+  },
+  "documents": 1838,
+  "candidates": 3676,
+  "data_sha256": "c0b5c66a4c01d9d41c5cd401d81794cb4882c063689c6b5d8b46936cf4d8f395",
+  "model_manifest_sha256": "e9f2ccbcf556ef34af49fa60d3ba425c9721b1dd3eee7d3280bc00c95160c10a",
+  "code_hashes": {
+    "scripts/evaluate.py": "61943012fd0649713b7d9ac8f86530a43dc02524a0b7a5dcb82222edd69fb3af",
+    "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+    "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+    "src/adapter_ouro.py": "76218b02a45571304da376b917cbcf27fcb71bef161abf7111f39d85b9656ccb",
+    "src/run_integrity.py": "c20feed532b74acbfc04b0bdb2aaf19a7cfa6588cec1a4f3dcb9d78e1c5428cc",
+    "src/registry.py": "5833065c4c7fea4e07f92a483399c066f2d652465265bb777ee5782a7e03d60e",
+    "src/evaluation.py": "1d2acc0ddd9759a6da37eb31ef5a0817e2d32bc3fae7b3af0ea1195f1150880a",
+    "configs/models.json": "0d22da7bbad051662dd11ea9d42cee10576f8bcbdebd1603f40148df7a5f8883",
+    "configs/tasks.json": "6703a2a061de14d7517238e5f35cb6e19e388c96287f882e2179370b5fb3fb07"
+  },
+  "native_source_hashes": {
+    "models/Ouro-1.4B/configuration_ouro.py": "950443e32929047aa08d02abad2e1888bc1914b3db988d3d675f70787f65dafb",
+    "models/Ouro-1.4B/modeling_ouro.py": "c5c68fbb368ce2909c257ae2afc50719be8c91539333d3295e19312c4316f413"
+  },
+  "dtype": "float32",
+  "float32_matmul_precision": "highest",
+  "batch_size": 24,
+  "token_budget": 16384,
+  "seed": 1234,
+  "add_bos": false,
+  "chat_template": false,
+  "max_input_tokens": 241,
+  "truncation": false,
+  "torch": "2.6.0+cu124",
+  "transformers": "4.56.2",
+  "adapter_metadata": {},
+  "gpu": "NVIDIA H200",
+  "host": "dcc-h200-gpu-ferc-l-ac46-17",
+  "slurm_job_id": "59045138"
+}

@@ -1,0 +1,38 @@
+{
+  "native_final_logits_max_abs_error": 0.0,
+  "native_first_loop_logits_max_abs_error": 0.0,
+  "zero_guidance_matches_native": true,
+  "zero_guidance_matches_baseline_exactly": true,
+  "recurrent_updates_in_forward": 8,
+  "reference_after_complete_updates": 1,
+  "early_readout": "official transformer.C -> complete coda -> ln_f -> lm_head -> logit_scale",
+  "batch_single_logits_max_abs_error": 4.00543212890625e-05,
+  "early_final_mean_abs_logit_difference": 0.8317267894744873,
+  "latent_prefix_invariant_to_length_and_batch": true,
+  "same_keys_repeat_exactly": true,
+  "randomness": {
+    "state_init": "like-init",
+    "stochastic": true,
+    "distribution": "Normal(0, std^2) truncated to [-3*std, +3*std], then embedding_scale",
+    "std": 0.01976423537605237,
+    "embedding_scale": 1.0,
+    "seed_base": 1234,
+    "seed_rule": "little-endian first 8 bytes of SHA256('parcae-latent-v1|1234|' + str(question_id)), modulo 2**63",
+    "sampling": "CPU float32 uniform, inverse normal CDF, then cast to model dtype",
+    "difference_from_native_rng": "Preserves the distribution; omits the native discarded randn draw and fixes noise by question rather than batch shape.",
+    "sharing": "Identical question IDs share initial-state prefixes across all candidates and policies"
+  },
+  "attention_backend": "official SDPA fallback",
+  "logits_dtype": "float32",
+  "native_check_note": "Native forward receives the identical explicit latent through a temporary initialize_state override.",
+  "batch_single_token_logprob_errors": {
+    "baseline": 1.1205673217773438e-05,
+    "loopcd_fixed": 1.71661376953125e-05,
+    "loopcd_adaptive": 2.1696090698242188e-05,
+    "reference": 8.702278137207031e-06
+  },
+  "batch_single_tolerance": 0.001,
+  "masked_padding_token_change_max_abs_error": 0.0,
+  "early_final_mean_abs_difference": 0.8317267894744873,
+  "stochastic": true
+}

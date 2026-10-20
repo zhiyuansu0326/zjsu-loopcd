@@ -1,0 +1,44 @@
+{
+  "repository": "SandyResearch/parcae-1.3b",
+  "revision": "517f8e6add927e3d73e15beec13a5b500537b9cc",
+  "complete": true,
+  "tokenizer_repository": "SandyResearch/parcae-tokenizer",
+  "tokenizer_revision": "6247b5d0592876b73660f34c2dd16c9db9e9045c",
+  "source_repository": "https://github.com/sandyresearch/parcae",
+  "source_revision": "69284c13746e849104f738d6d1a347b1f457df76",
+  "total_bytes": 5357818986,
+  "files": [
+    {
+      "path": "models/Parcae-1.3B/README.md",
+      "url": "https://huggingface.co/SandyResearch/parcae-1.3b/resolve/517f8e6add927e3d73e15beec13a5b500537b9cc/README.md",
+      "bytes": 2068,
+      "sha256": "5ac9825bafc6150ac23ab15fadb6dbe7fd8ce9e6e08544a4516ac666a4b94420",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "6dfaa8087fd5771db00f8fb8255fe16164df59eb"
+    },
+    {
+      "path": "models/Parcae-1.3B/config.json",
+      "url": "https://huggingface.co/SandyResearch/parcae-1.3b/resolve/517f8e6add927e3d73e15beec13a5b500537b9cc/config.json",
+      "bytes": 1747,
+      "sha256": "6e6b3ac71f6b5e24ddc9499649c02ffdb8970a8a75d9086ed76c785e4b8bffa0",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "0446ee5c1fb201e272b51d447d2a8396b649885d"
+    },
+    {
+      "path": "models/Parcae-1.3B/pytorch_model.bin",
+      "url": "https://huggingface.co/SandyResearch/parcae-1.3b/resolve/517f8e6add927e3d73e15beec13a5b500537b9cc/pytorch_model.bin",
+      "bytes": 5355488191,
+      "sha256": "1e5d08f8a23820900ed31180b17625f3ea0c272f795f79975c88dfba5a21a56f",
+      "official_lfs_sha256": "1e5d08f8a23820900ed31180b17625f3ea0c272f795f79975c88dfba5a21a56f",
+      "official_git_blob_sha1": "08a51ced75b89a23407afcfdb02d7c5df8778387"
+    },
+    {
+      "path": "models/Parcae-1.3B/tokenizer.json",
+      "url": "https://huggingface.co/SandyResearch/parcae-tokenizer/resolve/6247b5d0592876b73660f34c2dd16c9db9e9045c/tokenizer.json",
+      "bytes": 2326980,
+      "sha256": "e0021e26057088d68047dbe6e77e2ba1c9fe9ae45bae3df9d67d48c82405ea77",
+      "official_lfs_sha256": null,
+      "official_git_blob_sha1": "3ff4f5afe2dfdf3ce41b55073f68ee89d79cb74f"
+    }
+  ]
+}

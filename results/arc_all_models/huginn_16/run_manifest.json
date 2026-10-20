@@ -1,0 +1,71 @@
+{
+  "name": "huginn_16",
+  "configuration": {
+    "family": "huginn",
+    "display": "Huginn-0125 R=16",
+    "model_path": "models/Huginn-0125",
+    "model_manifest": "models/huginn_manifest.json",
+    "loops": 16,
+    "shots": 0,
+    "fixed": 0.5,
+    "cap": 0.5,
+    "batch_size": 8,
+    "paper": [
+      64.31,
+      64.86,
+      64.94
+    ]
+  },
+  "documents": 2376,
+  "candidates": 9501,
+  "data_sha256": "e51c617a67965d3f5ebefb20149f0ab577066c0a3474094ac28c282db656ae4f",
+  "model_manifest_sha256": "608cca9269cab7f991e8df63b7434740cfa9dc0c7c55c4adae5e41d93af82cc2",
+  "code_hashes": {
+    "scripts/evaluate_arc_suite.py": "f357b54a55e12b8016c17d45a7d55dd1a40605900ea006dd7c26b0c39b8ecf7d",
+    "src/suite_scoring.py": "01fc2626e9e75c1e8634a7aaa3ebe471bcb908a82dbeb55b5eb810354ccbe901",
+    "src/loopcd.py": "372ca78d7632063d08c8d6bea4de05cf1156dd9f0d88a58f85fdb5fea69f57f7",
+    "src/adapter_huginn.py": "875042fe214df484a171dd75b47db74a72860d3d46c45ec01a42996d6e55f66d"
+  },
+  "dtype": "float32",
+  "float32_matmul_precision": "highest",
+  "batch_size": 8,
+  "token_budget": 16384,
+  "seed": 1234,
+  "add_bos": true,
+  "chat_template": false,
+  "max_input_tokens": 164,
+  "truncation": false,
+  "torch": "2.6.0+cu124",
+  "transformers": "4.56.2",
+  "adapter_metadata": {
+    "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+    "loops": 16,
+    "reference_recurrent_update": 1,
+    "reference_is_initial_noise": false,
+    "coda_layers": 2,
+    "readout": "ln_f -> complete coda -> ln_f -> lm_head",
+    "noise_seed": 1234,
+    "noise_key": "SHA256(seed, question ID), independent of answer text",
+    "noise_generation": "CPU float32 truncated normal, fixed 64-token blocks; then cast to model dtype",
+    "noise_std_before_embedding_scale": 0.008703882797784892,
+    "noise_truncation_standard_deviations": [
+      -3,
+      3
+    ],
+    "noise_embedding_scale": 72.6636084983398,
+    "noise_coupling": "same question shares identical positional initial states across options and depths",
+    "paper_rng_difference": "Paper seed and sample ordering are not specified; this fixes an explicit reproducible RNG protocol.",
+    "padding": "right padding only; native causal attention makes suffix padding invisible to scored tokens",
+    "add_bos_token": true,
+    "bos_token_id": 65504,
+    "bos_policy": "Prepend exactly one BOS to context; no special tokens in continuation.",
+    "bos_evidence": [
+      "models/Huginn-0125/tokenizer.json: post_processor.single prepends <|begin_text|>",
+      "sources/huginn/evaluate_raven/quick_checkpoint_eval.py:139 explicitly prepends BOS",
+      "https://github.com/seal-rg/recurrent-pretraining/blob/1ea7220ec7eb42d13e89db0663df254d0bcdc28e/evaluate_raven/quick_checkpoint_eval.py#L139"
+    ]
+  },
+  "gpu": "NVIDIA H200",
+  "host": "dcc-h200-gpu-ferc-l-e36-25",
+  "slurm_job_id": "59032890"
+}

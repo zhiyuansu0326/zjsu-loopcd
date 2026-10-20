@@ -1,0 +1,76 @@
+{
+  "created_utc": "2026-10-20T16:26:08.303513+00:00",
+  "selection_basis": "Numerical validation failures before formal scoring, not observed accuracy. Keep all tolerances, weights, seeds, prompts and guidance strengths unchanged.",
+  "overrides": {
+    "piqa/ouro_14": {
+      "default": "high",
+      "selected": "highest",
+      "failed_job_id": "59040426",
+      "failure_log": "results/multitask/logs/slurm-59040426.err",
+      "failure_log_sha256": "c921fb3ff507cb3a5396595103d442ad925d3953b7534bfb797d3f09094e4c11",
+      "formal_candidates_before_retry": 0,
+      "validation_tolerances_unchanged": true,
+      "status": "Retry requested; acceptance still requires original validation checks."
+    },
+    "piqa/ouro_26": {
+      "default": "high",
+      "selected": "highest",
+      "failed_job_id": "59040428",
+      "failure_log": "results/multitask/logs/slurm-59040428.err",
+      "failure_log_sha256": "337db9648ea35e3a0c7fb74a545f2f33b03b4fe13765b1f4b2d028e45e36e977",
+      "formal_candidates_before_retry": 0,
+      "validation_tolerances_unchanged": true,
+      "status": "Retry requested; acceptance still requires original validation checks."
+    },
+    "arc_challenge/parcae_13": {
+      "default": "high",
+      "selected": "highest",
+      "failed_job_id": "59040429",
+      "failure_log": "results/multitask/logs/slurm-59040429.err",
+      "failure_log_sha256": "8483c04d1ffea076830ebce737e6916f1ef94a3ffc1766e543d3206f637efe5d",
+      "formal_candidates_before_retry": 0,
+      "validation_tolerances_unchanged": true,
+      "status": "Retry requested; acceptance still requires original validation checks."
+    },
+    "sciq/parcae_13": {
+      "default": "high",
+      "selected": "highest",
+      "failed_job_id": "59040430",
+      "failure_log": "results/multitask/logs/slurm-59040430.err",
+      "failure_log_sha256": "2ccdd48e027a4965c9e04c8f2294b5ba17acc62743f08e4c33791d8d707732fe",
+      "formal_candidates_before_retry": 0,
+      "validation_tolerances_unchanged": true,
+      "status": "Retry requested; acceptance still requires original validation checks."
+    },
+    "piqa/parcae_13": {
+      "default": "high",
+      "selected": "highest",
+      "failed_job_id": "59040431",
+      "failure_log": "results/multitask/logs/slurm-59040431.err",
+      "failure_log_sha256": "b5c203e0cbb7555defa6a0c64ca168b6f79b2fccb64d7abe46643a5f9c2aa2eb",
+      "formal_candidates_before_retry": 0,
+      "validation_tolerances_unchanged": true,
+      "status": "Retry requested; acceptance still requires original validation checks."
+    },
+    "sciq/parcae_370": {
+      "default": "high",
+      "selected": "highest",
+      "failed_job_id": "59040432",
+      "failure_log": "results/multitask/logs/slurm-59040432.err",
+      "failure_log_sha256": "e6c1ec1326d70c82586c5581da853493997adc7ac27ce216f7302bd986406096",
+      "formal_candidates_before_retry": 0,
+      "validation_tolerances_unchanged": true,
+      "status": "Retry requested; acceptance still requires original validation checks."
+    },
+    "piqa/parcae_370": {
+      "default": "high",
+      "selected": "highest",
+      "failed_job_id": "59040433",
+      "failure_log": "results/multitask/logs/slurm-59040433.err",
+      "failure_log_sha256": "9300a0883b3fb725cf12354271ff857e140e431ebc018d3b8b73d9abaedd3c53",
+      "formal_candidates_before_retry": 0,
+      "validation_tolerances_unchanged": true,
+      "status": "Retry requested; acceptance still requires original validation checks."
+    }
+  }
+}

@@ -1,0 +1,25 @@
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.24s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.57s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  1.99s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.39s/it]
+Traceback (most recent call last):
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate_arc_suite.py", line 194, in <module>
+    main()
+  File "/work/zs220/zjsu-loopcd/scripts/evaluate_arc_suite.py", line 116, in main
+    validation = scorer.validate(candidates)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/venv-stage3c-h/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/src/suite_scoring.py", line 73, in validate
+    validation = self.adapter.validate(inputs, mask, rows, positions, sample_keys=keys)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/venv-stage3c-h/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/work/zs220/zjsu-loopcd/src/adapter_looped_qwen.py", line 209, in validate
+    torch.testing.assert_close(
+  File "/work/zs220/zjsu-loopcd/venv-stage3c-h/lib/python3.12/site-packages/torch/testing/_comparison.py", line 1530, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not close!
+
+Mismatched elements: 2556729 / 3494528 (73.2%)
+Greatest absolute difference: 0.01125478744506836 at index (1, 11214) (up to 0.0005 allowed)
+Greatest relative difference: 37931.69140625 at index (18, 102376) (up to 1e-05 allowed)

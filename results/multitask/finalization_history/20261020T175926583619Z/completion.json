@@ -1,0 +1,14 @@
+{
+  "started_utc": "2026-10-20T17:15:53.077671+00:00",
+  "slurm_job_id": "59041709",
+  "partition": "scavenger-h200",
+  "complete": true,
+  "state": "complete",
+  "configurations": 28,
+  "question_evaluations": 44702,
+  "scored_candidates": 153048,
+  "answer_token_logprobs_all_four_policies": 4556224,
+  "artifact_manifest_sha256": "5d188528d3f58932ef696bff2f8df7bebc84e1b5c24c2b8dfe08e32a674b4637",
+  "report": "results/multitask/REPORT.md",
+  "finished_utc": "2026-10-20T17:17:26.454650+00:00"
+}

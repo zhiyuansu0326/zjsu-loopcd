@@ -1,0 +1,719 @@
+{
+  "sha": "1ea7220ec7eb42d13e89db0663df254d0bcdc28e",
+  "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/1ea7220ec7eb42d13e89db0663df254d0bcdc28e",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bea1f914f681e06ec4068b866279d3cfb4d0d20c",
+      "size": 543,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/bea1f914f681e06ec4068b866279d3cfb4d0d20c"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8ec087bc3eb28ba9883a9251e2f63a630878e76",
+      "size": 12075,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/d8ec087bc3eb28ba9883a9251e2f63a630878e76"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "704d3d96a52d2b920fac3e3b7c22c0c01969da04",
+      "size": 7421,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/704d3d96a52d2b920fac3e3b7c22c0c01969da04"
+    },
+    {
+      "path": "evaluate_raven",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9b1573a5222013cdedc16a9c7ad53682e721bc1b",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/9b1573a5222013cdedc16a9c7ad53682e721bc1b"
+    },
+    {
+      "path": "evaluate_raven/checkpoint_to_hf_converter.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02028a235db93486d56a35b91f7df6c059078c68",
+      "size": 8474,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/02028a235db93486d56a35b91f7df6c059078c68"
+    },
+    {
+      "path": "evaluate_raven/local_lm_eval.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fd58e33db8fc41ab8fa055ef286da07e16e2219",
+      "size": 20391,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/5fd58e33db8fc41ab8fa055ef286da07e16e2219"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8e6b0faea4721e36c7ef9be63007e79e3b917b10",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/8e6b0faea4721e36c7ef9be63007e79e3b917b10"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8656e7493979d5c8e4cf1d15f0dd7ace62da982",
+      "size": 115,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/c8656e7493979d5c8e4cf1d15f0dd7ace62da982"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/eval_alternate_loops.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3db373486aa07b6f02b038fed4ef08e1c2c54ffc",
+      "size": 799,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/3db373486aa07b6f02b038fed4ef08e1c2c54ffc"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/gms8k_long_cot.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a965e6bc428908824b664352a21c10c796543a7d",
+      "size": 21445,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/a965e6bc428908824b664352a21c10c796543a7d"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/gsm8K_issue_16.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7f30854c1acb5b46a5c3623328bc6d615f62c07",
+      "size": 3654,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/a7f30854c1acb5b46a5c3623328bc6d615f62c07"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/gsm8k_passk.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35c89ae295dec1c3dd47a755a7ae2b8be565238e",
+      "size": 3614,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/35c89ae295dec1c3dd47a755a7ae2b8be565238e"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/hf_eval_adaptive_compute.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d5f4356fa5dad51edb01f0f1c1eb31566e3749f",
+      "size": 13877,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/9d5f4356fa5dad51edb01f0f1c1eb31566e3749f"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/open_openbookqa.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "114d3ac7972ff9864941e38b53c5f321e6f15a56",
+      "size": 586,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/114d3ac7972ff9864941e38b53c5f321e6f15a56"
+    },
+    {
+      "path": "evaluate_raven/misc_benchmark_variants/pass_at_k_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59ad122464c200743e29438b4114fc7462953f46",
+      "size": 1069,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/59ad122464c200743e29438b4114fc7462953f46"
+    },
+    {
+      "path": "evaluate_raven/quick_chat_rec_compare.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a8668e5b5ef3a982f26975b93f57eab08bc2ce7",
+      "size": 8474,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/6a8668e5b5ef3a982f26975b93f57eab08bc2ce7"
+    },
+    {
+      "path": "evaluate_raven/quick_checkpoint_eval.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7ce3a0de1abc5f59de9d8f125016d8f106cafbd",
+      "size": 15346,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/a7ce3a0de1abc5f59de9d8f125016d8f106cafbd"
+    },
+    {
+      "path": "evaluate_raven/record_steps_in_bench.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcfaa93735fa9c8f1ccf7513206cc73e0165521c",
+      "size": 8257,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/fcfaa93735fa9c8f1ccf7513206cc73e0165521c"
+    },
+    {
+      "path": "evaluate_raven/saturation_eval_dist.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "709332be84fb9ba83c6fbdff87a2a948001e1bd6",
+      "size": 3683,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/709332be84fb9ba83c6fbdff87a2a948001e1bd6"
+    },
+    {
+      "path": "examples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e43843a06fa3c1223e02e7856f31246d8d9a5794",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/e43843a06fa3c1223e02e7856f31246d8d9a5794"
+    },
+    {
+      "path": "examples/inference_demo.ipynb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dc3896107ace24c0251193e03ee1fac17570a22d",
+      "size": 105094,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/dc3896107ace24c0251193e03ee1fac17570a22d"
+    },
+    {
+      "path": "examples/spec_decoding_example.ipynb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "667c0f4216876730370f210ab839b8bda6cfb141",
+      "size": 21581,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/667c0f4216876730370f210ab839b8bda6cfb141"
+    },
+    {
+      "path": "examples/trajectory_analysis.ipynb",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cb840437481ef67e19189720faa1fac2d5a5da6",
+      "size": 21279,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/3cb840437481ef67e19189720faa1fac2d5a5da6"
+    },
+    {
+      "path": "finetuning_simple_example.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1d9555c81288012638518fbc48b7f20516d67b1",
+      "size": 19506,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/a1d9555c81288012638518fbc48b7f20516d67b1"
+    },
+    {
+      "path": "launch_configs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9cd56fc1e0cc2e7178d1d078e0ed127e217c7614",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/9cd56fc1e0cc2e7178d1d078e0ed127e217c7614"
+    },
+    {
+      "path": "launch_configs/frontier_baseline_256_nodes.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26422151543a479b6ca5926d38e27cfe3ef079d1",
+      "size": 2968,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/26422151543a479b6ca5926d38e27cfe3ef079d1"
+    },
+    {
+      "path": "launch_configs/frontier_nebel_512_nodes.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be5f7c200b8e67d4b8311a026e6576a74b7b3489",
+      "size": 2958,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/be5f7c200b8e67d4b8311a026e6576a74b7b3489"
+    },
+    {
+      "path": "launch_configs/recurrent.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5542880999ff24a1138f777b4d61d176eb271aa",
+      "size": 2230,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/e5542880999ff24a1138f777b4d61d176eb271aa"
+    },
+    {
+      "path": "launch_frontier.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ce44da4bb57f38a895b61f98f903aa4dfaf5c2d",
+      "size": 30469,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/5ce44da4bb57f38a895b61f98f903aa4dfaf5c2d"
+    },
+    {
+      "path": "pyproject.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b18c37d00f00f438abf362542e1d7eb39460f6f2",
+      "size": 2634,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/b18c37d00f00f438abf362542e1d7eb39460f6f2"
+    },
+    {
+      "path": "recpre",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0d6ea1a62efba05c2c9601fe05e2f3c3c526ee86",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/0d6ea1a62efba05c2c9601fe05e2f3c3c526ee86"
+    },
+    {
+      "path": "recpre/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3afbbf259a1755c8ea8ceb7cf7aa6e9f5856f852",
+      "size": 786,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/3afbbf259a1755c8ea8ceb7cf7aa6e9f5856f852"
+    },
+    {
+      "path": "recpre/attention_backends",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a42ce9f233aa82d9f16852948a62af533a3e783c",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/a42ce9f233aa82d9f16852948a62af533a3e783c"
+    },
+    {
+      "path": "recpre/attention_backends/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "845a75ec8f612ab5ce97ac2bde499f153cbb00f9",
+      "size": 102,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/845a75ec8f612ab5ce97ac2bde499f153cbb00f9"
+    },
+    {
+      "path": "recpre/attention_backends/amd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dade51118c1c92fbf1d3e665ce194fe1b1eb0e9d",
+      "size": 55842,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/dade51118c1c92fbf1d3e665ce194fe1b1eb0e9d"
+    },
+    {
+      "path": "recpre/attention_backends/binBlk.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "920a11220ec1f05eb048e69b90bcee1eb79af00f",
+      "size": 50980,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/920a11220ec1f05eb048e69b90bcee1eb79af00f"
+    },
+    {
+      "path": "recpre/attention_backends/cuda_flash_attention.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36489b1b19acc15a2ed15237575fcf796e30788e",
+      "size": 1164,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/36489b1b19acc15a2ed15237575fcf796e30788e"
+    },
+    {
+      "path": "recpre/attention_backends/flex_attentions.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eaf473b2b1429990000ac6d72b6c243844dd3782",
+      "size": 3481,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/eaf473b2b1429990000ac6d72b6c243844dd3782"
+    },
+    {
+      "path": "recpre/attention_backends/interface.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cff9cf9a6d1cf60d6d76624b6eec996dc93e9634",
+      "size": 3298,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/cff9cf9a6d1cf60d6d76624b6eec996dc93e9634"
+    },
+    {
+      "path": "recpre/attention_backends/mosaic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfbf07ae8270f04ad87296f026a6b05cd1de2ab3",
+      "size": 32502,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/bfbf07ae8270f04ad87296f026a6b05cd1de2ab3"
+    },
+    {
+      "path": "recpre/attention_backends/openai.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc1acd569b6b2d35d73d4afdc9a0f80fe33fb182",
+      "size": 19353,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/fc1acd569b6b2d35d73d4afdc9a0f80fe33fb182"
+    },
+    {
+      "path": "recpre/attention_backends/pytorch.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57e961d4c2f548d45719c83f6545bc5da7670d8c",
+      "size": 1308,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/57e961d4c2f548d45719c83f6545bc5da7670d8c"
+    },
+    {
+      "path": "recpre/attention_backends/testing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ecd71ca6808b05039b98779c39b41c812472e68e",
+      "size": 7155,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/ecd71ca6808b05039b98779c39b41c812472e68e"
+    },
+    {
+      "path": "recpre/attention_backends/triton_kernels_seq_par.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c74127cb68e0d631f0c844169177cfe660612f43",
+      "size": 18632,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/c74127cb68e0d631f0c844169177cfe660612f43"
+    },
+    {
+      "path": "recpre/checkpoint_patch.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbe6efffd13f168659b7b135239529b6c3c05c0e",
+      "size": 6909,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/bbe6efffd13f168659b7b135239529b6c3c05c0e"
+    },
+    {
+      "path": "recpre/config_dynamic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57541c1eab82bab88c28575a4a2a8b43c54ef8df",
+      "size": 17841,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/57541c1eab82bab88c28575a4a2a8b43c54ef8df"
+    },
+    {
+      "path": "recpre/data_loading_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b7df5b0f8de61c183fb4f6d91a599c8a9224e85",
+      "size": 10011,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/1b7df5b0f8de61c183fb4f6d91a599c8a9224e85"
+    },
+    {
+      "path": "recpre/data_scheduler_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abc8ad6c9b9c0732f8854eeefdd697cea689bf2d",
+      "size": 8690,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/abc8ad6c9b9c0732f8854eeefdd697cea689bf2d"
+    },
+    {
+      "path": "recpre/huggingface_dataset.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff298e871d0fb03860d574e9a403f158b3d83d35",
+      "size": 19630,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/ff298e871d0fb03860d574e9a403f158b3d83d35"
+    },
+    {
+      "path": "recpre/init.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ad1246eae97422a45881b1324ab2e63b9f908a9",
+      "size": 22387,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/5ad1246eae97422a45881b1324ab2e63b9f908a9"
+    },
+    {
+      "path": "recpre/legacy_modeling_file.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd5040d8d051c878b2f3fc3cb0ee33d2ff9ca353",
+      "size": 50466,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/fd5040d8d051c878b2f3fc3cb0ee33d2ff9ca353"
+    },
+    {
+      "path": "recpre/misc.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ce3d5d5294b1743e3092175c5a5655d87e98b16",
+      "size": 2665,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/3ce3d5d5294b1743e3092175c5a5655d87e98b16"
+    },
+    {
+      "path": "recpre/model_dynamic.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8ef88e6148463ce0723ad0c9676073c5a9f447c",
+      "size": 67508,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/e8ef88e6148463ce0723ad0c9676073c5a9f447c"
+    },
+    {
+      "path": "recpre/model_registry.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18b506623f41bcc0de1d692d6d8edcb95b28cd98",
+      "size": 25269,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/18b506623f41bcc0de1d692d6d8edcb95b28cd98"
+    },
+    {
+      "path": "recpre/monitor.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f204f36e64fdb0b972a0c5c11c63d80935185fe4",
+      "size": 14621,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/f204f36e64fdb0b972a0c5c11c63d80935185fe4"
+    },
+    {
+      "path": "recpre/norms.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1ce0b2d4858c536880416e3e5a05441e690e3ed",
+      "size": 10009,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/a1ce0b2d4858c536880416e3e5a05441e690e3ed"
+    },
+    {
+      "path": "recpre/ops.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31c98e8565afed2c649e58b307284ab467acca83",
+      "size": 39058,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/31c98e8565afed2c649e58b307284ab467acca83"
+    },
+    {
+      "path": "recpre/optim.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83815911d9d7e4c865d414add67e899b7fe39936",
+      "size": 71127,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/83815911d9d7e4c865d414add67e899b7fe39936"
+    },
+    {
+      "path": "recpre/raven_config_minimal.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fc3d42b6cf4eff7eb14476f86b47c48b20e9ad43",
+      "size": 1295,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/fc3d42b6cf4eff7eb14476f86b47c48b20e9ad43"
+    },
+    {
+      "path": "recpre/raven_config_minimal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d02eb20e5e248bd3edfe2454bde0e4d448aaffe",
+      "size": 3913,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/3d02eb20e5e248bd3edfe2454bde0e4d448aaffe"
+    },
+    {
+      "path": "recpre/raven_modeling_minimal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e83a0766644df9113a8923f43350c6a1b5a182c",
+      "size": 111586,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/0e83a0766644df9113a8923f43350c6a1b5a182c"
+    },
+    {
+      "path": "recpre/settings.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da67697235946cbc6da69c3c8c4340d139382791",
+      "size": 14705,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/da67697235946cbc6da69c3c8c4340d139382791"
+    },
+    {
+      "path": "recpre/soap.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abc695b111268c5dbfacbfa4b1642d7084572c04",
+      "size": 18724,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/abc695b111268c5dbfacbfa4b1642d7084572c04"
+    },
+    {
+      "path": "recpre/tokenizer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93c4a4d8c25e9d21af9f9daf98caca67a5a5839d",
+      "size": 5949,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/93c4a4d8c25e9d21af9f9daf98caca67a5a5839d"
+    },
+    {
+      "path": "recpre/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b80674e8c3038fcb01cabb9a035bb2f050444dd1",
+      "size": 70528,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/b80674e8c3038fcb01cabb9a035bb2f050444dd1"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2d6d7f58a47a61ec15768b845818fb8c9c9d500f",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/2d6d7f58a47a61ec15768b845818fb8c9c9d500f"
+    },
+    {
+      "path": "scripts/classify_loops.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2dfc21b076282f515d909b06f9de7b0f43e1886",
+      "size": 9651,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/e2dfc21b076282f515d909b06f9de7b0f43e1886"
+    },
+    {
+      "path": "scripts/compare_tokenizers.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39546dfc5ed1f66773e75362ef7f59ffc9c65fd3",
+      "size": 25181,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/39546dfc5ed1f66773e75362ef7f59ffc9c65fd3"
+    },
+    {
+      "path": "scripts/data_processing_pipeline.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7d16182a8ae55a9bd3003b396828f3605dad48f",
+      "size": 32704,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/d7d16182a8ae55a9bd3003b396828f3605dad48f"
+    },
+    {
+      "path": "scripts/download_stream_to_local_copy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c5f2a1b7cc5ee203b136fb3e3023cbcdaf6a318",
+      "size": 1540,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/3c5f2a1b7cc5ee203b136fb3e3023cbcdaf6a318"
+    },
+    {
+      "path": "scripts/instructionsets.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f3cdf3f28d2a2b2cb38eb73cadce80eb79cb08d",
+      "size": 16219,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/2f3cdf3f28d2a2b2cb38eb73cadce80eb79cb08d"
+    },
+    {
+      "path": "scripts/parquet_to_parquet_dedup.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25312f9a5739b24d46084266fe429c7c4a391d37",
+      "size": 4214,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/25312f9a5739b24d46084266fe429c7c4a391d37"
+    },
+    {
+      "path": "scripts/parquet_to_parquet_sentence_dedup.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0d127920961d8342d369b0607001345f90cf481",
+      "size": 3595,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/c0d127920961d8342d369b0607001345f90cf481"
+    },
+    {
+      "path": "scripts/parquet_to_parquet_shuffler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11c166ca3caf675f27137fe9efc092028546e36f",
+      "size": 8622,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/11c166ca3caf675f27137fe9efc092028546e36f"
+    },
+    {
+      "path": "scripts/parquet_to_parquet_tokenizer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcc18d2f09d84e0ac97bfed093ca33dece2b8c4f",
+      "size": 15965,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/fcc18d2f09d84e0ac97bfed093ca33dece2b8c4f"
+    },
+    {
+      "path": "scripts/parquet_token_counter.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "922bbaf81e33cb1cd015ed9a5c3fe40249dcb5f1",
+      "size": 8366,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/922bbaf81e33cb1cd015ed9a5c3fe40249dcb5f1"
+    },
+    {
+      "path": "scripts/process_token_counts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "714fcee9fbc758a3e7b21d851b9812e6a52b4840",
+      "size": 3660,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/714fcee9fbc758a3e7b21d851b9812e6a52b4840"
+    },
+    {
+      "path": "scripts/scalable_data_download.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "808d3e8890e7a7cd3599be1d142bb9885c4ba992",
+      "size": 11285,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/808d3e8890e7a7cd3599be1d142bb9885c4ba992"
+    },
+    {
+      "path": "scripts/softwareheritage.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "faf7b997be15e17bc4fa2bba8665edf30e6126b7",
+      "size": 689,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/faf7b997be15e17bc4fa2bba8665edf30e6126b7"
+    },
+    {
+      "path": "scripts/sources.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "caad10cdb3ef9130c7cb3806fbfc8682269bbec3",
+      "size": 45864,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/caad10cdb3ef9130c7cb3806fbfc8682269bbec3"
+    },
+    {
+      "path": "scripts/target_domain_sets.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b6647d3d5fbafbe397e3c622883d9b3966e5a10",
+      "size": 27389,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/2b6647d3d5fbafbe397e3c622883d9b3966e5a10"
+    },
+    {
+      "path": "scripts/the_stack_downloader.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "798c32653fdf682ec4df7021fbaedc66c79f1c24",
+      "size": 9923,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/798c32653fdf682ec4df7021fbaedc66c79f1c24"
+    },
+    {
+      "path": "scripts/tokenizer_generation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "273e8758434f9cae63ac51a0bc236ae53602dbf3",
+      "size": 33081,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/273e8758434f9cae63ac51a0bc236ae53602dbf3"
+    },
+    {
+      "path": "train.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46e89314e079d7af0f3eb043fb9289b3e1ce7071",
+      "size": 50888,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/46e89314e079d7af0f3eb043fb9289b3e1ce7071"
+    },
+    {
+      "path": "vllm",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "871ba9cdecefdc6006ce3b5b9fcd26eb5f0a49f7",
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/trees/871ba9cdecefdc6006ce3b5b9fcd26eb5f0a49f7"
+    },
+    {
+      "path": "vllm/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "652da63e05c54efc463d1d236b1bf49b99b82217",
+      "size": 1690,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/652da63e05c54efc463d1d236b1bf49b99b82217"
+    },
+    {
+      "path": "vllm/chat_repl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a530fbdfa841ab9386aed5bbd304663af9fb4c7b",
+      "size": 1288,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/a530fbdfa841ab9386aed5bbd304663af9fb4c7b"
+    },
+    {
+      "path": "vllm/generation_config.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2937a71ce2ca8a5073e5a0eb8a9b6b59af1efcbf",
+      "size": 177,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/2937a71ce2ca8a5073e5a0eb8a9b6b59af1efcbf"
+    },
+    {
+      "path": "vllm/raven_vllm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49c40a7c5d64f162f36d7301ad9dcc6264e8262e",
+      "size": 35425,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/49c40a7c5d64f162f36d7301ad9dcc6264e8262e"
+    },
+    {
+      "path": "vllm/setup.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b69f116b9a7f8cb93b473086c9547a7a1cd1e4e",
+      "size": 204,
+      "url": "https://api.github.com/repos/seal-rg/recurrent-pretraining/git/blobs/1b69f116b9a7f8cb93b473086c9547a7a1cd1e4e"
+    }
+  ],
+  "truncated": false
+}

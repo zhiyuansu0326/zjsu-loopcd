@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "generated_at_utc": "2026-10-20T14:38:48.989802+00:00",
+  "auditor": "Independent read-only audit by /root/audit_relocation; no evaluator or preparation helper imported.",
+  "scope": "Canonical ARC-Easy raw split hashes, complete 2376-test-document/9501-option coverage, exact source fields and original order, and independent 0/8-shot full-context reconstruction.",
+  "dataset": "allenai/ai2_arc",
+  "subset": "ARC-Easy",
+  "split": "test",
+  "expected_test_documents": 2376,
+  "expected_candidate_answers": 9501,
+  "train_test_ids_disjoint": true,
+  "raw_files": {
+    "Train": {
+      "path": "data/raw/ARC-Easy/ARC-Easy-Train.jsonl",
+      "bytes": 844113,
+      "sha256": "c62e5482d8c01f2d5a7f24239ac9db3b12f9e47267c4e3f088c6ffe41d5545ef",
+      "expected_sha256_from_pinned_protocol": "c62e5482d8c01f2d5a7f24239ac9db3b12f9e47267c4e3f088c6ffe41d5545ef",
+      "sha256_verified": true,
+      "rows": 2251,
+      "unique_ids": 2251,
+      "source_url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Easy/ARC-Easy-Train.jsonl"
+    },
+    "Dev": {
+      "path": "data/raw/ARC-Easy/ARC-Easy-Dev.jsonl",
+      "bytes": 214423,
+      "sha256": "f4364b808a68df6bf500ce1070fb0105d40cacd2391c210deb00ff83ba75d1f4",
+      "expected_sha256_from_pinned_protocol": "f4364b808a68df6bf500ce1070fb0105d40cacd2391c210deb00ff83ba75d1f4",
+      "sha256_verified": true,
+      "rows": 570,
+      "unique_ids": 570,
+      "source_url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Easy/ARC-Easy-Dev.jsonl"
+    },
+    "Test": {
+      "path": "data/raw/ARC-Easy/ARC-Easy-Test.jsonl",
+      "bytes": 895104,
+      "sha256": "ce32a0774b4beb1977d2c6b16dda5dd2b24fdc9c7f506882c452678676bd09be",
+      "expected_sha256_from_pinned_protocol": "ce32a0774b4beb1977d2c6b16dda5dd2b24fdc9c7f506882c452678676bd09be",
+      "sha256_verified": true,
+      "rows": 2376,
+      "unique_ids": 2376,
+      "source_url": "https://s3-us-west-2.amazonaws.com/ai2-website/data/ARC-V1-Feb2018.zip",
+      "zip_member": "ARC-V1-Feb2018-2/ARC-Easy/ARC-Easy-Test.jsonl"
+    }
+  },
+  "prepared_files": {
+    "0shot": {
+      "path": "data/arc_easy_0shot.jsonl",
+      "bytes": 1153256,
+      "sha256": "e51c617a67965d3f5ebefb20149f0ab577066c0a3474094ac28c282db656ae4f",
+      "documents": 2376,
+      "unique_test_ids": 2376,
+      "candidates": 9501,
+      "choice_count_distribution": {
+        "3": 7,
+        "4": 2365,
+        "5": 4
+      },
+      "canonical_test_order_and_all_fields_match": true,
+      "checked_fields": [
+        "id",
+        "question",
+        "choices",
+        "labels",
+        "gold"
+      ],
+      "sampling_seed": 1234,
+      "sampling": "random.Random(1234).sample(train, shots), advancing RNG in original test order",
+      "all_fewshot_ids_match_reconstructed_sampler": true,
+      "all_fewshot_ids_unique_within_question": true,
+      "all_fewshot_ids_are_train_and_not_test": true,
+      "demonstration_occurrences_checked": 0,
+      "all_full_contexts_match_independent_reconstruction": true,
+      "test_gold_changes_do_not_change_context": true,
+      "prompt_template": "Question: {question}\nAnswer:",
+      "demonstration_target": "one space + complete correct training answer text",
+      "demonstration_separator": "\n\n"
+    },
+    "8shot": {
+      "path": "data/arc_easy_8shot.jsonl",
+      "bytes": 4515796,
+      "sha256": "d06e382aa9fdc0f922bd961c85bc60c81cfc63ebe11d79876cff84468cde71c3",
+      "documents": 2376,
+      "unique_test_ids": 2376,
+      "candidates": 9501,
+      "choice_count_distribution": {
+        "3": 7,
+        "4": 2365,
+        "5": 4
+      },
+      "canonical_test_order_and_all_fields_match": true,
+      "checked_fields": [
+        "id",
+        "question",
+        "choices",
+        "labels",
+        "gold"
+      ],
+      "sampling_seed": 1234,
+      "sampling": "random.Random(1234).sample(train, shots), advancing RNG in original test order",
+      "all_fewshot_ids_match_reconstructed_sampler": true,
+      "all_fewshot_ids_unique_within_question": true,
+      "all_fewshot_ids_are_train_and_not_test": true,
+      "demonstration_occurrences_checked": 19008,
+      "all_full_contexts_match_independent_reconstruction": true,
+      "test_gold_changes_do_not_change_context": true,
+      "prompt_template": "Question: {question}\nAnswer:",
+      "demonstration_target": "one space + complete correct training answer text",
+      "demonstration_separator": "\n\n"
+    }
+  },
+  "protocol": {
+    "path": "data/protocol.json",
+    "sha256": "1fd2feded120009f1f099a67c969d9f2b7aaf65a26e744acaa38c8f37fb04ee2",
+    "source_hashes_checked": true
+  },
+  "result_scores_audited": false,
+  "limitations": "This artifact verifies dataset and prompt construction. Token scores, native model validation, predictions, and statistical aggregation are audited separately by scripts/analyze_arc_suite.py."
+}

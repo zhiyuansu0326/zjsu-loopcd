@@ -1,0 +1,38 @@
+# Local Python environment and generated caches
+/venv/
+/venv-*/
+/.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Checkpoints: keep the small provenance manifests
+/models/*/
+
+# Downloaded/prepared data: keep protocol metadata and loader source
+/data/raw/
+/data/arc_easy_*shot.jsonl
+/data/tasks/**/*.jsonl
+
+# Completed candidate scores, predictions and source snapshots are versioned.
+# Only independent local reruns and maintenance scratch output are excluded.
+/results/maintenance/
+/results/repeats/
+*.out
+*.err
+*.log
+*.tmp
+*.part
+*.partial
+
+# Numerical preflight evidence required by the independent result audit.
+!/results/arc_all_models/slurm-59032284.err
+!/results/arc_all_models/slurm-59032893.err
+!/results/multitask/logs/slurm-59040426.err
+!/results/multitask/logs/slurm-59040428.err
+!/results/multitask/logs/slurm-59040429.err
+!/results/multitask/logs/slurm-59040430.err
+!/results/multitask/logs/slurm-59040431.err
+!/results/multitask/logs/slurm-59040432.err
+!/results/multitask/logs/slurm-59040433.err
+!/results/multitask/tests_final.log

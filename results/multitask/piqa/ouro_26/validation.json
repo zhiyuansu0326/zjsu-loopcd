@@ -1,0 +1,20 @@
+{
+  "native_full_head_max_abs_error": {
+    "baseline": 0.0,
+    "reference": 0.0
+  },
+  "complete_recurrent_passes": 4,
+  "reference_pass": 1,
+  "zero_guidance_identity": true,
+  "zero_guidance_matches_baseline_exactly": true,
+  "batch_single_token_logprob_errors": {
+    "baseline": 8.821487426757812e-06,
+    "loopcd_fixed": 1.1682510375976562e-05,
+    "loopcd_adaptive": 1.52587890625e-05,
+    "reference": 8.821487426757812e-06
+  },
+  "batch_single_tolerance": 0.001,
+  "masked_padding_token_change_max_abs_error": 0.0,
+  "early_final_mean_abs_difference": 0.9745411276817322,
+  "stochastic": false
+}

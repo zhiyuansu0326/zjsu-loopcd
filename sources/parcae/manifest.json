@@ -1,0 +1,335 @@
+{
+  "source": "https://github.com/sandyresearch/parcae",
+  "revision": "69284c13746e849104f738d6d1a347b1f457df76",
+  "files": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/LICENSE",
+      "bytes": 1071,
+      "sha256": "27f751cdf3dba895ca1a5c50fc29b56f725e5845da638dbb85b0cc99e2215543",
+      "git_blob_sha1": "ba9fdb7784d2efad8aa027f8f5ea18ade20fa294"
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/README.md",
+      "bytes": 5968,
+      "sha256": "766e2a446cd50460dff8b0bb3f88105e15d32d22ed4eb5831b83a8c286f0e1ea",
+      "git_blob_sha1": "72d5a5af592d4d398f0cfbb36f0c4adcd1f4bc27"
+    },
+    {
+      "path": "parcae_lm/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/__init__.py",
+      "bytes": 3542,
+      "sha256": "453bdfc947ecb921b3fca9f6d558a1fe8a6a43e0992b4758c8b8f2627cfc1aac",
+      "git_blob_sha1": "05a65d9059987ab6c2221d0209cfe9865131534d"
+    },
+    {
+      "path": "parcae_lm/attention_backends/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/attention_backends/__init__.py",
+      "bytes": 156,
+      "sha256": "7d576a833ef9390ea34d98019bbd5988c9548c30608ff6e01b47ee06a3564469",
+      "git_blob_sha1": "79ccbbabec5ce665b94bc0f3f0096a024b7bd56d"
+    },
+    {
+      "path": "parcae_lm/attention_backends/flash_attention.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/attention_backends/flash_attention.py",
+      "bytes": 6578,
+      "sha256": "aaafb0a7ff405c2d8ebf02c25d493d0181971c254009d7b8ea54ab2b29c47179",
+      "git_blob_sha1": "82464e006f162ef4ba0de5811ab17eefed2bc66a"
+    },
+    {
+      "path": "parcae_lm/attention_backends/interface.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/attention_backends/interface.py",
+      "bytes": 1959,
+      "sha256": "8408ef34eee9f802d7984eaabc686b8edee431588c283bc3156ed4e6d1c4f7ad",
+      "git_blob_sha1": "8adeb223eeff0f7d9414f5cce9590a1cd9c9494f"
+    },
+    {
+      "path": "parcae_lm/configs/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    {
+      "path": "parcae_lm/configs/gpt/gpt-large-770m.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/gpt/gpt-large-770m.py",
+      "bytes": 850,
+      "sha256": "8e23a14ac65cb2b757685a489d350db1056927b99d2aa2978207127ddd826225",
+      "git_blob_sha1": "ba8b81627276417a1d67f2ad103e7f03e66e7a96"
+    },
+    {
+      "path": "parcae_lm/configs/gpt/gpt-medium-370m.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/gpt/gpt-medium-370m.py",
+      "bytes": 850,
+      "sha256": "f28ebdbc20b1ed6629f3dd88c35f55379437df8edf72fdc1c046a54add46631e",
+      "git_blob_sha1": "fdd6be3aa58e7a8623ed5b71ce7534b7cf5751de"
+    },
+    {
+      "path": "parcae_lm/configs/gpt/gpt-small-140m.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/gpt/gpt-small-140m.py",
+      "bytes": 834,
+      "sha256": "a1045d80847ac696a5ad1c0153b18b7f49d44dd300e06a838116af3dc5724c05",
+      "git_blob_sha1": "592d68c0578f8c982c2e351cbdecddb1f0f36b28"
+    },
+    {
+      "path": "parcae_lm/configs/gpt/gpt-xlarge-1_3b.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/gpt/gpt-xlarge-1_3b.py",
+      "bytes": 853,
+      "sha256": "e541bc9f6104273bb560b6a85b4ae538f3f8b6910f30a72e1fc19966f634b67a",
+      "git_blob_sha1": "3c557a3f1c522f1c31e591e3a91557afef23516a"
+    },
+    {
+      "path": "parcae_lm/configs/parcae/parcae-large-770m.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/parcae/parcae-large-770m.py",
+      "bytes": 1477,
+      "sha256": "7ec136304a6d084f2398950233d772c101bf7325516f5ccdff888ea10075b186",
+      "git_blob_sha1": "25f665f9b4786ab0bad33afa84d0b5c159e970ee"
+    },
+    {
+      "path": "parcae_lm/configs/parcae/parcae-medium-370m.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/parcae/parcae-medium-370m.py",
+      "bytes": 1478,
+      "sha256": "bd04ed716d2464e4dd0644e9e2008e49c5a97415ab43b6df286628df22a43023",
+      "git_blob_sha1": "1ab4d0b1337146f18c2f3309133df26ec6c25d9b"
+    },
+    {
+      "path": "parcae_lm/configs/parcae/parcae-small-140m.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/parcae/parcae-small-140m.py",
+      "bytes": 1468,
+      "sha256": "9f3d479cb3945ec4fb6c42d154c3e25a71422e691467959929d20434ad05d497",
+      "git_blob_sha1": "e0e516021a8cc2b07f5bc6ef61e3dbf214ae24a6"
+    },
+    {
+      "path": "parcae_lm/configs/parcae/parcae-xlarge-1_3b.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/configs/parcae/parcae-xlarge-1_3b.py",
+      "bytes": 1480,
+      "sha256": "0dcece886bf857c00fdb01a9e711cde8a7f6c0f8a4c387df2d8ed7621fb4317b",
+      "git_blob_sha1": "ab3b1e8e25f519790e026390cb67da1ea0b57307"
+    },
+    {
+      "path": "parcae_lm/models/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/__init__.py",
+      "bytes": 12,
+      "sha256": "acd62b76b5ee7da7c7062b5deafa1a69df07bcf2c3440e5c9f112a93dad96c4f",
+      "git_blob_sha1": "eff6079297aa814502558e1bf70788787f6673b3"
+    },
+    {
+      "path": "parcae_lm/models/config.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/config.py",
+      "bytes": 12453,
+      "sha256": "6c44badecd52f2a58ce3d3a14b70bcb64a181ea058b9bde99cbfbf76d917df95",
+      "git_blob_sha1": "19d1f6b6dbb18533edc0dc48a6f4c7c8c1d2778a"
+    },
+    {
+      "path": "parcae_lm/models/gpt/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/gpt/__init__.py",
+      "bytes": 330,
+      "sha256": "b9d85819b4903d46e016b4ab3ae20931cc33ac8437fde1402f9cdc9fb5a5e766",
+      "git_blob_sha1": "5e3294921238afdc7139586a727b836f59d89219"
+    },
+    {
+      "path": "parcae_lm/models/gpt/config.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/gpt/config.py",
+      "bytes": 789,
+      "sha256": "aa3269ab541fce0c406cb41128e660925266e97ff5b6b8be38eaa76438b790d8",
+      "git_blob_sha1": "85868ed8d1a05b8c2724535a252fb0b09d6fa04b"
+    },
+    {
+      "path": "parcae_lm/models/gpt/gpt.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/gpt/gpt.py",
+      "bytes": 6724,
+      "sha256": "0b73c3ad16bf343450dcd5c774e7bcdbebc91fcceea19e951d348ccabd7f53df",
+      "git_blob_sha1": "33ee78728306d6f64ca1cf50c861269c0748ad48"
+    },
+    {
+      "path": "parcae_lm/models/gpt/init.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/gpt/init.py",
+      "bytes": 7279,
+      "sha256": "e0b0c7d62dc550be9f0e0b8078eba4220ba9a3ee26d8245202ba58e688bdf5bc",
+      "git_blob_sha1": "30cbeba8d8930b191f341776344aec55b09fac0e"
+    },
+    {
+      "path": "parcae_lm/models/parcae/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/parcae/__init__.py",
+      "bytes": 366,
+      "sha256": "aa607640573ed4b2012f5efa353a44d5a970a36a4c8c772b9da2b83f59acb9e6",
+      "git_blob_sha1": "7bd6ea7906fa4f94a2465e541e28034e1f6b8939"
+    },
+    {
+      "path": "parcae_lm/models/parcae/config.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/parcae/config.py",
+      "bytes": 4698,
+      "sha256": "e9a5e7515b8f5261191491964e4ea45fdb09f633bd55835d604fd544f41e0d18",
+      "git_blob_sha1": "8701866cc7124d79e4659290f0be2a4dffda1f15"
+    },
+    {
+      "path": "parcae_lm/models/parcae/init.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/parcae/init.py",
+      "bytes": 5069,
+      "sha256": "46b5a24f697f3375bbd8b388314ea96d1c1a75c522240354768f48faeb19594b",
+      "git_blob_sha1": "197ca57314ac4dda8334881455f0335d9997b889"
+    },
+    {
+      "path": "parcae_lm/models/parcae/parcae.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/parcae/parcae.py",
+      "bytes": 31686,
+      "sha256": "c0d792379c3e965ec75bbe88dbdcf500392a12fd0c67f8a484543b2398470c3d",
+      "git_blob_sha1": "e84aca22cbdf809693212c48470b43f67737b87b"
+    },
+    {
+      "path": "parcae_lm/models/registry.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/models/registry.py",
+      "bytes": 1242,
+      "sha256": "c4e039f967998fc4b001ad2cf6a09142e8017fbae71359116afcafd5b37ee0ca",
+      "git_blob_sha1": "3e9318bb24ba59251ac6fd076c80f57347351823"
+    },
+    {
+      "path": "parcae_lm/modules/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/__init__.py",
+      "bytes": 13,
+      "sha256": "21f71f895602cef16d301c257ef89edb1eeee77c559f7d86c9df1c335deffe63",
+      "git_blob_sha1": "2446317a3df09c9ced6ef2a67bd77e69d08e0b17"
+    },
+    {
+      "path": "parcae_lm/modules/basic.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/basic.py",
+      "bytes": 908,
+      "sha256": "b2b38a8ab0fe6754c41634969d3fa52a6d1aab1a63e3757a63da69dc73ba63cc",
+      "git_blob_sha1": "ae4f1868d68064d68c91ec30e949ffc02faa52cc"
+    },
+    {
+      "path": "parcae_lm/modules/blocks.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/blocks.py",
+      "bytes": 1055,
+      "sha256": "96232cf3543dcf7674d5610d1cb2e1c6bb0aae3c5a244d42db79b502c3d70ea3",
+      "git_blob_sha1": "51100bc7074fa8adfe1773504e8e49d38f761a19"
+    },
+    {
+      "path": "parcae_lm/modules/injection.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/injection.py",
+      "bytes": 3460,
+      "sha256": "a163acbf86824ba58fb741cae9e1b04c51eb0a4b3cb5d354492b412670a74f48",
+      "git_blob_sha1": "0931e7930f502a343e8399a68ca6b5738f92df52"
+    },
+    {
+      "path": "parcae_lm/modules/mixer.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/mixer.py",
+      "bytes": 6487,
+      "sha256": "7706683f5ce886db336fef84a290eb37f3fed6aff72f682203de4829c4ef5c4c",
+      "git_blob_sha1": "215d50827eaf6d02865acc4e94f211979cb2edc6"
+    },
+    {
+      "path": "parcae_lm/modules/mlp.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/mlp.py",
+      "bytes": 1608,
+      "sha256": "5e108d54fc2890bb6327110bb7da9e81ba3b7beeb9142fac0de9d74fbde1edad",
+      "git_blob_sha1": "1007ef61b960e232829e6c71e8a6cfc7a5ef1a66"
+    },
+    {
+      "path": "parcae_lm/modules/norms.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/norms.py",
+      "bytes": 552,
+      "sha256": "888cb97a5e29ef5b49b23eb39d83aa75cd126a5425a78ac75caa47923a3e16ba",
+      "git_blob_sha1": "f5cfcb69d5ea6f373e43451c05bd9a39e5aa4668"
+    },
+    {
+      "path": "parcae_lm/modules/utils.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/modules/utils.py",
+      "bytes": 1518,
+      "sha256": "e21f09ac8b6c33ac43837877c352c723a97218166a139dd0e9e8222dd7b3b2c5",
+      "git_blob_sha1": "6b43cf3aeae41d7ea871a39499b7b42e665f0235"
+    },
+    {
+      "path": "parcae_lm/ops/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/ops/__init__.py",
+      "bytes": 298,
+      "sha256": "d0e62d8740c8debfa4d0fe1dd6dad56c32dd16a2291393fc21b3a8a530390d06",
+      "git_blob_sha1": "8d47f27e4682ed3b128ac6cefe169b6334c659e7"
+    },
+    {
+      "path": "parcae_lm/ops/linear_cross_entropy.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/ops/linear_cross_entropy.py",
+      "bytes": 39128,
+      "sha256": "3279c078b2dc22b37ea8ea02b42ab8d13f263ec19c03b434ec4185c8673cf65f",
+      "git_blob_sha1": "7f41ae1d25dceafe5c235196476b126c625ce331"
+    },
+    {
+      "path": "parcae_lm/pyproject.toml",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/pyproject.toml",
+      "bytes": 1152,
+      "sha256": "5798c291c1c26295de21a2dcbcfa592429bd6b3ef06ad621b3ea5230957b724f",
+      "git_blob_sha1": "fc61fa52e612cb2d3e1aa0e1525f72a2a72583f6"
+    },
+    {
+      "path": "parcae_lm/registry.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/registry.py",
+      "bytes": 3947,
+      "sha256": "37e62f769bd482d0c01fab71cc9a6e24622528066106f789a50b6e7cf88087ca",
+      "git_blob_sha1": "a41e84ab52cb338457462200719b141e1deee1fe"
+    },
+    {
+      "path": "parcae_lm/tokenizer.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/tokenizer.py",
+      "bytes": 10201,
+      "sha256": "3aec59f3f7beed5be2b5fe9dfc5ab44632699fa843e915a9b2da9d0a5abecacb",
+      "git_blob_sha1": "9fdb5f924ed22a1c58d856a9a3b650ee1ea83408"
+    },
+    {
+      "path": "parcae_lm/utils/__init__.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/utils/__init__.py",
+      "bytes": 84,
+      "sha256": "f942d05d1d57367bdbe87a47047714cda5f280beb845ec471a17be807a24c035",
+      "git_blob_sha1": "2bb9f1eb749474fe3945d4a047c0dc36282718f2"
+    },
+    {
+      "path": "parcae_lm/utils/cache.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/utils/cache.py",
+      "bytes": 6998,
+      "sha256": "c1368f87d17430f14a608bad90d0c50f5d784fa2c7d3df48ba3f2c61f29a1d19",
+      "git_blob_sha1": "59ca02c5b5e4d0586dafd2168e56cb2c2c73499f"
+    },
+    {
+      "path": "parcae_lm/utils/init.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/parcae_lm/utils/init.py",
+      "bytes": 19788,
+      "sha256": "7df119be7f8ba293b3d3a1c80a581283b6c0c769778da1f8cb6759490ae8e3b6",
+      "git_blob_sha1": "4d8cb2b4289f1e40a204c6432600981aa7a759ce"
+    },
+    {
+      "path": "pyproject.toml",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/pyproject.toml",
+      "bytes": 2371,
+      "sha256": "ea9281942a88b5e614df784f30270897197da0417d50d1c81ccfe158caadc2e9",
+      "git_blob_sha1": "3deb202bd31c706ac993d4051b8aea351c75793e"
+    },
+    {
+      "path": "receval/models/parcae.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/receval/models/parcae.py",
+      "bytes": 8803,
+      "sha256": "14363edd0b425f6d264517ae6d8f941a394313899425e97aaff596efddb2b382",
+      "git_blob_sha1": "7c10f3b47db1da51ccfcac708a3794f2e512e9f5"
+    },
+    {
+      "path": "receval/settings.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/receval/settings.py",
+      "bytes": 7087,
+      "sha256": "d852cc1793238cfa907e8173b1fcc6508baadabbaa4747182b95f8dcfc552683",
+      "git_blob_sha1": "510e8a33de5b56fcfd61c586c04625329f07da46"
+    },
+    {
+      "path": "receval/tasks/lm_eval.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/receval/tasks/lm_eval.py",
+      "bytes": 13566,
+      "sha256": "ae1d344a92112f97bcfc70ad1c8bcd9f3027f5f99659310bcb3a36c211a2ba0c",
+      "git_blob_sha1": "d8e87571248661ad0c4161319db70a14e42e6b71"
+    },
+    {
+      "path": "scripts/eval.py",
+      "url": "https://raw.githubusercontent.com/sandyresearch/parcae/69284c13746e849104f738d6d1a347b1f457df76/scripts/eval.py",
+      "bytes": 13338,
+      "sha256": "c0014abd37e95de5bfda22c9003e74ceef20e4c2acd3c68c92eef739cc045940",
+      "git_blob_sha1": "0b7df6bab0dedc1c63f307c15d539884f6db9b67"
+    }
+  ]
+}
